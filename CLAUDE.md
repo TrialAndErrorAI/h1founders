@@ -23,22 +23,57 @@ Transform H1BFounders from WhatsApp community to scalable platform with clear va
 
 ## Project Structure
 ```
-/projects/h1bfounders-website/
+/h1founders/
 ├── CLAUDE.md (this file - project memory)
-├── context/
-│   ├── whatsapp-history/
-│   ├── linkedin-viral-post.md
-│   ├── substack-content/
-│   ├── call-transcripts/
-│   └── coaching-materials/
+├── client/ (React app)
+│   ├── src/
+│   │   ├── components/
+│   │   ├── data/
+│   │   ├── styles/
+│   │   └── utils/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
 ├── docs/
-│   ├── website-strategy.md
-│   ├── value-proposition.md
-│   └── user-personas.md
-└── research/
-    ├── competitor-analysis.md
-    └── community-insights.md
+│   ├── rfc001_founder_directory.md
+│   ├── rfc002_tools_resources.md
+│   ├── rfc003_authentication.md
+│   ├── rfc004_design_system.md
+│   ├── rfc005_platform_architecture.md
+│   └── rfc006_optimization.md
+└── context/ (planned)
+    ├── whatsapp-history/
+    ├── substack-content/
+    └── coaching-materials/
 ```
+
+## Platform Architecture
+Current implementation features 5 main sections:
+- **Tools**: Visa Timeline Calculator, EB1A Points Calculator
+- **Resources**: Investment guides, visa information, legal resources  
+- **Stories**: Success narratives from community members
+- **Events**: Office hours, networking, educational content
+- **Network**: Founder directory (781+ members from WhatsApp)
+
+**Design Theme**: Matrix terminal aesthetic with green text on black background
+**Current Version**: v0.4.0
+**Live Status**: Functional prototype with content management system
+
+## Technical Stack
+- **Frontend**: React 18 + Vite + Tailwind CSS
+- **Package Manager**: Bun (faster than npm/yarn)
+- **Deployment**: Cloudflare Pages (planned)
+- **Authentication**: Firebase Auth (planned for v0.5.0)
+- **Data Management**: JSON files for content, local state
+- **Build Target**: Modern ES modules, phone-first responsive
+
+## Key Design Decisions
+1. **Phone-first Authentication**: H1B founders primarily use WhatsApp on mobile
+2. **Pre-populate Directory**: Import existing 781 WhatsApp members as foundation
+3. **No Passwords Strategy**: Phone verification → immediate access (like WhatsApp)
+4. **Matrix Theme**: Appeals to technical founder audience, creates memorable brand
+5. **Content-First Approach**: 36+ pieces of valuable content before asking for anything
+6. **Tool Integration**: Calculators and resources embedded in narrative flow
 
 ## Key Questions to Answer
 1. What transformation are we selling? (Not just community)
@@ -48,17 +83,35 @@ Transform H1BFounders from WhatsApp community to scalable platform with clear va
 5. What's the moat? Why can't others replicate?
 
 ## Success Metrics
+**Achieved (v0.4.0)**:
+- 36+ content pieces created across all sections
+- 2 functional tools (Visa Timeline Calculator, EB1A Points Calculator)  
+- 627KB bundle size (needs optimization per RFC-006)
+- Matrix terminal theme implemented
+- 5-section platform architecture live
+- Mobile-first responsive design
+
+**Planned**:
 - Clear value prop in 10 seconds
 - Conversion path defined
 - Community → Customer journey mapped
 - Pricing strategy validated
+- Bundle size under 300KB
 
-## Next Steps
-1. Load all context materials
-2. Extract patterns from WhatsApp history
-3. Identify core transformation stories
-4. Define website architecture
-5. Create compelling copy
+## Next Phase
+Current focus on **RFC-006: Platform Optimization**
+- Bundle size reduction (627KB → <300KB)
+- Performance improvements
+- Authentication system integration
+- WhatsApp member directory import
+- Cloudflare Pages deployment
+
+## Original Next Steps (Completed)
+1. ✅ Load all context materials
+2. ✅ Extract patterns from WhatsApp history  
+3. ✅ Identify core transformation stories
+4. ✅ Define website architecture
+5. ✅ Create compelling copy
 
 ---
 *Created by ATLAS - September 6, 2025*
