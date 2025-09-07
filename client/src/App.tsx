@@ -1,24 +1,30 @@
-import Hero from './components/Hero'
-import TheReceipts from './components/TheReceipts'
-import WhatIActuallyDo from './components/WhatIActuallyDo'
-import FounderStory from './components/FounderStory'
-import Transformation from './components/Transformation'
-import Coaching from './components/Coaching'
-import Community from './components/Community'
-import Footer from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import ToolsIndex from './pages/tools'
+import SalaryExplorer from './pages/tools/SalaryExplorer'
+import EB1AQualifier from './pages/tools/EB1AQualifier'
+import Resources from './pages/resources'
+import Stories from './pages/stories'
+import Events from './pages/events'
+import Network from './pages/network'
+import Academy from './pages/academy'
 
 function App() {
   return (
-    <div className="min-h-screen bg-black">
-      <Hero />
-      <TheReceipts />
-      <WhatIActuallyDo />
-      <FounderStory />
-      <Transformation />
-      <Coaching />
-      <Community />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="tools" element={<ToolsIndex />} />
+        <Route path="tools/salary-explorer" element={<SalaryExplorer />} />
+        <Route path="tools/eb1a-qualifier" element={<EB1AQualifier />} />
+        <Route path="resources" element={<Resources />} />
+        <Route path="stories" element={<Stories />} />
+        <Route path="events" element={<Events />} />
+        <Route path="network" element={<Network />} />
+        <Route path="academy" element={<Academy />} />
+      </Route>
+    </Routes>
   )
 }
 
