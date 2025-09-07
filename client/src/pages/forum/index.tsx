@@ -1,0 +1,241 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { forumCategories } from '../../data/forumCategories'
+import { mockThreads } from '../../data/mockThreads'
+import { getMockUser } from '../../data/mockUsers'
+import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
+import BadgeDisplay from '../../components/badges/BadgeDisplay'
+import ProgressionLevel from '../../components/badges/ProgressionLevel'
+
+export default function Forum() {
+  const [selectedCategory, setSelectedCategory] = useState<ForumCategory | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  
+  // Mock current user - in real app this would come from auth context
+  const currentUser = getMockUser('carlos_freed')
+  
+  const filteredThreads = mockThreads.filter(thread => {
+    const matchesCategory = !selectedCategory || thread.category === selectedCategory
+    const matchesSearch = !searchQuery || 
+      thread.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      thread.content.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
+
+  const threadTypeConfig = {
+    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-400' },
+    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-green-400' },
+    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-400' },
+    [ThreadType.RESOURCE]: { icon: '📊', color: 'text-purple-400' },
+    [ThreadType.INTRODUCTION]: { icon: '👋', color: 'text-yellow-400' },
+    [ThreadType.PROPHECY]: { icon: '🔮', color: 'text-pink-400' }
+  }
+
+  const getTypeConfig = (type: ThreadType) => 
+    threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold terminal-text matrix-glow">
+                THE MATRIX FORUM
+              </h1>
+              <p className="mt-2 text-gray-400 font-mono text-sm">
+                Where minds are freed and empires are built
+              </p>
+            </div>
+            <Link
+              to="/forum/create"
+              className="inline-flex items-center px-4 py-2 border-2 border-green-400 text-green-400 rounded font-mono text-sm hover:bg-green-400 hover:text-black transition-all duration-200"
+            >
+              <span className="mr-2">+</span>
+              NEW THREAD
+            </Link>
+          </div>
+
+          {/* User Progress Card */}
+          {currentUser && (
+            <div className="mt-6 p-4 sm:p-5 border border-gray-800 rounded-lg bg-gray-900/50">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl flex-shrink-0">{currentUser.avatar || '👤'}</div>
+                  <div>
+                    <p className="font-mono text-xs sm:text-sm text-gray-400">Welcome back,</p>
+                    <p className="font-bold text-white text-sm sm:text-base">{currentUser.name}</p>
+                  </div>
+                </div>
+                <ProgressionLevel
+                  currentLevel={currentUser.badge}
+                  currentSubLevel={currentUser.subLevel}
+                  showProgress={true}
+                  className="w-full lg:max-w-sm"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search threads..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-2 pl-10 bg-gray-900 border border-gray-800 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-green-400 transition-colors"
+            />
+            <span className="absolute left-3 top-2.5 text-gray-500">🔍</span>
+          </div>
+        </div>
+
+        {/* Categories */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-200 ${
+                !selectedCategory
+                  ? 'bg-green-400 text-black shadow-md shadow-green-400/30'
+                  : 'bg-gray-900 text-gray-400 border border-gray-800 hover:border-green-400'
+              }`}
+            >
+              ALL CATEGORIES
+            </button>
+            {forumCategories.map(category => {
+              const isLocked = category.requiredBadge && 
+                currentUser && 
+                Object.values(BadgeLevel).indexOf(currentUser.badge) < 
+                Object.values(BadgeLevel).indexOf(category.requiredBadge)
+              
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => !isLocked && setSelectedCategory(category.id)}
+                  disabled={isLocked}
+                  className={`px-4 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-200 whitespace-nowrap ${
+                    selectedCategory === category.id
+                      ? 'bg-green-400 text-black shadow-md shadow-green-400/30'
+                      : isLocked
+                      ? 'bg-gray-900 text-gray-600 border border-gray-800 cursor-not-allowed opacity-50'
+                      : 'bg-gray-900 text-gray-400 border border-gray-800 hover:border-green-400'
+                  }`}
+                >
+                  <span className="mr-1.5">{category.icon}</span>
+                  <span>{category.name}</span>
+                  {isLocked && <span className="ml-1">🔒</span>}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Thread List */}
+        <div className="space-y-4">
+          {filteredThreads.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500 font-mono">No threads found</p>
+            </div>
+          ) : (
+            filteredThreads.map(thread => (
+              <Link
+                key={thread.id}
+                to={`/forum/thread/${thread.id}`}
+                className="block p-5 bg-gray-900/30 border border-gray-800 rounded-lg hover:border-green-400 hover:bg-gray-900/50 transition-all duration-200 group"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="flex items-center gap-2 flex-shrink-0 mt-0.5">
+                        {thread.isPinned && (
+                          <span className="text-yellow-400 text-lg" title="Pinned">📌</span>
+                        )}
+                        <span className={`${getTypeConfig(thread.type).color} text-lg`} title={thread.type}>
+                          {getTypeConfig(thread.type).icon}
+                        </span>
+                      </div>
+                      <h3 className="font-semibold text-white group-hover:text-green-400 transition-colors text-base leading-tight">
+                        {thread.title}
+                      </h3>
+                    </div>
+                    
+                    <p className="text-gray-400 text-sm line-clamp-2 mb-3">
+                      {thread.content}
+                    </p>
+
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 font-mono">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-gray-600">by</span>
+                        <BadgeDisplay 
+                          level={thread.author.badge} 
+                          subLevel={thread.author.subLevel}
+                          specialRole={thread.author.specialRole}
+                          size="sm" 
+                          showName={true}
+                        />
+                        <span className="text-gray-300 font-medium">{thread.author.name}</span>
+                      </div>
+                      <span className="flex items-center gap-1">
+                        <span className="opacity-70">👁</span> {thread.views}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <span className="opacity-70">💬</span> {thread.replies}
+                      </span>
+                      {thread.aiParticipated && (
+                        <span className="text-purple-400 flex items-center gap-1">
+                          <span>🤖</span> AI Participated
+                        </span>
+                      )}
+                      {thread.lastReply && (
+                        <span className="text-gray-600">
+                          Last: {new Date(thread.lastReply.createdAt).toLocaleDateString()}
+                        </span>
+                      )}
+                    </div>
+
+                    {thread.tags && thread.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {thread.tags.map(tag => (
+                          <span 
+                            key={tag}
+                            className="px-2 py-0.5 bg-gray-800 text-gray-400 rounded-full text-xs font-mono"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            ))
+          )}
+        </div>
+
+        {/* Forum Stats */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
+            <p className="text-2xl font-bold text-green-400">{mockThreads.length}</p>
+            <p className="text-xs text-gray-500 font-mono mt-1">Active Threads</p>
+          </div>
+          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
+            <p className="text-2xl font-bold text-blue-400">156</p>
+            <p className="text-xs text-gray-500 font-mono mt-1">Daily Posts</p>
+          </div>
+          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
+            <p className="text-2xl font-bold text-purple-400">781</p>
+            <p className="text-xs text-gray-500 font-mono mt-1">Active Members</p>
+          </div>
+          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
+            <p className="text-2xl font-bold text-yellow-400">42</p>
+            <p className="text-xs text-gray-500 font-mono mt-1">Morpheus Teachers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

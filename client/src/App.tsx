@@ -9,6 +9,9 @@ import Stories from './pages/stories'
 import Events from './pages/events'
 import Network from './pages/network'
 import Academy from './pages/academy'
+import Forum from './pages/forum'
+import ForumThread from './pages/forum/ForumThread'
+import CreateThread from './pages/forum/CreateThread'
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
         <Route path="events" element={<Events />} />
         <Route path="network" element={<Network />} />
         <Route path="academy" element={<Academy />} />
+        <Route path="forum" element={<Forum />} />
+        <Route path="forum/thread/:threadId" element={<ForumThread />} />
+        <Route path="forum/create" element={<CreateThread />} />
       </Route>
     </Routes>
   )

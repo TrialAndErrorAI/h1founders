@@ -11,6 +11,7 @@ interface NavItem {
 }
 
 const navigation: NavItem[] = [
+  { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
   { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
   { name: 'RESOURCES', href: '/resources', status: 'LIVE', count: 20 },
   { name: 'STORIES', href: '/stories', status: 'LIVE', count: 6 },
