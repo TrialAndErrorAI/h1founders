@@ -5,7 +5,8 @@
       "WebSearch",
       "mcp__context7__get-library-docs",
       "Bash(bun run:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

@@ -5,10 +5,10 @@ export default function Coaching() {
         <div className="rounded-3xl bg-gradient-to-br from-green-50 to-blue-50 px-8 py-16 sm:px-12 lg:px-16">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              EB1-A Strategy Session with Sid
+              Bootstrap Your Profitable Business
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">
-              I got my EB1-A. I'll show you exactly how to build your profile for extraordinary ability recognition.
+              I built $3M ARR while on H1B. I'll show you how to start profitable businesses despite immigration myths.
             </p>
           </div>
           
@@ -27,40 +27,40 @@ export default function Coaching() {
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">Review your current profile</span>
+                  <span className="text-gray-700">Destroy the myths holding you back</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">EB1-A criteria assessment</span>
+                  <span className="text-gray-700">Bootstrap strategy for your idea</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">90-day action plan</span>
+                  <span className="text-gray-700">Immigration-safe business structure</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">Attorney recommendations</span>
+                  <span className="text-gray-700">Path to eventual EB1-A qualification</span>
                 </li>
               </ul>
               
               <a
-                href="https://cal.com/sid-sarasvati/eb1a-strategy"
+                href="https://cal.com/sid-sarasvati/founder-coaching"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full rounded-lg bg-green-600 px-4 py-3 text-center text-base font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
               >
-                Book Your Session
+                Apply for Coaching
               </a>
             </div>
             
             <p className="mt-6 text-center text-sm text-gray-600">
-              Limited slots available. Sessions typically book 2 weeks out.
+              Limited slots available. I personally review each application.
             </p>
           </div>
         </div>

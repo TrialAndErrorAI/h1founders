@@ -4,10 +4,10 @@ export default function Community() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Join 1,400+ Founders Taking Action
+            "Each one of us has an inspiring story"
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            Real paths, not lawyer ads. Success stories, not false promises.
+            1,400+ immigrant founders helping each other build businesses and break free from visa slavery.
           </p>
         </div>
         
@@ -68,26 +68,42 @@ export default function Community() {
         </div>
         
         <div className="mt-16 bg-blue-50 rounded-2xl p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Success Stories</h3>
-          <div className="space-y-4">
+          <h3 className="text-xl font-bold text-gray-900 mb-6">Real Stories From Our WhatsApp</h3>
+          <div className="space-y-6">
             <blockquote className="border-l-4 border-green-500 pl-4">
-              <p className="text-gray-700 italic">
-                "Got my EB1-A approved in 14 months. The community's guidance was invaluable."
+              <p className="text-gray-700 font-medium mb-2">
+                "I was on an H1B but my grace period ended and I changed my status to B2. 
+                I'm deciding if I should try for an EB2-NIW or an O1 or an H1B."
               </p>
-              <cite className="text-sm text-gray-500">— Lindsey, PermanentResident.us founder</cite>
-            </blockquote>
-            <blockquote className="border-l-4 border-green-500 pl-4">
-              <p className="text-gray-700 italic">
-                "From grace period panic to self-sponsored founder. This group changed my trajectory."
+              <p className="text-gray-600 italic text-sm">
+                This is Girish - our first member. Started in panic, now building his company.
               </p>
-              <cite className="text-sm text-gray-500">— Girish, First member</cite>
             </blockquote>
-            <blockquote className="border-l-4 border-green-500 pl-4">
-              <p className="text-gray-700 italic">
-                "100+ joined in 24 hours after Sid's post. We all felt the same pain. Now we're solving it together."
+            
+            <blockquote className="border-l-4 border-blue-500 pl-4">
+              <p className="text-gray-700 font-medium mb-2">
+                "Thanks Sid for your selflessness and willingness to share your experience with many."
               </p>
-              <cite className="text-sm text-gray-500">— Community member</cite>
+              <p className="text-gray-600 italic text-sm">
+                This community isn't about me selling you something. It's about us helping each other.
+              </p>
             </blockquote>
+            
+            <blockquote className="border-l-4 border-purple-500 pl-4">
+              <p className="text-gray-700 font-medium mb-2">
+                "I am an ex-founder with an EB1-A green card. You can self sponsor your EB1-A green card. 
+                I created PermanentResident.us to give back."
+              </p>
+              <p className="text-gray-600 italic text-sm">
+                — Lindsey, got EB1-A, now helps others for free. That's our community DNA.
+              </p>
+            </blockquote>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <p className="text-blue-800 font-semibold">
+              "By sharing we make each other stronger with a sense of community." - Sid
+            </p>
           </div>
         </div>
       </div>
