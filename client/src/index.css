@@ -1,1 +1,80 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Matrix Terminal Theme */
+:root {
+  --matrix-black: #0d0208;
+  --matrix-green: #00ff41;
+  --matrix-green-dark: #008f11;
+  --red-pill: #ff073a;
+  --blue-pill: #1e3a8a;
+  --terminal-white: #f8fafc;
+  --terminal-gray: #64748b;
+}
+
+/* Global terminal aesthetic */
+body {
+  background: var(--matrix-black);
+  color: var(--terminal-white);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom terminal elements */
+.terminal-text {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--matrix-green);
+}
+
+.matrix-glow {
+  text-shadow: 0 0 10px var(--matrix-green);
+}
+
+.red-pill-button {
+  background: var(--red-pill);
+  border: 2px solid var(--red-pill);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.red-pill-button:hover {
+  background: transparent;
+  color: var(--red-pill);
+  box-shadow: 0 0 20px rgba(255, 7, 58, 0.3);
+}
+
+.blue-pill-button {
+  background: transparent;
+  border: 2px solid var(--blue-pill);
+  color: var(--blue-pill);
+  transition: all 0.3s ease;
+}
+
+.blue-pill-button:hover {
+  background: var(--blue-pill);
+  color: white;
+}
+
+/* Terminal prompt styling */
+.terminal-prompt::before {
+  content: 'sid@freedom:~$ ';
+  color: var(--matrix-green);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--matrix-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--matrix-green-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--matrix-green);
+}

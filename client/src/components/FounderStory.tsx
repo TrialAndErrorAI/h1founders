@@ -1,49 +1,96 @@
 export default function FounderStory() {
   return (
-    <section className="bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <section className="bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 border-t border-gray-700">
       <div className="mx-auto max-w-4xl">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-blue-600">My Journey</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <div className="mx-auto max-w-2xl lg:text-center mb-16">
+          <h2 className="terminal-text text-4xl font-bold mb-4">./immigrant_founder_reality</h2>
+          <p className="text-gray-400 text-lg">
             From Scared Employee to $3M Company
           </p>
         </div>
         
-        <div className="mt-12 space-y-8 text-lg text-gray-600">
-          <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-8">
-            <p className="font-semibold text-gray-900 text-xl mb-4">
-              The Fear Was Real
-            </p>
-            <p>
-              "Don't start a business. You'll lose your H1B. Your family will be deported." 
-              That voice in my head for <strong>15 years</strong>. Every entrepreneur in our community knows this fear.
-            </p>
-          </div>
-          
-          <div>
-            <p className="mb-4">
-              But here's what I learned: <span className="font-semibold text-gray-900">The myths keeping immigrants 
-              as employees are mostly BS.</span> You CAN start businesses on H1B. You CAN bootstrap profitable companies. 
-              You CAN break free from visa slavery.
-            </p>
-            <p className="mb-4">
-              I didn't just build one company - I built multiple. RenovateAI hit $3M revenue. I learned to bootstrap, 
-              scale, and most importantly - how to help other immigrants overcome the mental blocks.
-            </p>
-            <p>
-              <span className="font-semibold text-gray-900">One LinkedIn post later:</span> 872 reactions. 
-              100+ founders in our WhatsApp group within 24 hours. Everyone had the same fear. Everyone needed the same permission.
+        <div className="space-y-8">
+          {/* The Fear Terminal */}
+          <div className="bg-black rounded-lg p-8 border border-red-500">
+            <div className="font-mono text-sm mb-4">
+              <span className="text-red-400">ERROR:</span> 
+              <span className="text-gray-300"> fear_loop.exe has been running for 15 years</span>
+            </div>
+            <div className="bg-gray-900 rounded p-4 font-mono text-sm border border-gray-700">
+              <div className="text-red-400">// The mental prison</div>
+              <div className="text-gray-300">while (on_h1b) &#123;</div>
+              <div className="text-gray-300 ml-4">thought: "Don't start a business"</div>
+              <div className="text-gray-300 ml-4">thought: "You'll lose your visa"</div>
+              <div className="text-gray-300 ml-4">thought: "Family will be deported"</div>
+              <div className="text-gray-300 ml-4">action: stay_safe() // Do nothing</div>
+              <div className="text-gray-300">&#125;</div>
+            </div>
+            <p className="text-gray-300 mt-4 text-lg">
+              Every entrepreneur in our community knows this fear. The voice that keeps you small.
             </p>
           </div>
           
-          <div className="bg-green-50 rounded-xl p-8">
-            <p className="text-green-900 font-semibold text-xl">
-              "Each one of us has an inspiring story. By sharing we make each other stronger."
+          {/* The Breakthrough */}
+          <div className="bg-black rounded-lg p-8 border border-green-500">
+            <div className="font-mono text-sm mb-4">
+              <span className="text-green-400">SUCCESS:</span> 
+              <span className="text-gray-300"> myths.debunked() → freedom.unlocked()</span>
+            </div>
+            <div className="text-gray-300 text-lg space-y-4">
+              <p>
+                But here's what I learned: <span className="terminal-text font-semibold">The myths keeping immigrants 
+                as employees are mostly BS.</span> You CAN start businesses on H1B. You CAN bootstrap profitable companies. 
+                You CAN break free from visa slavery.
+              </p>
+              <p>
+                I didn't just build one company - I built multiple. RenovateAI hit $3M revenue. I learned to bootstrap, 
+                scale, and most importantly - how to help other immigrants overcome the mental blocks.
+              </p>
+            </div>
+          </div>
+          
+          {/* The Viral Moment */}
+          <div className="bg-black rounded-lg p-8 border border-blue-500">
+            <div className="font-mono text-sm mb-4">
+              <span className="text-blue-400">VIRAL:</span> 
+              <span className="text-gray-300"> linkedin_post.exe → community_explosion()</span>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 mb-4">
+              <div className="bg-gray-900 rounded p-4 text-center border border-gray-700">
+                <div className="terminal-text text-2xl font-bold">872</div>
+                <div className="text-gray-400 text-sm">Reactions</div>
+              </div>
+              <div className="bg-gray-900 rounded p-4 text-center border border-gray-700">
+                <div className="terminal-text text-2xl font-bold">100+</div>
+                <div className="text-gray-400 text-sm">Founders in 24hrs</div>
+              </div>
+              <div className="bg-gray-900 rounded p-4 text-center border border-gray-700">
+                <div className="terminal-text text-2xl font-bold">1,400+</div>
+                <div className="text-gray-400 text-sm">Community Today</div>
+              </div>
+            </div>
+            <p className="text-gray-300 text-lg">
+              Everyone had the same fear. Everyone needed the same permission. We gave it to each other.
             </p>
-            <p className="text-green-800 mt-2">
-              This isn't about me coaching you. It's about 1,400+ immigrant founders helping each other 
-              build profitable businesses and earn our freedom. The EB1-A? That's just the bonus.
-            </p>
+          </div>
+          
+          {/* The Community Ethos */}
+          <div className="bg-black rounded-lg p-8 border border-green-500">
+            <div className="text-center mb-6">
+              <p className="terminal-text text-2xl font-bold matrix-glow">
+                "Each one of us has an inspiring story."
+              </p>
+              <p className="text-gray-400 mt-2">- Community founding principle</p>
+            </div>
+            <div className="bg-gray-900 rounded p-4 font-mono text-sm border border-gray-700">
+              <div className="text-green-400">// This isn't about selling you coaching</div>
+              <div className="text-gray-300">community_model = &#123;</div>
+              <div className="text-gray-300 ml-4">approach: "peer_to_peer",</div>
+              <div className="text-gray-300 ml-4">members: 1400,</div>
+              <div className="text-gray-300 ml-4">goal: "bootstrap_freedom",</div>
+              <div className="text-gray-300 ml-4">eb1a_outcome: "bonus_not_primary"</div>
+              <div className="text-gray-300">&#125;</div>
+            </div>
           </div>
         </div>
       </div>

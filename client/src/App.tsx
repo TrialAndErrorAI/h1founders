@@ -1,5 +1,6 @@
 import Hero from './components/Hero'
-import SocialProof from './components/SocialProof'
+import TheReceipts from './components/TheReceipts'
+import WhatIActuallyDo from './components/WhatIActuallyDo'
 import FounderStory from './components/FounderStory'
 import Transformation from './components/Transformation'
 import Coaching from './components/Coaching'
@@ -8,9 +9,10 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       <Hero />
-      <SocialProof />
+      <TheReceipts />
+      <WhatIActuallyDo />
       <FounderStory />
       <Transformation />
       <Coaching />
