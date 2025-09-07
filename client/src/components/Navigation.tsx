@@ -13,7 +13,7 @@ interface NavItem {
 const navigation: NavItem[] = [
   { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
   { name: 'RESOURCES', href: '/resources', status: 'LIVE', count: 20 },
-  { name: 'STORIES', href: '/stories', status: 'SOON', notify: true },
+  { name: 'STORIES', href: '/stories', status: 'LIVE', count: 6 },
   { name: 'EVENTS', href: '/events', status: 'LIVE', count: 5 },
   { name: 'NETWORK', href: '/network', status: 'LOCKED', requiresAuth: true },
   { name: 'ACADEMY', href: '/academy', status: 'SOON', notify: true }

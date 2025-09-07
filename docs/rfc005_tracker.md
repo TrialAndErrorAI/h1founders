@@ -158,7 +158,8 @@
 ## Deployment History
 | Date | Version | Changes | URL |
 |------|---------|---------|-----|
-| Sep 7, 2025 | v0.2.0 | Phase 1 - Navigation + 2 Tools | https://master.h1founders.pages.dev |
+| Sep 7, 2025 | v0.3.0 | Phase 2 - Resources & Events | https://master.h1founders.pages.dev |
+| Sep 7, 2025 | v0.2.0 | Phase 1 - Navigation + 2 Tools | (previous deployment) |
 | Sep 7, 2025 | v0.1.0 | Initial Matrix landing page | Tagged in git |
 
 ---
