@@ -65,7 +65,7 @@ export default function TheReceipts() {
             <div className="font-mono text-sm space-y-2">
               <div className="text-green-400">sid@usa:~$ history | tail -15</div>
               <div className="text-gray-300">2009    # Arrived in US on student visa</div>
-              <div className="text-gray-300">2010    # OPT -> H1B conversion</div>
+              <div className="text-gray-300">2010    # OPT → H1B conversion</div>
               <div className="text-gray-300">2015    # Started first side project (scared)</div>
               <div className="text-gray-300">2018    # Incorporated Trial & Error LLC</div>
               <div className="text-gray-300">2020    # Launched RenovateAI</div>
