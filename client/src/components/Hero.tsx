@@ -7,15 +7,17 @@ export default function Hero() {
           <p className="text-2xl text-gray-400 mb-4 font-mono">What if I told you...</p>
         </div>
         
-        {/* Main Hook */}
+        {/* Main Hook - The Truth Bomb */}
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl mb-8">
-          <span className="text-red-500">"You can't start a business on H1B."</span>
+          <span className="text-white">"You </span>
+          <span className="terminal-text matrix-glow">CAN</span>
+          <span className="text-white"> start a business on H1B."</span>
         </h1>
         
         {/* The Red Pill Moment */}
         <div className="space-y-6 mb-12">
-          <p className="text-3xl font-bold terminal-text matrix-glow">
-            I took the red pill.
+          <p className="text-3xl font-bold text-white">
+            I took the <span style={{color: '#ff073a'}}>red pill</span>.
           </p>
           <p className="text-2xl font-bold text-white sm:text-3xl">
             Built <span className="terminal-text">$3M ARR</span>, 
@@ -30,7 +32,7 @@ export default function Hero() {
             <div className="terminal-prompt mb-2"></div>
             <p className="text-gray-300 text-lg leading-relaxed">
               15 years in the US. Always 60 days from deportation.<br/>
-              Until I learned the system has loopholes.<br/>
+              Until I learned the slave mentality was self-imposed.<br/>
               Bootstrap profitable. Self-sponsor. Break free.
             </p>
           </div>
@@ -38,7 +40,7 @@ export default function Hero() {
         
         {/* The Community */}
         <p className="text-xl text-gray-300 mb-12">
-          Now <span className="terminal-text font-bold">1,400+ founders</span> have escaped H1B slavery.
+          Now <span className="terminal-text font-bold">1,400+ founders</span> refusing to wait 150 years.
         </p>
         
         {/* The Choice - Red Pill vs Blue Pill */}
