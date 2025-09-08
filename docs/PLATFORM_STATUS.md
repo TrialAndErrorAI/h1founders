@@ -171,7 +171,8 @@ Designed phone-first auth leveraging WhatsApp/Substack
 ## 🔗 Links
 
 - **Live Site**: https://master.h1founders.pages.dev
-- **GitHub**: [Private Repository]
+- **Production URL**: https://h1founders.pages.dev (when pushed to main)
+- **GitHub**: github.com/TrialAndErrorAI/h1founders
 - **Cloudflare**: Project h1founders
 
 ---

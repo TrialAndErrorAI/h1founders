@@ -41,9 +41,9 @@
 ### 5. Badge Progression Revenue Model
 **Decision**: 7-level badge system tied to paid programs
 **Levels**: Blue Pill → Unplugged → Freed Mind → Neo → Morpheus → Oracle → Architect
-**Pricing**: $97 → $497 → $997 → $1,997 → $4,997 → $9,997 → $14,997
 **Why One-Way**: Core business model, psychological progression, community status system
 **Made**: RFC-007 (September 2024)
+**Note**: Specific pricing tiers defined internally, not public-facing
 
 ### 6. H1Founders Brand Name
 **Decision**: "H1Founders" not "H1BFounders"
