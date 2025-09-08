@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
           <div className="font-mono text-sm">
             <div className="text-green-400">sid@h1founders:~$ ./connect --socials</div>
-            <div className="mt-4 flex justify-center space-x-8">
+            <div className="mt-4 flex flex-wrap justify-center gap-6">
               <a
                 href="https://www.linkedin.com/in/sidsarasvati/"
                 target="_blank"
@@ -16,12 +16,28 @@ export default function Footer() {
                 linkedin.com/in/sidsarasvati
               </a>
               <a
-                href="https://x.com/sidjustice_"
+                href="https://www.instagram.com/sid.sarasvati/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="terminal-text hover:text-white font-mono transition-colors"
               >
-                x.com/sidjustice_
+                instagram.com/sid.sarasvati
+              </a>
+              <a
+                href="https://www.instagram.com/h1bfounders/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="terminal-text hover:text-white font-mono transition-colors"
+              >
+                instagram.com/h1bfounders
+              </a>
+              <a
+                href="https://www.youtube.com/@h1bfounders"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="terminal-text hover:text-white font-mono transition-colors"
+              >
+                youtube.com/@h1bfounders
               </a>
               <a
                 href="mailto:sid@h1founders.com"
