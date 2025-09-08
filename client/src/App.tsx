@@ -12,6 +12,9 @@ import Academy from './pages/academy'
 import Forum from './pages/forum'
 import ForumThread from './pages/forum/ForumThread'
 import CreateThread from './pages/forum/CreateThread'
+import Partners from './pages/Partners'
+
+const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
 function App() {
   return (
@@ -29,6 +32,7 @@ function App() {
         <Route path="forum" element={<Forum />} />
         <Route path="forum/thread/:threadId" element={<ForumThread />} />
         <Route path="forum/create" element={<CreateThread />} />
+        {ENABLE_PARTNERSHIPS && <Route path="partners" element={<Partners />} />}
       </Route>
     </Routes>
   )

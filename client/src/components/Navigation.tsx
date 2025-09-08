@@ -10,7 +10,9 @@ interface NavItem {
   requiresAuth?: boolean
 }
 
-const navigation: NavItem[] = [
+const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
+
+const baseNavigation: NavItem[] = [
   { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
   { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
   { name: 'RESOURCES', href: '/resources', status: 'LIVE', count: 20 },
@@ -19,6 +21,10 @@ const navigation: NavItem[] = [
   { name: 'NETWORK', href: '/network', status: 'LOCKED', requiresAuth: true },
   { name: 'ACADEMY', href: '/academy', status: 'SOON', notify: true }
 ]
+
+const navigation = ENABLE_PARTNERSHIPS 
+  ? [...baseNavigation, { name: 'PARTNERS', href: '/partners', status: 'LIVE' as const }]
+  : baseNavigation
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)

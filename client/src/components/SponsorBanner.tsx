@@ -1,0 +1,116 @@
+import { useState, useEffect } from 'react'
+
+interface Sponsor {
+  name: string
+  tagline: string
+  url: string
+  tier: 'blue' | 'red' | 'neo' | 'architect'
+}
+
+// Mock sponsors - replace with real data
+const sponsors: Sponsor[] = [
+  {
+    name: 'Elite Immigration Law',
+    tagline: 'Your EB-1A Legal Partner',
+    url: 'https://example.com/law-firm',
+    tier: 'architect'
+  },
+  // Add more sponsors as they join
+]
+
+export default function SponsorBanner() {
+  const [isVisible, setIsVisible] = useState(true)
+  const [currentSponsor, setCurrentSponsor] = useState(0)
+  
+  // Check if user has hidden banner
+  useEffect(() => {
+    const hidden = localStorage.getItem('sponsorBannerHidden')
+    if (hidden === 'true') {
+      setIsVisible(false)
+    }
+  }, [])
+  
+  // Rotate sponsors every 10 seconds if multiple
+  useEffect(() => {
+    if (sponsors.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentSponsor((prev) => (prev + 1) % sponsors.length)
+      }, 10000)
+      return () => clearInterval(interval)
+    }
+  }, [])
+  
+  const handleClose = () => {
+    setIsVisible(false)
+    localStorage.setItem('sponsorBannerHidden', 'true')
+  }
+  
+  if (!isVisible || sponsors.length === 0) return null
+  
+  const sponsor = sponsors[currentSponsor]
+  
+  return (
+    <div className="bg-black border-b border-gray-800 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-2 flex items-center justify-between">
+          <div className="flex-1 flex items-center">
+            {/* Terminal prompt style */}
+            <span className="text-gray-600 font-mono text-xs sm:text-sm mr-2">
+              sid@h1founders:~$
+            </span>
+            <span className="text-green-400 font-mono text-xs sm:text-sm mr-2">
+              cat /etc/sponsors
+            </span>
+            <span className="text-gray-500 font-mono text-xs sm:text-sm mr-2">
+              &gt;
+            </span>
+            
+            {/* Sponsor info */}
+            <a
+              href={sponsor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
+              <span className="text-green-400 font-mono text-xs sm:text-sm">
+                POWERED BY:
+              </span>
+              <span className="text-white font-mono text-xs sm:text-sm font-semibold">
+                {sponsor.name}
+              </span>
+              <span className="text-gray-400 font-mono text-xs sm:text-sm hidden sm:inline">
+                - {sponsor.tagline}
+              </span>
+              <span className="text-green-400 font-mono text-xs sm:text-sm ml-2 group-hover:text-white transition-colors">
+                | $escape_the_matrix()
+              </span>
+            </a>
+          </div>
+          
+          {/* Close button */}
+          <button
+            onClick={handleClose}
+            className="ml-4 text-gray-600 hover:text-gray-400 font-mono text-xs"
+            aria-label="Close sponsor banner"
+          >
+            [X]
+          </button>
+        </div>
+        
+        {/* Multiple sponsors indicator */}
+        {sponsors.length > 1 && (
+          <div className="absolute bottom-1 right-4 flex gap-1">
+            {sponsors.map((_, index) => (
+              <div
+                key={index}
+                className={`w-1 h-1 rounded-full transition-colors ${
+                  index === currentSponsor ? 'bg-green-400' : 'bg-gray-700'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
