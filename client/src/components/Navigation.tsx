@@ -18,8 +18,8 @@ const baseNavigation: NavItem[] = [
   { name: 'RESOURCES', href: '/resources', status: 'LIVE', count: 20 },
   { name: 'STORIES', href: '/stories', status: 'LIVE', count: 6 },
   { name: 'EVENTS', href: '/events', status: 'LIVE', count: 5 },
-  { name: 'NETWORK', href: '/network', status: 'LOCKED', requiresAuth: true },
   { name: 'ACADEMY', href: '/academy', status: 'SOON', notify: true }
+  // Network section hidden - access through member login only
 ]
 
 const navigation = ENABLE_PARTNERSHIPS 

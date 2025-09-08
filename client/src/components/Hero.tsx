@@ -45,17 +45,17 @@ export default function Hero() {
         
         {/* The Choice - Red Pill vs Blue Pill */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-x-8">
-          <a
-            href="#coaching"
+          <button
+            onClick={() => window.location.href = '/network'}
             className="red-pill-button px-8 py-4 text-lg font-semibold rounded-lg w-full sm:w-auto text-center font-mono"
           >
-            RED PILL: wake_up()
-          </a>
+            RED PILL: join_founders()
+          </button>
           <a
-            href="#stay-enslaved"
+            href="/resources"
             className="blue-pill-button px-8 py-4 text-lg font-semibold rounded-lg w-full sm:w-auto text-center font-mono"
           >
-            BLUE PILL: stay_enslaved()
+            BLUE PILL: read_articles()
           </a>
         </div>
         

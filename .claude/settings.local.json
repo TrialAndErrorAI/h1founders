@@ -15,7 +15,9 @@
       "Bash(CLOUDFLARE_ACCOUNT_ID=40ad419de279f41e9626e2faf500b6b4 wrangler pages deploy dist --project-name=h1founders --commit-dirty=true)",
       "Bash(curl:*)",
       "Bash(CLOUDFLARE_ACCOUNT_ID=40ad419de279f41e9626e2faf500b6b4 wrangler pages project list)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "mcp__firebase__firebase_get_environment",
+      "mcp__firebase__firebase_get_sdk_config"
     ],
     "deny": [],
     "ask": []
