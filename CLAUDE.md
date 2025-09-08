@@ -25,6 +25,7 @@ Transform H1BFounders from WhatsApp community to scalable platform with clear va
 ```
 /h1founders/
 ├── CLAUDE.md (this file - project memory)
+├── next_session.md (session bootstrap - KEEP IN ROOT ONLY)
 ├── client/ (React app)
 │   ├── src/
 │   │   ├── components/
@@ -67,6 +68,12 @@ Current implementation features 6 main sections:
 - **Authentication**: Firebase Auth (planned for v0.5.0)
 - **Data Management**: JSON files for content, local state
 - **Build Target**: Modern ES modules, phone-first responsive
+
+## Important Conventions
+1. **next_session.md**: Always keep in root folder ONLY (not in docs/)
+2. **RFCs**: Active in docs/, completed in docs/rfc/archive/
+3. **PRFAQs**: Numbered as prfaq001, prfaq002, etc.
+4. **Partnership features**: Behind VITE_ENABLE_PARTNERSHIPS flag
 
 ## Key Design Decisions
 1. **Phone-first Authentication**: H1B founders primarily use WhatsApp on mobile
