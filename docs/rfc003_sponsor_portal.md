@@ -4,7 +4,7 @@
 **Status**: DEMO BUILT - Behind feature flag
 
 > **UPDATE December 2024**: Partnership ecosystem implemented and behind feature flag.
-> See `docs/prfaq_partnership_ecosystem.md` for full business model.
+> See `docs/prfaq002_partnership_ecosystem.md` for full business model.
 > SponsorBanner and Partners page ready to activate when contract signed.
 > Law firm interested at $5K/month tier.
 
