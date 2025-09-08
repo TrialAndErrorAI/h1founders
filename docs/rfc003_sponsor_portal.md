@@ -1,6 +1,12 @@
 # RFC-003: Sponsor Portal & Pitch
 **Scope**: 1 session (2-3 hours)
-**Priority**: MEDIUM - Month 1 revenue
+**Priority**: HIGH - $5K/month law firm interested
+**Status**: DEMO BUILT - Behind feature flag
+
+> **UPDATE December 2024**: Partnership ecosystem implemented and behind feature flag.
+> See `docs/prfaq_partnership_ecosystem.md` for full business model.
+> SponsorBanner and Partners page ready to activate when contract signed.
+> Law firm interested at $5K/month tier.
 
 ## Objective
 Create sponsor pitch page and partnership packages to monetize audience.
