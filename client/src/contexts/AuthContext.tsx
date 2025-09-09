@@ -81,11 +81,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
             lastActive: new Date()
           }
           
-          await setDoc(profileRef, {
-            ...newProfile,
-            createdAt: serverTimestamp(),
-            lastActive: serverTimestamp()
-          })
+          // Remove undefined fields before saving to Firestore
+          const profileToSave = Object.fromEntries(
+            Object.entries({
+              ...newProfile,
+              createdAt: serverTimestamp(),
+              lastActive: serverTimestamp()
+            }).filter(([_, value]) => value !== undefined)
+          )
+          
+          await setDoc(profileRef, profileToSave)
           
           setProfile(newProfile)
         }
@@ -99,18 +104,30 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return unsubscribe
   }, [])
 
-  // Setup Recaptcha
+  // Setup Recaptcha - Force v2 to avoid Enterprise issues
   const setupRecaptcha = (containerId: string) => {
     if (!recaptchaVerifier) {
+      // @ts-ignore - Force v2 reCAPTCHA to bypass Enterprise
+      window.RecaptchaVerifier = RecaptchaVerifier
+      
       const verifier = new RecaptchaVerifier(auth, containerId, {
-        size: 'normal', // Changed from 'invisible' to 'normal' for debugging
+        size: 'normal', // Use normal for v2 (visible checkbox)
         callback: () => {
-          console.log('reCAPTCHA solved successfully')
+          console.log('reCAPTCHA v2 solved successfully')
         },
         'expired-callback': () => {
-          console.log('reCAPTCHA expired')
+          console.log('reCAPTCHA v2 expired')
+        },
+        'error-callback': (error: any) => {
+          console.error('reCAPTCHA v2 error:', error)
         }
       })
+      
+      // Force render to ensure v2 is used
+      verifier.render().then((widgetId: any) => {
+        console.log('reCAPTCHA v2 widget rendered with ID:', widgetId)
+      })
+      
       setRecaptchaVerifier(verifier)
       return verifier
     }
@@ -120,8 +137,40 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // Send OTP
   const sendOTP = async (phoneNumber: string) => {
     try {
-      const appVerifier = recaptchaVerifier || setupRecaptcha('recaptcha-container')
+      // Check if container exists
+      const container = document.getElementById('recaptcha-container')
+      if (!container) {
+        throw new Error('reCAPTCHA container not found. Please refresh the page.')
+      }
+      
+      // Clear any existing reCAPTCHA widget
+      container.innerHTML = ''
+      
+      // Always create a fresh verifier - don't reuse
+      const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'normal',
+        callback: () => {
+          console.log('reCAPTCHA solved for phone auth')
+        },
+        'expired-callback': () => {
+          console.log('reCAPTCHA expired, please try again')
+        }
+      })
+      
+      // Render the reCAPTCHA widget
+      await appVerifier.render()
+      
       const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+      
+      // Clear verifier after successful use
+      setTimeout(() => {
+        try {
+          appVerifier.clear()
+        } catch (e) {
+          console.log('Verifier already cleared')
+        }
+      }, 100)
+      
       return confirmationResult
     } catch (error) {
       console.error('Error sending OTP:', error)

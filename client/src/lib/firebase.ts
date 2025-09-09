@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWithCredential } from 'firebase/auth'
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWithCredential, browserLocalPersistence, setPersistence } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
-import { getAnalytics, isSupported } from 'firebase/analytics'
+// Remove analytics for now to reduce bundle size
+// import { getAnalytics, isSupported } from 'firebase/analytics'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAln--PJhiSKYPKelHJMcHxbREHaOmHjcU",
@@ -20,11 +21,10 @@ const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
 
-// Initialize Analytics (optional, only in production)
-export const analytics = isSupported().then(yes => yes ? getAnalytics(app) : null)
+// Analytics disabled to reduce bundle size - can be re-enabled later
+// export const analytics = isSupported().then(yes => yes ? getAnalytics(app) : null)
 
 // Set up auth persistence
-import { browserLocalPersistence, setPersistence } from 'firebase/auth'
 setPersistence(auth, browserLocalPersistence)
 
 // Export phone auth utilities

@@ -17,7 +17,15 @@
       "Bash(CLOUDFLARE_ACCOUNT_ID=40ad419de279f41e9626e2faf500b6b4 wrangler pages project list)",
       "Bash(git push:*)",
       "mcp__firebase__firebase_get_environment",
-      "mcp__firebase__firebase_get_sdk_config"
+      "mcp__firebase__firebase_get_sdk_config",
+      "mcp__firebase__firebase_get_project",
+      "mcp__firebase__firebase_list_apps",
+      "mcp__firebase__auth_list_users",
+      "mcp__firebase__firestore_list_collections",
+      "Bash(mkdir:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "Bash(npx playwright test:*)"
     ],
     "deny": [],
     "ask": []

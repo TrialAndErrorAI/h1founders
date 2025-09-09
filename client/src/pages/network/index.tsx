@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import AuthModal from '../../components/auth/AuthModal'
 
 export default function Network() {
-  const { user, profile } = useAuth()
+  const { user, profile, logout } = useAuth()
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [isClaimingProfile, setIsClaimingProfile] = useState(false)
 
@@ -13,13 +13,21 @@ export default function Network() {
       <div className="min-h-screen bg-black px-6 py-24">
         <div className="mx-auto max-w-7xl">
           {/* Authenticated Network View */}
-          <div className="mb-12">
-            <h1 className="text-4xl font-mono terminal-text matrix-glow mb-4">
-              NETWORK_DIRECTORY
-            </h1>
-            <p className="text-gray-400 font-mono">
-              // Welcome back, {profile?.name || profile?.phone || 'founder'}
-            </p>
+          <div className="mb-12 flex justify-between items-start">
+            <div>
+              <h1 className="text-4xl font-mono terminal-text matrix-glow mb-4">
+                NETWORK_DIRECTORY
+              </h1>
+              <p className="text-gray-400 font-mono">
+                // Welcome back, {profile?.name || profile?.phone || 'founder'}
+              </p>
+            </div>
+            <button
+              onClick={logout}
+              className="px-4 py-2 bg-red-900/20 border border-red-500 text-red-400 rounded-lg font-mono hover:bg-red-900/30 transition-colors"
+            >
+              LOGOUT()
+            </button>
           </div>
 
           {/* Profile Status */}

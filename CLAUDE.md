@@ -104,29 +104,67 @@ Current implementation features 6 main sections:
 5. What's the moat? Why can't others replicate?
 
 ## Success Metrics
-**Achieved (v0.5.0)**:
+**Achieved (v0.6.0 - September 9, 2025)**:
+- ✅ **Firebase Phone Authentication**: End-to-end SMS verification working
+- ✅ **Automated Test Suite**: 10 critical path tests (6.2s execution)
+- ✅ **Member Directory Structure**: Ready for 781 WhatsApp member import
+- ✅ **Security**: Phone validation, rate limiting, proper Firestore rules
 - Matrix Forum System with 7-level badge progression
 - 36+ content pieces created across all sections
 - 2 functional tools (Visa Timeline Calculator, EB1A Points Calculator)  
-- 701KB bundle size (needs optimization to <300KB)
-- Matrix terminal theme throughout all components
 - 6-section platform architecture live
 - Mobile-first responsive design
 - Forum with voting, replies, search functionality
 
 **Planned**:
+- Import 781 WhatsApp members to member directory
+- Build MVP member directory UI components
+- Bundle size optimization (currently 1.27MB)
 - Clear value prop in 10 seconds
-- Conversion path defined
 - Community → Customer journey mapped
-- Pricing strategy validated
-- Bundle size under 300KB
+
+## Testing Strategy (Alpha Phase)
+
+**Philosophy**: Test critical paths only - UX/app in flux, avoid test maintenance overhead
+
+**Current Test Suite**:
+- **Phone Authentication**: 10 automated tests covering complete auth flow
+- **Execution**: 6.2 seconds, all platforms
+- **Coverage**: Login, logout, validation, error handling, UI states
+
+**Test Commands**:
+```bash
+# Run auth tests only (critical path)
+npm run test:auth
+
+# View detailed results
+npx playwright show-report
+
+# Debug mode (see browser)
+npm run test:auth:debug
+```
+
+**Testing Principles**:
+1. **Alpha = Critical Paths Only** - Don't test UI that changes frequently
+2. **Focus on Business Logic** - Auth, payments, data flows
+3. **Avoid UI Testing** - Colors, copy, layouts change too much
+4. **Test User Journeys** - Complete flows, not isolated components
+5. **Keep Tests Fast** - <10 seconds total execution time
+
+**When to Add New Tests**:
+- ✅ New authentication methods (Google, email)
+- ✅ Payment/subscription flows (Club H1)
+- ✅ Critical user actions (member directory search)
+- ❌ Visual/copy changes
+- ❌ Feature flags or A/B tests
+- ❌ Complex UI interactions (modals, dropdowns)
 
 ## Next Phase
-Current focus on **RFC-006: Platform Optimization**
-- Bundle size reduction (627KB → <300KB)
-- Performance improvements
-- Authentication system integration
-- WhatsApp member directory import
+Current focus on **Member Directory Launch**
+- Import 781 WhatsApp members to Firestore
+- Build MVP member directory UI components
+- Bundle size optimization (1.27MB → <300KB)
+- Test with real phone numbers
 - Cloudflare Pages deployment
 
 ## Original Next Steps (Completed)

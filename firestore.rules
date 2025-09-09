@@ -1,24 +1,57 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Public read for unclaimed profiles
-    match /unclaimed/{document} {
-      allow read: if true;
-      allow write: if false;
+    
+    // Phone validation function
+    function isValidPhone(phone) {
+      return phone is string && phone.matches('^\\+[1-9]\\d{1,14}$');
     }
     
-    // Authenticated users can read all members
+    // Rate limiting - allow 1 update per minute
+    function rateLimitPassed() {
+      return request.time > resource.data.lastActive + duration.value(1, 'm');
+    }
+    
+    // Members collection - authenticated users only
     match /members/{userId} {
       allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null 
+        && request.auth.uid == userId
+        && isValidPhone(request.resource.data.phone);
+      allow update: if request.auth != null 
+        && request.auth.uid == userId
+        && rateLimitPassed()
+        && isValidPhone(request.resource.data.phone);
+      allow delete: if false; // No deletes allowed
     }
     
-    // Forum posts - public read, authenticated write
-    match /forum/{document=**} {
+    // Unclaimed profiles - read only for matching
+    match /unclaimed/{document} {
+      allow read: if request.auth != null;
+      allow write: if false; // Admin only via backend
+    }
+    
+    // Forum threads (future)
+    match /forum_threads/{thread} {
+      allow read: if true; // Public for SEO
+      allow create: if request.auth != null;
+      allow update: if request.auth != null 
+        && request.auth.uid == resource.data.authorId;
+      allow delete: if false;
+    }
+    
+    // Forum replies (future)
+    match /forum_replies/{reply} {
       allow read: if true;
       allow create: if request.auth != null;
-      allow update: if request.auth != null && request.auth.uid == resource.data.authorId;
+      allow update: if request.auth != null 
+        && request.auth.uid == resource.data.authorId;
       allow delete: if false;
+    }
+    
+    // Temporary rule for development (remove before production)
+    match /{document=**} {
+      allow read, write: if request.time < timestamp.date(2025, 10, 8);
     }
   }
 }
