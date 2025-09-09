@@ -103,9 +103,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const setupRecaptcha = (containerId: string) => {
     if (!recaptchaVerifier) {
       const verifier = new RecaptchaVerifier(auth, containerId, {
-        size: 'invisible',
+        size: 'normal', // Changed from 'invisible' to 'normal' for debugging
         callback: () => {
-          // reCAPTCHA solved
+          console.log('reCAPTCHA solved successfully')
+        },
+        'expired-callback': () => {
+          console.log('reCAPTCHA expired')
         }
       })
       setRecaptchaVerifier(verifier)

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ConfirmationResult } from 'firebase/auth'
 import { useAuth } from '../../contexts/AuthContext'
 import { formatPhoneNumber } from '../../lib/firebase'
@@ -6,6 +6,19 @@ import { formatPhoneNumber } from '../../lib/firebase'
 interface PhoneAuthProps {
   onSuccess?: () => void
   isClaimingProfile?: boolean
+}
+
+// Format phone for display (XXX) XXX-XXXX
+function formatPhoneDisplay(value: string): string {
+  const phone = value.replace(/\D/g, '')
+  const match = phone.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/)
+  if (!match) return value
+  
+  const [, area, prefix, line] = match
+  if (line) return `(${area}) ${prefix}-${line}`
+  if (prefix) return `(${area}) ${prefix}`
+  if (area) return area.length < 3 ? area : `(${area})`
+  return ''
 }
 
 export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: PhoneAuthProps) {
@@ -16,6 +29,19 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const recaptchaSetup = useRef(false)
+
+  // Setup recaptcha once on mount - only for non-test numbers
+  useEffect(() => {
+    if (!recaptchaSetup.current) {
+      try {
+        setupRecaptcha('recaptcha-container')
+        recaptchaSetup.current = true
+      } catch (error) {
+        console.log('ReCAPTCHA setup error (normal for test numbers):', error)
+      }
+    }
+  }, [setupRecaptcha])
 
   const handleSendOTP = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,11 +49,9 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
     setLoading(true)
 
     try {
-      // Setup recaptcha if not already done
-      setupRecaptcha('recaptcha-container')
-      
-      // Format and send OTP
-      const formattedPhone = formatPhoneNumber(phoneNumber)
+      // Format and send OTP (remove formatting for actual send)
+      const digitsOnly = phoneNumber.replace(/\D/g, '')
+      const formattedPhone = formatPhoneNumber(digitsOnly)
       const result = await sendOTP(formattedPhone)
       setConfirmationResult(result)
       setStep('otp')
@@ -37,6 +61,11 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
     } finally {
       setLoading(false)
     }
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value.replace(/\D/g, '').slice(0, 10) // Only digits, max 10
+    setPhoneNumber(formatPhoneDisplay(input))
   }
 
   const handleVerifyOTP = async (e: React.FormEvent) => {
@@ -83,8 +112,8 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               type="tel"
               id="phone"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder="+1 (555) 123-4567"
+              onChange={handlePhoneChange}
+              placeholder="(555) 555-5555"
               className="w-full px-4 py-3 bg-black border border-gray-800 text-green-400 rounded-lg focus:outline-none focus:border-green-400 font-mono"
               required
             />
@@ -101,7 +130,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
 
           <button
             type="submit"
-            disabled={loading || phoneNumber.length < 10}
+            disabled={loading || phoneNumber.replace(/\D/g, '').length < 10}
             className="w-full px-6 py-3 bg-green-400 text-black font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
           >
             {loading ? 'SENDING...' : 'SEND_VERIFICATION_CODE()'}
