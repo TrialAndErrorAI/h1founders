@@ -179,8 +179,8 @@ export default function Network() {
         onClose={() => setShowAuthModal(false)}
         isClaimingProfile={isClaimingProfile}
         onSuccess={() => {
-          // Redirect to dashboard after successful authentication
-          window.location.href = '/dashboard'
+          // Redirect to forum (serves as main dashboard) after successful authentication
+          window.location.href = '/forum'
         }}
       />
     </>

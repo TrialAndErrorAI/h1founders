@@ -11,7 +11,7 @@ import { MATRIX_BADGES } from '../../utils/badges'
 export default function Forum() {
   const [selectedCategory, setSelectedCategory] = useState<ForumCategory | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const { user, profile } = useAuth()
+  const { user, profile, logout } = useAuth()
   
   // Use real auth or fall back to mock for display purposes
   const currentUser = profile && profile.matrixLevel ? {
@@ -57,13 +57,21 @@ export default function Forum() {
               </p>
             </div>
             {user ? (
-              <Link
-                to="/forum/create"
-                className="inline-flex items-center px-4 py-2 border-2 border-green-400 text-green-400 rounded font-mono text-sm hover:bg-green-400 hover:text-black transition-all duration-200"
-              >
-                <span className="mr-2">+</span>
-                NEW THREAD
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link
+                  to="/forum/create"
+                  className="inline-flex items-center px-4 py-2 border-2 border-green-400 text-green-400 rounded font-mono text-sm hover:bg-green-400 hover:text-black transition-all duration-200"
+                >
+                  <span className="mr-2">+</span>
+                  NEW THREAD
+                </Link>
+                <button
+                  onClick={logout}
+                  className="px-4 py-2 bg-red-900/20 border border-red-500 text-red-400 rounded font-mono text-sm hover:bg-red-900/30 transition-colors"
+                >
+                  DISCONNECT()
+                </button>
+              </div>
             ) : (
               <Link
                 to="/network"

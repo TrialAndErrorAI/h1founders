@@ -122,65 +122,47 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return unsubscribe
   }, [])
 
-  // Setup Recaptcha - Force v2 to avoid Enterprise issues
+  // Setup Recaptcha - v3 invisible only
   const setupRecaptcha = (containerId: string) => {
-    if (!recaptchaVerifier) {
-      // @ts-ignore - Force v2 reCAPTCHA to bypass Enterprise
-      window.RecaptchaVerifier = RecaptchaVerifier
-      
-      const verifier = new RecaptchaVerifier(auth, containerId, {
-        size: 'normal', // Use normal for v2 (visible checkbox)
-        callback: () => {
-          console.log('reCAPTCHA v2 solved successfully')
-        },
-        'expired-callback': () => {
-          console.log('reCAPTCHA v2 expired')
-        },
-        'error-callback': (error: any) => {
-          console.error('reCAPTCHA v2 error:', error)
-        }
-      })
-      
-      // Force render to ensure v2 is used
-      verifier.render().then((widgetId: any) => {
-        console.log('reCAPTCHA v2 widget rendered with ID:', widgetId)
-      })
-      
-      setRecaptchaVerifier(verifier)
-      return verifier
-    }
-    return recaptchaVerifier
+    // v3 doesn't need manual setup, handled in sendOTP
+    return null
   }
 
-  // Send OTP
+  // Send OTP with invisible reCAPTCHA v3
   const sendOTP = async (phoneNumber: string) => {
     try {
-      // Check if container exists
-      const container = document.getElementById('recaptcha-container')
-      if (!container) {
-        throw new Error('reCAPTCHA container not found. Please refresh the page.')
+      // Load reCAPTCHA v3 script if not already loaded
+      if (!(window as any).grecaptcha) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = 'https://www.google.com/recaptcha/api.js?render=6LdWL8QrAAAAAJY6ldO9vJSqSu0YsE2NiOg50P_s'
+          script.onload = resolve
+          script.onerror = reject
+          document.head.appendChild(script)
+        })
       }
+
+      // Wait for grecaptcha to be ready
+      await new Promise(resolve => (window as any).grecaptcha.ready(resolve))
       
-      // Clear any existing reCAPTCHA widget
-      container.innerHTML = ''
-      
-      // Always create a fresh verifier - don't reuse
-      const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'normal',
-        callback: () => {
-          console.log('reCAPTCHA solved for phone auth')
-        },
-        'expired-callback': () => {
-          console.log('reCAPTCHA expired, please try again')
-        }
+      // Get reCAPTCHA v3 token (invisible)
+      await (window as any).grecaptcha.execute('6LdWL8QrAAAAAJY6ldO9vJSqSu0YsE2NiOg50P_s', {
+        action: 'phone_auth'
       })
       
-      // Render the reCAPTCHA widget
-      await appVerifier.render()
+      console.log('✅ reCAPTCHA v3 token obtained (invisible)')
+      
+      // Create invisible verifier for Firebase
+      const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'invisible',
+        callback: () => {
+          console.log('Firebase reCAPTCHA verification complete')
+        }
+      })
       
       const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier)
       
-      // Clear verifier after successful use
+      // Clean up
       setTimeout(() => {
         try {
           appVerifier.clear()

@@ -33,7 +33,8 @@
       "mcp__playwright__browser_type",
       "mcp__playwright__browser_console_messages",
       "mcp__firebase__auth_get_user",
-      "mcp__firebase__firestore_get_documents"
+      "mcp__firebase__firestore_get_documents",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
