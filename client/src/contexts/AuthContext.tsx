@@ -2,18 +2,25 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { User, onAuthStateChanged, signOut, ConfirmationResult } from 'firebase/auth'
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { auth, db, RecaptchaVerifier, signInWithPhoneNumber } from '../lib/firebase'
+import { MatrixLevel, SpecialStatus, getDefaultBadgeLevel, getUserSpecialBadges } from '../utils/badges'
+import { generateUniqueUsername } from '../utils/username'
+import { isVerifiedPhone } from '../data/verifiedPhones'
 
 interface UserProfile {
   uid: string
   phone?: string
   email?: string
   name?: string
+  username?: string
   company?: string
   visaType?: string
   location?: string
   whatsappNumber?: string
   isWhatsappMember?: boolean
   isSubstackSubscriber?: boolean
+  isVerified?: boolean
+  matrixLevel: MatrixLevel
+  specialBadges: SpecialStatus[]
   profileComplete: boolean
   claimedAt?: Date
   createdAt: Date
@@ -70,12 +77,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
             lastActive: serverTimestamp()
           }, { merge: true })
         } else {
-          // Create new profile
+          // Create new profile with proper Matrix badges
+          const isWhatsappMember = isVerifiedPhone(user.phoneNumber)
+          
+          // Generate unique username
+          const username = await generateUniqueUsername()
+          
           const newProfile: UserProfile = {
             uid: user.uid,
             phone: user.phoneNumber || undefined,
             email: user.email || undefined,
             name: user.displayName || undefined,
+            username,
+            isWhatsappMember,
+            isSubstackSubscriber: false,
+            isVerified: isWhatsappMember, // WhatsApp members are automatically verified
+            matrixLevel: getDefaultBadgeLevel(isWhatsappMember), // UNPLUGGED by default
+            specialBadges: getUserSpecialBadges(isWhatsappMember, false, false),
             profileComplete: false,
             createdAt: new Date(),
             lastActive: new Date()
@@ -174,6 +192,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return confirmationResult
     } catch (error) {
       console.error('Error sending OTP:', error)
+      
+      // Provide specific error messages for common issues
+      if ((error as any).code === 'auth/invalid-app-credential') {
+        throw new Error('Authentication configuration error. Please check if localhost is in authorized domains.')
+      } else if ((error as any).code === 'auth/quota-exceeded') {
+        throw new Error('SMS quota exceeded. Please try again later.')
+      } else if ((error as any).code === 'auth/invalid-phone-number') {
+        throw new Error('Please enter a valid phone number with country code.')
+      } else if ((error as any).code === 'auth/captcha-check-failed') {
+        throw new Error('Please complete the reCAPTCHA verification.')
+      }
+      
       throw error
     }
   }

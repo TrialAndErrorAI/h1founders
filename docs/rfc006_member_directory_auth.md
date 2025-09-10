@@ -280,6 +280,36 @@ This approach turns your fragmented community into a unified network while maint
 
 ---
 
-*"The best auth system is the one people actually use."*
+## MVP SCOPE REDUCTION - September 9, 2025
 
-*RFC by ATLAS - September 7, 2025*
+**UPDATED STRATEGY**: No member directory. Focus on anonymous forums with vetted founder badges.
+
+### Core Insight: Privacy-First Community
+- **NO member discovery** - Founders stay anonymous via usernames/badges
+- **Scammer protection** - No email/contact scraping possible
+- **Badge-based identity** - Colored masks, not real names
+- **Forums only** - Tools + Discussion platform
+
+### Updated Implementation:
+1. **Landing page** → Primary CTA: "Claim Profile" or "Login"
+2. **Public sections** → Tools + Forum (browse-only)
+3. **Other sections** → "Coming Soon" (Resources, Stories, Events, Network)
+4. **Authenticated view** → Dashboard with Tools + Forum access
+5. **User identity** → Username + badge system, no real names exposed
+
+### Member Profile System:
+```typescript
+interface AnonymousMember {
+  uid: string
+  username: string          // Auto-generated or chosen
+  badge: BadgeType          // OG Founder, Verified, etc.
+  joinDate: string
+  isWhatsAppMember: boolean // For OG badges
+  // NO email, phone, real name exposed
+}
+```
+
+This protects the 781 WhatsApp founders while enabling community discussion.
+
+*RFC by ATLAS - September 7, 2025*  
+*Updated by NEXUS CPTO - September 9, 2025*

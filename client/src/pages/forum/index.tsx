@@ -1,18 +1,26 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 import { forumCategories } from '../../data/forumCategories'
 import { mockThreads } from '../../data/mockThreads'
-import { getMockUser } from '../../data/mockUsers'
 import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import ProgressionLevel from '../../components/badges/ProgressionLevel'
+import { MATRIX_BADGES } from '../../utils/badges'
 
 export default function Forum() {
   const [selectedCategory, setSelectedCategory] = useState<ForumCategory | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const { user, profile } = useAuth()
   
-  // Mock current user - in real app this would come from auth context
-  const currentUser = getMockUser('carlos_freed')
+  // Use real auth or fall back to mock for display purposes
+  const currentUser = profile && profile.matrixLevel ? {
+    id: profile.uid,
+    name: profile.username || '@anonymous_founder',
+    badge: profile.matrixLevel as BadgeLevel, // Direct mapping since enum values match
+    subLevel: profile.isWhatsappMember ? 2 : 1, // WhatsApp OGs start at L2
+    avatar: MATRIX_BADGES[profile.matrixLevel].emoji
+  } : null
   
   const filteredThreads = mockThreads.filter(thread => {
     const matchesCategory = !selectedCategory || thread.category === selectedCategory
@@ -48,14 +56,50 @@ export default function Forum() {
                 Where minds are freed and empires are built
               </p>
             </div>
-            <Link
-              to="/forum/create"
-              className="inline-flex items-center px-4 py-2 border-2 border-green-400 text-green-400 rounded font-mono text-sm hover:bg-green-400 hover:text-black transition-all duration-200"
-            >
-              <span className="mr-2">+</span>
-              NEW THREAD
-            </Link>
+            {user ? (
+              <Link
+                to="/forum/create"
+                className="inline-flex items-center px-4 py-2 border-2 border-green-400 text-green-400 rounded font-mono text-sm hover:bg-green-400 hover:text-black transition-all duration-200"
+              >
+                <span className="mr-2">+</span>
+                NEW THREAD
+              </Link>
+            ) : (
+              <Link
+                to="/network"
+                className="red-pill-button px-6 py-3 rounded-lg font-mono text-sm"
+              >
+                JOIN_TO_POST()
+              </Link>
+            )}
           </div>
+
+          {/* Auth CTA Banner for Anonymous Users */}
+          {!user && (
+            <div className="mt-6 bg-gradient-to-r from-red-900/30 to-green-900/30 border border-green-400/40 rounded-lg p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="flex-1">
+                  <h3 className="text-xl font-mono text-green-400 mb-2">
+                    VIEWING_AS_ANONYMOUS()
+                  </h3>
+                  <p className="text-gray-300 font-mono text-sm">
+                    // Join 781 verified founders to participate in discussions
+                  </p>
+                  <p className="text-gray-400 font-mono text-xs mt-1">
+                    Browsing enabled - profiles shown as preview of your experience
+                  </p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Link
+                    to="/network"
+                    className="red-pill-button px-6 py-3 rounded-lg font-mono"
+                  >
+                    TAKE_RED_PILL()
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* User Progress Card */}
           {currentUser && (
@@ -107,10 +151,10 @@ export default function Forum() {
               ALL CATEGORIES
             </button>
             {forumCategories.map(category => {
-              const isLocked = category.requiredBadge && 
+              const isLocked = !!(category.requiredBadge && 
                 currentUser && 
                 Object.values(BadgeLevel).indexOf(currentUser.badge) < 
-                Object.values(BadgeLevel).indexOf(category.requiredBadge)
+                Object.values(BadgeLevel).indexOf(category.requiredBadge))
               
               return (
                 <button

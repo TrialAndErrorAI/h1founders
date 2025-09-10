@@ -52,10 +52,10 @@ export default function Hero() {
             RED PILL: join_founders()
           </button>
           <a
-            href="/resources"
+            href="/forum"
             className="blue-pill-button px-8 py-4 text-lg font-semibold rounded-lg w-full sm:w-auto text-center font-mono"
           >
-            BLUE PILL: read_articles()
+            BLUE PILL: browse_forum()
           </a>
         </div>
         

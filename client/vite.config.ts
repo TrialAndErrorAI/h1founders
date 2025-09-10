@@ -1,17 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// import { visualizer } from 'rollup-plugin-visualizer'
+import { visualizer } from 'rollup-plugin-visualizer'
+
+// Read package.json for version
+const pkg = require('./package.json')
 
 export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+  },
   plugins: [
     react(),
     // Enable bundle analysis when needed
-    // visualizer({
-    //   filename: 'dist/stats.html',
-    //   open: false,
-    //   gzipSize: true,
-    //   brotliSize: false,
-    // })
+    visualizer({
+      filename: 'dist/stats.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: false,
+    })
   ],
   build: {
     rollupOptions: {

@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import AuthModal from '../../components/auth/AuthModal'
 
 export default function Network() {
+  const navigate = useNavigate()
   const { user, profile, logout } = useAuth()
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [isClaimingProfile, setIsClaimingProfile] = useState(false)
@@ -35,7 +37,10 @@ export default function Network() {
             <div className="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-8">
               <p className="text-yellow-400 font-mono">
                 ⚠️ Your profile is incomplete. 
-                <button className="ml-2 underline hover:text-yellow-300">
+                <button 
+                  onClick={() => navigate('/dashboard')}
+                  className="ml-2 underline hover:text-yellow-300"
+                >
                   Complete it now
                 </button>
               </p>
@@ -174,8 +179,8 @@ export default function Network() {
         onClose={() => setShowAuthModal(false)}
         isClaimingProfile={isClaimingProfile}
         onSuccess={() => {
-          // User successfully authenticated, the component will re-render
-          // showing the authenticated view
+          // Redirect to dashboard after successful authentication
+          window.location.href = '/dashboard'
         }}
       />
     </>

@@ -8,6 +8,7 @@ import Community from '../components/Community'
 import Footer from '../components/Footer'
 
 export default function Home() {
+  // Always show landing page - dashboard is separate route
   return (
     <>
       <Hero />

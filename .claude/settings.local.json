@@ -25,7 +25,15 @@
       "Bash(mkdir:*)",
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_snapshot",
-      "Bash(npx playwright test:*)"
+      "Bash(npx playwright test:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)",
+      "mcp__firebase__firestore_query_collection",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_console_messages",
+      "mcp__firebase__auth_get_user",
+      "mcp__firebase__firestore_get_documents"
     ],
     "deny": [],
     "ask": []
