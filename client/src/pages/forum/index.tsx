@@ -53,7 +53,8 @@ export default function Forum() {
     name: profile.username || '@anonymous_founder',
     badge: profile.matrixLevel as BadgeLevel, // Direct mapping since enum values match
     subLevel: profile.isWhatsappMember ? 2 : 1, // WhatsApp OGs start at L2
-    avatar: MATRIX_BADGES[profile.matrixLevel].emoji
+    avatar: MATRIX_BADGES[profile.matrixLevel].emoji,
+    isPaidMember: profile.isPaidMember || false
   } : null
   
   const filteredThreads = allThreads.filter(thread => {
@@ -76,19 +77,7 @@ export default function Forum() {
   const getTypeConfig = (type: ThreadType) => 
     threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
   
-  // Content type badges for RFC009 content architecture
-  const contentTypeBadges = {
-    STORY: '📖',
-    EVENT: '📅',
-    GUIDE: '📚',
-    TOOL: '🛠️',
-    WISDOM: '💡',
-    SUBSTACK: '📝',
-    ANNOUNCEMENT: '📢'
-  }
-  
-  const getContentBadge = (contentType: string) => 
-    contentTypeBadges[contentType as keyof typeof contentTypeBadges] || '📄'
+  // Using professional ContentBadge component instead of emojis
 
   return (
     <div className="min-h-screen bg-black text-white">

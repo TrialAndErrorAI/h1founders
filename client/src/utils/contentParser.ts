@@ -144,7 +144,7 @@ function mapContentTypeToThreadType(contentType: string): string {
  * In production, this would fetch from a server endpoint
  * For now, we'll have a static import system
  */
-export async function loadContentFromDirectory(category: string): Promise<ParsedContent[]> {
+export async function loadContentFromDirectory(_category: string): Promise<ParsedContent[]> {
   // This will be replaced with actual file loading
   // For now, return empty array
   // In practice, you'd have a build script that generates an index

@@ -87,18 +87,7 @@ export default function ForumThread() {
   const getTypeConfig = (type: ThreadType) => 
     threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
     
-  const getContentTypeBadge = (contentType: string): string => {
-    const badges: Record<string, string> = {
-      'STORY': '📖',
-      'EVENT': '📅',
-      'GUIDE': '📚',
-      'TOOL': '🛠️',
-      'WISDOM': '💡',
-      'SUBSTACK': '📝',
-      'ANNOUNCEMENT': '📢'
-    }
-    return badges[contentType] || '📄'
-  }
+  // Using professional ContentBadge component instead of emoji badges
 
   const handleReply = () => {
     if (!replyContent.trim() || !currentUser) return

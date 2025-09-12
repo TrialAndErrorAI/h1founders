@@ -97,6 +97,13 @@ export interface Thread {
   isLocked?: boolean
   aiParticipated?: boolean
   tags?: string[]
+  // Content system extensions
+  featured?: boolean
+  isOfficial?: boolean
+  badges?: string[]
+  contentType?: ContentType | string
+  sourceUrl?: string
+  excerpt?: string
 }
 
 export interface Post {

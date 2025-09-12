@@ -58,9 +58,9 @@ export async function getFeaturedContentThreads(): Promise<Thread[]> {
 /**
  * Get content thread by ID
  */
-export async function getContentThreadById(id: string): Promise<Thread | null> {
+export async function getContentThreadById(id: string): Promise<Thread | undefined> {
   const index = await loadContentIndex()
-  return (index.threads || []).find((thread: Thread) => thread.id === id) || null
+  return (index.threads || []).find((thread: Thread) => thread.id === id) || undefined
 }
 
 /**
@@ -132,7 +132,7 @@ export function filterContentByBadge(threads: Thread[], userBadge: string): Thre
     if (!thread.badges || thread.badges.length === 0) return true
     
     // Check if user has required badge level
-    return thread.badges.some(requiredBadge => {
+    return thread.badges.some((requiredBadge: string) => {
       const requiredLevel = badgeHierarchy.indexOf(requiredBadge)
       return userLevel >= requiredLevel
     })

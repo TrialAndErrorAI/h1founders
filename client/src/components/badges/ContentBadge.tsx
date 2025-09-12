@@ -1,8 +1,6 @@
-import React from 'react'
 import {
   DocumentTextIcon,
   CalendarIcon,
-  VideoCameraIcon,
   LightBulbIcon,
   SpeakerWaveIcon,
   MegaphoneIcon,
@@ -16,8 +14,23 @@ import {
 export type ContentType = 'STORY' | 'EVENT' | 'GUIDE' | 'TOOL' | 'WISDOM' | 'SUBSTACK' | 'ANNOUNCEMENT'
 export type StatusType = 'OFFICIAL' | 'PINNED' | 'FEATURED' | 'LEGAL'
 
+// Content type normalization function
+function normalizeContentType(type: string): ContentType {
+  const typeUpper = type.toUpperCase()
+  
+  // Handle legacy content types
+  const typeMapping: Record<string, ContentType> = {
+    'KNOWLEDGE': 'WISDOM',
+    'RESOURCE': 'GUIDE',
+    'PROPHECY': 'ANNOUNCEMENT'
+  }
+  
+  // Return mapped type or original if it exists in config
+  return (typeMapping[typeUpper] as ContentType) || (typeUpper as ContentType)
+}
+
 interface ContentBadgeProps {
-  type: ContentType
+  type: ContentType | string
   size?: 'sm' | 'md' | 'lg'
   showLabel?: boolean
   className?: string
@@ -137,8 +150,17 @@ export function ContentBadge({
   showLabel = false, 
   className = '' 
 }: ContentBadgeProps) {
-  const config = contentTypeConfig[type]
+  // Normalize content type (handle lowercase and legacy types)
+  const normalizedType = normalizeContentType(type)
+  const config = contentTypeConfig[normalizedType]
   const sizes = sizeClasses[size]
+  
+  // Handle unknown content types gracefully
+  if (!config) {
+    console.warn(`Unknown content type: ${type} (normalized: ${normalizedType})`)
+    return null
+  }
+  
   const IconComponent = config.icon
   
   return (
@@ -165,6 +187,13 @@ export function StatusBadge({
 }: StatusBadgeProps) {
   const config = statusTypeConfig[type]
   const sizes = sizeClasses[size]
+  
+  // Handle unknown status types gracefully
+  if (!config) {
+    console.warn(`Unknown status type: ${type}`)
+    return null
+  }
+  
   const IconComponent = config.icon
   
   return (

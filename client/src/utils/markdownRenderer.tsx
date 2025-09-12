@@ -3,8 +3,6 @@
  * Handles basic markdown formatting for forum display
  */
 
-import React from 'react'
-
 interface MarkdownRendererProps {
   content: string
   isContentThread?: boolean
@@ -19,7 +17,7 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
   // Simple markdown parsing for content threads
   const renderMarkdown = (text: string) => {
     const lines = text.split('\n')
-    const elements: JSX.Element[] = []
+    const elements: React.ReactElement[] = []
     let key = 0
 
     for (let i = 0; i < lines.length; i++) {
@@ -86,20 +84,17 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
   // Handle inline markdown (bold, italic, code)
   const processInlineMarkdown = (text: string) => {
     let processed = text
-    const parts: (string | JSX.Element)[] = []
-    let key = 0
 
     // Split by markdown patterns and process
     const boldRegex = /\*\*(.*?)\*\*/g
-    const italicRegex = /\*(.*?)\*/g
     const codeRegex = /`(.*?)`/g
     
     // Simple processing - replace bold text
-    processed = processed.replace(boldRegex, (match, content) => {
+    processed = processed.replace(boldRegex, (_match, content) => {
       return `__BOLD_START__${content}__BOLD_END__`
     })
     
-    processed = processed.replace(codeRegex, (match, content) => {
+    processed = processed.replace(codeRegex, (_match, content) => {
       return `__CODE_START__${content}__CODE_END__`
     })
 
