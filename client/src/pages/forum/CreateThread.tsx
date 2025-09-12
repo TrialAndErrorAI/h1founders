@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { forumCategories } from '../../data/forumCategories'
+import { forumCategories, canAccessCategory as checkCategoryAccess } from '../../data/forumCategories'
 import { getMockUser } from '../../data/mockUsers'
 import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
@@ -24,7 +24,7 @@ export default function CreateThread() {
   ]
 
   // Only Architect can post prophecies
-  if (currentUser?.badge === BadgeLevel.ARCHITECT) {
+  if (currentUser?.badge === BadgeLevel.THE_ARCHITECT) {
     threadTypes.push({ 
       value: ThreadType.PROPHECY, 
       label: 'Prophecy', 
@@ -51,14 +51,8 @@ export default function CreateThread() {
   }
 
   const canAccessCategory = (cat: ForumCategory) => {
-    const categoryConfig = forumCategories.find(c => c.id === cat)
-    if (!categoryConfig?.requiredBadge || !currentUser) return true
-    
-    const badgeLevels = Object.values(BadgeLevel)
-    const requiredIndex = badgeLevels.indexOf(categoryConfig.requiredBadge)
-    const userIndex = badgeLevels.indexOf(currentUser.badge)
-    
-    return userIndex >= requiredIndex
+    if (!currentUser) return true
+    return checkCategoryAccess(cat, currentUser.badge, currentUser.isPaidMember || false)
   }
 
   if (!currentUser) {

@@ -20,13 +20,20 @@ export const badgeConfigs: BadgeConfig[] = [
     subLevels: 2,
     requirements: [
       'Level 1: Join community, introduce yourself',
-      'Level 2: Active explorer (WhatsApp OGs start here)'
+      'Level 2: Active explorer'
+    ],
+    pricing: [
+      {
+        fromLevel: 'Blue Pill',
+        price: 0,
+        program: 'Join community (FREE)'
+      }
     ]
   },
   {
     level: BadgeLevel.FREED_MIND,
     name: 'Freed Mind',
-    description: 'Escaped the Matrix - taking action',
+    description: 'Escaped the Matrix - taking action (WhatsApp members start here)',
     icon: '🔵',
     color: '#3b82f6',
     glowColor: 'rgba(59, 130, 246, 0.5)',
@@ -35,6 +42,23 @@ export const badgeConfigs: BadgeConfig[] = [
       'Level 1: Taking action on your freedom',
       'Level 2: Company formed',
       'Level 3: Company formed + first revenue'
+    ],
+    pricing: [
+      {
+        fromLevel: 'Unplugged',
+        price: 97,
+        program: '"Can I Start?" course'
+      },
+      {
+        fromLevel: 'Freed Mind L1',
+        price: 197,
+        program: 'Company formation package'
+      },
+      {
+        fromLevel: 'Freed Mind L2',
+        price: 297,
+        program: 'First customer program'
+      }
     ]
   },
   {
@@ -51,12 +75,39 @@ export const badgeConfigs: BadgeConfig[] = [
       'Level 3: Profitable ($100K+ revenue)',
       'Level 4: Revenue machine ($250K+ revenue)',
       'Level 5: Scaled founder ($500K+ revenue)'
+    ],
+    pricing: [
+      {
+        fromLevel: 'Freed Mind L3',
+        price: 497,
+        program: 'First $10K coaching'
+      },
+      {
+        fromLevel: 'Neo L1',
+        price: 997,
+        program: 'Self-sponsorship strategy'
+      },
+      {
+        fromLevel: 'Neo L2',
+        price: 1997,
+        program: '$100K Blueprint'
+      },
+      {
+        fromLevel: 'Neo L3',
+        price: 2997,
+        program: 'Scale to $250K'
+      },
+      {
+        fromLevel: 'Neo L4',
+        price: 4997,
+        program: 'Half-million retreat'
+      }
     ]
   },
   {
     level: BadgeLevel.MORPHEUS,
     name: 'Morpheus',
-    description: 'Teacher who frees others',
+    description: 'Teacher who frees others - FREE Oracle Chamber access',
     icon: '⚡',
     color: '#a855f7',
     glowColor: 'rgba(168, 85, 247, 0.5)',
@@ -65,6 +116,13 @@ export const badgeConfigs: BadgeConfig[] = [
       'Level 1: Emerging teacher (10+ freed)',
       'Level 2: Senior guide (50+ freed)',
       'Level 3: Master teacher (100+ freed)'
+    ],
+    pricing: [
+      {
+        fromLevel: 'Neo L5',
+        price: 9997,
+        program: 'Empire Builder program'
+      }
     ]
   },
   {
@@ -77,7 +135,7 @@ export const badgeConfigs: BadgeConfig[] = [
     requirements: ['Hand-picked by the Architect', 'Builds and nurtures the community']
   },
   {
-    level: BadgeLevel.ARCHITECT,
+    level: BadgeLevel.THE_ARCHITECT,
     name: 'The Architect',
     description: 'Creator of the system - Sid',
     icon: '🔴',

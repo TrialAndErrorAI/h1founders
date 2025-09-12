@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getMockThread, getMockPosts } from '../../data/mockThreads'
 import { getMockUser } from '../../data/mockUsers'
+import { getContentThreadById } from '../../utils/contentLoader'
 import { getCategoryName, getCategoryIcon } from '../../data/forumCategories'
 import { ThreadType } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import PostCard from '../../components/forum/PostCard'
+import { ContentBadge, StatusBadge } from '../../components/badges/ContentBadge'
+import type { ContentType } from '../../components/badges/ContentBadge'
 import ReplyForm from '../../components/forum/ReplyForm'
+import MarkdownRenderer from '../../utils/markdownRenderer'
 
 export default function ForumThread() {
   const { threadId } = useParams<{ threadId: string }>()
+  const navigate = useNavigate()
   const [thread, setThread] = useState(getMockThread(threadId || ''))
   const [posts, setPosts] = useState(getMockPosts(threadId || ''))
   const [replyContent, setReplyContent] = useState('')
@@ -19,12 +24,48 @@ export default function ForumThread() {
   const currentUser = getMockUser('carlos_freed')
 
   useEffect(() => {
-    // In real app, fetch thread and posts from API
-    if (threadId) {
-      setThread(getMockThread(threadId))
-      setPosts(getMockPosts(threadId))
+    // Check both mock threads and content threads
+    async function loadThread() {
+      if (!threadId) return
+      
+      // First try mock threads (user-generated)
+      let foundThread = getMockThread(threadId)
+      let foundPosts = getMockPosts(threadId)
+      
+      // If not found, try content threads (markdown)
+      if (!foundThread) {
+        foundThread = await getContentThreadById(threadId)
+        foundPosts = [] // Content threads don't have replies initially
+      }
+      
+      setThread(foundThread)
+      setPosts(foundPosts)
     }
+    
+    loadThread()
   }, [threadId])
+  
+  // ESC key navigation - go back to forum
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Only handle ESC if not focused on input/textarea
+      if (event.key === 'Escape') {
+        const activeElement = document.activeElement
+        const isInputFocused = activeElement && (
+          activeElement.tagName === 'INPUT' ||
+          activeElement.tagName === 'TEXTAREA' ||
+          activeElement.hasAttribute('contenteditable')
+        )
+        
+        if (!isInputFocused) {
+          navigate('/forum')
+        }
+      }
+    }
+    
+    document.addEventListener('keydown', handleKeyPress)
+    return () => document.removeEventListener('keydown', handleKeyPress)
+  }, [navigate])
 
   if (!thread) {
     return (
@@ -45,6 +86,19 @@ export default function ForumThread() {
   
   const getTypeConfig = (type: ThreadType) => 
     threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
+    
+  const getContentTypeBadge = (contentType: string): string => {
+    const badges: Record<string, string> = {
+      'STORY': '📖',
+      'EVENT': '📅',
+      'GUIDE': '📚',
+      'TOOL': '🛠️',
+      'WISDOM': '💡',
+      'SUBSTACK': '📝',
+      'ANNOUNCEMENT': '📢'
+    }
+    return badges[contentType] || '📄'
+  }
 
   const handleReply = () => {
     if (!replyContent.trim() || !currentUser) return
@@ -73,9 +127,12 @@ export default function ForumThread() {
             Forum
           </Link>
           <span>/</span>
-          <span className="text-gray-400">
+          <Link 
+            to={`/forum?category=${thread.category}`} 
+            className="text-gray-400 hover:text-green-400 transition-colors flex items-center gap-1"
+          >
             {getCategoryIcon(thread.category)} {getCategoryName(thread.category)}
-          </span>
+          </Link>
           <span>/</span>
           <span className="text-gray-300 truncate">{thread.title.slice(0, 30)}...</span>
         </div>
@@ -85,7 +142,13 @@ export default function ForumThread() {
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
               {thread.isPinned && (
-                <span className="text-yellow-400 text-2xl">📌</span>
+                <StatusBadge type="PINNED" size="md" showLabel />
+              )}
+              {(thread as any).isOfficial && (
+                <StatusBadge type="OFFICIAL" size="md" showLabel />
+              )}
+              {(thread as any).contentType && (
+                <ContentBadge type={(thread as any).contentType as ContentType} size="md" showLabel />
               )}
               <span className={`${getTypeConfig(thread.type).color} text-2xl`}>
                 {getTypeConfig(thread.type).icon}
@@ -122,11 +185,10 @@ export default function ForumThread() {
             </div>
           </div>
 
-          <div className="prose prose-invert max-w-none">
-            <p className="text-gray-300 whitespace-pre-wrap">
-              {thread.content}
-            </p>
-          </div>
+          <MarkdownRenderer 
+            content={thread.content}
+            isContentThread={!!(thread as any).contentType}
+          />
 
           {thread.tags && thread.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-6">

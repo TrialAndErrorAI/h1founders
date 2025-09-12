@@ -34,7 +34,14 @@
       "mcp__playwright__browser_console_messages",
       "mcp__firebase__auth_get_user",
       "mcp__firebase__firestore_get_documents",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(wrangler:*)",
+      "Bash(CLOUDFLARE_ACCOUNT_ID=40ad419de279f41e9626e2faf500b6b4 wrangler pages deploy dist --project-name=h1founders --dry-run)",
+      "mcp__playwright__browser_wait_for",
+      "Bash(gcloud config get-value:*)",
+      "Read(//Users/sid/**)",
+      "Bash(npm run test:auth:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

@@ -27,7 +27,7 @@ Please help - feeling lost and time is ticking.`,
   {
     id: 'thread-2',
     title: '🎉 VICTORY: Just got my EB-1A approved in 14 months!',
-    category: ForumCategory.ZION,
+    category: ForumCategory.CLUB_H1,
     type: ThreadType.VICTORY,
     author: getMockUser('raj_neo')!,
     content: `Brothers and sisters, I'm literally shaking as I write this. Just got the approval notice for my EB-1A!
@@ -192,7 +192,7 @@ Full breakdown with numbers in the comments...`,
   {
     id: 'thread-8',
     title: 'Failed my first startup. Visa expires in 4 months. Do I give up?',
-    category: ForumCategory.ZION,
+    category: ForumCategory.CLUB_H1,
     type: ThreadType.QUESTION,
     author: getMockUser('david_freed')!,
     content: `Brutal honesty time.

@@ -81,39 +81,42 @@ export const forumCategories: ForumCategoryConfig[] = [
     ]
   },
   {
-    id: ForumCategory.ZION,
-    name: 'Zion',
-    description: 'The free community',
-    icon: '🌍',
+    id: ForumCategory.CLUB_H1,
+    name: 'Club H1 💎',
+    description: 'Premium inner circle for serious founders',
+    icon: '💎',
+    isPremium: true,
+    monthlyPrice: 297,
     subCategories: [
       {
-        name: 'War Stories',
-        description: 'Success & Failures',
-        slug: 'war-stories'
+        name: 'Founder Stories',
+        description: 'Real talk from the trenches',
+        slug: 'founder-stories'
       },
       {
-        name: 'The Alliance',
+        name: 'Strategic Alliances',
         description: 'Co-founders & Partners',
-        slug: 'alliance'
+        slug: 'strategic-alliances'
       },
       {
-        name: 'The Families',
-        description: 'Spouse & Kids',
-        slug: 'families'
+        name: 'Family Matters',
+        description: 'Spouse & Kids navigation',
+        slug: 'family-matters'
       },
       {
-        name: 'The Network',
-        description: 'Global Founders',
-        slug: 'network'
+        name: 'The Inner Network',
+        description: 'Verified founders only',
+        slug: 'inner-network'
       }
     ]
   },
   {
     id: ForumCategory.ORACLE_CHAMBER,
     name: "Oracle's Chamber",
-    description: 'Special access - Neo+ only',
+    description: 'Hybrid access - Morpheus+ or Club H1',
     icon: '🔮',
-    requiredBadge: BadgeLevel.NEO,
+    requiredBadge: BadgeLevel.MORPHEUS,
+    hybridAccess: true,  // NEW: Allows Club H1 members too
     subCategories: [
       {
         name: 'Prophecies',
@@ -127,7 +130,7 @@ export const forumCategories: ForumCategoryConfig[] = [
       },
       {
         name: 'Master Classes',
-        description: 'Neo+ Only',
+        description: 'Morpheus+ or Club H1',
         slug: 'master-classes'
       },
       {
@@ -153,10 +156,27 @@ export function getCategoryIcon(id: ForumCategory): string {
   return config?.icon || '❓'
 }
 
-export function canAccessCategory(category: ForumCategory, userBadge: BadgeLevel): boolean {
+export function canAccessCategory(
+  category: ForumCategory, 
+  userBadge: BadgeLevel, 
+  isPaidMember?: boolean
+): boolean {
   const config = getCategoryConfig(category)
+  
+  // Premium sections require Club H1 membership
+  if (config?.isPremium && !isPaidMember) {
+    return false
+  }
+  
+  // No badge requirement = open access
   if (!config?.requiredBadge) return true
   
+  // Hybrid access (Oracle Chamber): Morpheus+ OR Club H1 member
+  if (config.hybridAccess && isPaidMember) {
+    return true
+  }
+  
+  // Standard badge hierarchy check
   const badgeLevels = Object.values(BadgeLevel)
   const requiredIndex = badgeLevels.indexOf(config.requiredBadge)
   const userIndex = badgeLevels.indexOf(userBadge)

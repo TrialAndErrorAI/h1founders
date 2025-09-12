@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Post } from '../../types/forum.types'
+import { Post, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../badges/BadgeDisplay'
 import VoteButtons from './VoteButtons'
 
@@ -64,7 +64,7 @@ export default function PostCard({ post, onVote }: PostCardProps) {
 
       {/* Content */}
       <div className={`prose prose-invert max-w-none mb-4 ${
-        post.author.badge === 'ARCHITECT' ? 'text-green-300' : 'text-gray-300'
+        post.author.badge === BadgeLevel.THE_ARCHITECT ? 'text-green-300' : 'text-gray-300'
       }`}>
         <p className="whitespace-pre-wrap">
           {post.content}

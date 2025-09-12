@@ -100,8 +100,13 @@ export const SPECIAL_BADGES: Record<SpecialStatus, SpecialBadge> = {
 /**
  * Get default badge level for new users
  */
-export function getDefaultBadgeLevel(_isWhatsappMember: boolean = false): MatrixLevel {
-  // All new users start as UNPLUGGED (starting to see)
+export function getDefaultBadgeLevel(isWhatsappMember: boolean = false): MatrixLevel {
+  // WhatsApp members (792 verified) start at FREED_MIND (escaped the Matrix)
+  if (isWhatsappMember) {
+    return 'FREED_MIND'
+  }
+  
+  // New users start as UNPLUGGED (starting to see)
   return 'UNPLUGGED'
 }
 

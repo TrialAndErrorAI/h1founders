@@ -22,6 +22,8 @@ interface UserProfile {
   matrixLevel: MatrixLevel
   specialBadges: SpecialStatus[]
   profileComplete: boolean
+  isPaidMember?: boolean  // Club H1 membership status
+  clubH1JoinedAt?: Date    // When they joined Club H1
   claimedAt?: Date
   createdAt: Date
   lastActive: Date
@@ -35,7 +37,7 @@ interface AuthContextType {
   verifyOTP: (confirmationResult: ConfirmationResult, code: string) => Promise<void>
   logout: () => Promise<void>
   updateProfile: (updates: Partial<UserProfile>) => Promise<void>
-  setupRecaptcha: (containerId: string) => RecaptchaVerifier
+  setupRecaptcha: (containerId: string) => RecaptchaVerifier | null
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -56,7 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
-  const [recaptchaVerifier, setRecaptchaVerifier] = useState<RecaptchaVerifier | null>(null)
+  // Removed unused recaptchaVerifier state - v3 is invisible and doesn't need manual state
 
   // Listen to auth state changes
   useEffect(() => {
@@ -122,8 +124,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return unsubscribe
   }, [])
 
-  // Setup Recaptcha - v3 invisible only
-  const setupRecaptcha = (containerId: string) => {
+  // Setup Recaptcha - v3 invisible only (unused parameter but kept for API compatibility)
+  const setupRecaptcha = (_containerId: string) => {
     // v3 doesn't need manual setup, handled in sendOTP
     return null
   }

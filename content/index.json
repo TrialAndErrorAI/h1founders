@@ -1,0 +1,85 @@
+{
+  "content": [
+    {
+      "id": "linkedin-001",
+      "file": "raw/linkedin/001-original-post.md",
+      "status": "ready",
+      "title": "The Post That Started It All",
+      "contentType": "announcement",
+      "priority": 1,
+      "importedToForum": false,
+      "forumPostId": null,
+      "stats": {
+        "originalLikes": 873,
+        "originalComments": 54
+      },
+      "notes": "MUST PIN TO TOP - Community origin story"
+    },
+    {
+      "id": "substack-001",
+      "file": "raw/substack/001-year-in-review-2024.md",
+      "status": "ready",
+      "title": "2024 H1B Founders Community: Year in Review",
+      "contentType": "story",
+      "priority": 2,
+      "importedToForum": false,
+      "forumPostId": null,
+      "stats": {
+        "communitySize": "700+",
+        "successMetrics": "Multiple founders at $100K+ MRR"
+      },
+      "notes": "Premium content for Club H1 - success stories and community proof"
+    },
+    {
+      "id": "substack-002",
+      "file": "raw/substack/002-visa-overhaul-2024.md",
+      "status": "ready",
+      "title": "H1B Visa Overhaul: December 2024 Changes You Need to Know",
+      "contentType": "knowledge",
+      "priority": 3,
+      "importedToForum": false,
+      "forumPostId": null,
+      "stats": {
+        "urgency": "expires December 2025",
+        "policyChanges": "December 2024"
+      },
+      "notes": "URGENT - Current policy changes, expires Dec 2025"
+    },
+    {
+      "id": "substack-003",
+      "file": "raw/substack/003-founding-company-h1b.md",
+      "status": "ready",
+      "title": "Founding a company is absolutely legal on H1B",
+      "contentType": "knowledge",
+      "priority": 4,
+      "importedToForum": false,
+      "forumPostId": null,
+      "stats": {
+        "duration": "31:58",
+        "hasTranscript": true,
+        "keyQuotes": 8
+      },
+      "notes": "THE definitive guide - Sid+Ercan co-founder story with full transcript and timestamps"
+    },
+    {
+      "id": "substack-004",
+      "file": "raw/substack/004-raghavan-attorney-session.md",
+      "status": "ready",
+      "title": "Navigating Immigration Law: Live Q&A with Attorney Raghavan Nagarajan",
+      "contentType": "wisdom",
+      "priority": 5,
+      "importedToForum": false,
+      "forumPostId": null,
+      "stats": {
+        "duration": "64:54",
+        "hasTranscript": true,
+        "legalAuthority": true,
+        "keyInsights": 12
+      },
+      "notes": "LEGAL AUTHORITY - Immigration attorney validates H1B entrepreneurship with Jan 17 rule changes"
+    }
+  ],
+  "lastUpdated": "2025-09-12T00:42:00Z",
+  "totalPieces": 5,
+  "readyForImport": 5
+}

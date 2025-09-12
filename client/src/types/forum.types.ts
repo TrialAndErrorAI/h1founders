@@ -5,7 +5,14 @@ export enum BadgeLevel {
   NEO = 'NEO',
   MORPHEUS = 'MORPHEUS',
   ORACLE = 'ORACLE',
-  ARCHITECT = 'ARCHITECT'
+  THE_ARCHITECT = 'THE_ARCHITECT'
+}
+
+export enum SpecialRole {
+  GUARDIAN = '⚔️ Guardian',       // Paid team (Manisha) - full mod powers
+  SENTINEL = '🛡️ Sentinel',       // Trusted volunteers - flag/hide
+  WATCHER = '📡 Watcher',         // Active members - can report
+  AI_ORACLE = '🔮 The Oracle'     // ATLAS AI participation
 }
 
 export enum ThreadType {
@@ -17,11 +24,21 @@ export enum ThreadType {
   PROPHECY = 'PROPHECY'
 }
 
+export enum ContentType {
+  STORY = 'STORY',
+  EVENT = 'EVENT',
+  GUIDE = 'GUIDE',
+  TOOL = 'TOOL',
+  WISDOM = 'WISDOM',
+  SUBSTACK = 'SUBSTACK',
+  ANNOUNCEMENT = 'ANNOUNCEMENT'
+}
+
 export enum ForumCategory {
   THE_CONSTRUCT = 'THE_CONSTRUCT',
   THE_MATRIX = 'THE_MATRIX',
   THE_REAL_WORLD = 'THE_REAL_WORLD',
-  ZION = 'ZION',
+  CLUB_H1 = 'CLUB_H1',  // Changed from ZION
   ORACLE_CHAMBER = 'ORACLE_CHAMBER'
 }
 
@@ -34,6 +51,11 @@ export interface BadgeConfig {
   glowColor: string
   subLevels?: number
   requirements?: string[]
+  pricing?: {
+    fromLevel?: string
+    price: number
+    program: string
+  }[]
 }
 
 export interface User {
@@ -47,7 +69,9 @@ export interface User {
   isAI?: boolean
   isOracle?: boolean
   isModerator?: boolean
-  specialRole?: string
+  specialRole?: SpecialRole
+  isPaidMember?: boolean  // Club H1 status
+  clubH1JoinedAt?: string
   avatar?: string
   company?: string
   location?: string
@@ -103,4 +127,7 @@ export interface ForumCategoryConfig {
     slug: string
   }[]
   requiredBadge?: BadgeLevel
+  isPremium?: boolean        // NEW: Club H1 premium section
+  monthlyPrice?: number      // NEW: Pricing for premium sections
+  hybridAccess?: boolean     // NEW: Oracle Chamber hybrid access
 }

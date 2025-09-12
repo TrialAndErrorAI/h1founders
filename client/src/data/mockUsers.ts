@@ -1,11 +1,11 @@
-import { User, BadgeLevel } from '../types/forum.types'
+import { User, BadgeLevel, SpecialRole } from '../types/forum.types'
 
 export const mockUsers: User[] = [
   {
     id: 'sid',
     name: 'Sid Sarasvati',
     email: 'sid@h1founders.com',
-    badge: BadgeLevel.ARCHITECT,
+    badge: BadgeLevel.THE_ARCHITECT,
     joinedDate: '2024-03-01',
     company: 'H1Founders',
     location: 'Boston, MA',
@@ -18,7 +18,7 @@ export const mockUsers: User[] = [
     email: 'manisha@h1founders.com',
     badge: BadgeLevel.ORACLE,
     joinedDate: '2024-03-15',
-    specialRole: 'ORACLE_ASSISTANT',
+    specialRole: SpecialRole.AI_ORACLE,
     company: 'H1Founders',
     location: 'San Francisco, CA',
     visaType: 'Green Card',
@@ -126,7 +126,7 @@ export const mockUsers: User[] = [
     badge: BadgeLevel.NEO,
     subLevel: 1,
     joinedDate: '2024-04-15',
-    specialRole: 'SENTINEL',
+    specialRole: SpecialRole.SENTINEL,
     isModerator: true,
     company: 'Security Startup',
     location: 'Denver, CO',

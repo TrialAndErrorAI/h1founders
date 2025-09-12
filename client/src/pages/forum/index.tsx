@@ -1,17 +1,51 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-import { forumCategories } from '../../data/forumCategories'
+import { forumCategories, canAccessCategory } from '../../data/forumCategories'
 import { mockThreads } from '../../data/mockThreads'
+import { mergeWithForumThreads, filterContentByBadge } from '../../utils/contentLoader'
 import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import ProgressionLevel from '../../components/badges/ProgressionLevel'
+import { ContentBadge, StatusBadge } from '../../components/badges/ContentBadge'
+import type { ContentType } from '../../components/badges/ContentBadge'
 import { MATRIX_BADGES } from '../../utils/badges'
 
 export default function Forum() {
-  const [selectedCategory, setSelectedCategory] = useState<ForumCategory | null>(null)
+  const [searchParams] = useSearchParams()
+  const [selectedCategory, setSelectedCategory] = useState<ForumCategory | null>(
+    (searchParams.get('category') as ForumCategory) || null
+  )
   const [searchQuery, setSearchQuery] = useState('')
+  const [allThreads, setAllThreads] = useState(mockThreads)
+  const [loading, setLoading] = useState(true)
   const { user, profile, logout } = useAuth()
+  
+  // Load content threads on mount
+  useEffect(() => {
+    async function loadContent() {
+      try {
+        const mergedThreads = await mergeWithForumThreads(mockThreads)
+        // Filter by user badge level if authenticated
+        const filteredByBadge = profile 
+          ? filterContentByBadge(mergedThreads, profile.matrixLevel)
+          : mergedThreads
+        setAllThreads(filteredByBadge)
+      } catch (error) {
+        console.warn('Failed to load content, using mock data:', error)
+        setAllThreads(mockThreads)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadContent()
+  }, [profile])
+  
+  // Update selected category from URL params
+  useEffect(() => {
+    const categoryParam = searchParams.get('category') as ForumCategory
+    setSelectedCategory(categoryParam || null)
+  }, [searchParams])
   
   // Use real auth or fall back to mock for display purposes
   const currentUser = profile && profile.matrixLevel ? {
@@ -22,7 +56,7 @@ export default function Forum() {
     avatar: MATRIX_BADGES[profile.matrixLevel].emoji
   } : null
   
-  const filteredThreads = mockThreads.filter(thread => {
+  const filteredThreads = allThreads.filter(thread => {
     const matchesCategory = !selectedCategory || thread.category === selectedCategory
     const matchesSearch = !searchQuery || 
       thread.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -41,6 +75,20 @@ export default function Forum() {
 
   const getTypeConfig = (type: ThreadType) => 
     threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
+  
+  // Content type badges for RFC009 content architecture
+  const contentTypeBadges = {
+    STORY: '📖',
+    EVENT: '📅',
+    GUIDE: '📚',
+    TOOL: '🛠️',
+    WISDOM: '💡',
+    SUBSTACK: '📝',
+    ANNOUNCEMENT: '📢'
+  }
+  
+  const getContentBadge = (contentType: string) => 
+    contentTypeBadges[contentType as keyof typeof contentTypeBadges] || '📄'
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -159,10 +207,8 @@ export default function Forum() {
               ALL CATEGORIES
             </button>
             {forumCategories.map(category => {
-              const isLocked = !!(category.requiredBadge && 
-                currentUser && 
-                Object.values(BadgeLevel).indexOf(currentUser.badge) < 
-                Object.values(BadgeLevel).indexOf(category.requiredBadge))
+              const hasAccess = currentUser ? canAccessCategory(category.id, currentUser.badge, currentUser.isPaidMember || false) : true
+              const isLocked = !hasAccess
               
               return (
                 <button
@@ -174,11 +220,17 @@ export default function Forum() {
                       ? 'bg-green-400 text-black shadow-md shadow-green-400/30'
                       : isLocked
                       ? 'bg-gray-900 text-gray-600 border border-gray-800 cursor-not-allowed opacity-50'
+                      : category.isPremium
+                      ? 'bg-gray-900 text-gray-400 border border-yellow-600/50 hover:border-yellow-400 hover:shadow-md hover:shadow-yellow-400/20'
+                      : category.hybridAccess
+                      ? 'bg-gray-900 text-gray-400 border border-purple-600/50 hover:border-purple-400 hover:shadow-md hover:shadow-purple-400/20'
                       : 'bg-gray-900 text-gray-400 border border-gray-800 hover:border-green-400'
                   }`}
                 >
                   <span className="mr-1.5">{category.icon}</span>
                   <span>{category.name}</span>
+                  {category.isPremium && <span className="ml-1 text-yellow-400">💎</span>}
+                  {category.hybridAccess && <span className="ml-1 text-purple-400">⚡</span>}
                   {isLocked && <span className="ml-1">🔒</span>}
                 </button>
               )
@@ -188,7 +240,11 @@ export default function Forum() {
 
         {/* Thread List */}
         <div className="space-y-4">
-          {filteredThreads.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500 font-mono">Loading content...</p>
+            </div>
+          ) : filteredThreads.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-500 font-mono">No threads found</p>
             </div>
@@ -204,7 +260,13 @@ export default function Forum() {
                     <div className="flex items-start gap-3 mb-3">
                       <div className="flex items-center gap-2 flex-shrink-0 mt-0.5">
                         {thread.isPinned && (
-                          <span className="text-yellow-400 text-lg" title="Pinned">📌</span>
+                          <StatusBadge type="PINNED" size="sm" />
+                        )}
+                        {(thread as any).isOfficial && (
+                          <StatusBadge type="OFFICIAL" size="sm" />
+                        )}
+                        {(thread as any).contentType && (
+                          <ContentBadge type={(thread as any).contentType as ContentType} size="sm" />
                         )}
                         <span className={`${getTypeConfig(thread.type).color} text-lg`} title={thread.type}>
                           {getTypeConfig(thread.type).icon}
@@ -271,7 +333,7 @@ export default function Forum() {
         {/* Forum Stats */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
-            <p className="text-2xl font-bold text-green-400">{mockThreads.length}</p>
+            <p className="text-2xl font-bold text-green-400">{allThreads.length}</p>
             <p className="text-xs text-gray-500 font-mono mt-1">Active Threads</p>
           </div>
           <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
