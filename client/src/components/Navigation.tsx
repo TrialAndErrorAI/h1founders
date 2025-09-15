@@ -14,11 +14,8 @@ const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
 const baseNavigation: NavItem[] = [
   { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
-  { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
-  { name: 'RESOURCES', href: '/resources', status: 'SOON' },
-  { name: 'STORIES', href: '/stories', status: 'SOON' },
-  { name: 'EVENTS', href: '/events', status: 'SOON' },
-  { name: 'ACADEMY', href: '/academy', status: 'SOON' }
+  { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 }
+  // Removed SOON items for cleaner navigation
   // Network section hidden - access through member login only
 ]
 

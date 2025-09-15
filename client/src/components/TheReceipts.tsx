@@ -1,6 +1,6 @@
 export default function TheReceipts() {
   return (
-    <section className="bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 border-t border-gray-700">
+    <section className="bg-gray-900 px-6 py-12 sm:py-16 lg:px-8 border-t border-gray-700">
       <div className="mx-auto max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -16,44 +16,45 @@ export default function TheReceipts() {
           {/* Revenue Proof */}
           <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
             <div className="text-center">
-              <div className="terminal-text text-3xl font-bold mb-2">$3M ARR</div>
-              <p className="text-gray-400 mb-4">RenovateAI Revenue</p>
+              <div className="terminal-text text-3xl font-bold mb-2">$3M+</div>
+              <p className="text-gray-400 mb-4">Annual Revenue</p>
               <div className="bg-gray-800 rounded p-3 font-mono text-sm">
-                <div className="text-green-400">// Bootstrapped SaaS</div>
-                <div className="text-gray-300">zero_vc_funding: true</div>
-                <div className="text-gray-300">gross_margin: "95%"</div>
-                <div className="text-gray-300">users: "2M+"</div>
+                <div className="text-green-400">// Bootstrapped</div>
+                <div className="text-gray-300">companies: 4</div>
+                <div className="text-gray-300">vc_funding: $0</div>
+                <div className="text-gray-300">margin: 95%</div>
               </div>
             </div>
           </div>
-          
+
           {/* Green Card */}
           <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
             <div className="text-center">
               <div className="terminal-text text-3xl font-bold mb-2">EB1-A</div>
-              <p className="text-gray-400 mb-4">Green Card Status</p>
+              <p className="text-gray-400 mb-4">Green Card</p>
               <div className="bg-gray-800 rounded p-3 font-mono text-sm">
                 <div className="text-green-400">// Self-sponsored</div>
                 <div className="text-gray-300">approved: true</div>
-                <div className="text-gray-300">timeline: "18 months"</div>
-                <div className="text-gray-300">employer_dependent: false</div>
+                <div className="text-gray-300">timeline: 18mo</div>
+                <div className="text-gray-300">freedom: true</div>
               </div>
             </div>
           </div>
-          
-          {/* Viral Post */}
-          <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all md:col-span-2 lg:col-span-1">
+
+          {/* Community Impact */}
+          <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
             <div className="text-center">
-              <div className="terminal-text text-3xl font-bold mb-2">872</div>
-              <p className="text-gray-400 mb-4">LinkedIn Reactions</p>
+              <div className="terminal-text text-3xl font-bold mb-2">1,400+</div>
+              <p className="text-gray-400 mb-4">Founders Helped</p>
               <div className="bg-gray-800 rounded p-3 font-mono text-sm">
-                <div className="text-green-400">// Viral post impact</div>
-                <div className="text-gray-300">comments: 54</div>
-                <div className="text-gray-300">reposts: 18</div>
-                <div className="text-gray-300">community_born: "24hrs"</div>
+                <div className="text-green-400">// Impact</div>
+                <div className="text-gray-300">bootstrapped: many</div>
+                <div className="text-gray-300">eb1a_filed: 50+</div>
+                <div className="text-gray-300">still_growing: true</div>
               </div>
             </div>
           </div>
+
         </div>
         
         {/* Timeline */}

@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative bg-black px-6 py-24 sm:py-32 lg:px-8 min-h-screen flex items-center">
+    <section className="relative bg-black px-6 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:px-8 min-h-screen">
       <div className="mx-auto max-w-4xl text-center">
         {/* Matrix Opening Line */}
         <div className="mb-8">

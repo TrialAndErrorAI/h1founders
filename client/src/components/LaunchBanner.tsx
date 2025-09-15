@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 
 export default function LaunchBanner() {
-  const [isVisible, setIsVisible] = useState(true)
   const { user } = useAuth()
 
-  // Hide banner if user is authenticated or manually dismissed
-  if (!isVisible || user) return null
+  // Hide banner only if user is authenticated
+  if (user) return null
 
   return (
     <div className="bg-gradient-to-r from-red-900/50 to-green-900/50 border-b border-green-400/30 px-4 py-3 relative">
@@ -32,15 +30,6 @@ export default function LaunchBanner() {
             </button>
           </div>
         </div>
-        
-        {/* Close Button */}
-        <button
-          onClick={() => setIsVisible(false)}
-          className="ml-4 text-gray-400 hover:text-white text-xl leading-none"
-          aria-label="Close banner"
-        >
-          ×
-        </button>
       </div>
     </div>
   )
