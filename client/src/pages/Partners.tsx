@@ -2,26 +2,26 @@ export default function Partners() {
   const partners = [
     {
       tier: 'ARCHITECT',
-      name: 'Elite Immigration Law',
+      name: 'Manifest Labs PLLC',
       module: 'Legal Module',
-      description: 'Break immigration chains with expert EB-1A guidance',
-      services: ['EB-1A Applications', 'O-1 Visas', 'Self-Sponsorship Strategy', 'RFE Response'],
-      contact: 'Schedule Free Consultation',
-      url: '#',
+      description: 'Your exclusive EB-1A partner - manifest your green card',
+      services: ['EB-1A Applications', 'O-1 Visas', 'EB-2 NIW', 'Startup Legal Strategy'],
+      contact: 'Schedule Consultation',
+      url: 'https://calendly.com/manifestlabs',
       color: 'text-red-400',
       glow: 'shadow-red-400/50'
     },
     // Future partners will be added here
     {
-      tier: 'COMING SOON',
-      name: 'Banking Partner',
-      module: 'Financial Module',
-      description: 'Fund your escape - banking for founders',
-      services: ['Business Banking', 'Credit Lines', 'International Transfers'],
-      contact: 'Coming Q1 2025',
-      url: '#',
-      color: 'text-gray-600',
-      glow: ''
+      tier: 'NEO',
+      name: 'FinStackk',
+      module: 'Tax & Accounting Module',
+      description: 'SOC 2 compliant accounting for H1B founders',
+      services: ['R&D Tax Credits', 'Startup Accounting', 'Tax Strategy', 'SOC 2 Compliance'],
+      contact: 'Schedule Discovery Call',
+      url: 'https://calendly.com/finstackk',
+      color: 'text-green-400',
+      glow: 'shadow-green-400/50'
     },
     {
       tier: 'COMING SOON',

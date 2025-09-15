@@ -7,15 +7,20 @@ interface Sponsor {
   tier: 'blue' | 'red' | 'neo' | 'architect'
 }
 
-// Mock sponsors - replace with real data
+// Active partners in pipeline
 const sponsors: Sponsor[] = [
   {
-    name: 'Elite Immigration Law',
-    tagline: 'Your EB-1A Legal Partner',
-    url: 'https://example.com/law-firm',
+    name: 'Manifest Labs PLLC',
+    tagline: 'Manifest Your Green Card',
+    url: 'https://calendly.com/manifestlabs',
     tier: 'architect'
   },
-  // Add more sponsors as they join
+  {
+    name: 'FinStackk',
+    tagline: 'SOC 2 Accounting for Founders',
+    url: 'https://calendly.com/finstackk',
+    tier: 'neo'
+  }
 ]
 
 export default function SponsorBanner() {
