@@ -299,6 +299,17 @@ export default function EB1AQualifier() {
           <p className="text-gray-400 text-lg">
             Answer 10 questions to see if you qualify for the extraordinary ability green card.
           </p>
+
+          {/* Demo Warning */}
+          <div className="mt-6 bg-blue-900/20 border border-blue-400/30 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-blue-400">🧪</span>
+              <span className="font-mono text-blue-400 text-sm font-bold">DEMO_MODE</span>
+            </div>
+            <p className="text-blue-300 font-mono text-sm">
+              // Sample assessment for demonstration. Real qualification evaluation requires attorney consultation.
+            </p>
+          </div>
         </div>
 
         {/* Progress Bar */}

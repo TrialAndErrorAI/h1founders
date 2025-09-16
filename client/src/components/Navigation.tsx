@@ -14,7 +14,8 @@ const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
 const baseNavigation: NavItem[] = [
   { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
-  { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 }
+  { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
+  { name: 'COACHING', href: '/#coaching', status: 'LIVE' }
   // Removed SOON items for cleaner navigation
   // Network section hidden - access through member login only
 ]
@@ -87,6 +88,16 @@ export default function Navigation() {
                     onClick={(e) => {
                       if (isDisabled && item.status !== 'LOCKED') {
                         e.preventDefault()
+                        return
+                      }
+
+                      // Handle coaching scroll on same page
+                      if (item.href === '/#coaching' && location.pathname === '/') {
+                        e.preventDefault()
+                        const element = document.getElementById('coaching')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' })
+                        }
                       }
                     }}
                   >
@@ -145,7 +156,18 @@ export default function Navigation() {
                   onClick={(e) => {
                     if (isDisabled && item.status !== 'LOCKED') {
                       e.preventDefault()
+                      return
                     }
+
+                    // Handle coaching scroll on same page (mobile)
+                    if (item.href === '/#coaching' && location.pathname === '/') {
+                      e.preventDefault()
+                      const element = document.getElementById('coaching')
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    }
+
                     setIsOpen(false)
                   }}
                 >

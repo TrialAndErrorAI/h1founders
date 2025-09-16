@@ -67,6 +67,17 @@ export default function SalaryExplorer() {
           <p className="text-gray-400 text-lg">
             See what companies pay H1B holders. Then see what founders make instead.
           </p>
+
+          {/* Demo Warning */}
+          <div className="mt-6 bg-blue-900/20 border border-blue-400/30 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-blue-400">🧪</span>
+              <span className="font-mono text-blue-400 text-sm font-bold">DEMO_MODE</span>
+            </div>
+            <p className="text-blue-300 font-mono text-sm">
+              // Using sample data for demonstration. Real salary data integration coming soon.
+            </p>
+          </div>
         </div>
 
         {/* Search Terminal */}

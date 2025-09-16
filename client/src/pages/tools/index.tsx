@@ -5,7 +5,7 @@ const tools = [
     id: 'salary-explorer',
     name: 'H1B Salary Explorer',
     description: 'See what companies pay H1B holders. Then see what founders make instead.',
-    status: 'LIVE',
+    status: 'DEMO',
     path: '/tools/salary-explorer',
     icon: '💰'
   },
@@ -13,7 +13,7 @@ const tools = [
     id: 'eb1a-qualifier',
     name: 'EB1-A Qualifier',
     description: 'Find out if you qualify for EB1-A extraordinary ability green card.',
-    status: 'LIVE',
+    status: 'DEMO',
     path: '/tools/eb1a-qualifier',
     icon: '🎯'
   },
@@ -54,20 +54,23 @@ export default function ToolsIndex() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {tools.map((tool) => {
             const isLive = tool.status === 'LIVE'
+            const isDemo = tool.status === 'DEMO'
             
             return (
               <Link
                 key={tool.id}
-                to={isLive ? tool.path : '#'}
+                to={(isLive || isDemo) ? tool.path : '#'}
                 className={`
                   block bg-gray-900 border rounded-lg p-6 transition-all duration-200
-                  ${isLive 
-                    ? 'border-green-400/20 hover:border-green-400 hover:shadow-lg hover:shadow-green-400/10' 
+                  ${isLive
+                    ? 'border-green-400/20 hover:border-green-400 hover:shadow-lg hover:shadow-green-400/10'
+                    : isDemo
+                    ? 'border-blue-400/20 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-400/10'
                     : 'border-gray-700 opacity-60 cursor-not-allowed'
                   }
                 `}
                 onClick={(e) => {
-                  if (!isLive) {
+                  if (!isLive && !isDemo) {
                     e.preventDefault()
                   }
                 }}
@@ -76,8 +79,10 @@ export default function ToolsIndex() {
                   <span className="text-3xl">{tool.icon}</span>
                   <span className={`
                     font-mono text-xs px-2 py-1 rounded
-                    ${isLive 
-                      ? 'bg-green-400/10 text-green-400 border border-green-400/20' 
+                    ${isLive
+                      ? 'bg-green-400/10 text-green-400 border border-green-400/20'
+                      : isDemo
+                      ? 'bg-blue-400/10 text-blue-400 border border-blue-400/20'
                       : 'bg-yellow-400/10 text-yellow-400 border border-yellow-400/20'
                     }
                   `}>
@@ -96,6 +101,12 @@ export default function ToolsIndex() {
                 {isLive && (
                   <div className="mt-4 flex items-center text-green-400 font-mono text-sm">
                     <span>LAUNCH_TOOL()</span>
+                    <span className="ml-2">→</span>
+                  </div>
+                )}
+                {isDemo && (
+                  <div className="mt-4 flex items-center text-blue-400 font-mono text-sm">
+                    <span>TRY_DEMO()</span>
                     <span className="ml-2">→</span>
                   </div>
                 )}

@@ -26,10 +26,10 @@ export default function Forum() {
     async function loadContent() {
       try {
         const mergedThreads = await mergeWithForumThreads(mockThreads)
-        // Filter by user badge level if authenticated
-        const filteredByBadge = profile 
-          ? filterContentByBadge(mergedThreads, profile.matrixLevel)
-          : mergedThreads
+        // Filter by user badge level - anonymous users get BLUE_PILL access
+        const filteredByBadge = profile
+          ? filterContentByBadge(mergedThreads, profile.matrixLevel, profile.isPaidMember)
+          : filterContentByBadge(mergedThreads, BadgeLevel.BLUE_PILL, false)
         setAllThreads(filteredByBadge)
       } catch (error) {
         console.warn('Failed to load content, using mock data:', error)
@@ -196,7 +196,7 @@ export default function Forum() {
               ALL CATEGORIES
             </button>
             {forumCategories.map(category => {
-              const hasAccess = currentUser ? canAccessCategory(category.id, currentUser.badge, currentUser.isPaidMember || false) : true
+              const hasAccess = currentUser ? canAccessCategory(category.id, currentUser.badge, currentUser.isPaidMember || false) : canAccessCategory(category.id, BadgeLevel.BLUE_PILL, false)
               const isLocked = !hasAccess
               
               return (

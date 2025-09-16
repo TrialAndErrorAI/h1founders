@@ -1,4 +1,5 @@
 import { ForumCategory, ForumCategoryConfig, BadgeLevel } from '../types/forum.types'
+import { AccessResult, UserContext, createUserContext, SecurityCheck } from '../types/security.types'
 
 export const forumCategories: ForumCategoryConfig[] = [
   {
@@ -156,30 +157,94 @@ export function getCategoryIcon(id: ForumCategory): string {
   return config?.icon || '❓'
 }
 
+// SECURITY PRINCIPLE: DENY BY DEFAULT
+// Anonymous users get BLUE_PILL access only
+// NEVER default to true/permissive access
 export function canAccessCategory(
-  category: ForumCategory, 
-  userBadge: BadgeLevel, 
+  category: ForumCategory,
+  userBadge: BadgeLevel,
   isPaidMember?: boolean
 ): boolean {
   const config = getCategoryConfig(category)
-  
+  if (!config) return false // SECURITY: Unknown category = denied
+
   // Premium sections require Club H1 membership
-  if (config?.isPremium && !isPaidMember) {
+  if (config.isPremium && !isPaidMember) {
     return false
   }
-  
-  // No badge requirement = open access
-  if (!config?.requiredBadge) return true
-  
+
+  // No badge requirement = open access (only for public categories)
+  if (!config.requiredBadge) return true
+
   // Hybrid access (Oracle Chamber): Morpheus+ OR Club H1 member
   if (config.hybridAccess && isPaidMember) {
     return true
   }
-  
+
   // Standard badge hierarchy check
   const badgeLevels = Object.values(BadgeLevel)
   const requiredIndex = badgeLevels.indexOf(config.requiredBadge)
   const userIndex = badgeLevels.indexOf(userBadge)
-  
+
   return userIndex >= requiredIndex
+}
+
+// SECURITY: New secure access check function with explicit results
+export function checkCategoryAccess(category: ForumCategory, user: any): SecurityCheck {
+  const userContext = createUserContext(user)
+  const config = getCategoryConfig(category)
+
+  if (!config) {
+    return {
+      result: 'DENIED',
+      reason: 'Category does not exist',
+      userContext
+    }
+  }
+
+  // Premium sections require Club H1 membership
+  if (config.isPremium && !userContext.isPaidMember) {
+    return {
+      result: 'DENIED',
+      reason: 'Premium category requires Club H1 membership',
+      userContext
+    }
+  }
+
+  // No badge requirement = open access (only for public categories)
+  if (!config.requiredBadge) {
+    return {
+      result: 'GRANTED',
+      reason: 'Public category with no badge requirement',
+      userContext
+    }
+  }
+
+  // Hybrid access (Oracle Chamber): Morpheus+ OR Club H1 member
+  if (config.hybridAccess && userContext.isPaidMember) {
+    return {
+      result: 'GRANTED',
+      reason: 'Club H1 member accessing hybrid category',
+      userContext
+    }
+  }
+
+  // Standard badge hierarchy check
+  const badgeLevels = Object.values(BadgeLevel)
+  const requiredIndex = badgeLevels.indexOf(config.requiredBadge)
+  const userIndex = badgeLevels.indexOf(userContext.badge)
+
+  if (userIndex >= requiredIndex) {
+    return {
+      result: 'GRANTED',
+      reason: `Badge level ${userContext.badge} meets requirement ${config.requiredBadge}`,
+      userContext
+    }
+  }
+
+  return {
+    result: 'DENIED',
+    reason: `Badge level ${userContext.badge} insufficient for ${config.requiredBadge} requirement`,
+    userContext
+  }
 }

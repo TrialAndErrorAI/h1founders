@@ -119,18 +119,27 @@ export async function mergeWithForumThreads(forumThreads: Thread[]): Promise<Thr
 }
 
 /**
- * Filter content by badge requirements
+ * Filter content by badge requirements AND category access control
  */
-export function filterContentByBadge(threads: Thread[], userBadge: string): Thread[] {
+export function filterContentByBadge(threads: Thread[], userBadge: string, isPaidMember?: boolean): Thread[] {
   const badgeHierarchy = [
     'BLUE_PILL', 'UNPLUGGED', 'FREED_MIND', 'NEO', 'MORPHEUS', 'THE_ORACLE', 'THE_ARCHITECT'
   ]
-  
+
   const userLevel = badgeHierarchy.indexOf(userBadge)
-  
+
   return threads.filter(thread => {
+    // Import canAccessCategory here to avoid circular imports
+    const { canAccessCategory } = require('../data/forumCategories')
+
+    // First check category-level access
+    if (!canAccessCategory(thread.category, userBadge, isPaidMember || false)) {
+      return false
+    }
+
+    // Then check thread-level badge requirements
     if (!thread.badges || thread.badges.length === 0) return true
-    
+
     // Check if user has required badge level
     return thread.badges.some((requiredBadge: string) => {
       const requiredLevel = badgeHierarchy.indexOf(requiredBadge)

@@ -23,6 +23,14 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+
+      // SECURITY RULES: Prevent access control vulnerabilities
+      'no-implicit-coercion': ['error', { boolean: false }],
+      'no-ternary': 'off', // We'll use custom rule for security ternaries
+
+      // Custom security patterns (will implement as plugin later)
+      // For now, these are warnings to catch the exact pattern that caused our bug
+      'prefer-explicit-assert': 'off', // Placeholder for future security plugin
     },
   },
 )

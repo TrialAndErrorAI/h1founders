@@ -11,6 +11,8 @@
     "preview": "bun --bun ../node_modules/vite/bin/vite.js preview",
     "test:auth": "npx playwright test tests/phone-auth.spec.ts --project=chromium",
     "test:auth:debug": "npx playwright test tests/phone-auth.spec.ts --project=chromium --headed --debug",
+    "test:security": "npx playwright test tests/security/ --reporter=list",
+    "test:security:debug": "npx playwright test tests/security/ --headed --debug",
     "test:report": "npx playwright show-report"
   },
   "dependencies": {
