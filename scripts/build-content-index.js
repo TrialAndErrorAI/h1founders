@@ -8,8 +8,10 @@
 const fs = require('fs')
 const path = require('path')
 
-const CONTENT_DIR = path.join(process.cwd(), 'content')
-const OUTPUT_FILE = path.join(process.cwd(), 'client/src/data/contentIndex.json')
+// Always use project root, regardless of where script is run from
+const PROJECT_ROOT = path.resolve(__dirname, '..')
+const CONTENT_DIR = path.join(PROJECT_ROOT, 'content')
+const OUTPUT_FILE = path.join(PROJECT_ROOT, 'client/src/data/contentIndex.json')
 
 // Simple frontmatter parser
 function parseMarkdownWithFrontmatter(content) {

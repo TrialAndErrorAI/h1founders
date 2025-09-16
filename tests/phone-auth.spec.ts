@@ -70,12 +70,12 @@ test.describe('H1Founders Phone Authentication', () => {
     // Step 11: Wait for successful authentication and modal to close
     await expect(page.locator('[role="dialog"]')).not.toBeVisible();
     
-    // Step 12: Verify successful authentication - should see network directory
-    await expect(page.locator('h1')).toContainText('NETWORK_DIRECTORY');
+    // Step 12: Verify successful authentication - should see matrix forum
+    await expect(page.locator('h1')).toContainText('THE MATRIX FORUM');
     await expect(page.locator('text=Welcome back')).toBeVisible();
     
     // Step 13: Verify logout button is present
-    const logoutButton = page.locator('button:has-text("LOGOUT()")');
+    const logoutButton = page.locator('button:has-text("DISCONNECT()")');
     await expect(logoutButton).toBeVisible();
   });
 
@@ -111,7 +111,7 @@ test.describe('H1Founders Phone Authentication', () => {
     
     // Step 5: Verify successful authentication
     await expect(page.locator('[role="dialog"]')).not.toBeVisible();
-    await expect(page.locator('h1')).toContainText('NETWORK_DIRECTORY');
+    await expect(page.locator('h1')).toContainText('THE MATRIX FORUM');
   });
 
   test('logout functionality', async ({ page }) => {
@@ -119,12 +119,19 @@ test.describe('H1Founders Phone Authentication', () => {
     await authenticateUser(page);
     
     // Verify we're logged in
-    await expect(page.locator('h1')).toContainText('NETWORK_DIRECTORY');
+    await expect(page.locator('h1')).toContainText('THE MATRIX FORUM');
     
     // Click logout button
-    const logoutButton = page.locator('button:has-text("LOGOUT()")');
+    const logoutButton = page.locator('button:has-text("DISCONNECT()")');
     await logoutButton.click();
-    
+
+    // Wait for logout to complete and page state to update
+    await page.waitForTimeout(2000);
+
+    // Navigate back to network page to see access denied screen
+    await page.goto('/network');
+    await page.waitForLoadState('networkidle');
+
     // Verify we're logged out - should see access denied screen
     await expect(page.locator('h1')).toContainText('ACCESS_DENIED');
     await expect(page.locator('button:has-text("JOIN_AS_NEW_MEMBER()")')).toBeVisible();
@@ -253,14 +260,14 @@ test.describe('H1Founders Phone Authentication', () => {
   test('authentication persistence after page reload', async ({ page }) => {
     // Authenticate user
     await authenticateUser(page);
-    await expect(page.locator('h1')).toContainText('NETWORK_DIRECTORY');
-    
+    await expect(page.locator('h1')).toContainText('THE MATRIX FORUM');
+
     // Reload page
     await page.reload();
-    
+
     // Should still be authenticated
-    await expect(page.locator('h1')).toContainText('NETWORK_DIRECTORY');
-    await expect(page.locator('button:has-text("LOGOUT()")')).toBeVisible();
+    await expect(page.locator('h1')).toContainText('THE MATRIX FORUM');
+    await expect(page.locator('button:has-text("DISCONNECT()")')).toBeVisible();
   });
 
   // Helper functions
