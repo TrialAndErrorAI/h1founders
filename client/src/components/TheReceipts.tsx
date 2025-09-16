@@ -1,24 +1,24 @@
 export default function TheReceipts() {
   return (
-    <section className="bg-gray-900 px-6 py-12 sm:py-16 lg:px-8 border-t border-gray-700">
+    <section className="bg-gray-900 px-6 py-10 sm:py-14 lg:px-8 border-t border-gray-700">
       <div className="mx-auto max-w-4xl">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="terminal-text text-4xl font-bold mb-4">
+        <div className="text-center mb-12 animate-fade-in">
+          <h2 className="terminal-text text-3xl sm:text-4xl font-bold mb-3">
             ./the_receipts
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-400 text-base sm:text-lg">
             Don't believe me? Here's the proof.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6">
           {/* Revenue Proof */}
-          <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+          <div className="bg-black rounded-lg p-5 border border-gray-700 hover:border-green-400 transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-3xl font-bold mb-2">$3M+</div>
-              <p className="text-gray-400 mb-4">Annual Revenue</p>
-              <div className="bg-gray-800 rounded p-3 font-mono text-sm">
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">$3M+</div>
+              <p className="text-gray-400 mb-3 text-sm">Annual Revenue</p>
+              <div className="bg-gray-800/50 rounded p-3 font-mono text-xs">
                 <div className="text-green-400">// Bootstrapped</div>
                 <div className="text-gray-300">companies: 4</div>
                 <div className="text-gray-300">vc_funding: $0</div>
@@ -28,11 +28,11 @@ export default function TheReceipts() {
           </div>
 
           {/* Green Card */}
-          <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+          <div className="bg-black rounded-lg p-5 border border-gray-700 hover:border-green-400 transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-3xl font-bold mb-2">EB1-A</div>
-              <p className="text-gray-400 mb-4">Green Card</p>
-              <div className="bg-gray-800 rounded p-3 font-mono text-sm">
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">EB1-A</div>
+              <p className="text-gray-400 mb-3 text-sm">Green Card</p>
+              <div className="bg-gray-800/50 rounded p-3 font-mono text-xs">
                 <div className="text-green-400">// Self-sponsored</div>
                 <div className="text-gray-300">approved: true</div>
                 <div className="text-gray-300">timeline: 18mo</div>
@@ -42,11 +42,11 @@ export default function TheReceipts() {
           </div>
 
           {/* Community Impact */}
-          <div className="bg-black rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+          <div className="bg-black rounded-lg p-5 border border-gray-700 hover:border-green-400 transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-3xl font-bold mb-2">1,400+</div>
-              <p className="text-gray-400 mb-4">Founders Helped</p>
-              <div className="bg-gray-800 rounded p-3 font-mono text-sm">
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">1,400+</div>
+              <p className="text-gray-400 mb-3 text-sm">Founders Helped</p>
+              <div className="bg-gray-800/50 rounded p-3 font-mono text-xs">
                 <div className="text-green-400">// Impact</div>
                 <div className="text-gray-300">bootstrapped: many</div>
                 <div className="text-gray-300">eb1a_filed: 50+</div>
@@ -58,35 +58,35 @@ export default function TheReceipts() {
         </div>
         
         {/* Timeline */}
-        <div className="mt-16">
-          <h3 className="terminal-text text-2xl font-bold text-center mb-8">
+        <div className="mt-12">
+          <h3 className="terminal-text text-xl sm:text-2xl font-bold text-center mb-6">
             ./journey_timeline
           </h3>
-          <div className="bg-black rounded-lg p-6 border border-gray-700">
-            <div className="font-mono text-sm space-y-2">
-              <div className="text-green-400">sid@usa:~$ history | tail -15</div>
-              <div className="text-gray-300">2009    # Arrived in US on student visa</div>
-              <div className="text-gray-300">2010    # OPT → H1B conversion</div>
-              <div className="text-gray-300">2015    # Started first side project (scared)</div>
-              <div className="text-gray-300">2018    # Incorporated Trial & Error LLC</div>
-              <div className="text-gray-300">2020    # Launched RenovateAI</div>
-              <div className="text-gray-300">2022    # Hit $1M ARR</div>
-              <div className="text-gray-300">2023    # EB1-A approved, $3M ARR</div>
-              <div className="text-gray-300">2024    # LinkedIn post went viral</div>
-              <div className="text-gray-300">2024    # H1BFounders community: 1,400+ members</div>
-              <div className="text-green-400">sid@freedom:~$ █</div>
+          <div className="bg-black rounded-lg p-4 sm:p-6 border border-gray-700 hover:border-green-400/30 transition-colors">
+            <div className="font-mono text-xs sm:text-sm space-y-1.5">
+              <div className="text-green-400">sid@usa:~$ history | tail -10</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2009  # Arrived in US on student visa</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2010  # OPT → H1B conversion</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2015  # Started first side project (scared)</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2018  # Incorporated Trial & Error LLC</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2020  # Launched RenovateAI</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2022  # Hit $1M ARR</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2023  # EB1-A approved, $3M ARR</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2024  # LinkedIn post went viral</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2024  # H1BFounders: 1,400+ members</div>
+              <div className="text-green-400 animate-pulse">sid@freedom:~$ █</div>
             </div>
           </div>
         </div>
         
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400 mb-6">
+        <div className="mt-12 text-center">
+          <p className="text-gray-400 mb-4 text-base">
             Still think it's impossible?
           </p>
           <a
             href="#coaching"
-            className="red-pill-button px-8 py-4 text-lg font-semibold rounded-lg font-mono inline-block"
+            className="red-pill-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg font-mono inline-block transform hover:scale-105 transition-all"
           >
             wake_up() // Let's talk
           </a>
