@@ -49,7 +49,7 @@ export default function TheReceipts() {
               <div className="bg-gray-800/50 rounded p-3 font-mono text-xs">
                 <div className="text-green-400">// Impact</div>
                 <div className="text-gray-300">bootstrapped: many</div>
-                <div className="text-gray-300">eb1a_filed: 50+</div>
+                <div className="text-gray-300">eb1a_filed: 10+</div>
                 <div className="text-gray-300">still_growing: true</div>
               </div>
             </div>
@@ -60,21 +60,28 @@ export default function TheReceipts() {
         {/* Timeline */}
         <div className="mt-12">
           <h3 className="terminal-text text-xl sm:text-2xl font-bold text-center mb-6">
-            ./journey_timeline
+            ./15_year_journey
           </h3>
           <div className="bg-black rounded-lg p-4 sm:p-6 border border-gray-700 hover:border-green-400/30 transition-colors">
             <div className="font-mono text-xs sm:text-sm space-y-1.5">
-              <div className="text-green-400">sid@usa:~$ history | tail -10</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2009  # Arrived in US on student visa</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2010  # OPT → H1B conversion</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2015  # Started first side project (scared)</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2018  # Incorporated Trial & Error LLC</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2020  # Launched RenovateAI</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2022  # Hit $1M ARR</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2023  # EB1-A approved, $3M ARR</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2024  # LinkedIn post went viral</div>
-              <div className="text-gray-300 hover:text-green-400 transition-colors">2024  # H1BFounders: 1,400+ members</div>
-              <div className="text-green-400 animate-pulse">sid@freedom:~$ █</div>
+              <div className="text-green-400">sid@usa:~$ visa_timeline --show-all</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2010  # F1: MS Computer Science @ RIT</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2012  # OPT: Vivox (acquired by Unity)</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2013  # H1B: Won lottery first try</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2014  # Cogito: MIT spinout, emotion AI</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2016  # EB2 filed: 150+ year wait...</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2018  # i140 approved (still waiting)</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2019  # Compass: Director of Eng → IPO</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2021  # JOKR: VP Eng, fastest unicorn ever</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2021  # 11 years on H1B, sponsored others' GCs</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2022  # Founded T&E (investor only)</div>
+              <div className="text-yellow-400 hover:text-green-400 transition-colors">2023  # EB1-A denied → refiled → APPROVED</div>
+              <div className="text-gray-500">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+              <div className="text-green-400 font-bold text-base">2024  # SELF-SPONSORED MY OWN H1B</div>
+              <div className="text-green-400 font-bold">2024  # Green card in hand (FREEDOM!)</div>
+              <div className="text-gray-300 hover:text-green-400 transition-colors">2024  # Finally CEO of my own company</div>
+              <div className="text-green-400 font-bold">2024  # LinkedIn post → 1,400+ founders unite</div>
+              <div className="text-green-400 animate-pulse">sid@freedom:~$ ./now_helping_you_break_free █</div>
             </div>
           </div>
         </div>

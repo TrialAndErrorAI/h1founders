@@ -75,25 +75,28 @@ export default function Transformation() {
           </div>
         </div>
         
-        <div className="mt-16 text-center bg-gray-900 rounded-xl p-8 border border-red-500">
+        <div className="mt-16 text-center bg-gray-900 rounded-xl p-8 border border-yellow-500">
           <div className="font-mono text-sm mb-4">
-            <span className="text-red-400">WARNING:</span>
-            <span className="text-gray-300"> system.lies() detected</span>
+            <span className="text-yellow-400">CRITICAL_DECISION:</span>
+            <span className="text-gray-300"> your_choice.required()</span>
           </div>
           <p className="text-xl font-semibold text-white mb-4">
-            The biggest lie they tell immigrants:
+            You're at the same crossroads I was.
           </p>
-          <p className="text-lg text-gray-300 mb-4">
-            "Keep your head down. Don't take risks. Wait for your green card."
+          <p className="text-lg text-gray-300 mb-6">
+            11 years watching others succeed. Sponsoring their green cards.<br/>
+            Until I realized: The only permission I needed was my own.
           </p>
           <div className="bg-black rounded p-4 border border-gray-700 font-mono text-sm">
-            <div className="text-green-400">// Reality check</div>
-            <div className="text-gray-300">while (they_said_wait) &#123;</div>
-            <div className="text-gray-300 ml-4">revenue: "$3M ARR"</div>
-            <div className="text-gray-300 ml-4">funding: "$0 VC"</div>
-            <div className="text-gray-300 ml-4">margin: "95%"</div>
+            <div className="text-green-400">// Your moment of choice</div>
+            <div className="text-gray-300">if (ready_to_break_free) &#123;</div>
+            <div className="text-gray-300 ml-4">stop_waiting()</div>
+            <div className="text-gray-300 ml-4">join_1400_founders()</div>
+            <div className="text-gray-300 ml-4">build_your_future()</div>
+            <div className="text-gray-300">&#125; else &#123;</div>
+            <div className="text-gray-300 ml-4">wait_another_150_years()</div>
             <div className="text-gray-300">&#125;</div>
-            <div className="terminal-text mt-2">you_can_too();</div>
+            <div className="terminal-text mt-2 animate-pulse">choose_now() █</div>
           </div>
         </div>
       </div>

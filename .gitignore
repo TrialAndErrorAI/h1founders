@@ -6,6 +6,9 @@ node_modules
 
 # testing
 coverage
+test-results/
+playwright-report/
+*.last-run.json
 
 # production
 dist
@@ -25,6 +28,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+firebase-debug.log
 
 # editor directories and files
 .idea
@@ -42,3 +46,9 @@ bun.lockb
 
 # Turbo
 .turbo
+
+# Claude
+.claude/settings.local.json
+
+# Duplicate directory (cleanup needed)
+client/client/

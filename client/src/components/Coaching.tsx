@@ -69,7 +69,7 @@ export default function Coaching() {
             </div>
             
             <a
-              href="https://cal.com/sid-sarasvati/founder-coaching"
+              href="https://cal.com/sid-sarasvati/h1bfounders"
               target="_blank"
               rel="noopener noreferrer"
               className="red-pill-button w-full py-4 text-lg font-semibold rounded-lg font-mono text-center block"
