@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { forumCategories, canAccessCategory } from '../../data/forumCategories'
-import { mockThreads } from '../../data/mockThreads'
+// Removed mock threads - using real content only
 import { mergeWithForumThreads, filterContentByBadge } from '../../utils/contentLoader'
-import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
+import { ForumCategory, ThreadType, BadgeLevel, Thread } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import ProgressionLevel from '../../components/badges/ProgressionLevel'
 import { ContentBadge, StatusBadge } from '../../components/badges/ContentBadge'
@@ -17,7 +17,7 @@ export default function Forum() {
     (searchParams.get('category') as ForumCategory) || null
   )
   const [searchQuery, setSearchQuery] = useState('')
-  const [allThreads, setAllThreads] = useState(mockThreads)
+  const [allThreads, setAllThreads] = useState<Thread[]>([])
   const [loading, setLoading] = useState(true)
   const { user, profile, logout } = useAuth()
   
@@ -25,15 +25,15 @@ export default function Forum() {
   useEffect(() => {
     async function loadContent() {
       try {
-        const mergedThreads = await mergeWithForumThreads(mockThreads)
+        const mergedThreads = await mergeWithForumThreads([])
         // Filter by user badge level - anonymous users get BLUE_PILL access
         const filteredByBadge = profile
           ? filterContentByBadge(mergedThreads, profile.matrixLevel, profile.isPaidMember)
           : filterContentByBadge(mergedThreads, BadgeLevel.BLUE_PILL, false)
         setAllThreads(filteredByBadge)
       } catch (error) {
-        console.warn('Failed to load content, using mock data:', error)
-        setAllThreads(mockThreads)
+        console.warn('Failed to load content:', error)
+        setAllThreads([])
       } finally {
         setLoading(false)
       }

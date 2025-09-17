@@ -1,5 +1,5 @@
 import { ForumCategory, ForumCategoryConfig, BadgeLevel } from '../types/forum.types'
-import { AccessResult, UserContext, createUserContext, SecurityCheck } from '../types/security.types'
+import { createUserContext, SecurityCheck } from '../types/security.types'
 
 export const forumCategories: ForumCategoryConfig[] = [
   {
