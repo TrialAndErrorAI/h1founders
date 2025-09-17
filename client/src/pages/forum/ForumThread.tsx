@@ -16,6 +16,7 @@ export default function ForumThread() {
   const { threadId } = useParams<{ threadId: string }>()
   const navigate = useNavigate()
   const [thread, setThread] = useState<any>(null)
+  const [firestoreDocId, setFirestoreDocId] = useState<string | null>(null) // Track actual Firestore doc ID
   const [posts, setPosts] = useState<any[]>([])
   const [replyContent, setReplyContent] = useState('')
   const [showReplyForm, setShowReplyForm] = useState(false)
@@ -37,9 +38,27 @@ export default function ForumThread() {
         const firestoreThread = await forumService.getThread(threadId)
 
         if (firestoreThread) {
-          setThread(firestoreThread)
-          // Load replies for Firestore thread
-          const replies = await forumService.getReplies(threadId)
+          // Transform Firestore thread to match expected format
+          const transformedThread = {
+            ...firestoreThread,
+            author: {
+              id: firestoreThread.authorId || 'atlas-system',
+              name: firestoreThread.authorName || '@sid',
+              badge: firestoreThread.authorBadge || 'THE_ARCHITECT',
+              avatar: '👤',
+              subLevel: 1,
+              joinedDate: new Date().toISOString()
+            },
+            type: (firestoreThread as any).contentType || 'RESOURCE',
+            views: firestoreThread.views || 0,
+            replies: firestoreThread.replyCount || 0,
+            createdAt: firestoreThread.createdAt?.toDate ? firestoreThread.createdAt.toDate().toISOString() : new Date().toISOString(),
+            updatedAt: firestoreThread.lastReplyAt?.toDate ? firestoreThread.lastReplyAt.toDate().toISOString() : new Date().toISOString()
+          }
+          setThread(transformedThread)
+          setFirestoreDocId(firestoreThread.id || threadId) // Store the actual Firestore doc ID
+          // Load replies for Firestore thread using the actual doc ID
+          const replies = await forumService.getReplies(firestoreThread.id || threadId)
           setPosts(replies)
         } else {
           // Fall back to content system
@@ -73,9 +92,9 @@ export default function ForumThread() {
     // Set up real-time subscription for replies if it's a Firestore thread
     let unsubscribe: (() => void) | undefined
 
-    if (threadId) {
-      // Subscribe to real-time updates
-      unsubscribe = forumService.subscribeToReplies(threadId, (replies) => {
+    if (firestoreDocId || threadId) {
+      // Subscribe to real-time updates using the actual Firestore doc ID
+      unsubscribe = forumService.subscribeToReplies(firestoreDocId || threadId, (replies) => {
         setPosts(replies)
       })
     }
@@ -158,9 +177,9 @@ export default function ForumThread() {
                         user.email?.split('@')[0] ||
                         'Anonymous'
 
-      // Create reply in Firestore
+      // Create reply in Firestore using actual doc ID
       await forumService.createReply(
-        threadId,
+        firestoreDocId || threadId, // Use Firestore doc ID if available
         replyContent,
         {
           uid: user.uid,

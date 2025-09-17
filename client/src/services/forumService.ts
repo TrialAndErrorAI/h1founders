@@ -102,8 +102,29 @@ export class ForumService {
     } as ForumThread))
   }
 
-  // Get a single thread by ID
+  // Get a single thread by ID (tries originalId first, then document ID)
   async getThread(threadId: string): Promise<ForumThread | null> {
+    // First try to find by originalId (for imported content)
+    try {
+      const q = query(
+        collection(db, 'forum_threads'),
+        where('originalId', '==', threadId),
+        limit(1)
+      )
+      const snapshot = await getDocs(q)
+
+      if (!snapshot.empty) {
+        const doc = snapshot.docs[0]
+        return {
+          id: doc.id,
+          ...doc.data()
+        } as ForumThread
+      }
+    } catch (error) {
+      console.warn('Failed to query by originalId:', error)
+    }
+
+    // Fall back to direct document ID lookup
     const docRef = doc(db, 'forum_threads', threadId)
     const docSnap = await getDoc(docRef)
 
@@ -117,9 +138,26 @@ export class ForumService {
     } as ForumThread
   }
 
-  // Increment view count
+  // Increment view count (handles both originalId and document ID)
   async incrementViewCount(threadId: string): Promise<void> {
     try {
+      // First try to find by originalId
+      const q = query(
+        collection(db, 'forum_threads'),
+        where('originalId', '==', threadId),
+        limit(1)
+      )
+      const snapshot = await getDocs(q)
+
+      if (!snapshot.empty) {
+        const docId = snapshot.docs[0].id
+        await updateDoc(doc(db, 'forum_threads', docId), {
+          views: increment(1)
+        })
+        return
+      }
+
+      // Fall back to direct document ID
       const docRef = doc(db, 'forum_threads', threadId)
       await updateDoc(docRef, {
         views: increment(1)

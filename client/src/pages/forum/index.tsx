@@ -40,11 +40,11 @@ export default function Forum() {
         const allMergedThreads = [
           ...filteredByBadge,
           ...firestoreThreads.map(ft => ({
-            id: ft.id || '',
+            id: (ft as any).originalId || ft.id || '', // Use originalId if available, else Firestore ID
             title: ft.title,
             content: ft.content,
             category: ft.category as ForumCategory,
-            type: ThreadType.QUESTION, // Default type for Firestore threads
+            type: (ft as any).contentType || ThreadType.QUESTION, // Use contentType from import
             author: {
               id: ft.authorId,
               name: ft.authorName,
@@ -55,11 +55,13 @@ export default function Forum() {
             },
             createdAt: ft.createdAt?.toDate ? ft.createdAt.toDate().toISOString() : new Date().toISOString(),
             updatedAt: ft.lastReplyAt?.toDate ? ft.lastReplyAt.toDate().toISOString() : new Date().toISOString(),
-            views: 0,
+            views: ft.views || 0,
             replies: ft.replyCount || 0,
             upvotes: ft.upvotes || 0,
-            isPinned: false,
+            isPinned: (ft as any).isPinned || false,
             isLocked: false,
+            isOfficial: (ft as any).isOfficial || false,
+            contentType: (ft as any).contentType,
             tags: []
           }))
         ].sort((a, b) => {

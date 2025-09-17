@@ -6,7 +6,7 @@
  */
 
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, doc, setDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore'
 import { readFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -99,7 +99,17 @@ async function importContent() {
         importedAt: serverTimestamp()
       }
 
-      const docRef = await addDoc(collection(db, 'forum_threads'), threadData)
+      // Generate SEO-friendly slug from title
+      const slug = thread.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .substring(0, 60) // Keep it reasonable length
+
+      // Use setDoc with custom ID instead of addDoc for predictable URLs
+      const docId = thread.id || `${slug}-${Date.now()}`
+      const docRef = doc(db, 'forum_threads', docId)
+      await setDoc(docRef, threadData)
       console.log(`✅ Imported "${thread.title}" (ID: ${docRef.id})`)
       imported++
 
