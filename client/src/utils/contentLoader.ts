@@ -3,7 +3,7 @@
  * Loads content from build-time generated index
  */
 
-import type { Thread, ForumCategory } from '../types/forum.types'
+import type { Thread, ForumCategory, BadgeLevel } from '../types/forum.types'
 import { canAccessCategory } from '../data/forumCategories'
 
 // This will be generated at build time
@@ -141,7 +141,7 @@ export function filterContentByBadge(threads: Thread[], userBadge: string, isPai
 
   return threads.filter(thread => {
     // First check category-level access
-    if (!canAccessCategory(thread.category, userBadge, isPaidMember || false)) {
+    if (!canAccessCategory(thread.category, userBadge as BadgeLevel, isPaidMember || false)) {
       return false
     }
 

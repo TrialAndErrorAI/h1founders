@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { forumCategories, canAccessCategory as checkCategoryAccess } from '../../data/forumCategories'
+import { forumService } from '../../services/forumService'
 import { useAuth } from '../../contexts/AuthContext'
 import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
+import { MATRIX_BADGES } from '../../utils/badges'
 
 export default function CreateThread() {
   const navigate = useNavigate()
@@ -14,6 +16,18 @@ export default function CreateThread() {
   const [category, setCategory] = useState<ForumCategory>(ForumCategory.THE_CONSTRUCT)
   const [type, setType] = useState<ThreadType>(ThreadType.QUESTION)
   const [tags, setTags] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Create currentUser from auth context
+  const currentUser = user && profile ? {
+    id: user.uid,
+    name: profile.username || user.phoneNumber || 'Anonymous',
+    badge: (profile.matrixLevel as unknown as BadgeLevel) || BadgeLevel.BLUE_PILL,
+    subLevel: profile.isWhatsappMember ? 2 : 1,
+    avatar: MATRIX_BADGES[profile.matrixLevel || BadgeLevel.BLUE_PILL].emoji,
+    isPaidMember: profile.isPaidMember || false,
+    specialRole: undefined
+  } : null
 
   const threadTypes = [
     { value: ThreadType.QUESTION, label: 'Question', icon: '❓', description: 'Seeking answers' },
@@ -33,21 +47,31 @@ export default function CreateThread() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!title.trim() || !content.trim()) return
+    if (!title.trim() || !content.trim() || !user || !profile) return
 
-    // In real app, this would create the thread via API
-    console.log('Creating thread:', {
-      title,
-      content,
-      category,
-      type,
-      tags: tags.split(',').map(t => t.trim()).filter(Boolean)
-    })
+    setIsSubmitting(true)
+    try {
+      // Create thread in Firestore
+      const threadId = await forumService.createThread(
+        title,
+        content,
+        category,
+        {
+          uid: user.uid,
+          name: profile.username || user.phoneNumber || 'Anonymous',
+          badge: (profile.matrixLevel as unknown as BadgeLevel) || BadgeLevel.BLUE_PILL
+        }
+      )
 
-    // Navigate to the new thread (mock navigation)
-    navigate('/forum')
+      // Navigate to the new thread
+      navigate(`/forum/thread/${threadId}`)
+    } catch (error) {
+      console.error('Error creating thread:', error)
+      alert('Failed to create thread. Please try again.')
+      setIsSubmitting(false)
+    }
   }
 
   const canAccessCategory = (cat: ForumCategory) => {
@@ -213,14 +237,14 @@ export default function CreateThread() {
             </Link>
             <button
               type="submit"
-              disabled={!title.trim() || !content.trim()}
+              disabled={!title.trim() || !content.trim() || isSubmitting}
               className={`px-6 py-2 rounded font-mono text-sm transition-all duration-200 ${
-                title.trim() && content.trim()
+                title.trim() && content.trim() && !isSubmitting
                   ? 'bg-green-400 text-black hover:bg-green-500'
                   : 'bg-gray-800 text-gray-600 cursor-not-allowed'
               }`}
             >
-              Create Thread
+              {isSubmitting ? 'Creating...' : 'Create Thread'}
             </button>
           </div>
         </form>

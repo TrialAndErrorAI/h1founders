@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getContentThreadById } from '../../utils/contentLoader'
+import { forumService } from '../../services/forumService'
 import { useAuth } from '../../contexts/AuthContext'
 import { getCategoryName, getCategoryIcon } from '../../data/forumCategories'
 import { ThreadType } from '../../types/forum.types'
@@ -18,22 +19,65 @@ export default function ForumThread() {
   const [posts, setPosts] = useState<any[]>([])
   const [replyContent, setReplyContent] = useState('')
   const [showReplyForm, setShowReplyForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Get current user from auth context
   const { user, profile } = useAuth()
 
   useEffect(() => {
-    // Load thread from content system
+    // Load thread and replies
     async function loadThread() {
       if (!threadId) return
+      setIsLoading(true)
 
-      const foundThread = await getContentThreadById(threadId)
+      try {
+        // First try to load from Firestore
+        const firestoreThread = await forumService.getThread(threadId)
 
-      setThread(foundThread)
-      setPosts([]) // Content threads don't have replies initially
+        if (firestoreThread) {
+          setThread(firestoreThread)
+          // Load replies for Firestore thread
+          const replies = await forumService.getReplies(threadId)
+          setPosts(replies)
+        } else {
+          // Fall back to content system
+          const contentThread = await getContentThreadById(threadId)
+          if (contentThread) {
+            setThread(contentThread)
+            setPosts([]) // Content threads don't have replies initially
+          } else {
+            setThread(null)
+          }
+        }
+      } catch (error) {
+        console.error('Error loading thread:', error)
+        // Try content system as fallback
+        const contentThread = await getContentThreadById(threadId)
+        setThread(contentThread)
+        setPosts([])
+      } finally {
+        setIsLoading(false)
+      }
     }
 
     loadThread()
+
+    // Set up real-time subscription for replies if it's a Firestore thread
+    let unsubscribe: (() => void) | undefined
+
+    if (threadId) {
+      // Subscribe to real-time updates
+      unsubscribe = forumService.subscribeToReplies(threadId, (replies) => {
+        setPosts(replies)
+      })
+    }
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe()
+      }
+    }
   }, [threadId])
   
   // ESC key navigation - go back to forum
@@ -58,6 +102,14 @@ export default function ForumThread() {
     return () => document.removeEventListener('keydown', handleKeyPress)
   }, [navigate])
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="text-green-400 font-mono animate-pulse">Loading thread...</p>
+      </div>
+    )
+  }
+
   if (!thread) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
@@ -80,22 +132,31 @@ export default function ForumThread() {
     
   // Using professional ContentBadge component instead of emoji badges
 
-  const handleReply = () => {
-    if (!replyContent.trim() || !currentUser) return
+  const handleReply = async () => {
+    if (!replyContent.trim() || !user || !threadId) return
 
-    const newPost = {
-      id: `post-${Date.now()}`,
-      threadId: thread.id,
-      author: currentUser,
-      content: replyContent,
-      createdAt: new Date().toISOString(),
-      upvotes: 0,
-      downvotes: 0
+    setIsSubmitting(true)
+    try {
+      // Create reply in Firestore
+      await forumService.createReply(
+        threadId,
+        replyContent,
+        {
+          uid: user.uid,
+          name: profile?.username || user.phoneNumber || 'Anonymous',
+          badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL'
+        }
+      )
+
+      // Real-time subscription will update the replies list
+      setReplyContent('')
+      setShowReplyForm(false)
+    } catch (error) {
+      console.error('Error creating reply:', error)
+      alert('Failed to post reply. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
-
-    setPosts([...posts, newPost])
-    setReplyContent('')
-    setShowReplyForm(false)
   }
 
   return (
@@ -172,7 +233,7 @@ export default function ForumThread() {
 
           {thread.tags && thread.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-6">
-              {thread.tags.map(tag => (
+              {thread.tags.map((tag: string) => (
                 <span 
                   key={tag}
                   className="px-3 py-1 bg-gray-800 text-gray-400 rounded-full text-xs font-mono"
@@ -224,7 +285,14 @@ export default function ForumThread() {
                   setShowReplyForm(false)
                   setReplyContent('')
                 }}
-                currentUser={currentUser || null}
+                currentUser={user ? {
+                  id: user.uid,
+                  name: profile?.username || user.phoneNumber || 'Anonymous',
+                  badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL',
+                  avatar: '👤',
+                  joinedDate: new Date().toISOString()
+                } : null}
+                isSubmitting={isSubmitting}
               />
             ) : (
               <button

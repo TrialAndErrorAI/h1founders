@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { forumCategories, canAccessCategory } from '../../data/forumCategories'
 // Removed mock threads - using real content only
 import { mergeWithForumThreads, filterContentByBadge } from '../../utils/contentLoader'
+import { forumService } from '../../services/forumService'
 import { ForumCategory, ThreadType, BadgeLevel, Thread } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import ProgressionLevel from '../../components/badges/ProgressionLevel'
@@ -21,16 +22,54 @@ export default function Forum() {
   const [loading, setLoading] = useState(true)
   const { user, profile, logout } = useAuth()
   
-  // Load content threads on mount
+  // Load content threads and Firestore threads on mount
   useEffect(() => {
     async function loadContent() {
       try {
+        // Load content from markdown files
         const mergedThreads = await mergeWithForumThreads([])
         // Filter by user badge level - anonymous users get BLUE_PILL access
         const filteredByBadge = profile
           ? filterContentByBadge(mergedThreads, profile.matrixLevel, profile.isPaidMember)
           : filterContentByBadge(mergedThreads, BadgeLevel.BLUE_PILL, false)
-        setAllThreads(filteredByBadge)
+
+        // Load threads from Firestore
+        const firestoreThreads = await forumService.getThreads(selectedCategory)
+
+        // Merge Firestore threads with content threads
+        const allMergedThreads = [
+          ...filteredByBadge,
+          ...firestoreThreads.map(ft => ({
+            id: ft.id || '',
+            title: ft.title,
+            content: ft.content,
+            category: ft.category as ForumCategory,
+            type: ThreadType.QUESTION, // Default type for Firestore threads
+            author: {
+              id: ft.authorId,
+              name: ft.authorName,
+              badge: ft.authorBadge as BadgeLevel,
+              avatar: '👤',
+              subLevel: 1,
+              joinedDate: new Date().toISOString()
+            },
+            createdAt: ft.createdAt?.toDate ? ft.createdAt.toDate().toISOString() : new Date().toISOString(),
+            updatedAt: ft.lastReplyAt?.toDate ? ft.lastReplyAt.toDate().toISOString() : new Date().toISOString(),
+            views: 0,
+            replies: ft.replyCount || 0,
+            upvotes: ft.upvotes || 0,
+            isPinned: false,
+            isLocked: false,
+            tags: []
+          }))
+        ].sort((a, b) => {
+          // Sort by pinned first, then by date
+          if (a.isPinned && !b.isPinned) return -1
+          if (!a.isPinned && b.isPinned) return 1
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        })
+
+        setAllThreads(allMergedThreads)
       } catch (error) {
         console.warn('Failed to load content:', error)
         setAllThreads([])
@@ -39,7 +78,17 @@ export default function Forum() {
       }
     }
     loadContent()
-  }, [profile])
+
+    // Set up real-time subscription for new threads
+    const unsubscribe = forumService.subscribeToAllThreads(() => {
+      // Update state with new threads from Firestore
+      loadContent() // Reload everything to maintain sorting
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [profile, selectedCategory])
   
   // Update selected category from URL params
   useEffect(() => {
