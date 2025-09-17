@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { forumCategories, canAccessCategory as checkCategoryAccess } from '../../data/forumCategories'
-import { getMockUser } from '../../data/mockUsers'
+import { useAuth } from '../../contexts/AuthContext'
 import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 
 export default function CreateThread() {
   const navigate = useNavigate()
-  const currentUser = getMockUser('carlos_freed')
+  const { user, profile } = useAuth()
   
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -24,7 +24,7 @@ export default function CreateThread() {
   ]
 
   // Only Architect can post prophecies
-  if (currentUser?.badge === BadgeLevel.THE_ARCHITECT) {
+  if (profile?.matrixLevel === BadgeLevel.THE_ARCHITECT) {
     threadTypes.push({ 
       value: ThreadType.PROPHECY, 
       label: 'Prophecy', 

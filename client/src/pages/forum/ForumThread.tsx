@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { getMockThread, getMockPosts } from '../../data/mockThreads'
-import { getMockUser } from '../../data/mockUsers'
 import { getContentThreadById } from '../../utils/contentLoader'
+import { useAuth } from '../../contexts/AuthContext'
 import { getCategoryName, getCategoryIcon } from '../../data/forumCategories'
 import { ThreadType } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
@@ -15,33 +14,25 @@ import MarkdownRenderer from '../../utils/markdownRenderer'
 export default function ForumThread() {
   const { threadId } = useParams<{ threadId: string }>()
   const navigate = useNavigate()
-  const [thread, setThread] = useState(getMockThread(threadId || ''))
-  const [posts, setPosts] = useState(getMockPosts(threadId || ''))
+  const [thread, setThread] = useState<any>(null)
+  const [posts, setPosts] = useState<any[]>([])
   const [replyContent, setReplyContent] = useState('')
   const [showReplyForm, setShowReplyForm] = useState(false)
-  
-  // Mock current user
-  const currentUser = getMockUser('carlos_freed')
+
+  // Get current user from auth context
+  const { user, profile } = useAuth()
 
   useEffect(() => {
-    // Check both mock threads and content threads
+    // Load thread from content system
     async function loadThread() {
       if (!threadId) return
-      
-      // First try mock threads (user-generated)
-      let foundThread = getMockThread(threadId)
-      let foundPosts = getMockPosts(threadId)
-      
-      // If not found, try content threads (markdown)
-      if (!foundThread) {
-        foundThread = await getContentThreadById(threadId)
-        foundPosts = [] // Content threads don't have replies initially
-      }
-      
+
+      const foundThread = await getContentThreadById(threadId)
+
       setThread(foundThread)
-      setPosts(foundPosts)
+      setPosts([]) // Content threads don't have replies initially
     }
-    
+
     loadThread()
   }, [threadId])
   

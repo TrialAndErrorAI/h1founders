@@ -4,6 +4,7 @@
  */
 
 import type { Thread, ForumCategory } from '../types/forum.types'
+import { canAccessCategory } from '../data/forumCategories'
 
 // This will be generated at build time
 let contentIndex: any = null
@@ -139,9 +140,6 @@ export function filterContentByBadge(threads: Thread[], userBadge: string, isPai
   const userLevel = badgeHierarchy.indexOf(userBadge)
 
   return threads.filter(thread => {
-    // Import canAccessCategory here to avoid circular imports
-    const { canAccessCategory } = require('../data/forumCategories')
-
     // First check category-level access
     if (!canAccessCategory(thread.category, userBadge, isPaidMember || false)) {
       return false
