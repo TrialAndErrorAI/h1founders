@@ -36,6 +36,7 @@ interface ForumThread {
   authorBadge: string
   replyCount: number
   upvotes: number
+  views?: number
   createdAt: any
   lastReplyAt: any
 }
@@ -68,6 +69,7 @@ export class ForumService {
       authorBadge: author.badge || BadgeLevel.BLUE_PILL,
       replyCount: 0,
       upvotes: 0,
+      views: 0,
       createdAt: serverTimestamp(),
       lastReplyAt: serverTimestamp()
     }
@@ -113,6 +115,18 @@ export class ForumService {
       id: docSnap.id,
       ...docSnap.data()
     } as ForumThread
+  }
+
+  // Increment view count
+  async incrementViewCount(threadId: string): Promise<void> {
+    try {
+      const docRef = doc(db, 'forum_threads', threadId)
+      await updateDoc(docRef, {
+        views: increment(1)
+      })
+    } catch (error) {
+      console.warn('Failed to increment view count:', error)
+    }
   }
 
   // Create a reply to a thread

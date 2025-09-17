@@ -69,7 +69,16 @@ export default function CreateThread() {
       navigate(`/forum/thread/${threadId}`)
     } catch (error) {
       console.error('Error creating thread:', error)
-      alert('Failed to create thread. Please try again.')
+      // Show user-friendly error message
+      const errorMessage = error instanceof Error
+        ? error.message.includes('Missing or insufficient permissions')
+          ? 'You must be signed in to create a thread. Please sign in and try again.'
+          : error.message.includes('network')
+            ? 'Network error. Please check your connection and try again.'
+            : `Failed to create thread: ${error.message}`
+        : 'An unexpected error occurred. Please try again.'
+
+      alert(errorMessage)
       setIsSubmitting(false)
     }
   }

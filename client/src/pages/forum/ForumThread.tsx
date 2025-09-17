@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getContentThreadById } from '../../utils/contentLoader'
 import { forumService } from '../../services/forumService'
@@ -21,6 +21,7 @@ export default function ForumThread() {
   const [showReplyForm, setShowReplyForm] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const hasIncrementedView = useRef(false)
 
   // Get current user from auth context
   const { user, profile } = useAuth()
@@ -62,6 +63,12 @@ export default function ForumThread() {
     }
 
     loadThread()
+
+    // Increment view count (only once per session)
+    if (threadId && !hasIncrementedView.current) {
+      hasIncrementedView.current = true
+      forumService.incrementViewCount(threadId)
+    }
 
     // Set up real-time subscription for replies if it's a Firestore thread
     let unsubscribe: (() => void) | undefined
@@ -133,17 +140,31 @@ export default function ForumThread() {
   // Using professional ContentBadge component instead of emoji badges
 
   const handleReply = async () => {
-    if (!replyContent.trim() || !user || !threadId) return
+    if (!replyContent.trim() || !user || !threadId) {
+      console.error('Missing required data for reply:', {
+        hasContent: !!replyContent.trim(),
+        hasUser: !!user,
+        hasThreadId: !!threadId
+      })
+      return
+    }
 
     setIsSubmitting(true)
     try {
+      // Get author name - fallback through multiple options
+      const authorName = profile?.username ||
+                        profile?.phone ||
+                        user.phoneNumber ||
+                        user.email?.split('@')[0] ||
+                        'Anonymous'
+
       // Create reply in Firestore
       await forumService.createReply(
         threadId,
         replyContent,
         {
           uid: user.uid,
-          name: profile?.username || user.phoneNumber || 'Anonymous',
+          name: authorName,
           badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL'
         }
       )
@@ -151,9 +172,18 @@ export default function ForumThread() {
       // Real-time subscription will update the replies list
       setReplyContent('')
       setShowReplyForm(false)
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating reply:', error)
-      alert('Failed to post reply. Please try again.')
+      // Show user-friendly error message
+      const errorMessage = error?.message?.includes('Missing or insufficient permissions')
+        ? 'You must be signed in to reply. Please sign in and try again.'
+        : error?.message?.includes('network')
+          ? 'Network error. Please check your connection and try again.'
+          : error?.message?.includes('not found')
+            ? 'This thread no longer exists.'
+            : 'Failed to post reply. Please try again.'
+
+      alert(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -276,31 +306,40 @@ export default function ForumThread() {
         {/* Reply Section */}
         {!thread.isLocked && (
           <div className="mt-8">
-            {showReplyForm ? (
-              <ReplyForm
-                value={replyContent}
-                onChange={setReplyContent}
-                onSubmit={handleReply}
-                onCancel={() => {
-                  setShowReplyForm(false)
-                  setReplyContent('')
-                }}
-                currentUser={user ? {
-                  id: user.uid,
-                  name: profile?.username || user.phoneNumber || 'Anonymous',
-                  badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL',
-                  avatar: '👤',
-                  joinedDate: new Date().toISOString()
-                } : null}
-                isSubmitting={isSubmitting}
-              />
+            {user ? (
+              showReplyForm ? (
+                <ReplyForm
+                  value={replyContent}
+                  onChange={setReplyContent}
+                  onSubmit={handleReply}
+                  onCancel={() => {
+                    setShowReplyForm(false)
+                    setReplyContent('')
+                  }}
+                  currentUser={{
+                    id: user.uid,
+                    name: profile?.username || user.phoneNumber || 'Anonymous',
+                    badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL',
+                    avatar: '👤',
+                    joinedDate: new Date().toISOString()
+                  }}
+                  isSubmitting={isSubmitting}
+                />
+              ) : (
+                <button
+                  onClick={() => setShowReplyForm(true)}
+                  className="w-full py-3 border-2 border-dashed border-gray-800 rounded-lg text-gray-500 font-mono text-sm hover:border-green-400 hover:text-green-400 transition-all duration-200"
+                >
+                  + Add Reply
+                </button>
+              )
             ) : (
-              <button
-                onClick={() => setShowReplyForm(true)}
-                className="w-full py-3 border-2 border-dashed border-gray-800 rounded-lg text-gray-500 font-mono text-sm hover:border-green-400 hover:text-green-400 transition-all duration-200"
+              <Link
+                to="/auth"
+                className="block w-full py-3 border-2 border-dashed border-gray-800 rounded-lg text-center text-gray-500 font-mono text-sm hover:border-green-400 hover:text-green-400 transition-all duration-200"
               >
-                + Add Reply
-              </button>
+                🔒 Sign in to reply
+              </Link>
             )}
           </div>
         )}

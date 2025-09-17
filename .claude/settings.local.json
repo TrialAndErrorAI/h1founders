@@ -41,7 +41,8 @@
       "Bash(gcloud config get-value:*)",
       "Read(//Users/sid/**)",
       "Bash(npm run test:auth:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npm run:*)"
     ],
     "deny": [],
     "ask": []

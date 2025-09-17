@@ -276,6 +276,9 @@ Every content piece becomes a forum post with enhanced properties:
 - ✅ Forum-first architecture validated
 - ✅ Ready for ATLAS content expansion
 
+## IMPORTANT DEPLOYMENT NOTE
+**⚠️ Git push does NOT auto-deploy** - Beta testers are using the platform. Test everything locally first. Deployment requires manual trigger on Cloudflare Pages dashboard. Do not disrupt beta users.
+
 ## Technical Learnings (September 2025 - Latest)
 
 **September 17, 2025 - Forum System Fixes**:
