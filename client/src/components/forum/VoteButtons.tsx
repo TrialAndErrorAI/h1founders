@@ -6,7 +6,9 @@ interface VoteButtonsProps {
 }
 
 export default function VoteButtons({ upvotes, downvotes, userVote, onVote }: VoteButtonsProps) {
-  const netVotes = upvotes - downvotes
+  const safeUpvotes = upvotes || 0
+  const safeDownvotes = downvotes || 0
+  const netVotes = safeUpvotes - safeDownvotes
   
   return (
     <div className="flex items-center gap-2">
@@ -19,7 +21,7 @@ export default function VoteButtons({ upvotes, downvotes, userVote, onVote }: Vo
         }`}
       >
         <span>▲</span>
-        <span className="font-medium">{upvotes}</span>
+        <span className="font-medium">{safeUpvotes}</span>
       </button>
       
       <button
@@ -31,7 +33,7 @@ export default function VoteButtons({ upvotes, downvotes, userVote, onVote }: Vo
         }`}
       >
         <span>▼</span>
-        <span className="font-medium">{downvotes}</span>
+        <span className="font-medium">{safeDownvotes}</span>
       </button>
 
       <span className={`text-xs font-mono ml-3 px-2 py-1 rounded ${

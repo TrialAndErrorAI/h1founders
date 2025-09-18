@@ -4,7 +4,7 @@ import { getContentThreadById } from '../../utils/contentLoader'
 import { forumService } from '../../services/forumService'
 import { useAuth } from '../../contexts/AuthContext'
 import { getCategoryName, getCategoryIcon } from '../../data/forumCategories'
-import { ThreadType } from '../../types/forum.types'
+import { ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import PostCard from '../../components/forum/PostCard'
 import { ContentBadge, StatusBadge } from '../../components/badges/ContentBadge'
@@ -59,7 +59,20 @@ export default function ForumThread() {
           setFirestoreDocId(firestoreThread.id || threadId) // Store the actual Firestore doc ID
           // Load replies for Firestore thread using the actual doc ID
           const replies = await forumService.getReplies(firestoreThread.id || threadId)
-          setPosts(replies)
+          // Transform replies to match Post structure expected by PostCard
+          const transformedReplies = replies.map(reply => ({
+            ...reply,
+            createdAt: reply.createdAt?.toDate ? reply.createdAt.toDate().toISOString() : new Date().toISOString(),
+            author: {
+              id: reply.authorId,
+              name: reply.authorName || 'Anonymous',
+              badge: reply.authorBadge || BadgeLevel.BLUE_PILL,
+              avatar: '👤',
+              subLevel: 1,
+              joinedDate: new Date().toISOString()
+            }
+          }))
+          setPosts(transformedReplies)
         } else {
           // Fall back to content system
           const contentThread = await getContentThreadById(threadId)
@@ -95,7 +108,20 @@ export default function ForumThread() {
     if (firestoreDocId || threadId) {
       // Subscribe to real-time updates using the actual Firestore doc ID
       unsubscribe = forumService.subscribeToReplies(firestoreDocId || threadId, (replies) => {
-        setPosts(replies)
+        // Transform replies to match Post structure expected by PostCard
+        const transformedReplies = replies.map(reply => ({
+          ...reply,
+          createdAt: reply.createdAt?.toDate ? reply.createdAt.toDate().toISOString() : new Date().toISOString(),
+          author: {
+            id: reply.authorId,
+            name: reply.authorName || 'Anonymous',
+            badge: reply.authorBadge || BadgeLevel.BLUE_PILL,
+            avatar: '👤',
+            subLevel: 1,
+            joinedDate: new Date().toISOString()
+          }
+        }))
+        setPosts(transformedReplies)
       })
     }
 
@@ -354,7 +380,7 @@ export default function ForumThread() {
               )
             ) : (
               <Link
-                to="/auth"
+                to="/network"
                 className="block w-full py-3 border-2 border-dashed border-gray-800 rounded-lg text-center text-gray-500 font-mono text-sm hover:border-green-400 hover:text-green-400 transition-all duration-200"
               >
                 🔒 Sign in to reply
