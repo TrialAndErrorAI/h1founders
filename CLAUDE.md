@@ -151,6 +151,9 @@ Current implementation features 6 main sections:
 2. **RFCs**: Active in docs/, completed in docs/rfc/archive/
 3. **PRFAQs**: Numbered as prfaq001, prfaq002, etc.
 4. **Partnership features**: Behind VITE_ENABLE_PARTNERSHIPS flag
+5. **AI means ACTUAL AI**: Use Claude CLI headless mode for real content analysis
+6. **AI Slug Generation**: Claude CLI analyzes full content, finds viral hooks like "I sponsored my own H1B"
+7. **Frontend Display Bug Pattern**: Backend AI slugs stored correctly, frontend must use right field (thread.id not originalId)
 
 ## Key Design Decisions
 1. **Phone-first Authentication**: H1B founders primarily use WhatsApp on mobile
@@ -280,6 +283,20 @@ Every content piece becomes a forum post with enhanced properties:
 **⚠️ Git push does NOT auto-deploy** - Beta testers are using the platform. Test everything locally first. Deployment requires manual trigger on Cloudflare Pages dashboard. Do not disrupt beta users.
 
 ## Technical Learnings (September 2025 - Latest)
+
+**September 17, 2025 - AI Slug Generation Success & Frontend Bug**:
+1. **Real AI Implementation**: Built working system with Claude CLI headless mode
+   - Command: `claude -p "prompt"` analyzes full content
+   - Script: `/scripts/generate-seo-slug.py` with 30s timeout
+   - Found viral hooks like "I sponsored my own H1B" at line 156
+2. **Frontend Bug Found**: Forum URLs show originalId instead of AI slugs
+   - Problem: `/client/src/pages/forum/index.tsx` line ~43
+   - Uses: `thread.originalId || thread.id`
+   - Should use: `thread.id` (the AI-generated slug)
+3. **Key Learning**: Backend can be perfect but frontend display matters
+   - AI slugs stored correctly as Firestore document IDs
+   - Frontend navigation must use the right field
+4. **Pragmatic Fix**: One line change fixes everything
 
 **September 17, 2025 - Forum System Fixes**:
 1. **Mock Data Removal**: Completely removed mockThreads.ts and mockUsers.ts

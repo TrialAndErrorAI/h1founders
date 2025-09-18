@@ -26,21 +26,13 @@ export default function Forum() {
   useEffect(() => {
     async function loadContent() {
       try {
-        // Load content from markdown files
-        const mergedThreads = await mergeWithForumThreads([])
-        // Filter by user badge level - anonymous users get BLUE_PILL access
-        const filteredByBadge = profile
-          ? filterContentByBadge(mergedThreads, profile.matrixLevel, profile.isPaidMember)
-          : filterContentByBadge(mergedThreads, BadgeLevel.BLUE_PILL, false)
-
-        // Load threads from Firestore
+        // Load threads from Firestore only (content already imported)
         const firestoreThreads = await forumService.getThreads(selectedCategory)
 
-        // Merge Firestore threads with content threads
+        // Map Firestore threads to forum format
         const allMergedThreads = [
-          ...filteredByBadge,
           ...firestoreThreads.map(ft => ({
-            id: (ft as any).originalId || ft.id || '', // Use originalId if available, else Firestore ID
+            id: ft.id || '', // Use Firestore document ID (contains AI-generated slug)
             title: ft.title,
             content: ft.content,
             category: ft.category as ForumCategory,

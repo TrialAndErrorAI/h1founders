@@ -1,5 +1,5 @@
 # H1Founders Critical Decisions Log
-**Last Updated**: December 2024
+**Last Updated**: September 17, 2025
 **Purpose**: Document irreversible (one-way door) and reversible (two-way door) decisions
 
 ## 🚪 One-Way Door Decisions (Irreversible)

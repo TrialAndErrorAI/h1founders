@@ -3,10 +3,10 @@
 **Priority**: HIGH - $5K/month law firm interested
 **Status**: DEMO BUILT - Behind feature flag
 
-> **UPDATE December 2024**: Partnership ecosystem implemented and behind feature flag.
+> **UPDATE September 2025**: Partnership ecosystem active with founding partners.
 > See `docs/prfaq002_partnership_ecosystem.md` for full business model.
-> SponsorBanner and Partners page ready to activate when contract signed.
-> Law firm interested at $5K/month tier.
+> SponsorBanner and Partners page implemented. Three founding partners in pipeline.
+> Manifest Labs (immigration law) contract finalized at $2,750/month.
 
 ## Objective
 Create sponsor pitch page and partnership packages to monetize audience.

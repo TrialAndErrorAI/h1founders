@@ -3,9 +3,8 @@
 **Priority**: LOW - Simplified to Cal.com link
 **Status**: SIMPLIFIED
 
-> **UPDATE December 2024**: Simplified to just embedding Cal.com link with Stripe integration. 
-> No custom development needed - just drop in Cal.com booking link.
-> Original RFC kept for reference if we need custom booking later.
+> **NOTE**: This RFC is for future reference. Current priority is forum persistence (RFC 011).
+> When booking system is needed, use Cal.com + Stripe integration as outlined below.
 
 ## Objective
 Integrate Cal.com for scheduling with Stripe for payment processing.

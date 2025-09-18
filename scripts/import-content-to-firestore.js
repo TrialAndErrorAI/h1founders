@@ -99,15 +99,40 @@ async function importContent() {
         importedAt: serverTimestamp()
       }
 
-      // Generate SEO-friendly slug from title
-      const slug = thread.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-        .substring(0, 60) // Keep it reasonable length
+      // Generate SEO slug using Claude AI in headless mode
+      const generateAISlug = (thread) => {
+        const { execSync } = require('child_process')
+        const scriptPath = join(__dirname, 'generate-seo-slug.py')
 
-      // Use setDoc with custom ID instead of addDoc for predictable URLs
-      const docId = thread.id || `${slug}-${Date.now()}`
+        try {
+          // Escape single quotes in title and content for shell command
+          const title = thread.title.replace(/'/g, "'\\''")
+          const content = thread.content.replace(/'/g, "'\\''")
+
+          // Call Python script with FULL content (Claude has 200K context!)
+          const command = `python3 '${scriptPath}' '${title}' '${content}'`
+          const slug = execSync(command, {
+            encoding: 'utf8',
+            maxBuffer: 10 * 1024 * 1024 // 10MB buffer for large content
+          }).trim()
+
+          console.log(`   AI-generated slug: ${slug}`)
+          return slug
+        } catch (error) {
+          console.warn('   Failed to generate AI slug, using fallback:', error.message)
+          // Fallback to simple slug generation
+          return thread.title.toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .substring(0, 60)
+        }
+      }
+
+      const slug = generateAISlug(thread)
+
+      // ALWAYS use the SEO slug, never the placeholder IDs
+      // thread.id contains placeholders like 'linkedin-001' which are terrible for SEO
+      const docId = slug
       const docRef = doc(db, 'forum_threads', docId)
       await setDoc(docRef, threadData)
       console.log(`✅ Imported "${thread.title}" (ID: ${docRef.id})`)

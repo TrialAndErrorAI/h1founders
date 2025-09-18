@@ -4,11 +4,11 @@
 **Timeline**: 2 weeks to MVP, 4 weeks full implementation
 **Author**: ATLAS
 **Date**: September 7, 2025
-**Status**: NEXT PRIORITY
+**Status**: IMPLEMENTED (Auth system working, member directory deprioritized)
 
-> **UPDATE December 2024**: Use forum as testing ground for auth implementation.
-> Start with basic Firebase Auth, then expand to full member directory.
-> This unlocks community features and enables monetization.
+> **UPDATE September 17, 2025**: Authentication system implemented in v0.7.6. Member directory
+> deprioritized in favor of anonymous forum system for privacy protection. Forum persistence
+> next priority per RFC 011.
 
 ## Executive Summary
 Build authentication system that seamlessly connects existing 1,400+ members from WhatsApp (781) and Substack (600+) into unified platform directory with minimal friction. Phone-first auth to leverage WhatsApp presence.

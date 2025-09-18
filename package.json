@@ -43,5 +43,8 @@
   },
   "peerDependencies": {
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.63.0"
   }
 }
