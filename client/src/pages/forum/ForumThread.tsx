@@ -21,7 +21,6 @@ export default function ForumThread() {
   const [replyContent, setReplyContent] = useState('')
   const [showReplyForm, setShowReplyForm] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const hasIncrementedView = useRef(false)
 
   // Get current user from auth context
@@ -107,7 +106,9 @@ export default function ForumThread() {
 
     if (firestoreDocId || threadId) {
       // Subscribe to real-time updates using the actual Firestore doc ID
-      unsubscribe = forumService.subscribeToReplies(firestoreDocId || threadId, (replies) => {
+      const docId = firestoreDocId || threadId
+      if (docId) {
+        unsubscribe = forumService.subscribeToReplies(docId, (replies) => {
         // Transform replies to match Post structure expected by PostCard
         const transformedReplies = replies.map(reply => ({
           ...reply,
@@ -122,7 +123,8 @@ export default function ForumThread() {
           }
         }))
         setPosts(transformedReplies)
-      })
+        })
+      }
     }
 
     return () => {
@@ -194,7 +196,6 @@ export default function ForumThread() {
       return
     }
 
-    setIsSubmitting(true)
     try {
       // Get author name - fallback through multiple options
       const authorName = profile?.username ||
@@ -210,7 +211,7 @@ export default function ForumThread() {
         {
           uid: user.uid,
           name: authorName,
-          badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL'
+          badge: (profile?.matrixLevel as BadgeLevel) || BadgeLevel.BLUE_PILL
         }
       )
 
@@ -230,7 +231,6 @@ export default function ForumThread() {
 
       alert(errorMessage)
     } finally {
-      setIsSubmitting(false)
     }
   }
 
@@ -364,11 +364,10 @@ export default function ForumThread() {
                   currentUser={{
                     id: user.uid,
                     name: profile?.username || user.phoneNumber || 'Anonymous',
-                    badge: (profile?.matrixLevel as unknown as string) || 'BLUE_PILL',
+                    badge: (profile?.matrixLevel as BadgeLevel) || BadgeLevel.BLUE_PILL,
                     avatar: '👤',
                     joinedDate: new Date().toISOString()
                   }}
-                  isSubmitting={isSubmitting}
                 />
               ) : (
                 <button

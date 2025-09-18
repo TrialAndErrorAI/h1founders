@@ -3,7 +3,6 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { forumCategories, canAccessCategory } from '../../data/forumCategories'
 // Removed mock threads - using real content only
-import { mergeWithForumThreads, filterContentByBadge } from '../../utils/contentLoader'
 import { forumService } from '../../services/forumService'
 import { ForumCategory, ThreadType, BadgeLevel, Thread } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'

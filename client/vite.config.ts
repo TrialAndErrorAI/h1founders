@@ -1,13 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
-
-// Read package.json for version
-const pkg = require('./package.json')
+import packageJson from './package.json'
 
 export default defineConfig({
   define: {
-    __APP_VERSION__: JSON.stringify(pkg.version),
+    __APP_VERSION__: JSON.stringify(packageJson.version),
   },
   plugins: [
     react(),
@@ -40,9 +38,6 @@ export default defineConfig({
           // Data chunks - these are loaded only when needed
           if (id.includes('src/data/successStories')) {
             return 'data-stories';
-          }
-          if (id.includes('src/data/mockThreads')) {
-            return 'data-threads';
           }
           if (id.includes('src/data/events')) {
             return 'data-events';
