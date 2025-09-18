@@ -1,22 +1,73 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-/* Matrix Terminal Theme */
+/* Theme System with CSS Variables */
+/* Light Mode - Default (The Blue Pill) */
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border: #e5e7eb;
+  --accent-primary: #10b981;
+  --accent-secondary: #059669;
+  --red-pill: #ef4444;
+  --blue-pill: #3b82f6;
+  --terminal-font: 'Inter', sans-serif;
+  --code-font: 'JetBrains Mono', monospace;
+}
+
+/* Dark Mode - Professional Dark */
+:root[data-theme="dark"] {
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --bg-tertiary: #0f172a;
+  --text-primary: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border: #374151;
+  --accent-primary: #34d399;
+  --accent-secondary: #10b981;
+  --red-pill: #f87171;
+  --blue-pill: #60a5fa;
+  --terminal-font: 'Inter', sans-serif;
+  --code-font: 'JetBrains Mono', monospace;
+}
+
+/* Matrix Mode - Original Theme (The Red Pill) */
+:root[data-theme="matrix"] {
+  --bg-primary: #0d0208;
+  --bg-secondary: #0d0208;
+  --bg-tertiary: #0d0208;
+  --text-primary: #00ff41;
+  --text-secondary: #00ff41;
+  --text-tertiary: #008f11;
+  --border: #00ff41;
+  --accent-primary: #00ff41;
+  --accent-secondary: #008f11;
+  --red-pill: #ff073a;
+  --blue-pill: #1e3a8a;
+  --terminal-font: 'JetBrains Mono', monospace;
+  --code-font: 'JetBrains Mono', monospace;
+}
+
+/* Backwards compatibility variables */
 :root {
   --matrix-black: #0d0208;
   --matrix-green: #00ff41;
   --matrix-green-dark: #008f11;
-  --red-pill: #ff073a;
-  --blue-pill: #1e3a8a;
   --terminal-white: #f8fafc;
   --terminal-gray: #64748b;
 }
 
-/* Global terminal aesthetic */
+/* Global theme-aware styling */
 body {
-  background: var(--matrix-black);
-  color: var(--terminal-white);
-  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--terminal-font);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom terminal elements */

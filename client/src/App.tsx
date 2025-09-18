@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { AuthProvider } from './contexts/AuthContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 
@@ -23,15 +24,16 @@ const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
 function App() {
   return (
-    <AuthProvider>
-      <Suspense fallback={
-        <div className="min-h-screen bg-black flex items-center justify-center">
-          <div className="text-green-400 font-mono">
-            <div className="animate-pulse">Initializing Matrix...</div>
+    <ThemeProvider>
+      <AuthProvider>
+        <Suspense fallback={
+          <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="text-green-400 font-mono">
+              <div className="animate-pulse">Initializing Matrix...</div>
+            </div>
           </div>
-        </div>
-      }>
-        <Routes>
+        }>
+          <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="dashboard" element={<Dashboard />} />
@@ -51,6 +53,7 @@ function App() {
         </Routes>
       </Suspense>
     </AuthProvider>
+    </ThemeProvider>
   )
 }
 

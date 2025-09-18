@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ThemeToggle } from './ThemeToggle'
 
 interface NavItem {
   name: string
@@ -108,7 +109,10 @@ export default function Navigation() {
                   </Link>
                 )
               })}
-              
+
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
               {/* Terminal Easter Egg (hidden) */}
               <button
                 className="text-gray-800 hover:text-gray-600 font-mono text-sm"
