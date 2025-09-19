@@ -64,7 +64,7 @@ export default function Forum() {
 
         setAllThreads(allMergedThreads)
       } catch (error) {
-        console.warn('Failed to load content:', error)
+
         setAllThreads([])
       } finally {
         setLoading(false)
@@ -170,7 +170,7 @@ export default function Forum() {
                     VIEWING_AS_ANONYMOUS()
                   </h3>
                   <p className="text-foreground-secondary font-mono text-sm">
-                    // Join 781 verified founders to participate in discussions
+                    // Join verified founders to participate in discussions
                   </p>
                   <p className="text-foreground-tertiary font-mono text-xs mt-1">
                     Browsing enabled - profiles shown as preview of your experience
@@ -372,7 +372,7 @@ export default function Forum() {
             <p className="text-xs text-foreground-tertiary font-mono mt-1">Daily Posts</p>
           </div>
           <div className="p-4 bg-background-secondary/50 border border-border rounded-lg text-center">
-            <p className="text-2xl font-bold text-purple-400">781</p>
+            <p className="text-2xl font-bold text-purple-400">700+</p>
             <p className="text-xs text-foreground-tertiary font-mono mt-1">Active Members</p>
           </div>
           <div className="p-4 bg-background-secondary/50 border border-border rounded-lg text-center">

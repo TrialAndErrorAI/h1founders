@@ -40,7 +40,7 @@ export default function Hero() {
 
         {/* The Community */}
         <p className="text-lg sm:text-xl text-foreground-secondary mb-10">
-          Now <span className="text-accent font-bold">1,400+ founders</span> refusing to wait 150 years.
+          Now <span className="text-accent font-bold">thousands of founders</span> refusing to wait 150 years.
         </p>
         
         {/* The Choice - Red Pill vs Blue Pill */}

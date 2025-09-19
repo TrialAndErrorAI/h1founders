@@ -190,7 +190,7 @@ export function StatusBadge({
   
   // Handle unknown status types gracefully
   if (!config) {
-    console.warn(`Unknown status type: ${type}`)
+
     return null
   }
   

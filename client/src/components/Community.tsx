@@ -21,7 +21,7 @@ export default function Community() {
             </div>
             <div className="bg-background-secondary rounded p-4 font-mono text-sm border border-border mb-4">
               <div className="text-accent">// Real-time founder chat</div>
-              <div className="text-foreground-secondary">members: 781</div>
+              <div className="text-foreground-secondary">members: 700+</div>
               <div className="text-foreground-secondary">activity: "high"</div>
               <div className="text-foreground-secondary">wins_shared: "daily"</div>
             </div>
@@ -154,10 +154,10 @@ export default function Community() {
               <div>April 2024    # WhatsApp: 200 → Slack launched</div>
               <div>June 2024     # Substack: 300 subscribers</div>
               <div>August 2024   # WhatsApp: 500 → Attorney AMAs start</div>
-              <div>September 2024# WhatsApp: 781, Substack: 648, Total: 1,400+</div>
+              <div>September 2024# WhatsApp: 700+, Substack: 600+, Total: 1000+</div>
             </div>
             <div className="text-accent mt-4">
-              From 0 to 1,400+ in 6 months. Organic growth only. <span className="cursor">█</span>
+              From 0 to 1000+ in 6 months. Organic growth only. <span className="cursor">█</span>
             </div>
           </div>
         </div>

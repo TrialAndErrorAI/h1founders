@@ -337,7 +337,7 @@ export default function ForumThread() {
                 post={post} 
                 onVote={(postId, voteType) => {
                   // Handle voting logic here
-                  console.log('Vote:', postId, voteType)
+
                 }}
               />
             ))

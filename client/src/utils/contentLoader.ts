@@ -17,10 +17,10 @@ async function loadContentIndex() {
     // Dynamic import of the generated content index
     const module = await import('../data/contentIndex.json')
     contentIndex = module.default || module
-    console.log('✅ Content index loaded:', contentIndex?.totalFiles, 'files')
+
     return contentIndex
   } catch (error) {
-    console.warn('Content index not found, using empty content')
+
     return { threads: [], categories: {}, totalFiles: 0 }
   }
 }
@@ -31,12 +31,12 @@ async function loadContentIndex() {
 export async function getAllContentThreads(): Promise<Thread[]> {
   const index = await loadContentIndex()
   if (!index.threads || !Array.isArray(index.threads)) {
-    console.warn('❌ No threads found in content index')
+
     return []
   }
 
   // Categories in content already match ForumCategory enum values
-  console.log(`📚 Loaded ${index.threads.length} content threads with categories:`)
+
   index.threads.forEach((t: any) => console.log(`  - ${t.title} (${t.category})`))
 
   return index.threads

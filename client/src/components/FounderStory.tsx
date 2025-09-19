@@ -65,7 +65,7 @@ export default function FounderStory() {
                 <div className="text-foreground-tertiary text-sm">Founders in 24hrs</div>
               </div>
               <div className="bg-background-secondary rounded p-4 text-center border border-border">
-                <div className="terminal-text text-2xl font-bold">1,400+</div>
+                <div className="terminal-text text-2xl font-bold">1000+</div>
                 <div className="text-foreground-tertiary text-sm">Community Today</div>
               </div>
             </div>

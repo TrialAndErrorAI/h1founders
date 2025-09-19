@@ -5,7 +5,7 @@ export default function SocialProof() {
         <dl className="grid grid-cols-1 gap-x-8 gap-y-4 text-center sm:grid-cols-3">
           <div className="mx-auto flex max-w-xs flex-col gap-y-2">
             <dt className="text-base leading-7 text-foreground-tertiary">WhatsApp Members</dt>
-            <dd className="order-first text-3xl font-semibold tracking-tight text-foreground">781</dd>
+            <dd className="order-first text-3xl font-semibold tracking-tight text-foreground">700+</dd>
           </div>
           <div className="mx-auto flex max-w-xs flex-col gap-y-2">
             <dt className="text-base leading-7 text-foreground-tertiary">Substack Subscribers</dt>

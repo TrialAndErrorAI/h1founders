@@ -121,7 +121,7 @@ export class ForumService {
         } as ForumThread
       }
     } catch (error) {
-      console.warn('Failed to query by originalId:', error)
+
     }
 
     // Fall back to direct document ID lookup
@@ -163,7 +163,7 @@ export class ForumService {
         views: increment(1)
       })
     } catch (error) {
-      console.warn('Failed to increment view count:', error)
+
     }
   }
 

@@ -158,7 +158,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible',
         callback: () => {
-          console.log('Firebase reCAPTCHA verification complete')
+
         }
       })
       
@@ -169,7 +169,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         try {
           appVerifier.clear()
         } catch (e) {
-          console.log('Verifier already cleared')
+
         }
       }, 100)
       

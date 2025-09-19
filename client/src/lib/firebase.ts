@@ -5,13 +5,13 @@ import { getFirestore } from 'firebase/firestore'
 // import { getAnalytics, isSupported } from 'firebase/analytics'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAln--PJhiSKYPKelHJMcHxbREHaOmHjcU",
-  authDomain: "h1founders.firebaseapp.com",
-  projectId: "h1founders",
-  storageBucket: "h1founders.firebasestorage.app",
-  messagingSenderId: "440555697620",
-  appId: "1:440555697620:web:f66ba4ccde51ec712b1241",
-  // measurementId: "G-XXXXXXXXXX" // Optional, for analytics
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAln--PJhiSKYPKelHJMcHxbREHaOmHjcU",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "h1founders.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "h1founders",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "h1founders.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "440555697620",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:440555697620:web:f66ba4ccde51ec712b1241",
+  // measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID // Optional, for analytics
 }
 
 // Initialize Firebase

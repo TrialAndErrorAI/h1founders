@@ -107,7 +107,7 @@ export default function WhatIActuallyDo() {
             </div>
             <div className="grid md:grid-cols-4 gap-4 mb-6">
               <div className="bg-background rounded p-4 border border-border text-center">
-                <div className="terminal-text text-2xl font-bold">1,400+</div>
+                <div className="terminal-text text-2xl font-bold">1000+</div>
                 <div className="text-foreground-tertiary text-sm">Members</div>
               </div>
               <div className="bg-background rounded p-4 border border-border text-center">

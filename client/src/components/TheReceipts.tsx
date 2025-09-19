@@ -44,7 +44,7 @@ export default function TheReceipts() {
           {/* Community Impact */}
           <div className="bg-background rounded-lg p-5 border border-border hover:border-accent transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">1,400+</div>
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">1000+</div>
               <p className="text-foreground-tertiary mb-3 text-sm">Founders Helped</p>
               <div className="bg-background-secondary/50 rounded p-3 font-mono text-xs">
                 <div className="text-accent">// Impact</div>
@@ -80,7 +80,7 @@ export default function TheReceipts() {
               <div className="text-accent font-bold text-base">2024  # SELF-SPONSORED MY OWN H1B</div>
               <div className="text-accent font-bold">2024  # Green card in hand (FREEDOM!)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2024  # Finally CEO of my own company</div>
-              <div className="text-accent font-bold">2024  # LinkedIn post → 1,400+ founders unite</div>
+              <div className="text-accent font-bold">2024  # LinkedIn post → thousands of founders unite</div>
               <div className="text-accent animate-pulse">sid@freedom:~$ ./now_helping_you_break_free █</div>
             </div>
           </div>
