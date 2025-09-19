@@ -52,7 +52,8 @@
       "Bash(done)",
       "Bash(firebase firestore:get:*)",
       "Bash(awk:*)",
-      "mcp__firebase__firestore_get_rules"
+      "mcp__firebase__firestore_get_rules",
+      "Bash(xargs sed:*)"
     ],
     "deny": [],
     "ask": []
