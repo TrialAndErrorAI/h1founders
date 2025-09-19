@@ -335,9 +335,8 @@ export default function ForumThread() {
               <PostCard 
                 key={post.id} 
                 post={post} 
-                onVote={(postId, voteType) => {
+                onVote={(_postId, _voteType) => {
                   // Handle voting logic here
-
                 }}
               />
             ))
