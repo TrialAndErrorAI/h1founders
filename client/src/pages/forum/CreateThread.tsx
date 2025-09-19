@@ -6,6 +6,15 @@ import { useAuth } from '../../contexts/AuthContext'
 import { ForumCategory, ThreadType, BadgeLevel } from '../../types/forum.types'
 import BadgeDisplay from '../../components/badges/BadgeDisplay'
 import { MATRIX_BADGES } from '../../utils/badges'
+import {
+  UserCircleIcon,
+  QuestionMarkCircleIcon,
+  SparklesIcon,
+  ExclamationTriangleIcon,
+  ChartBarIcon,
+  HandRaisedIcon,
+  BeakerIcon
+} from '@heroicons/react/24/outline'
 
 export default function CreateThread() {
   const navigate = useNavigate()
@@ -30,20 +39,20 @@ export default function CreateThread() {
   } : null
 
   const threadTypes = [
-    { value: ThreadType.QUESTION, label: 'Question', icon: '❓', description: 'Seeking answers' },
-    { value: ThreadType.VICTORY, label: 'Victory', icon: '🎉', description: 'Share your wins' },
-    { value: ThreadType.WARNING, label: 'Warning', icon: '🚨', description: 'Alert the community' },
-    { value: ThreadType.RESOURCE, label: 'Resource', icon: '📊', description: 'Share tools/templates' },
-    { value: ThreadType.INTRODUCTION, label: 'Introduction', icon: '👋', description: 'Introduce yourself' },
+    { value: ThreadType.QUESTION, label: 'Question', icon: QuestionMarkCircleIcon, description: 'Seeking answers' },
+    { value: ThreadType.VICTORY, label: 'Victory', icon: SparklesIcon, description: 'Share your wins' },
+    { value: ThreadType.WARNING, label: 'Warning', icon: ExclamationTriangleIcon, description: 'Alert the community' },
+    { value: ThreadType.RESOURCE, label: 'Resource', icon: ChartBarIcon, description: 'Share tools/templates' },
+    { value: ThreadType.INTRODUCTION, label: 'Introduction', icon: HandRaisedIcon, description: 'Introduce yourself' },
   ]
 
   // Only Architect can post prophecies
   if (profile?.matrixLevel === BadgeLevel.THE_ARCHITECT) {
-    threadTypes.push({ 
-      value: ThreadType.PROPHECY, 
-      label: 'Prophecy', 
-      icon: '🔮', 
-      description: 'Predict the future' 
+    threadTypes.push({
+      value: ThreadType.PROPHECY,
+      label: 'Prophecy',
+      icon: BeakerIcon,
+      description: 'Predict the future'
     })
   }
 
@@ -120,7 +129,11 @@ export default function CreateThread() {
         {/* User Info */}
         <div className="mb-6 p-4 bg-background-secondary/50 border border-border rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="text-2xl">{currentUser.avatar || '👤'}</div>
+            {currentUser.avatar ? (
+              <div className="text-2xl">{currentUser.avatar}</div>
+            ) : (
+              <UserCircleIcon className="w-8 h-8 text-foreground-tertiary" />
+            )}
             <div>
               <p className="text-sm text-foreground-tertiary font-mono">Posting as</p>
               <div className="flex items-center gap-2">
@@ -155,7 +168,12 @@ export default function CreateThread() {
                       : 'border-border hover:border-border'
                   }`}
                 >
-                  <div className="text-2xl mb-1">{threadType.icon}</div>
+                  <div className="mb-1">
+                    {(() => {
+                      const Icon = threadType.icon;
+                      return <Icon className="w-8 h-8 mx-auto" />;
+                    })()}
+                  </div>
                   <div className="font-mono text-sm text-foreground">{threadType.label}</div>
                   <div className="text-xs text-foreground-tertiary mt-1">{threadType.description}</div>
                 </button>

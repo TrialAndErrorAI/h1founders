@@ -10,6 +10,22 @@ import ProgressionLevel from '../../components/badges/ProgressionLevel'
 import { ContentBadge, StatusBadge } from '../../components/badges/ContentBadge'
 import type { ContentType } from '../../components/badges/ContentBadge'
 import { MATRIX_BADGES } from '../../utils/badges'
+import {
+  UserCircleIcon,
+  MagnifyingGlassIcon,
+  SparklesIcon,
+  BoltIcon,
+  LockClosedIcon,
+  EyeIcon,
+  ChatBubbleLeftRightIcon,
+  CpuChipIcon,
+  QuestionMarkCircleIcon,
+  ExclamationTriangleIcon,
+  ChartBarIcon,
+  HandRaisedIcon,
+  BeakerIcon,
+  DocumentTextIcon
+} from '@heroicons/react/24/outline'
 
 export default function Forum() {
   const [searchParams] = useSearchParams()
@@ -40,7 +56,7 @@ export default function Forum() {
               id: ft.authorId,
               name: ft.authorName,
               badge: ft.authorBadge as BadgeLevel,
-              avatar: '👤',
+              avatar: undefined,
               subLevel: 1,
               joinedDate: new Date().toISOString()
             },
@@ -108,16 +124,16 @@ export default function Forum() {
   })
 
   const threadTypeConfig = {
-    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-pill' },
-    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-accent' },
-    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-pill' },
-    [ThreadType.RESOURCE]: { icon: '📊', color: 'text-purple-400' },
-    [ThreadType.INTRODUCTION]: { icon: '👋', color: 'text-yellow-400' },
-    [ThreadType.PROPHECY]: { icon: '🔮', color: 'text-pink-400' }
+    [ThreadType.QUESTION]: { icon: QuestionMarkCircleIcon, color: 'text-blue-pill' },
+    [ThreadType.VICTORY]: { icon: SparklesIcon, color: 'text-accent' },
+    [ThreadType.WARNING]: { icon: ExclamationTriangleIcon, color: 'text-red-pill' },
+    [ThreadType.RESOURCE]: { icon: ChartBarIcon, color: 'text-purple-400' },
+    [ThreadType.INTRODUCTION]: { icon: HandRaisedIcon, color: 'text-yellow-400' },
+    [ThreadType.PROPHECY]: { icon: BeakerIcon, color: 'text-pink-400' }
   }
 
-  const getTypeConfig = (type: ThreadType) => 
-    threadTypeConfig[type] || { icon: '📝', color: 'text-foreground-tertiary' }
+  const getTypeConfig = (type: ThreadType) =>
+    threadTypeConfig[type] || { icon: DocumentTextIcon, color: 'text-foreground-tertiary' }
   
   // Using professional ContentBadge component instead of emojis
 
@@ -193,7 +209,13 @@ export default function Forum() {
             <div className="mt-6 p-4 sm:p-5 border border-border rounded-lg bg-background-secondary/50">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div className="flex items-center gap-3">
-                  <div className="text-3xl flex-shrink-0">{currentUser.avatar || '👤'}</div>
+                  <div className="flex-shrink-0">
+                    {currentUser.avatar ? (
+                      <span className="text-3xl">{currentUser.avatar}</span>
+                    ) : (
+                      <UserCircleIcon className="w-10 h-10 text-foreground-tertiary" />
+                    )}
+                  </div>
                   <div>
                     <p className="font-mono text-xs sm:text-sm text-foreground-tertiary">Welcome back,</p>
                     <p className="font-bold text-foreground text-sm sm:text-base">{currentUser.name}</p>
@@ -220,7 +242,7 @@ export default function Forum() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-4 py-2 pl-10 bg-background-secondary border border-border rounded-lg text-foreground font-mono text-sm focus:outline-none focus:border-accent transition-colors"
             />
-            <span className="absolute left-3 top-2.5 text-foreground-tertiary">🔍</span>
+            <MagnifyingGlassIcon className="absolute left-3 top-2.5 w-5 h-5 text-foreground-tertiary" />
           </div>
         </div>
 
@@ -260,9 +282,9 @@ export default function Forum() {
                 >
                   <span className="mr-1.5">{category.icon}</span>
                   <span>{category.name}</span>
-                  {category.isPremium && <span className="ml-1 text-yellow-400">💎</span>}
-                  {category.hybridAccess && <span className="ml-1 text-purple-400">⚡</span>}
-                  {isLocked && <span className="ml-1">🔒</span>}
+                  {category.isPremium && <SparklesIcon className="ml-1 w-4 h-4 inline text-yellow-400" />}
+                  {category.hybridAccess && <BoltIcon className="ml-1 w-4 h-4 inline text-purple-400" />}
+                  {isLocked && <LockClosedIcon className="ml-1 w-4 h-4 inline" />}
                 </button>
               )
             })}
@@ -299,8 +321,11 @@ export default function Forum() {
                         {(thread as any).contentType && (
                           <ContentBadge type={(thread as any).contentType as ContentType} size="sm" />
                         )}
-                        <span className={`${getTypeConfig(thread.type).color} text-lg`} title={thread.type}>
-                          {getTypeConfig(thread.type).icon}
+                        <span className={`${getTypeConfig(thread.type).color}`} title={thread.type}>
+                          {(() => {
+                            const Icon = getTypeConfig(thread.type).icon
+                            return <Icon className="w-5 h-5" />
+                          })()}
                         </span>
                       </div>
                       <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors text-base leading-tight">
@@ -325,14 +350,17 @@ export default function Forum() {
                         <span className="text-foreground-secondary font-medium">{thread.author.name}</span>
                       </div>
                       <span className="flex items-center gap-1">
-                        <span className="opacity-70">👁</span> {thread.views}
+                        <EyeIcon className="w-3.5 h-3.5 opacity-70" />
+                        {thread.views}
                       </span>
                       <span className="flex items-center gap-1">
-                        <span className="opacity-70">💬</span> {thread.replies}
+                        <ChatBubbleLeftRightIcon className="w-3.5 h-3.5 opacity-70" />
+                        {thread.replies}
                       </span>
                       {thread.aiParticipated && (
                         <span className="text-purple-400 flex items-center gap-1">
-                          <span>🤖</span> AI Participated
+                          <CpuChipIcon className="w-3.5 h-3.5" />
+                          AI Participated
                         </span>
                       )}
                       {thread.lastReply && (

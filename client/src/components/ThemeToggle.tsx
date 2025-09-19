@@ -1,4 +1,5 @@
 import { useTheme } from '../contexts/ThemeContext';
+import { SunIcon, MoonIcon, BeakerIcon } from '@heroicons/react/24/outline';
 
 export function ThemeToggle() {
   const { theme, cycleTheme } = useTheme();
@@ -6,13 +7,13 @@ export function ThemeToggle() {
   const getThemeIcon = () => {
     switch (theme) {
       case 'light':
-        return '☀️';
+        return SunIcon;
       case 'dark':
-        return '🌙';
+        return MoonIcon;
       case 'matrix':
-        return '💊';
+        return BeakerIcon;
       default:
-        return '☀️';
+        return SunIcon;
     }
   };
 
@@ -40,9 +41,10 @@ export function ThemeToggle() {
       aria-label={`Current theme: ${getThemeLabel()}. Click to switch theme.`}
       title={`Current: ${getThemeLabel()}`}
     >
-      <span className="text-lg" role="img" aria-hidden="true">
-        {getThemeIcon()}
-      </span>
+      {(() => {
+        const Icon = getThemeIcon();
+        return <Icon className="w-5 h-5" aria-hidden="true" />;
+      })()}
       <span className="hidden sm:inline text-xs font-mono">
         {getThemeLabel()}
       </span>

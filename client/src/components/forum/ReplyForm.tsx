@@ -1,5 +1,6 @@
 import { User } from '../../types/forum.types'
 import BadgeDisplay from '../badges/BadgeDisplay'
+import { UserCircleIcon } from '@heroicons/react/24/outline'
 
 interface ReplyFormProps {
   value: string
@@ -23,7 +24,11 @@ export default function ReplyForm({ value, onChange, onSubmit, onCancel, current
   return (
     <div className="bg-background-secondary/50 border border-border rounded-lg p-4">
       <div className="flex items-center gap-3 mb-4">
-        <div className="text-2xl">{currentUser.avatar || '👤'}</div>
+        {currentUser.avatar ? (
+          <div className="text-2xl">{currentUser.avatar}</div>
+        ) : (
+          <UserCircleIcon className="w-8 h-8 text-foreground-tertiary" />
+        )}
         <div>
           <div className="flex items-center gap-2">
             <span className="font-semibold text-foreground">{currentUser.name}</span>

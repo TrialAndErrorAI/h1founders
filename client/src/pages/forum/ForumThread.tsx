@@ -11,6 +11,19 @@ import { ContentBadge, StatusBadge } from '../../components/badges/ContentBadge'
 import type { ContentType } from '../../components/badges/ContentBadge'
 import ReplyForm from '../../components/forum/ReplyForm'
 import MarkdownRenderer from '../../utils/markdownRenderer'
+import {
+  UserCircleIcon,
+  EyeIcon,
+  ChatBubbleLeftRightIcon,
+  QuestionMarkCircleIcon,
+  SparklesIcon,
+  ExclamationTriangleIcon,
+  ChartBarIcon,
+  HandRaisedIcon,
+  BeakerIcon,
+  DocumentTextIcon,
+  LockClosedIcon
+} from '@heroicons/react/24/outline'
 
 export default function ForumThread() {
   const { threadId } = useParams<{ threadId: string }>()
@@ -44,7 +57,7 @@ export default function ForumThread() {
               id: firestoreThread.authorId || 'atlas-system',
               name: firestoreThread.authorName || '@sid',
               badge: firestoreThread.authorBadge || 'THE_ARCHITECT',
-              avatar: '👤',
+              avatar: undefined,
               subLevel: 1,
               joinedDate: new Date().toISOString()
             },
@@ -66,7 +79,7 @@ export default function ForumThread() {
               id: reply.authorId,
               name: reply.authorName || 'Anonymous',
               badge: reply.authorBadge || BadgeLevel.BLUE_PILL,
-              avatar: '👤',
+              avatar: undefined,
               subLevel: 1,
               joinedDate: new Date().toISOString()
             }
@@ -173,16 +186,16 @@ export default function ForumThread() {
   }
 
   const threadTypeConfig = {
-    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-pill' },
-    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-accent' },
-    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-pill' },
-    [ThreadType.RESOURCE]: { icon: '📊', color: 'text-purple-400' },
-    [ThreadType.INTRODUCTION]: { icon: '👋', color: 'text-yellow-400' },
-    [ThreadType.PROPHECY]: { icon: '🔮', color: 'text-pink-400' }
+    [ThreadType.QUESTION]: { icon: QuestionMarkCircleIcon, color: 'text-blue-pill' },
+    [ThreadType.VICTORY]: { icon: SparklesIcon, color: 'text-accent' },
+    [ThreadType.WARNING]: { icon: ExclamationTriangleIcon, color: 'text-red-pill' },
+    [ThreadType.RESOURCE]: { icon: ChartBarIcon, color: 'text-purple-400' },
+    [ThreadType.INTRODUCTION]: { icon: HandRaisedIcon, color: 'text-yellow-400' },
+    [ThreadType.PROPHECY]: { icon: BeakerIcon, color: 'text-pink-400' }
   }
-  
-  const getTypeConfig = (type: ThreadType) => 
-    threadTypeConfig[type] || { icon: '📝', color: 'text-foreground-tertiary' }
+
+  const getTypeConfig = (type: ThreadType) =>
+    threadTypeConfig[type] || { icon: DocumentTextIcon, color: 'text-foreground-tertiary' }
     
   // Using professional ContentBadge component instead of emoji badges
 
@@ -266,13 +279,17 @@ export default function ForumThread() {
               {(thread as any).contentType && (
                 <ContentBadge type={(thread as any).contentType as ContentType} size="md" showLabel />
               )}
-              <span className={`${getTypeConfig(thread.type).color} text-2xl`}>
-                {getTypeConfig(thread.type).icon}
+              <span className={`${getTypeConfig(thread.type).color}`}>
+                {(() => {
+                  const Icon = getTypeConfig(thread.type).icon
+                  return <Icon className="w-8 h-8" />
+                })()}
               </span>
             </div>
             {thread.isLocked && (
-              <span className="px-2 py-1 bg-red-900/50 border border-red-800 rounded text-xs font-mono text-red-pill">
-                🔒 LOCKED
+              <span className="px-2 py-1 bg-red-900/50 border border-red-800 rounded text-xs font-mono text-red-pill flex items-center gap-1">
+                <LockClosedIcon className="w-3 h-3" />
+                LOCKED
               </span>
             )}
           </div>
@@ -283,7 +300,11 @@ export default function ForumThread() {
 
           <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-foreground-tertiary font-mono">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">{thread.author.avatar || '👤'}</span>
+              {thread.author.avatar ? (
+                <span className="text-2xl">{thread.author.avatar}</span>
+              ) : (
+                <UserCircleIcon className="w-8 h-8 text-foreground-tertiary" />
+              )}
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-foreground font-semibold">{thread.author.name}</span>
@@ -320,8 +341,14 @@ export default function ForumThread() {
           )}
 
           <div className="flex items-center gap-6 mt-6 pt-6 border-t border-border text-sm text-foreground-tertiary font-mono">
-            <span>👁 {thread.views} views</span>
-            <span>💬 {thread.replies} replies</span>
+            <span className="flex items-center gap-1">
+              <EyeIcon className="w-4 h-4" />
+              {thread.views} views
+            </span>
+            <span className="flex items-center gap-1">
+              <ChatBubbleLeftRightIcon className="w-4 h-4" />
+              {thread.replies} replies
+            </span>
             {thread.aiParticipated && (
               <span className="text-purple-400">🤖 AI Participated</span>
             )}
@@ -364,7 +391,7 @@ export default function ForumThread() {
                     id: user.uid,
                     name: profile?.username || user.phoneNumber || 'Anonymous',
                     badge: (profile?.matrixLevel as BadgeLevel) || BadgeLevel.BLUE_PILL,
-                    avatar: '👤',
+                    avatar: undefined,
                     joinedDate: new Date().toISOString()
                   }}
                 />
@@ -381,7 +408,8 @@ export default function ForumThread() {
                 to="/network"
                 className="block w-full py-3 border-2 border-dashed border-border rounded-lg text-center text-foreground-tertiary font-mono text-sm hover:border-accent hover:text-accent transition-all duration-200"
               >
-                🔒 Sign in to reply
+                <LockClosedIcon className="w-4 h-4 inline mr-1" />
+                Sign in to reply
               </Link>
             )}
           </div>
@@ -389,8 +417,9 @@ export default function ForumThread() {
 
         {thread.isLocked && (
           <div className="mt-8 p-4 bg-red-900/20 border border-red-800 rounded-lg">
-            <p className="text-red-pill font-mono text-sm text-center">
-              🔒 This thread is locked. No new replies allowed.
+            <p className="text-red-pill font-mono text-sm text-center flex items-center justify-center gap-1">
+              <LockClosedIcon className="w-4 h-4" />
+              This thread is locked. No new replies allowed.
             </p>
           </div>
         )}
