@@ -69,17 +69,17 @@ export default function EmailCapture({
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
             className={`
-              w-full px-4 py-3 bg-gray-900 border rounded-lg font-mono text-sm
+              w-full px-4 py-3 bg-background-secondary border rounded-lg font-mono text-sm
               placeholder-gray-600 transition-all duration-200
-              ${status === 'success' ? 'border-green-400 text-green-400' : ''}
-              ${status === 'error' ? 'border-red-400' : 'border-gray-700'}
-              ${status === 'idle' ? 'focus:border-green-400 focus:outline-none focus:ring-1 focus:ring-green-400' : ''}
+              ${status === 'success' ? 'border-accent text-accent' : ''}
+              ${status === 'error' ? 'border-red-400' : 'border-border'}
+              ${status === 'idle' ? 'focus:border-accent focus:outline-none focus:ring-1 focus:ring-green-400' : ''}
             `}
             disabled={status === 'loading' || status === 'success'}
           />
           {status === 'loading' && (
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
-              <div className="w-4 h-4 border-2 border-green-400 border-t-transparent rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
             </div>
           )}
         </div>
@@ -91,8 +91,8 @@ export default function EmailCapture({
             px-6 py-3 font-mono text-sm font-semibold rounded-lg
             transition-all duration-200 whitespace-nowrap
             ${status === 'success' 
-              ? 'bg-green-400 text-black' 
-              : 'bg-red-600 hover:bg-red-700 text-white'
+              ? 'bg-green-400 text-foreground' 
+              : 'bg-red-600 hover:bg-red-700 text-foreground'
             }
             disabled:opacity-50 disabled:cursor-not-allowed
           `}
@@ -104,8 +104,8 @@ export default function EmailCapture({
       {message && (
         <p className={`
           mt-2 text-sm font-mono
-          ${status === 'success' ? 'text-green-400 matrix-glow' : ''}
-          ${status === 'error' ? 'text-red-400' : ''}
+          ${status === 'success' ? 'text-accent matrix-glow' : ''}
+          ${status === 'error' ? 'text-red-pill' : ''}
         `}>
           {message}
         </p>

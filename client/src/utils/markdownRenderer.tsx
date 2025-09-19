@@ -11,7 +11,7 @@ interface MarkdownRendererProps {
 export function MarkdownRenderer({ content, isContentThread = false }: MarkdownRendererProps) {
   // If not a content thread, render as plain text
   if (!isContentThread) {
-    return <p className="text-gray-300 whitespace-pre-wrap">{content}</p>
+    return <p className="text-foreground-secondary whitespace-pre-wrap">{content}</p>
   }
 
   // Simple markdown parsing for content threads
@@ -26,19 +26,19 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
       // Headers
       if (line.startsWith('# ')) {
         elements.push(
-          <h1 key={key++} className="text-2xl font-bold text-white mb-4 mt-6">
+          <h1 key={key++} className="text-2xl font-bold text-foreground mb-4 mt-6">
             {line.substring(2)}
           </h1>
         )
       } else if (line.startsWith('## ')) {
         elements.push(
-          <h2 key={key++} className="text-xl font-bold text-white mb-3 mt-5">
+          <h2 key={key++} className="text-xl font-bold text-foreground mb-3 mt-5">
             {line.substring(3)}
           </h2>
         )
       } else if (line.startsWith('### ')) {
         elements.push(
-          <h3 key={key++} className="text-lg font-bold text-white mb-2 mt-4">
+          <h3 key={key++} className="text-lg font-bold text-foreground mb-2 mt-4">
             {line.substring(4)}
           </h3>
         )
@@ -47,7 +47,7 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
       else if (line.startsWith('- ') || line.startsWith('* ')) {
         const listItem = line.substring(2)
         elements.push(
-          <li key={key++} className="text-gray-300 mb-1 ml-4">
+          <li key={key++} className="text-foreground-secondary mb-1 ml-4">
             • {processInlineMarkdown(listItem)}
           </li>
         )
@@ -58,7 +58,7 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
         if (match) {
           const [, num, text] = match
           elements.push(
-            <li key={key++} className="text-gray-300 mb-1 ml-4">
+            <li key={key++} className="text-foreground-secondary mb-1 ml-4">
               {num}. {processInlineMarkdown(text)}
             </li>
           )
@@ -71,7 +71,7 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
       // Regular paragraph
       else if (line.trim()) {
         elements.push(
-          <p key={key++} className="text-gray-300 mb-3">
+          <p key={key++} className="text-foreground-secondary mb-3">
             {processInlineMarkdown(line)}
           </p>
         )
@@ -118,9 +118,9 @@ export function MarkdownRenderer({ content, isContentThread = false }: MarkdownR
         return null
       } else if (part) {
         if (isBold) {
-          return <strong key={index} className="text-white font-semibold">{part}</strong>
+          return <strong key={index} className="text-foreground font-semibold">{part}</strong>
         } else if (isCode) {
-          return <code key={index} className="bg-gray-800 text-green-400 px-1 py-0.5 rounded font-mono text-sm">{part}</code>
+          return <code key={index} className="bg-background-secondary text-accent px-1 py-0.5 rounded font-mono text-sm">{part}</code>
         } else {
           return part
         }

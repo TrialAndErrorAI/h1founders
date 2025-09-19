@@ -20,8 +20,8 @@ export default function Home() {
   // Show landing page only for non-authenticated users
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-green-400 font-mono">Loading...</div>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-accent font-mono">Loading...</div>
       </div>
     )
   }

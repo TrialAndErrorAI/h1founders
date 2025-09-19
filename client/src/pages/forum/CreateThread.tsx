@@ -90,10 +90,10 @@ export default function CreateThread() {
 
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-500 font-mono mb-4">Please sign in to create a thread</p>
-          <Link to="/forum" className="text-green-400 hover:underline font-mono text-sm">
+          <p className="text-foreground-tertiary font-mono mb-4">Please sign in to create a thread</p>
+          <Link to="/forum" className="text-accent hover:underline font-mono text-sm">
             ← Back to Forum
           </Link>
         </div>
@@ -102,29 +102,29 @@ export default function CreateThread() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <Link to="/forum" className="inline-flex items-center text-gray-400 hover:text-green-400 font-mono text-sm mb-4 transition-colors">
+          <Link to="/forum" className="inline-flex items-center text-foreground-tertiary hover:text-accent font-mono text-sm mb-4 transition-colors">
             ← Back to Forum
           </Link>
           <h1 className="text-3xl font-bold terminal-text matrix-glow">
             CREATE NEW THREAD
           </h1>
-          <p className="mt-2 text-gray-400 font-mono text-sm">
+          <p className="mt-2 text-foreground-tertiary font-mono text-sm">
             Share your wisdom with the community
           </p>
         </div>
 
         {/* User Info */}
-        <div className="mb-6 p-4 bg-gray-900/50 border border-gray-800 rounded-lg">
+        <div className="mb-6 p-4 bg-background-secondary/50 border border-border rounded-lg">
           <div className="flex items-center gap-3">
             <div className="text-2xl">{currentUser.avatar || '👤'}</div>
             <div>
-              <p className="text-sm text-gray-400 font-mono">Posting as</p>
+              <p className="text-sm text-foreground-tertiary font-mono">Posting as</p>
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-white">{currentUser.name}</span>
+                <span className="font-semibold text-foreground">{currentUser.name}</span>
                 <BadgeDisplay 
                   level={currentUser.badge} 
                   subLevel={currentUser.subLevel}
@@ -140,7 +140,7 @@ export default function CreateThread() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Thread Type */}
           <div>
-            <label className="block text-sm font-mono text-gray-400 mb-2">
+            <label className="block text-sm font-mono text-foreground-tertiary mb-2">
               Thread Type
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -151,13 +151,13 @@ export default function CreateThread() {
                   onClick={() => setType(threadType.value)}
                   className={`p-3 rounded-lg border-2 transition-all duration-200 ${
                     type === threadType.value
-                      ? 'border-green-400 bg-green-400/10'
-                      : 'border-gray-800 hover:border-gray-700'
+                      ? 'border-accent bg-green-400/10'
+                      : 'border-border hover:border-border'
                   }`}
                 >
                   <div className="text-2xl mb-1">{threadType.icon}</div>
-                  <div className="font-mono text-sm text-white">{threadType.label}</div>
-                  <div className="text-xs text-gray-500 mt-1">{threadType.description}</div>
+                  <div className="font-mono text-sm text-foreground">{threadType.label}</div>
+                  <div className="text-xs text-foreground-tertiary mt-1">{threadType.description}</div>
                 </button>
               ))}
             </div>
@@ -165,13 +165,13 @@ export default function CreateThread() {
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-mono text-gray-400 mb-2">
+            <label className="block text-sm font-mono text-foreground-tertiary mb-2">
               Category
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as ForumCategory)}
-              className="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-green-400 transition-colors"
+              className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg text-foreground font-mono text-sm focus:outline-none focus:border-accent transition-colors"
             >
               {forumCategories.map(cat => {
                 const locked = !canAccessCategory(cat.id)
@@ -190,7 +190,7 @@ export default function CreateThread() {
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-mono text-gray-400 mb-2">
+            <label className="block text-sm font-mono text-foreground-tertiary mb-2">
               Title
             </label>
             <input
@@ -198,33 +198,33 @@ export default function CreateThread() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What's your question or topic?"
-              className="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-green-400 transition-colors"
+              className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg text-foreground font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition-colors"
               maxLength={200}
             />
-            <p className="mt-1 text-xs text-gray-500 font-mono">
+            <p className="mt-1 text-xs text-foreground-tertiary font-mono">
               {title.length}/200 characters
             </p>
           </div>
 
           {/* Content */}
           <div>
-            <label className="block text-sm font-mono text-gray-400 mb-2">
+            <label className="block text-sm font-mono text-foreground-tertiary mb-2">
               Content
             </label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Share your thoughts, experiences, or questions... (Markdown supported)"
-              className="w-full h-64 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-white font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-green-400 transition-colors resize-none"
+              className="w-full h-64 px-4 py-3 bg-background-secondary border border-border rounded-lg text-foreground font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition-colors resize-none"
             />
-            <p className="mt-1 text-xs text-gray-500 font-mono">
+            <p className="mt-1 text-xs text-foreground-tertiary font-mono">
               Markdown formatting supported. Be detailed and specific.
             </p>
           </div>
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-mono text-gray-400 mb-2">
+            <label className="block text-sm font-mono text-foreground-tertiary mb-2">
               Tags (optional)
             </label>
             <input
@@ -232,7 +232,7 @@ export default function CreateThread() {
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="h1b, visa, startup, eb1a (comma separated)"
-              className="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-green-400 transition-colors"
+              className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg text-foreground font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition-colors"
             />
           </div>
 
@@ -240,7 +240,7 @@ export default function CreateThread() {
           <div className="flex items-center justify-between pt-6">
             <Link
               to="/forum"
-              className="px-6 py-2 text-gray-400 font-mono text-sm hover:text-white transition-colors"
+              className="px-6 py-2 text-foreground-tertiary font-mono text-sm hover:text-foreground transition-colors"
             >
               Cancel
             </Link>
@@ -249,8 +249,8 @@ export default function CreateThread() {
               disabled={!title.trim() || !content.trim() || isSubmitting}
               className={`px-6 py-2 rounded font-mono text-sm transition-all duration-200 ${
                 title.trim() && content.trim() && !isSubmitting
-                  ? 'bg-green-400 text-black hover:bg-green-500'
-                  : 'bg-gray-800 text-gray-600 cursor-not-allowed'
+                  ? 'bg-green-400 text-foreground hover:bg-accent'
+                  : 'bg-background-secondary text-foreground-tertiary cursor-not-allowed'
               }`}
             >
               {isSubmitting ? 'Creating...' : 'Create Thread'}
@@ -259,9 +259,9 @@ export default function CreateThread() {
         </form>
 
         {/* Guidelines */}
-        <div className="mt-12 p-4 bg-gray-900/50 border border-gray-800 rounded-lg">
-          <h3 className="text-sm font-mono text-gray-400 mb-3">Community Guidelines</h3>
-          <ul className="space-y-2 text-xs text-gray-500 font-mono">
+        <div className="mt-12 p-4 bg-background-secondary/50 border border-border rounded-lg">
+          <h3 className="text-sm font-mono text-foreground-tertiary mb-3">Community Guidelines</h3>
+          <ul className="space-y-2 text-xs text-foreground-tertiary font-mono">
             <li>• Be constructive and help others on their journey</li>
             <li>• Share real experiences and verified information</li>
             <li>• No legal advice - share experiences only</li>

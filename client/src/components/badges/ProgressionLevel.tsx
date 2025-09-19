@@ -28,7 +28,7 @@ export default function ProgressionLevel({
       <div className="flex items-center justify-between">
         <div className="space-y-2">
           <BadgeDisplay level={currentLevel} subLevel={currentSubLevel} size="md" />
-          <p className="text-xs text-gray-400 font-mono leading-relaxed">
+          <p className="text-xs text-foreground-tertiary font-mono leading-relaxed">
             {currentConfig?.description}
           </p>
         </div>
@@ -36,11 +36,11 @@ export default function ProgressionLevel({
 
       {showProgress && currentConfig?.subLevels && currentSubLevel && (
         <div className="space-y-2">
-          <div className="flex justify-between text-xs text-gray-400 font-mono">
+          <div className="flex justify-between text-xs text-foreground-tertiary font-mono">
             <span>Progress</span>
             <span>{currentSubLevel}/{currentConfig.subLevels}</span>
           </div>
-          <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+          <div className="h-2 bg-background-secondary rounded-full overflow-hidden">
             <div 
               className="h-full transition-all duration-500"
               style={{
@@ -54,13 +54,13 @@ export default function ProgressionLevel({
       )}
 
       {showProgress && nextConfig && (
-        <div className="pt-3 border-t border-gray-800">
+        <div className="pt-3 border-t border-border">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-gray-500 font-mono">Next Level:</span>
+            <span className="text-xs text-foreground-tertiary font-mono">Next Level:</span>
             <BadgeDisplay level={nextConfig.level} size="sm" showName={true} />
           </div>
           {nextConfig.requirements && nextConfig.requirements[0] && (
-            <p className="mt-2 text-xs text-gray-400 italic">
+            <p className="mt-2 text-xs text-foreground-tertiary italic">
               Requirement: {nextConfig.requirements[0]}
             </p>
           )}
@@ -68,13 +68,13 @@ export default function ProgressionLevel({
       )}
 
       {currentConfig?.requirements && currentConfig.requirements.length > 0 && (
-        <div className="space-y-1 pt-3 border-t border-gray-800">
-          <p className="text-xs text-gray-500 font-mono mb-2">Level Requirements:</p>
+        <div className="space-y-1 pt-3 border-t border-border">
+          <p className="text-xs text-foreground-tertiary font-mono mb-2">Level Requirements:</p>
           {currentConfig.requirements.map((req, idx) => (
             <div 
               key={idx} 
               className={`text-xs font-mono flex items-start gap-2 ${
-                currentSubLevel && idx < currentSubLevel ? 'text-green-400' : 'text-gray-400'
+                currentSubLevel && idx < currentSubLevel ? 'text-accent' : 'text-foreground-tertiary'
               }`}
             >
               <span>{currentSubLevel && idx < currentSubLevel ? '✓' : '○'}</span>

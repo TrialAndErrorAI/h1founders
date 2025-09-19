@@ -108,21 +108,21 @@ export default function Forum() {
   })
 
   const threadTypeConfig = {
-    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-400' },
-    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-green-400' },
-    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-400' },
+    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-pill' },
+    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-accent' },
+    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-pill' },
     [ThreadType.RESOURCE]: { icon: '📊', color: 'text-purple-400' },
     [ThreadType.INTRODUCTION]: { icon: '👋', color: 'text-yellow-400' },
     [ThreadType.PROPHECY]: { icon: '🔮', color: 'text-pink-400' }
   }
 
   const getTypeConfig = (type: ThreadType) => 
-    threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
+    threadTypeConfig[type] || { icon: '📝', color: 'text-foreground-tertiary' }
   
   // Using professional ContentBadge component instead of emojis
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -131,7 +131,7 @@ export default function Forum() {
               <h1 className="text-3xl font-bold terminal-text matrix-glow">
                 THE MATRIX FORUM
               </h1>
-              <p className="mt-2 text-gray-400 font-mono text-sm">
+              <p className="mt-2 text-foreground-tertiary font-mono text-sm">
                 Where minds are freed and empires are built
               </p>
             </div>
@@ -139,14 +139,14 @@ export default function Forum() {
               <div className="flex items-center gap-3">
                 <Link
                   to="/forum/create"
-                  className="inline-flex items-center px-4 py-2 border-2 border-green-400 text-green-400 rounded font-mono text-sm hover:bg-green-400 hover:text-black transition-all duration-200"
+                  className="inline-flex items-center px-4 py-2 border-2 border-accent text-accent rounded font-mono text-sm hover:bg-green-400 hover:text-foreground transition-all duration-200"
                 >
                   <span className="mr-2">+</span>
                   NEW THREAD
                 </Link>
                 <button
                   onClick={logout}
-                  className="px-4 py-2 bg-red-900/20 border border-red-500 text-red-400 rounded font-mono text-sm hover:bg-red-900/30 transition-colors"
+                  className="px-4 py-2 bg-red-900/20 border border-red-500 text-red-pill rounded font-mono text-sm hover:bg-red-900/30 transition-colors"
                 >
                   DISCONNECT()
                 </button>
@@ -163,16 +163,16 @@ export default function Forum() {
 
           {/* Auth CTA Banner for Anonymous Users */}
           {!user && (
-            <div className="mt-6 bg-gradient-to-r from-red-900/30 to-green-900/30 border border-green-400/40 rounded-lg p-6">
+            <div className="mt-6 bg-gradient-to-r from-red-900/30 to-green-900/30 border border-accent/40 rounded-lg p-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-xl font-mono text-green-400 mb-2">
+                  <h3 className="text-xl font-mono text-accent mb-2">
                     VIEWING_AS_ANONYMOUS()
                   </h3>
-                  <p className="text-gray-300 font-mono text-sm">
+                  <p className="text-foreground-secondary font-mono text-sm">
                     // Join 781 verified founders to participate in discussions
                   </p>
-                  <p className="text-gray-400 font-mono text-xs mt-1">
+                  <p className="text-foreground-tertiary font-mono text-xs mt-1">
                     Browsing enabled - profiles shown as preview of your experience
                   </p>
                 </div>
@@ -190,13 +190,13 @@ export default function Forum() {
 
           {/* User Progress Card */}
           {currentUser && (
-            <div className="mt-6 p-4 sm:p-5 border border-gray-800 rounded-lg bg-gray-900/50">
+            <div className="mt-6 p-4 sm:p-5 border border-border rounded-lg bg-background-secondary/50">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div className="flex items-center gap-3">
                   <div className="text-3xl flex-shrink-0">{currentUser.avatar || '👤'}</div>
                   <div>
-                    <p className="font-mono text-xs sm:text-sm text-gray-400">Welcome back,</p>
-                    <p className="font-bold text-white text-sm sm:text-base">{currentUser.name}</p>
+                    <p className="font-mono text-xs sm:text-sm text-foreground-tertiary">Welcome back,</p>
+                    <p className="font-bold text-foreground text-sm sm:text-base">{currentUser.name}</p>
                   </div>
                 </div>
                 <ProgressionLevel
@@ -218,9 +218,9 @@ export default function Forum() {
               placeholder="Search threads..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 pl-10 bg-gray-900 border border-gray-800 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-green-400 transition-colors"
+              className="w-full px-4 py-2 pl-10 bg-background-secondary border border-border rounded-lg text-foreground font-mono text-sm focus:outline-none focus:border-accent transition-colors"
             />
-            <span className="absolute left-3 top-2.5 text-gray-500">🔍</span>
+            <span className="absolute left-3 top-2.5 text-foreground-tertiary">🔍</span>
           </div>
         </div>
 
@@ -231,8 +231,8 @@ export default function Forum() {
               onClick={() => setSelectedCategory(null)}
               className={`px-4 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-200 ${
                 !selectedCategory
-                  ? 'bg-green-400 text-black shadow-md shadow-green-400/30'
-                  : 'bg-gray-900 text-gray-400 border border-gray-800 hover:border-green-400'
+                  ? 'bg-green-400 text-foreground shadow-md shadow-green-400/30'
+                  : 'bg-background-secondary text-foreground-tertiary border border-border hover:border-accent'
               }`}
             >
               ALL CATEGORIES
@@ -248,14 +248,14 @@ export default function Forum() {
                   disabled={isLocked}
                   className={`px-4 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-200 whitespace-nowrap ${
                     selectedCategory === category.id
-                      ? 'bg-green-400 text-black shadow-md shadow-green-400/30'
+                      ? 'bg-green-400 text-foreground shadow-md shadow-green-400/30'
                       : isLocked
-                      ? 'bg-gray-900 text-gray-600 border border-gray-800 cursor-not-allowed opacity-50'
+                      ? 'bg-background-secondary text-foreground-tertiary border border-border cursor-not-allowed opacity-50'
                       : category.isPremium
-                      ? 'bg-gray-900 text-gray-400 border border-yellow-600/50 hover:border-yellow-400 hover:shadow-md hover:shadow-yellow-400/20'
+                      ? 'bg-background-secondary text-foreground-tertiary border border-yellow-600/50 hover:border-yellow-400 hover:shadow-md hover:shadow-yellow-400/20'
                       : category.hybridAccess
-                      ? 'bg-gray-900 text-gray-400 border border-purple-600/50 hover:border-purple-400 hover:shadow-md hover:shadow-purple-400/20'
-                      : 'bg-gray-900 text-gray-400 border border-gray-800 hover:border-green-400'
+                      ? 'bg-background-secondary text-foreground-tertiary border border-purple-600/50 hover:border-purple-400 hover:shadow-md hover:shadow-purple-400/20'
+                      : 'bg-background-secondary text-foreground-tertiary border border-border hover:border-accent'
                   }`}
                 >
                   <span className="mr-1.5">{category.icon}</span>
@@ -273,18 +273,18 @@ export default function Forum() {
         <div className="space-y-4">
           {loading ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 font-mono">Loading content...</p>
+              <p className="text-foreground-tertiary font-mono">Loading content...</p>
             </div>
           ) : filteredThreads.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 font-mono">No threads found</p>
+              <p className="text-foreground-tertiary font-mono">No threads found</p>
             </div>
           ) : (
             filteredThreads.map(thread => (
               <Link
                 key={thread.id}
                 to={`/forum/thread/${thread.id}`}
-                className="block p-5 bg-gray-900/30 border border-gray-800 rounded-lg hover:border-green-400 hover:bg-gray-900/50 transition-all duration-200 group"
+                className="block p-5 bg-background-secondary/30 border border-border rounded-lg hover:border-accent hover:bg-background-secondary/50 transition-all duration-200 group"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -303,18 +303,18 @@ export default function Forum() {
                           {getTypeConfig(thread.type).icon}
                         </span>
                       </div>
-                      <h3 className="font-semibold text-white group-hover:text-green-400 transition-colors text-base leading-tight">
+                      <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors text-base leading-tight">
                         {thread.title}
                       </h3>
                     </div>
                     
-                    <p className="text-gray-400 text-sm line-clamp-2 mb-3">
+                    <p className="text-foreground-tertiary text-sm line-clamp-2 mb-3">
                       {thread.content}
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 font-mono">
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-foreground-tertiary font-mono">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-gray-600">by</span>
+                        <span className="text-foreground-tertiary">by</span>
                         <BadgeDisplay 
                           level={thread.author.badge} 
                           subLevel={thread.author.subLevel}
@@ -322,7 +322,7 @@ export default function Forum() {
                           size="sm" 
                           showName={true}
                         />
-                        <span className="text-gray-300 font-medium">{thread.author.name}</span>
+                        <span className="text-foreground-secondary font-medium">{thread.author.name}</span>
                       </div>
                       <span className="flex items-center gap-1">
                         <span className="opacity-70">👁</span> {thread.views}
@@ -336,7 +336,7 @@ export default function Forum() {
                         </span>
                       )}
                       {thread.lastReply && (
-                        <span className="text-gray-600">
+                        <span className="text-foreground-tertiary">
                           Last: {new Date(thread.lastReply.createdAt).toLocaleDateString()}
                         </span>
                       )}
@@ -347,7 +347,7 @@ export default function Forum() {
                         {thread.tags.map(tag => (
                           <span 
                             key={tag}
-                            className="px-2 py-0.5 bg-gray-800 text-gray-400 rounded-full text-xs font-mono"
+                            className="px-2 py-0.5 bg-background-secondary text-foreground-tertiary rounded-full text-xs font-mono"
                           >
                             #{tag}
                           </span>
@@ -363,21 +363,21 @@ export default function Forum() {
 
         {/* Forum Stats */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
-            <p className="text-2xl font-bold text-green-400">{allThreads.length}</p>
-            <p className="text-xs text-gray-500 font-mono mt-1">Active Threads</p>
+          <div className="p-4 bg-background-secondary/50 border border-border rounded-lg text-center">
+            <p className="text-2xl font-bold text-accent">{allThreads.length}</p>
+            <p className="text-xs text-foreground-tertiary font-mono mt-1">Active Threads</p>
           </div>
-          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
-            <p className="text-2xl font-bold text-blue-400">156</p>
-            <p className="text-xs text-gray-500 font-mono mt-1">Daily Posts</p>
+          <div className="p-4 bg-background-secondary/50 border border-border rounded-lg text-center">
+            <p className="text-2xl font-bold text-blue-pill">156</p>
+            <p className="text-xs text-foreground-tertiary font-mono mt-1">Daily Posts</p>
           </div>
-          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
+          <div className="p-4 bg-background-secondary/50 border border-border rounded-lg text-center">
             <p className="text-2xl font-bold text-purple-400">781</p>
-            <p className="text-xs text-gray-500 font-mono mt-1">Active Members</p>
+            <p className="text-xs text-foreground-tertiary font-mono mt-1">Active Members</p>
           </div>
-          <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-lg text-center">
+          <div className="p-4 bg-background-secondary/50 border border-border rounded-lg text-center">
             <p className="text-2xl font-bold text-yellow-400">42</p>
-            <p className="text-xs text-gray-500 font-mono mt-1">Morpheus Teachers</p>
+            <p className="text-xs text-foreground-tertiary font-mono mt-1">Morpheus Teachers</p>
           </div>
         </div>
       </div>

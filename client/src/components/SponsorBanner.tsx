@@ -55,18 +55,18 @@ export default function SponsorBanner() {
   const sponsor = sponsors[currentSponsor]
   
   return (
-    <div className="bg-black border-b border-gray-800 relative">
+    <div className="bg-background border-b border-border relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-2 flex items-center justify-between">
           <div className="flex-1 flex items-center">
             {/* Terminal prompt style */}
-            <span className="text-gray-600 font-mono text-xs sm:text-sm mr-2">
+            <span className="text-foreground-tertiary font-mono text-xs sm:text-sm mr-2">
               sid@h1founders:~$
             </span>
-            <span className="text-green-400 font-mono text-xs sm:text-sm mr-2">
+            <span className="text-accent font-mono text-xs sm:text-sm mr-2">
               cat /etc/sponsors
             </span>
-            <span className="text-gray-500 font-mono text-xs sm:text-sm mr-2">
+            <span className="text-foreground-tertiary font-mono text-xs sm:text-sm mr-2">
               &gt;
             </span>
             
@@ -77,16 +77,16 @@ export default function SponsorBanner() {
               rel="noopener noreferrer"
               className="group flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              <span className="text-green-400 font-mono text-xs sm:text-sm">
+              <span className="text-accent font-mono text-xs sm:text-sm">
                 POWERED BY:
               </span>
-              <span className="text-white font-mono text-xs sm:text-sm font-semibold">
+              <span className="text-foreground font-mono text-xs sm:text-sm font-semibold">
                 {sponsor.name}
               </span>
-              <span className="text-gray-400 font-mono text-xs sm:text-sm hidden sm:inline">
+              <span className="text-foreground-tertiary font-mono text-xs sm:text-sm hidden sm:inline">
                 - {sponsor.tagline}
               </span>
-              <span className="text-green-400 font-mono text-xs sm:text-sm ml-2 group-hover:text-white transition-colors">
+              <span className="text-accent font-mono text-xs sm:text-sm ml-2 group-hover:text-foreground transition-colors">
                 | $escape_the_matrix()
               </span>
             </a>
@@ -95,7 +95,7 @@ export default function SponsorBanner() {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="ml-4 text-gray-600 hover:text-gray-400 font-mono text-xs"
+            className="ml-4 text-foreground-tertiary hover:text-foreground-tertiary font-mono text-xs"
             aria-label="Close sponsor banner"
           >
             [X]

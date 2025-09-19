@@ -54,25 +54,25 @@ export default function SalaryExplorer() {
   }
 
   return (
-    <div className="min-h-screen bg-black px-6 py-24">
+    <div className="min-h-screen bg-background px-6 py-24">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-12">
-          <Link to="/tools" className="text-gray-400 hover:text-green-400 font-mono text-sm mb-4 inline-block">
+          <Link to="/tools" className="text-foreground-tertiary hover:text-accent font-mono text-sm mb-4 inline-block">
             ← TOOLS/
           </Link>
           <h1 className="text-4xl font-mono terminal-text matrix-glow mb-4">
             H1B_SALARY_EXPLORER
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-foreground-tertiary text-lg">
             See what companies pay H1B holders. Then see what founders make instead.
           </p>
 
           {/* Demo Warning */}
           <div className="mt-6 bg-blue-900/20 border border-blue-400/30 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-blue-400">🧪</span>
-              <span className="font-mono text-blue-400 text-sm font-bold">DEMO_MODE</span>
+              <span className="text-blue-pill">🧪</span>
+              <span className="font-mono text-blue-pill text-sm font-bold">DEMO_MODE</span>
             </div>
             <p className="text-blue-300 font-mono text-sm">
               // Using sample data for demonstration. Real salary data integration coming soon.
@@ -81,7 +81,7 @@ export default function SalaryExplorer() {
         </div>
 
         {/* Search Terminal */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
+        <div className="bg-background-secondary border border-border rounded-lg p-6 mb-8">
           <div className="flex items-center space-x-3 mb-4">
             <span className="terminal-text font-mono">query$</span>
             <input
@@ -92,24 +92,24 @@ export default function SalaryExplorer() {
                 setIsTyping(true)
               }}
               placeholder="Search company or role..."
-              className="flex-1 bg-transparent border-none outline-none text-white font-mono"
+              className="flex-1 bg-transparent border-none outline-none text-foreground font-mono"
               autoFocus
             />
             {isTyping && (
-              <span className="text-green-400 animate-pulse">_</span>
+              <span className="text-accent animate-pulse">_</span>
             )}
           </div>
-          <p className="text-gray-500 font-mono text-xs">
+          <p className="text-foreground-tertiary font-mono text-xs">
             // Try: Google, Meta, Senior Software Engineer
           </p>
         </div>
 
         {/* Results Table */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-8">
+        <div className="bg-background-secondary border border-border rounded-lg overflow-hidden mb-8">
           <div className="overflow-x-auto">
             <table className="w-full font-mono text-sm">
               <thead>
-                <tr className="border-b border-gray-700 text-green-400">
+                <tr className="border-b border-border text-accent">
                   <th className="text-left p-4">COMPANY</th>
                   <th className="text-left p-4">ROLE</th>
                   <th className="text-left p-4">LEVEL</th>
@@ -121,18 +121,18 @@ export default function SalaryExplorer() {
               <tbody>
                 {results.length > 0 ? (
                   results.map((item, index) => (
-                    <tr key={index} className="border-b border-gray-800 hover:bg-gray-800/50 transition-colors">
-                      <td className="p-4 text-white">{item.company}</td>
-                      <td className="p-4 text-gray-300">{item.role}</td>
-                      <td className="p-4 text-gray-400">{item.level}</td>
+                    <tr key={index} className="border-b border-border hover:bg-background-secondary/50 transition-colors">
+                      <td className="p-4 text-foreground">{item.company}</td>
+                      <td className="p-4 text-foreground-secondary">{item.role}</td>
+                      <td className="p-4 text-foreground-tertiary">{item.level}</td>
                       <td className="p-4 text-right text-yellow-400">{formatCurrency(item.base)}</td>
-                      <td className="p-4 text-right text-green-400 font-bold">{formatCurrency(item.total)}</td>
-                      <td className="p-4 text-gray-400 hidden md:table-cell">{item.location}</td>
+                      <td className="p-4 text-right text-accent font-bold">{formatCurrency(item.total)}</td>
+                      <td className="p-4 text-foreground-tertiary hidden md:table-cell">{item.location}</td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={6} className="p-8 text-center text-gray-500">
+                    <td colSpan={6} className="p-8 text-center text-foreground-tertiary">
                       // No results found. Try a different search.
                     </td>
                   </tr>
@@ -154,12 +154,12 @@ export default function SalaryExplorer() {
 
         {showComparison && (
           <div className="bg-gradient-to-r from-red-900/20 to-transparent border border-red-500/30 rounded-lg p-8 mb-8">
-            <h2 className="text-2xl font-mono text-red-500 mb-6">// THE FOUNDER ALTERNATIVE</h2>
+            <h2 className="text-2xl font-mono text-red-pill mb-6">// THE FOUNDER ALTERNATIVE</h2>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-green-400 font-mono mb-4">H1B_EMPLOYEE:</h3>
-                <ul className="space-y-2 text-gray-300">
+                <h3 className="text-accent font-mono mb-4">H1B_EMPLOYEE:</h3>
+                <ul className="space-y-2 text-foreground-secondary">
                   <li>→ Avg Total Comp: $280,000</li>
                   <li>→ 60 days to deportation if fired</li>
                   <li>→ 150+ year wait for green card</li>
@@ -169,8 +169,8 @@ export default function SalaryExplorer() {
               </div>
               
               <div>
-                <h3 className="text-green-400 font-mono mb-4">BOOTSTRAP_FOUNDER:</h3>
-                <ul className="space-y-2 text-gray-300">
+                <h3 className="text-accent font-mono mb-4">BOOTSTRAP_FOUNDER:</h3>
+                <ul className="space-y-2 text-foreground-secondary">
                   <li>→ My ARR: $3,000,000+</li>
                   <li>→ 95% gross profit margin</li>
                   <li>→ Self-sponsored EB1-A</li>
@@ -180,14 +180,14 @@ export default function SalaryExplorer() {
               </div>
             </div>
             
-            <div className="mt-8 p-4 bg-black/50 rounded">
+            <div className="mt-8 p-4 bg-background/50 rounded">
               <p className="text-yellow-400 font-mono text-sm">
                 // REALITY: You're trading freedom for a paycheck.
               </p>
-              <p className="text-gray-400 font-mono text-sm mt-2">
+              <p className="text-foreground-tertiary font-mono text-sm mt-2">
                 // The system wants you to believe this is the only way.
               </p>
-              <p className="text-green-400 font-mono text-sm mt-2">
+              <p className="text-accent font-mono text-sm mt-2">
                 // 1,400+ founders proved otherwise.
               </p>
             </div>
@@ -195,11 +195,11 @@ export default function SalaryExplorer() {
         )}
 
         {/* CTA Section */}
-        <div className="bg-gray-900 border border-green-400/20 rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-mono text-white mb-4">
+        <div className="bg-background-secondary border border-accent/20 rounded-lg p-8 text-center">
+          <h3 className="text-2xl font-mono text-foreground mb-4">
             Ready to break free?
           </h3>
-          <p className="text-gray-400 mb-6">
+          <p className="text-foreground-tertiary mb-6">
             Find out if you qualify for EB1-A and escape the H1B trap.
           </p>
           <Link
@@ -212,7 +212,7 @@ export default function SalaryExplorer() {
 
         {/* Data Source Note */}
         <div className="mt-12 text-center">
-          <p className="text-gray-600 font-mono text-xs">
+          <p className="text-foreground-tertiary font-mono text-xs">
             // Data sourced from public H1B filings. Not financial advice.
           </p>
         </div>

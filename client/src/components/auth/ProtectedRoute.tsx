@@ -12,10 +12,10 @@ export default function ProtectedRoute({ children, redirectTo = '/' }: Protected
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="terminal-text matrix-glow text-xl mb-2">AUTHENTICATING...</div>
-          <div className="text-green-400 text-sm animate-pulse">Verifying credentials</div>
+          <div className="text-accent text-sm animate-pulse">Verifying credentials</div>
         </div>
       </div>
     )

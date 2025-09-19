@@ -47,7 +47,7 @@ const contentTypeConfig = {
   STORY: {
     icon: DocumentTextIcon,
     label: 'Story',
-    color: 'text-blue-400',
+    color: 'text-blue-pill',
     bgColor: 'bg-blue-400/10',
     borderColor: 'border-blue-400/30'
   },
@@ -61,9 +61,9 @@ const contentTypeConfig = {
   GUIDE: {
     icon: DocumentTextIcon,
     label: 'Guide',
-    color: 'text-green-400',
+    color: 'text-accent',
     bgColor: 'bg-green-400/10',
-    borderColor: 'border-green-400/30'
+    borderColor: 'border-accent/30'
   },
   TOOL: {
     icon: WrenchScrewdriverIcon,
@@ -89,7 +89,7 @@ const contentTypeConfig = {
   ANNOUNCEMENT: {
     icon: MegaphoneIcon,
     label: 'News',
-    color: 'text-red-400',
+    color: 'text-red-pill',
     bgColor: 'bg-red-400/10',
     borderColor: 'border-red-400/30'
   }
@@ -99,9 +99,9 @@ const statusTypeConfig = {
   OFFICIAL: {
     icon: CheckBadgeIcon,
     label: 'Official',
-    color: 'text-green-400',
+    color: 'text-accent',
     bgColor: 'bg-green-400/10',
-    borderColor: 'border-green-400/30'
+    borderColor: 'border-accent/30'
   },
   PINNED: {
     icon: BookmarkIcon,

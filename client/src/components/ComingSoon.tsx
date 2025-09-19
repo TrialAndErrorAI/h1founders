@@ -34,7 +34,7 @@ export default function ComingSoon({
   }, [fullText])
 
   return (
-    <div className="min-h-screen bg-black px-6 py-24">
+    <div className="min-h-screen bg-background px-6 py-24">
       <div className="mx-auto max-w-4xl">
         {/* Terminal Header */}
         <div className="mb-12">
@@ -46,37 +46,37 @@ export default function ComingSoon({
         </div>
 
         {/* Status Message */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
+        <div className="bg-background-secondary border border-border rounded-lg p-6 mb-8">
           <div className="flex items-start space-x-3">
             <span className="text-yellow-400 text-2xl">⚠</span>
             <div>
               <p className="text-yellow-400 font-mono text-sm mb-2">STATUS: UNDER_CONSTRUCTION</p>
-              <p className="text-gray-300 text-lg">{description}</p>
+              <p className="text-foreground-secondary text-lg">{description}</p>
             </div>
           </div>
         </div>
 
         {/* What's Coming */}
         <div className="mb-12">
-          <h2 className="text-xl font-mono text-green-400 mb-4">// What's coming:</h2>
+          <h2 className="text-xl font-mono text-accent mb-4">// What's coming:</h2>
           <div className="space-y-3">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start space-x-3">
-                <span className="text-green-400 font-mono">→</span>
-                <p className="text-gray-300">{feature}</p>
+                <span className="text-accent font-mono">→</span>
+                <p className="text-foreground-secondary">{feature}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Launch Date */}
-        <div className="bg-gray-900 border border-green-400/20 rounded-lg p-6 mb-12">
+        <div className="bg-background-secondary border border-accent/20 rounded-lg p-6 mb-12">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-400 font-mono text-sm mb-1">EXPECTED_LAUNCH:</p>
-              <p className="text-2xl font-bold text-white">{launchDate}</p>
+              <p className="text-accent font-mono text-sm mb-1">EXPECTED_LAUNCH:</p>
+              <p className="text-2xl font-bold text-foreground">{launchDate}</p>
             </div>
-            <div className="text-green-400">
+            <div className="text-accent">
               <svg className="w-12 h-12 animate-spin-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -85,9 +85,9 @@ export default function ComingSoon({
         </div>
 
         {/* Email Capture */}
-        <div className="bg-black border border-gray-800 rounded-lg p-8">
-          <h3 className="text-xl font-mono text-white mb-2">// Be the first to know</h3>
-          <p className="text-gray-400 mb-6">Get notified when this section goes live.</p>
+        <div className="bg-background border border-border rounded-lg p-8">
+          <h3 className="text-xl font-mono text-foreground mb-2">// Be the first to know</h3>
+          <p className="text-foreground-tertiary mb-6">Get notified when this section goes live.</p>
           <EmailCapture 
             placeholder="founder@startup.com"
             buttonText="NOTIFY_ME()"
@@ -97,14 +97,14 @@ export default function ComingSoon({
 
         {/* Vote for Features */}
         <div className="mt-12 text-center">
-          <p className="text-gray-500 font-mono text-sm">
+          <p className="text-foreground-tertiary font-mono text-sm">
             Want this sooner? Vote for priority features in our community.
           </p>
         </div>
 
         {/* Matrix Easter Egg */}
         <div className="mt-24 text-center">
-          <p className="text-gray-800 font-mono text-xs">
+          <p className="text-foreground font-mono text-xs">
             // There is no spoon
           </p>
         </div>

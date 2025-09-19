@@ -158,31 +158,31 @@ export default function ForumThread() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-green-400 font-mono animate-pulse">Loading thread...</p>
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <p className="text-accent font-mono animate-pulse">Loading thread...</p>
       </div>
     )
   }
 
   if (!thread) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-gray-500 font-mono">Thread not found</p>
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <p className="text-foreground-tertiary font-mono">Thread not found</p>
       </div>
     )
   }
 
   const threadTypeConfig = {
-    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-400' },
-    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-green-400' },
-    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-400' },
+    [ThreadType.QUESTION]: { icon: '❓', color: 'text-blue-pill' },
+    [ThreadType.VICTORY]: { icon: '🎉', color: 'text-accent' },
+    [ThreadType.WARNING]: { icon: '🚨', color: 'text-red-pill' },
     [ThreadType.RESOURCE]: { icon: '📊', color: 'text-purple-400' },
     [ThreadType.INTRODUCTION]: { icon: '👋', color: 'text-yellow-400' },
     [ThreadType.PROPHECY]: { icon: '🔮', color: 'text-pink-400' }
   }
   
   const getTypeConfig = (type: ThreadType) => 
-    threadTypeConfig[type] || { icon: '📝', color: 'text-gray-400' }
+    threadTypeConfig[type] || { icon: '📝', color: 'text-foreground-tertiary' }
     
   // Using professional ContentBadge component instead of emoji badges
 
@@ -235,26 +235,26 @@ export default function ForumThread() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
-        <div className="mb-6 flex items-center gap-2 text-sm font-mono text-gray-500">
-          <Link to="/forum" className="hover:text-green-400 transition-colors">
+        <div className="mb-6 flex items-center gap-2 text-sm font-mono text-foreground-tertiary">
+          <Link to="/forum" className="hover:text-accent transition-colors">
             Forum
           </Link>
           <span>/</span>
           <Link 
             to={`/forum?category=${thread.category}`} 
-            className="text-gray-400 hover:text-green-400 transition-colors flex items-center gap-1"
+            className="text-foreground-tertiary hover:text-accent transition-colors flex items-center gap-1"
           >
             {getCategoryIcon(thread.category)} {getCategoryName(thread.category)}
           </Link>
           <span>/</span>
-          <span className="text-gray-300 truncate">{thread.title.slice(0, 30)}...</span>
+          <span className="text-foreground-secondary truncate">{thread.title.slice(0, 30)}...</span>
         </div>
 
         {/* Thread Header */}
-        <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 mb-6">
+        <div className="bg-background-secondary/50 border border-border rounded-lg p-6 mb-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
               {thread.isPinned && (
@@ -271,22 +271,22 @@ export default function ForumThread() {
               </span>
             </div>
             {thread.isLocked && (
-              <span className="px-2 py-1 bg-red-900/50 border border-red-800 rounded text-xs font-mono text-red-400">
+              <span className="px-2 py-1 bg-red-900/50 border border-red-800 rounded text-xs font-mono text-red-pill">
                 🔒 LOCKED
               </span>
             )}
           </div>
 
-          <h1 className="text-2xl font-bold text-white mb-4">
+          <h1 className="text-2xl font-bold text-foreground mb-4">
             {thread.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-400 font-mono">
+          <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-foreground-tertiary font-mono">
             <div className="flex items-center gap-2">
               <span className="text-2xl">{thread.author.avatar || '👤'}</span>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-white font-semibold">{thread.author.name}</span>
+                  <span className="text-foreground font-semibold">{thread.author.name}</span>
                   <BadgeDisplay 
                     level={thread.author.badge} 
                     subLevel={thread.author.subLevel}
@@ -294,7 +294,7 @@ export default function ForumThread() {
                     size="sm" 
                   />
                 </div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-foreground-tertiary">
                   {new Date(thread.createdAt).toLocaleDateString()} at {new Date(thread.createdAt).toLocaleTimeString()}
                 </div>
               </div>
@@ -311,7 +311,7 @@ export default function ForumThread() {
               {thread.tags.map((tag: string) => (
                 <span 
                   key={tag}
-                  className="px-3 py-1 bg-gray-800 text-gray-400 rounded-full text-xs font-mono"
+                  className="px-3 py-1 bg-background-secondary text-foreground-tertiary rounded-full text-xs font-mono"
                 >
                   #{tag}
                 </span>
@@ -319,7 +319,7 @@ export default function ForumThread() {
             </div>
           )}
 
-          <div className="flex items-center gap-6 mt-6 pt-6 border-t border-gray-800 text-sm text-gray-500 font-mono">
+          <div className="flex items-center gap-6 mt-6 pt-6 border-t border-border text-sm text-foreground-tertiary font-mono">
             <span>👁 {thread.views} views</span>
             <span>💬 {thread.replies} replies</span>
             {thread.aiParticipated && (
@@ -343,7 +343,7 @@ export default function ForumThread() {
             ))
           ) : (
             <div className="text-center py-8">
-              <p className="text-gray-500 font-mono">No replies yet. Be the first to respond!</p>
+              <p className="text-foreground-tertiary font-mono">No replies yet. Be the first to respond!</p>
             </div>
           )}
         </div>
@@ -372,7 +372,7 @@ export default function ForumThread() {
               ) : (
                 <button
                   onClick={() => setShowReplyForm(true)}
-                  className="w-full py-3 border-2 border-dashed border-gray-800 rounded-lg text-gray-500 font-mono text-sm hover:border-green-400 hover:text-green-400 transition-all duration-200"
+                  className="w-full py-3 border-2 border-dashed border-border rounded-lg text-foreground-tertiary font-mono text-sm hover:border-accent hover:text-accent transition-all duration-200"
                 >
                   + Add Reply
                 </button>
@@ -380,7 +380,7 @@ export default function ForumThread() {
             ) : (
               <Link
                 to="/network"
-                className="block w-full py-3 border-2 border-dashed border-gray-800 rounded-lg text-center text-gray-500 font-mono text-sm hover:border-green-400 hover:text-green-400 transition-all duration-200"
+                className="block w-full py-3 border-2 border-dashed border-border rounded-lg text-center text-foreground-tertiary font-mono text-sm hover:border-accent hover:text-accent transition-all duration-200"
               >
                 🔒 Sign in to reply
               </Link>
@@ -390,7 +390,7 @@ export default function ForumThread() {
 
         {thread.isLocked && (
           <div className="mt-8 p-4 bg-red-900/20 border border-red-800 rounded-lg">
-            <p className="text-red-400 font-mono text-sm text-center">
+            <p className="text-red-pill font-mono text-sm text-center">
               🔒 This thread is locked. No new replies allowed.
             </p>
           </div>

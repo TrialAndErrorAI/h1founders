@@ -32,31 +32,31 @@ export default function Navigation() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'LIVE':
-        return 'text-green-400'
+        return 'text-accent'
       case 'SOON':
         return 'text-yellow-400'
       case 'LOCKED':
-        return 'text-red-400'
+        return 'text-red-pill'
       default:
-        return 'text-gray-400'
+        return 'text-foreground-tertiary'
     }
   }
 
   const getStatusBadge = (item: NavItem) => {
     if (item.status === 'LIVE' && item.count) {
-      return <span className="text-green-400 text-xs ml-2">({item.count})</span>
+      return <span className="text-accent text-xs ml-2">({item.count})</span>
     }
     if (item.status === 'SOON') {
       return <span className="text-yellow-400 text-xs ml-2">[SOON]</span>
     }
     if (item.status === 'LOCKED') {
-      return <span className="text-red-400 text-xs ml-2">[🔒]</span>
+      return <span className="text-red-pill text-xs ml-2">[🔒]</span>
     }
     return null
   }
 
   return (
-    <nav className="border-b border-gray-800 sticky top-0 z-50 bg-black/90 backdrop-blur-sm">
+    <nav className="border-b sticky top-0 z-50 backdrop-blur-sm" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-primary)' }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -65,7 +65,7 @@ export default function Navigation() {
               <span className="terminal-text font-mono text-xl font-bold matrix-glow">
                 H1FOUNDERS/
               </span>
-              <span className="text-gray-500 font-mono text-sm animate-pulse">_</span>
+              <span className="text-foreground-tertiary font-mono text-sm animate-pulse">_</span>
             </Link>
           </div>
 
@@ -83,8 +83,8 @@ export default function Navigation() {
                     className={`
                       font-mono text-sm transition-all duration-200
                       ${isActive ? 'terminal-text matrix-glow' : ''}
-                      ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-green-400'}
-                      ${!isActive && !isDisabled ? 'text-gray-300' : ''}
+                      ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-accent'}
+                      ${!isActive && !isDisabled ? 'text-foreground-secondary' : ''}
                     `}
                     onClick={(e) => {
                       if (isDisabled && item.status !== 'LOCKED') {
@@ -115,7 +115,7 @@ export default function Navigation() {
 
               {/* Terminal Easter Egg (hidden) */}
               <button
-                className="text-gray-800 hover:text-gray-600 font-mono text-sm"
+                className="text-foreground hover:text-foreground-tertiary font-mono text-sm"
                 onClick={() => console.log('Welcome to the Matrix...')}
               >
                 TERMINAL
@@ -127,7 +127,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-green-400 p-2"
+              className="text-foreground-secondary hover:text-accent p-2"
             >
               <span className="sr-only">Open menu</span>
               <div className="w-6 h-5 flex flex-col justify-between">
@@ -142,7 +142,7 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-800">
+        <div className="md:hidden border-t border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigation.map((item) => {
               const isActive = location.pathname.startsWith(item.href)
@@ -154,7 +154,7 @@ export default function Navigation() {
                   to={item.href}
                   className={`
                     block px-3 py-2 font-mono text-sm
-                    ${isActive ? 'terminal-text matrix-glow' : 'text-gray-300'}
+                    ${isActive ? 'terminal-text matrix-glow' : 'text-foreground-secondary'}
                     ${isDisabled ? 'opacity-50' : ''}
                   `}
                   onClick={(e) => {

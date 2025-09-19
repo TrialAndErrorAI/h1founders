@@ -97,7 +97,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
             <h2 className="text-2xl font-bold terminal-text matrix-glow mb-2">
               {isClaimingProfile ? 'Claim Your Profile' : 'Join H1Founders'}
             </h2>
-            <p className="text-gray-400 text-sm">
+            <p className="text-foreground-tertiary text-sm">
               {isClaimingProfile 
                 ? 'Enter your WhatsApp number to claim your pre-existing profile'
                 : 'Enter your phone number to get started'}
@@ -105,7 +105,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-foreground-secondary mb-2">
               Phone Number
             </label>
             <input
@@ -114,16 +114,16 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               value={phoneNumber}
               onChange={handlePhoneChange}
               placeholder="(555) 555-5555"
-              className="w-full px-4 py-3 bg-black border border-gray-800 text-green-400 rounded-lg focus:outline-none focus:border-green-400 font-mono"
+              className="w-full px-4 py-3 bg-background border border-border text-accent rounded-lg focus:outline-none focus:border-accent font-mono"
               required
             />
-            <p className="mt-2 text-xs text-gray-500">
+            <p className="mt-2 text-xs text-foreground-tertiary">
               We'll send you a verification code via SMS
             </p>
           </div>
 
           {error && (
-            <div className="p-3 bg-red-900/20 border border-red-500 rounded text-red-400 text-sm">
+            <div className="p-3 bg-red-900/20 border border-red-500 rounded text-red-pill text-sm">
               {error}
             </div>
           )}
@@ -131,15 +131,15 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           <button
             type="submit"
             disabled={loading || phoneNumber.replace(/\D/g, '').length < 10}
-            className="w-full px-6 py-3 bg-green-400 text-black font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+            className="w-full px-6 py-3 bg-green-400 text-foreground font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
           >
             {loading ? 'SENDING...' : 'SEND_VERIFICATION_CODE()'}
           </button>
 
           {isClaimingProfile && (
-            <p className="text-center text-sm text-gray-400">
+            <p className="text-center text-sm text-foreground-tertiary">
               Are you a Substack subscriber instead?{' '}
-              <button type="button" className="text-green-400 hover:underline">
+              <button type="button" className="text-accent hover:underline">
                 Use email verification
               </button>
             </p>
@@ -151,13 +151,13 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
             <h2 className="text-2xl font-bold terminal-text matrix-glow mb-2">
               Enter Verification Code
             </h2>
-            <p className="text-gray-400 text-sm">
+            <p className="text-foreground-tertiary text-sm">
               We sent a 6-digit code to {phoneNumber}
             </p>
           </div>
 
           <div>
-            <label htmlFor="otp" className="block text-sm font-medium text-gray-300 mb-2">
+            <label htmlFor="otp" className="block text-sm font-medium text-foreground-secondary mb-2">
               Verification Code
             </label>
             <input
@@ -166,14 +166,14 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               value={otpCode}
               onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               placeholder="000000"
-              className="w-full px-4 py-3 bg-black border border-gray-800 text-green-400 rounded-lg focus:outline-none focus:border-green-400 font-mono text-center text-2xl tracking-widest"
+              className="w-full px-4 py-3 bg-background border border-border text-accent rounded-lg focus:outline-none focus:border-accent font-mono text-center text-2xl tracking-widest"
               maxLength={6}
               required
             />
           </div>
 
           {error && (
-            <div className="p-3 bg-red-900/20 border border-red-500 rounded text-red-400 text-sm">
+            <div className="p-3 bg-red-900/20 border border-red-500 rounded text-red-pill text-sm">
               {error}
             </div>
           )}
@@ -181,7 +181,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           <button
             type="submit"
             disabled={loading || otpCode.length !== 6}
-            className="w-full px-6 py-3 bg-green-400 text-black font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+            className="w-full px-6 py-3 bg-green-400 text-foreground font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
           >
             {loading ? 'VERIFYING...' : 'VERIFY_AND_LOGIN()'}
           </button>
@@ -193,7 +193,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               setOtpCode('')
               setError('')
             }}
-            className="w-full text-gray-400 hover:text-gray-300 text-sm"
+            className="w-full text-foreground-tertiary hover:text-foreground-secondary text-sm"
           >
             ← Change phone number
           </button>

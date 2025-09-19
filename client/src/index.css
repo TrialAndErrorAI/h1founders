@@ -3,6 +3,7 @@
 
 /* Theme System with CSS Variables */
 /* Light Mode - Default (The Blue Pill) */
+:root,
 :root[data-theme="light"] {
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
@@ -73,11 +74,28 @@ body {
 /* Custom terminal elements */
 .terminal-text {
   font-family: 'JetBrains Mono', monospace;
-  color: var(--matrix-green);
+  color: var(--accent-primary);
 }
 
+/* Matrix glow - theme-aware for readability */
 .matrix-glow {
-  text-shadow: 0 0 10px var(--matrix-green);
+  text-shadow: 0 0 10px var(--accent-primary);
+}
+
+/* Light theme: No glow for better readability */
+:root[data-theme="light"] .matrix-glow {
+  text-shadow: none;
+  font-weight: 600;
+}
+
+/* Dark theme: Subtle glow */
+:root[data-theme="dark"] .matrix-glow {
+  text-shadow: 0 0 8px var(--accent-primary);
+}
+
+/* Matrix theme: Full glow effect */
+:root[data-theme="matrix"] .matrix-glow {
+  text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-secondary);
 }
 
 .red-pill-button {
@@ -108,7 +126,7 @@ body {
 /* Terminal prompt styling */
 .terminal-prompt::before {
   content: 'sid@freedom:~$ ';
-  color: var(--matrix-green);
+  color: var(--accent-primary);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -118,16 +136,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--matrix-black);
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--matrix-green-dark);
+  background: var(--accent-secondary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--matrix-green);
+  background: var(--accent-primary);
 }
 
 /* Custom animations */

@@ -122,10 +122,10 @@ export default function EB1AQualifier() {
   }
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-400'
+    if (score >= 80) return 'text-accent'
     if (score >= 60) return 'text-yellow-400'
     if (score >= 40) return 'text-orange-400'
-    return 'text-red-400'
+    return 'text-red-pill'
   }
 
   const getRecommendation = (score: number) => {
@@ -169,7 +169,7 @@ export default function EB1AQualifier() {
     const recommendation = getRecommendation(score)
     
     return (
-      <div className="min-h-screen bg-black px-6 py-24">
+      <div className="min-h-screen bg-background px-6 py-24">
         <div className="mx-auto max-w-4xl">
           {/* Results Header */}
           <div className="text-center mb-12">
@@ -178,30 +178,30 @@ export default function EB1AQualifier() {
             </h1>
             
             {/* Score Display */}
-            <div className="inline-block bg-gray-900 border border-gray-700 rounded-lg p-8 mb-8">
-              <p className="text-gray-400 font-mono text-sm mb-2">YOUR_SCORE:</p>
+            <div className="inline-block bg-background-secondary border border-border rounded-lg p-8 mb-8">
+              <p className="text-foreground-tertiary font-mono text-sm mb-2">YOUR_SCORE:</p>
               <p className={`text-6xl font-bold font-mono ${getScoreColor(score)}`}>
                 {Math.round(score)}%
               </p>
             </div>
             
             {/* Recommendation */}
-            <div className="bg-gray-900 border border-green-400/20 rounded-lg p-8 mb-8">
+            <div className="bg-background-secondary border border-accent/20 rounded-lg p-8 mb-8">
               <h2 className={`text-2xl font-mono mb-4 ${getScoreColor(score)}`}>
                 {recommendation.title}
               </h2>
-              <p className="text-gray-300 text-lg mb-6">
+              <p className="text-foreground-secondary text-lg mb-6">
                 {recommendation.message}
               </p>
-              <p className="text-white font-semibold">
+              <p className="text-foreground font-semibold">
                 Next step: {recommendation.action}
               </p>
             </div>
           </div>
 
           {/* Detailed Breakdown */}
-          <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 mb-8">
-            <h3 className="text-xl font-mono text-green-400 mb-6">// CATEGORY BREAKDOWN</h3>
+          <div className="bg-background-secondary border border-border rounded-lg p-8 mb-8">
+            <h3 className="text-xl font-mono text-accent mb-6">// CATEGORY BREAKDOWN</h3>
             <div className="space-y-4">
               {questions.map((q) => {
                 const answer = answers.find(a => a.questionId === q.id)
@@ -210,12 +210,12 @@ export default function EB1AQualifier() {
                 return (
                   <div key={q.id}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-400">{q.category}</span>
+                      <span className="text-foreground-tertiary">{q.category}</span>
                       <span className={`font-mono ${getScoreColor(categoryScore)}`}>
                         {Math.round(categoryScore)}%
                       </span>
                     </div>
-                    <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-background-secondary rounded-full overflow-hidden">
                       <div 
                         className={`h-full transition-all duration-500 ${
                           categoryScore >= 80 ? 'bg-green-400' :
@@ -241,14 +241,14 @@ export default function EB1AQualifier() {
               >
                 GET_DETAILED_REPORT()
               </button>
-              <p className="text-gray-500 font-mono text-sm">
+              <p className="text-foreground-tertiary font-mono text-sm">
                 // Receive personalized EB1-A roadmap
               </p>
             </div>
           ) : (
-            <div className="bg-black border border-gray-800 rounded-lg p-8">
-              <h3 className="text-xl font-mono text-white mb-2">// Get your personalized EB1-A roadmap</h3>
-              <p className="text-gray-400 mb-6">
+            <div className="bg-background border border-border rounded-lg p-8">
+              <h3 className="text-xl font-mono text-foreground mb-2">// Get your personalized EB1-A roadmap</h3>
+              <p className="text-foreground-tertiary mb-6">
                 We'll send you a detailed report with specific steps to strengthen your profile.
               </p>
               <EmailCapture 
@@ -266,13 +266,13 @@ export default function EB1AQualifier() {
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={resetQuiz}
-              className="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg font-mono hover:border-gray-400 transition-colors"
+              className="px-6 py-3 border border-border text-foreground-secondary rounded-lg font-mono hover:border-gray-400 transition-colors"
             >
               RETAKE_QUIZ()
             </button>
             <a
               href="#coaching"
-              className="px-6 py-3 bg-green-500 text-black rounded-lg font-mono font-semibold hover:bg-green-400 transition-colors text-center"
+              className="px-6 py-3 bg-accent text-foreground rounded-lg font-mono font-semibold hover:bg-green-400 transition-colors text-center"
             >
               BOOK_STRATEGY_CALL()
             </a>
@@ -286,25 +286,25 @@ export default function EB1AQualifier() {
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
   return (
-    <div className="min-h-screen bg-black px-6 py-24">
+    <div className="min-h-screen bg-background px-6 py-24">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12">
-          <Link to="/tools" className="text-gray-400 hover:text-green-400 font-mono text-sm mb-4 inline-block">
+          <Link to="/tools" className="text-foreground-tertiary hover:text-accent font-mono text-sm mb-4 inline-block">
             ← TOOLS/
           </Link>
           <h1 className="text-4xl font-mono terminal-text matrix-glow mb-4">
             EB1-A_QUALIFIER
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-foreground-tertiary text-lg">
             Answer 10 questions to see if you qualify for the extraordinary ability green card.
           </p>
 
           {/* Demo Warning */}
           <div className="mt-6 bg-blue-900/20 border border-blue-400/30 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-blue-400">🧪</span>
-              <span className="font-mono text-blue-400 text-sm font-bold">DEMO_MODE</span>
+              <span className="text-blue-pill">🧪</span>
+              <span className="font-mono text-blue-pill text-sm font-bold">DEMO_MODE</span>
             </div>
             <p className="text-blue-300 font-mono text-sm">
               // Sample assessment for demonstration. Real qualification evaluation requires attorney consultation.
@@ -315,14 +315,14 @@ export default function EB1AQualifier() {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-400 font-mono">
+            <span className="text-foreground-tertiary font-mono">
               QUESTION_{currentQuestion + 1}/{questions.length}
             </span>
-            <span className="text-green-400 font-mono">
+            <span className="text-accent font-mono">
               {Math.round(progress)}%_COMPLETE
             </span>
           </div>
-          <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+          <div className="h-2 bg-background-secondary rounded-full overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-green-400 to-green-600 transition-all duration-300"
               style={{ width: `${progress}%` }}
@@ -331,16 +331,16 @@ export default function EB1AQualifier() {
         </div>
 
         {/* Question Card */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 mb-8">
+        <div className="bg-background-secondary border border-border rounded-lg p-8 mb-8">
           <div className="mb-6">
-            <span className="text-green-400 font-mono text-sm">
+            <span className="text-accent font-mono text-sm">
               // {question.category}
             </span>
-            <h2 className="text-2xl font-bold text-white mt-2 mb-2">
+            <h2 className="text-2xl font-bold text-foreground mt-2 mb-2">
               {question.question}
             </h2>
             {question.description && (
-              <p className="text-gray-400">
+              <p className="text-foreground-tertiary">
                 {question.description}
               </p>
             )}
@@ -358,18 +358,18 @@ export default function EB1AQualifier() {
               <button
                 key={option.value}
                 onClick={() => handleAnswer(option.value)}
-                className="w-full text-left p-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 hover:border-green-400 rounded-lg transition-all group"
+                className="w-full text-left p-4 bg-background-secondary hover:bg-background-secondary border border-border hover:border-accent rounded-lg transition-all group"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-white font-semibold group-hover:text-green-400">
+                    <span className="text-foreground font-semibold group-hover:text-accent">
                       {option.label}
                     </span>
-                    <span className="text-gray-500 text-sm ml-2">
+                    <span className="text-foreground-tertiary text-sm ml-2">
                       {option.description}
                     </span>
                   </div>
-                  <span className="text-gray-600 group-hover:text-green-400">
+                  <span className="text-foreground-tertiary group-hover:text-accent">
                     →
                   </span>
                 </div>
@@ -382,7 +382,7 @@ export default function EB1AQualifier() {
         {currentQuestion > 0 && (
           <button
             onClick={() => setCurrentQuestion(currentQuestion - 1)}
-            className="text-gray-400 hover:text-white font-mono text-sm"
+            className="text-foreground-tertiary hover:text-foreground font-mono text-sm"
           >
             ← PREVIOUS_QUESTION()
           </button>

@@ -27,8 +27,8 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Suspense fallback={
-          <div className="min-h-screen bg-black flex items-center justify-center">
-            <div className="text-green-400 font-mono">
+          <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--bg-primary)' }}>
+            <div className="font-mono" style={{ color: 'var(--accent-primary)' }}>
               <div className="animate-pulse">Initializing Matrix...</div>
             </div>
           </div>

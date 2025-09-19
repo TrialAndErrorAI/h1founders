@@ -8,7 +8,7 @@ export default function Partners() {
       services: ['EB-1A Applications', 'O-1 Visas', 'EB-2 NIW', 'Startup Legal Strategy'],
       contact: 'Schedule Consultation',
       url: 'https://calendly.com/manifestlabs',
-      color: 'text-red-400',
+      color: 'text-red-pill',
       glow: 'shadow-red-400/50'
     },
     // Future partners will be added here
@@ -20,7 +20,7 @@ export default function Partners() {
       services: ['R&D Tax Credits', 'Startup Accounting', 'Tax Strategy', 'SOC 2 Compliance'],
       contact: 'Schedule Discovery Call',
       url: 'https://calendly.com/finstackk',
-      color: 'text-green-400',
+      color: 'text-accent',
       glow: 'shadow-green-400/50'
     },
     {
@@ -31,7 +31,7 @@ export default function Partners() {
       services: ['Tax Strategy', 'R&D Credits', 'State Selection', 'International Tax'],
       contact: 'Coming Q1 2025',
       url: '#',
-      color: 'text-gray-600',
+      color: 'text-foreground-tertiary',
       glow: ''
     }
   ]
@@ -73,7 +73,7 @@ export default function Partners() {
         'Success story features',
         'Member directory premium badge'
       ],
-      color: 'border-green-400',
+      color: 'border-accent',
       available: 3
     },
     {
@@ -94,14 +94,14 @@ export default function Partners() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white py-12 px-4">
+    <div className="min-h-screen bg-background text-foreground py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold terminal-text matrix-glow mb-4">
             THE ARCHITECT'S ALLIANCE
           </h1>
-          <div className="font-mono text-gray-400 space-y-2">
+          <div className="font-mono text-foreground-tertiary space-y-2">
             <p>// Trusted nodes in the freedom network</p>
             <p>// Partners who actually help you escape the Matrix</p>
           </div>
@@ -109,30 +109,30 @@ export default function Partners() {
 
         {/* Current Partners */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-green-400 mb-8 font-mono">
+          <h2 className="text-2xl font-bold text-accent mb-8 font-mono">
             SYSTEM RESOURCES
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner, idx) => (
               <div
                 key={idx}
-                className={`bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:border-green-400 transition-all duration-300 ${partner.glow ? `shadow-lg ${partner.glow}` : ''}`}
+                className={`bg-background-secondary/50 border border-border rounded-lg p-6 hover:border-accent transition-all duration-300 ${partner.glow ? `shadow-lg ${partner.glow}` : ''}`}
               >
                 <div className={`text-xs font-mono ${partner.color} mb-2`}>
                   [{partner.tier}]
                 </div>
-                <h3 className="text-xl font-bold text-white mb-1">
+                <h3 className="text-xl font-bold text-foreground mb-1">
                   {partner.name}
                 </h3>
-                <p className="text-sm text-gray-500 font-mono mb-3">
+                <p className="text-sm text-foreground-tertiary font-mono mb-3">
                   {partner.module}
                 </p>
-                <p className="text-gray-300 mb-4">
+                <p className="text-foreground-secondary mb-4">
                   {partner.description}
                 </p>
                 <div className="space-y-1 mb-4">
                   {partner.services.map((service, sIdx) => (
-                    <div key={sIdx} className="text-sm text-gray-400 font-mono">
+                    <div key={sIdx} className="text-sm text-foreground-tertiary font-mono">
                       &gt; {service}
                     </div>
                   ))}
@@ -141,8 +141,8 @@ export default function Partners() {
                   href={partner.url}
                   className={`inline-block px-4 py-2 border rounded font-mono text-sm transition-all duration-200 ${
                     partner.tier === 'ARCHITECT'
-                      ? 'border-red-400 text-red-400 hover:bg-red-400 hover:text-black'
-                      : 'border-gray-600 text-gray-600 cursor-not-allowed'
+                      ? 'border-red-400 text-red-pill hover:bg-red-400 hover:text-foreground'
+                      : 'border-border text-foreground-tertiary cursor-not-allowed'
                   }`}
                 >
                   {partner.contact}
@@ -154,32 +154,32 @@ export default function Partners() {
 
         {/* Sponsorship Tiers */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-green-400 mb-8 font-mono">
+          <h2 className="text-2xl font-bold text-accent mb-8 font-mono">
             BECOME A PARTNER
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {sponsorshipTiers.map((tier, idx) => (
               <div
                 key={idx}
-                className={`bg-gray-900/50 border-2 ${tier.color} rounded-lg p-6 hover:shadow-lg transition-all duration-300`}
+                className={`bg-background-secondary/50 border-2 ${tier.color} rounded-lg p-6 hover:shadow-lg transition-all duration-300`}
               >
-                <h3 className="text-lg font-bold text-white mb-2">
+                <h3 className="text-lg font-bold text-foreground mb-2">
                   {tier.name}
                 </h3>
                 <div className="flex items-baseline mb-4">
-                  <span className="text-3xl font-bold text-green-400">
+                  <span className="text-3xl font-bold text-accent">
                     {tier.price}
                   </span>
-                  <span className="text-gray-400 ml-1">{tier.period}</span>
+                  <span className="text-foreground-tertiary ml-1">{tier.period}</span>
                 </div>
                 <ul className="space-y-2 mb-6">
                   {tier.benefits.map((benefit, bIdx) => (
-                    <li key={bIdx} className="text-sm text-gray-300 font-mono">
+                    <li key={bIdx} className="text-sm text-foreground-secondary font-mono">
                       ✓ {benefit}
                     </li>
                   ))}
                 </ul>
-                <div className="text-xs text-gray-500 font-mono">
+                <div className="text-xs text-foreground-tertiary font-mono">
                   {tier.available} slots available
                 </div>
               </div>
@@ -188,32 +188,32 @@ export default function Partners() {
         </div>
 
         {/* Why Partner Section */}
-        <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold text-green-400 mb-4 font-mono">
+        <div className="bg-background-secondary/50 border border-border rounded-lg p-8 text-center">
+          <h2 className="text-2xl font-bold text-accent mb-4 font-mono">
             WHY PARTNER WITH H1FOUNDERS?
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mt-8">
             <div>
-              <div className="text-3xl font-bold text-green-400 mb-2">1,400+</div>
-              <div className="text-gray-400 font-mono">Active Founders</div>
+              <div className="text-3xl font-bold text-accent mb-2">1,400+</div>
+              <div className="text-foreground-tertiary font-mono">Active Founders</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-green-400 mb-2">$50M+</div>
-              <div className="text-gray-400 font-mono">Combined ARR</div>
+              <div className="text-3xl font-bold text-accent mb-2">$50M+</div>
+              <div className="text-foreground-tertiary font-mono">Combined ARR</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-green-400 mb-2">100%</div>
-              <div className="text-gray-400 font-mono">High-Intent Audience</div>
+              <div className="text-3xl font-bold text-accent mb-2">100%</div>
+              <div className="text-foreground-tertiary font-mono">High-Intent Audience</div>
             </div>
           </div>
           <div className="mt-8">
-            <p className="text-gray-300 mb-6">
+            <p className="text-foreground-secondary mb-6">
               Our members are actively building companies, raising funds, and need your services.
               This isn't advertising - it's joining a movement.
             </p>
             <a
               href="mailto:partners@h1founders.com"
-              className="inline-block px-8 py-3 bg-green-400 text-black font-mono font-bold rounded hover:bg-green-500 transition-colors"
+              className="inline-block px-8 py-3 bg-green-400 text-foreground font-mono font-bold rounded hover:bg-accent transition-colors"
             >
               become_partner()
             </a>

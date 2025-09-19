@@ -12,7 +12,7 @@ export default function Network() {
   // If user is authenticated, show the network directory
   if (user) {
     return (
-      <div className="min-h-screen bg-black px-6 py-24">
+      <div className="min-h-screen bg-background px-6 py-24">
         <div className="mx-auto max-w-7xl">
           {/* Authenticated Network View */}
           <div className="mb-12 flex justify-between items-start">
@@ -20,13 +20,13 @@ export default function Network() {
               <h1 className="text-4xl font-mono terminal-text matrix-glow mb-4">
                 NETWORK_DIRECTORY
               </h1>
-              <p className="text-gray-400 font-mono">
+              <p className="text-foreground-tertiary font-mono">
                 // Welcome back, {profile?.name || profile?.phone || 'founder'}
               </p>
             </div>
             <button
               onClick={logout}
-              className="px-4 py-2 bg-red-900/20 border border-red-500 text-red-400 rounded-lg font-mono hover:bg-red-900/30 transition-colors"
+              className="px-4 py-2 bg-red-900/20 border border-red-500 text-red-pill rounded-lg font-mono hover:bg-red-900/30 transition-colors"
             >
               LOGOUT()
             </button>
@@ -50,24 +50,24 @@ export default function Network() {
           {/* Member Grid (Placeholder for now) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-gray-900 border border-gray-800 rounded-lg p-6">
+              <div key={i} className="bg-background-secondary border border-border rounded-lg p-6">
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="w-12 h-12 bg-gray-700 rounded-full" />
                   <div>
                     <div className="h-4 bg-gray-700 rounded w-24 mb-2" />
-                    <div className="h-3 bg-gray-800 rounded w-32" />
+                    <div className="h-3 bg-background-secondary rounded w-32" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="h-3 bg-gray-800 rounded w-full" />
-                  <div className="h-3 bg-gray-800 rounded w-3/4" />
+                  <div className="h-3 bg-background-secondary rounded w-full" />
+                  <div className="h-3 bg-background-secondary rounded w-3/4" />
                 </div>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-gray-500 font-mono text-sm">
+            <p className="text-foreground-tertiary font-mono text-sm">
               // Full directory implementation coming soon
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function Network() {
   // Not authenticated - show locked screen
   return (
     <>
-      <div className="min-h-screen bg-black px-6 py-24">
+      <div className="min-h-screen bg-background px-6 py-24">
         <div className="mx-auto max-w-4xl">
           {/* Locked Screen */}
           <div className="text-center">
@@ -90,37 +90,37 @@ export default function Network() {
             
             {/* Access Denied Message */}
             <div className="mb-12">
-              <h1 className="text-4xl font-mono text-red-500 mb-4">
+              <h1 className="text-4xl font-mono text-red-pill mb-4">
                 ACCESS_DENIED
               </h1>
-              <div className="font-mono text-gray-400 space-y-1">
+              <div className="font-mono text-foreground-tertiary space-y-1">
                 <p>// Authentication required</p>
                 <p>// Members only section</p>
               </div>
             </div>
 
             {/* What's Inside */}
-            <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 mb-8 text-left max-w-2xl mx-auto">
-              <h2 className="text-xl font-mono text-green-400 mb-4">// What's inside:</h2>
-              <ul className="space-y-3 text-gray-300">
+            <div className="bg-background-secondary border border-border rounded-lg p-8 mb-8 text-left max-w-2xl mx-auto">
+              <h2 className="text-xl font-mono text-accent mb-4">// What's inside:</h2>
+              <ul className="space-y-3 text-foreground-secondary">
                 <li className="flex items-start">
-                  <span className="text-green-400 mr-3">→</span>
+                  <span className="text-accent mr-3">→</span>
                   <span>Verified member directory of immigrant founders</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-green-400 mr-3">→</span>
+                  <span className="text-accent mr-3">→</span>
                   <span>Direct connections via LinkedIn/Twitter</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-green-400 mr-3">→</span>
+                  <span className="text-accent mr-3">→</span>
                   <span>Search by visa type, industry, and stage</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-green-400 mr-3">→</span>
+                  <span className="text-accent mr-3">→</span>
                   <span>Co-founder matching and opportunities</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-green-400 mr-3">→</span>
+                  <span className="text-accent mr-3">→</span>
                   <span>Verified service provider recommendations</span>
                 </li>
               </ul>
@@ -138,12 +138,12 @@ export default function Network() {
                 >
                   CLAIM_WHATSAPP_PROFILE()
                 </button>
-                <p className="text-gray-500 font-mono text-xs">
+                <p className="text-foreground-tertiary font-mono text-xs">
                   // For existing WhatsApp community members
                 </p>
               </div>
 
-              <div className="text-gray-400 font-mono text-sm my-4">
+              <div className="text-foreground-tertiary font-mono text-sm my-4">
                 --- OR ---
               </div>
 
@@ -153,11 +153,11 @@ export default function Network() {
                     setIsClaimingProfile(false)
                     setShowAuthModal(true)
                   }}
-                  className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 text-lg font-semibold rounded-lg font-mono transition-colors block w-full max-w-md mx-auto"
+                  className="bg-background-secondary hover:bg-background-secondary text-foreground px-8 py-3 text-lg font-semibold rounded-lg font-mono transition-colors block w-full max-w-md mx-auto"
                 >
                   JOIN_AS_NEW_MEMBER()
                 </button>
-                <p className="text-gray-500 font-mono text-xs">
+                <p className="text-foreground-tertiary font-mono text-xs">
                   // New to the community? Start here
                 </p>
               </div>
@@ -166,7 +166,7 @@ export default function Network() {
 
           {/* Matrix Easter Egg */}
           <div className="mt-24 text-center">
-            <p className="text-gray-800 font-mono text-xs">
+            <p className="text-foreground font-mono text-xs">
               // The Matrix has you...
             </p>
           </div>
