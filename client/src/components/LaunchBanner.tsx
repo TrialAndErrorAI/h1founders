@@ -14,11 +14,8 @@ export default function LaunchBanner() {
             <span className="text-2xl">🚀</span>
           </div>
           <div className="text-center flex-1">
-            <p className="font-mono text-accent text-sm sm:text-base">
-              <span className="font-bold">LAUNCH WEEK:</span> Existing WhatsApp members can now claim their profiles!
-              <span className="hidden sm:inline ml-2">
-                // Join 781 verified founders in the Matrix
-              </span>
+            <p className="font-mono text-accent text-sm sm:text-base whitespace-nowrap">
+              <span className="font-bold">LAUNCH WEEK:</span> Join thousands of verified founders
             </p>
           </div>
           <div className="flex-shrink-0">
