@@ -4,10 +4,10 @@ export default function Community() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-16">
           <h2 className="terminal-text text-4xl font-bold mb-4">
-            ./community_network
+            ./identity_shifts_daily
           </h2>
           <p className="text-foreground-tertiary text-lg">
-            "Each one of us has an inspiring story" - Built by founders, for founders
+            Watch founders transform from "How can I?" to "I'm building this"
           </p>
         </div>
         
@@ -21,7 +21,7 @@ export default function Community() {
             </div>
             <div className="bg-background-secondary rounded p-4 font-mono text-sm border border-border mb-4">
               <div className="text-accent">// Real-time founder chat</div>
-              <div className="text-foreground-secondary">members: 700+</div>
+              <div className="text-foreground-secondary">members: "growing daily"</div>
               <div className="text-foreground-secondary">activity: "high"</div>
               <div className="text-foreground-secondary">wins_shared: "daily"</div>
             </div>
@@ -42,10 +42,10 @@ export default function Community() {
               <h3 className="ml-3 text-xl font-semibold text-foreground font-mono">Substack</h3>
             </div>
             <div className="bg-background-secondary rounded p-4 font-mono text-sm border border-border mb-4">
-              <div className="text-accent">// Weekly immigration intel</div>
-              <div className="text-foreground-secondary">subscribers: 648</div>
-              <div className="text-foreground-secondary">open_rate: "50%"</div>
-              <div className="text-foreground-secondary">frequency: "weekly"</div>
+              <div className="text-accent">// Weekly myth-busting</div>
+              <div className="text-foreground-secondary">subscribers: "hundreds"</div>
+              <div className="text-foreground-secondary">open_rate: "high"</div>
+              <div className="text-foreground-secondary">viral_posts: "frequent"</div>
             </div>
             <a
               href="https://h1founders.substack.com"
@@ -90,74 +90,77 @@ export default function Community() {
             {/* Message 1 */}
             <div className="border-l-4 border-accent pl-6">
               <div className="font-mono text-sm mb-2">
-                <span className="text-accent">[2024-03-15 09:23]</span>
-                <span className="text-foreground-tertiary"> Girish:</span>
+                <span className="text-accent">[Week 1]</span>
+                <span className="text-foreground-tertiary"> Permission-Seeker:</span>
               </div>
               <p className="text-foreground-secondary mb-2">
-                "I was on an H1B but my grace period ended and I changed my status to B2. 
-                I'm deciding if I should try for an EB2-NIW or an O1 or an H1B."
+                "How can I start a business? My lawyer said it's risky.
+                I'll wait until I get my green card in 2029."
               </p>
               <p className="text-foreground-tertiary text-sm font-mono">
-                # First member. Started in panic, now building his company.
+                # Classic mental prison. Asking for permission to exist.
               </p>
             </div>
             
             {/* Message 2 */}
-            <div className="border-l-4 border-blue-500 pl-6">
+            <div className="border-l-4 border-yellow-500 pl-6">
               <div className="font-mono text-sm mb-2">
-                <span className="text-blue-pill">[2024-07-22 14:17]</span>
-                <span className="text-foreground-tertiary"> Asha:</span>
+                <span className="text-yellow-400">[Week 4]</span>
+                <span className="text-foreground-tertiary"> In Transition:</span>
               </div>
               <p className="text-foreground-secondary mb-2">
-                "Thanks Sid for your selflessness and willingness to share your experience with many."
+                "Wait, the forums were wrong? I tested it myself.
+                I can actually do this. Why did I wait so long?"
               </p>
               <p className="text-foreground-tertiary text-sm font-mono">
-                # This community isn't about selling. It's about helping.
+                # The crack in the Matrix. First-hand truth beats forum myths.
               </p>
             </div>
             
             {/* Message 3 */}
-            <div className="border-l-4 border-purple-500 pl-6">
+            <div className="border-l-4 border-green-500 pl-6">
               <div className="font-mono text-sm mb-2">
-                <span className="text-purple-400">[2024-08-03 11:42]</span>
-                <span className="text-foreground-tertiary"> Lindsey:</span>
+                <span className="text-accent">[Week 12]</span>
+                <span className="text-foreground-tertiary"> Founder Mode:</span>
               </div>
               <p className="text-foreground-secondary mb-2">
-                "I am an ex-founder with an EB1-A green card. You can self sponsor your EB1-A green card. 
-                I created PermanentResident.us to give back."
+                "Just hit $10K MRR. Self-sponsoring my H1B next month.
+                I'm not waiting until 2029. I'm free already."
               </p>
               <p className="text-foreground-tertiary text-sm font-mono">
-                # Got EB1-A, now helps others for free. Community DNA.
+                # Identity shift complete. Behavior follows identity.
               </p>
             </div>
           </div>
           
           <div className="mt-8 bg-background-secondary rounded p-4 border border-border">
             <div className="font-mono text-sm">
-              <div className="text-accent">// Community philosophy</div>
+              <div className="text-accent">// The pattern is clear</div>
               <div className="text-foreground-secondary">
-                "By sharing we make each other stronger with a sense of community." - Sid
+                Week 1: "How can I...?" (permission-seeking)<br/>
+                Week 4: "Wait, I can?" (awakening)<br/>
+                Week 12: "I'm building this" (transformation)
               </div>
-              <div className="terminal-text mt-2">
-                Ready to connect with fellow founders? <span className="cursor">█</span>
+              <div className="terminal-text mt-4">
+                Your identity shift starts here <span className="cursor">█</span>
               </div>
             </div>
           </div>
         </div>
         
-        {/* Network Growth Terminal */}
+        {/* Identity Shift Stats */}
         <div className="mt-16 bg-background-secondary rounded-lg p-6 border border-border">
           <div className="font-mono text-sm">
-            <div className="text-accent">sid@network:~$ growth_stats --timeline</div>
+            <div className="text-accent">sid@transformations:~$ show_impact --real</div>
             <div className="text-foreground-secondary mt-4 space-y-1">
-              <div>March 2024    # Viral LinkedIn post → 100 members in 24hrs</div>
-              <div>April 2024    # WhatsApp: 200 → Slack launched</div>
-              <div>June 2024     # Substack: 300 subscribers</div>
-              <div>August 2024   # WhatsApp: 500 → Attorney AMAs start</div>
-              <div>September 2024# WhatsApp: 700+, Substack: 600+, Total: 1000+</div>
+              <div>Permission-seekers transformed: 1400+</div>
+              <div>"How can I?" → "I'm building": Daily</div>
+              <div>People rejecting 2029 timeline: 100s</div>
+              <div>Forum myths busted: Countless</div>
+              <div>Mental prisons broken: Growing</div>
             </div>
             <div className="text-accent mt-4">
-              From 0 to 1000+ in 6 months. Organic growth only. <span className="cursor">█</span>
+              Every day, someone stops asking and starts doing. <span className="cursor">█</span>
             </div>
           </div>
         </div>

@@ -49,23 +49,23 @@ export default function Footer() {
             
             <div className="mt-8 text-center border-t border-border pt-6">
               <div className="text-foreground-secondary mb-2">
-                H1Founders - Breaking visa slavery since March 2024
+                H1Founders - Breaking mental chains since March 2024
               </div>
               <div className="text-foreground-tertiary text-xs">
-                Founded by Sid Sarasvati • CEO of RenovateAI ($3M ARR) • EB1-A recipient
+                Founded by Sid Sarasvati • Escaped the Matrix • Helping 1400+ do the same
               </div>
             </div>
             
             <div className="mt-6 bg-background rounded p-4 border border-border">
-              <div className="text-accent">// System status</div>
+              <div className="text-accent">// Impact metrics</div>
               <div className="text-foreground-secondary">
-                community_size: 1400,<br/>
-                companies_bootstrapped: "many",<br/>
-                myths_destroyed: "countless",<br/>
-                freedom_enabled: true
+                minds_freed: 1400+<br/>
+                "How can I?" → "I am": daily<br/>
+                mental_prisons_broken: growing<br/>
+                permission_no_longer_needed: true
               </div>
               <div className="text-accent mt-2">
-                Ready to start your journey? <span className="cursor">█</span>
+                Stop asking. Start building. <span className="cursor">█</span>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function Footer() {
         
         <div className="mt-8 text-center">
           <div className="font-mono text-xs text-foreground-tertiary">
-            ./build_business --while="on_h1b" --outcome="eb1a_green_card"
+            ./transform_identity --from="employee" --to="founder" --timeline="now"
           </div>
         </div>
       </div>

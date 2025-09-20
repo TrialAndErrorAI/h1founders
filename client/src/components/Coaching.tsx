@@ -6,23 +6,23 @@ export default function Coaching() {
           {/* Left: Direct Message */}
           <div>
             <h2 className="text-3xl font-bold terminal-text matrix-glow mb-4">
-              Need 1:1 Help?
+              Ready to Debug Your Mind?
             </h2>
             <p className="text-lg text-foreground-secondary mb-4">
-              I spent 15 years figuring out H1B entrepreneurship.
-              You can learn it in 45 minutes.
+              I spent 11 years believing lies about what's possible.
+              Let's debug your mental programming in 45 minutes.
             </p>
             <div className="space-y-2 text-foreground-tertiary font-mono text-sm mb-6">
-              <p>✓ Your specific situation analyzed</p>
-              <p>✓ Legal structure that actually works</p>
-              <p>✓ Revenue timeline to switch from employer</p>
-              <p>✓ EB1A pathway through your startup</p>
+              <p>✓ Break your "How can I?" patterns</p>
+              <p>✓ Shift from employee to founder identity</p>
+              <p>✓ Stop waiting for permission that never comes</p>
+              <p>✓ Create your own timeline (not 2029)</p>
             </div>
             <a
               href="/coaching"
               className="inline-block px-6 py-3 bg-green-400 hover:bg-accent text-foreground font-mono font-bold rounded transition-colors"
             >
-              BOOK_SESSION() → $185
+              BOOK_SESSION()
             </a>
           </div>
 
@@ -32,14 +32,14 @@ export default function Coaching() {
               <div className="text-accent mb-3">// Recent feedback</div>
               <div className="text-foreground-secondary space-y-3">
                 <p className="border-l-2 border-accent pl-3">
-                  "Most valuable 45 minutes of my founder journey.
-                  Sid cut through all the BS and gave me a clear path."
-                  <span className="text-foreground-tertiary">- H1B founder, Nov 2024</span>
+                  "I went from 'How can I?' to 'I'm building this.'
+                  The mindset shift was worth 10x the price."
+                  <span className="text-foreground-tertiary">- Former permission-seeker, Nov 2024</span>
                 </p>
                 <p className="border-l-2 border-accent pl-3">
-                  "I was about to make expensive mistakes. This call
-                  saved me $10K+ in legal fees alone."
-                  <span className="text-foreground-tertiary">- F1 founder, Dec 2024</span>
+                  "Stopped accepting my 5-year prison sentence.
+                  Now building my path to freedom."
+                  <span className="text-foreground-tertiary">- Founder who rejected 2029, Dec 2024</span>
                 </p>
               </div>
             </div>

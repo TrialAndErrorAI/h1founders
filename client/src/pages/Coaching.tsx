@@ -5,10 +5,10 @@ export default function CoachingPage() {
         {/* Header - Mental Freedom Hook */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold terminal-text matrix-glow mb-4">
-            Talk to founders
+            Stop Asking Permission
           </h1>
           <p className="text-xl text-foreground-secondary font-mono">
-            Stop reading forums. Start building your company.
+            Break years of mental programming in 45 minutes
           </p>
         </div>
 
@@ -17,50 +17,57 @@ export default function CoachingPage() {
           {/* Left: What You Get */}
           <div className="space-y-8">
             <div className="bg-background-secondary/50 border border-border rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-accent mb-4">Coaching Call with Sid</h2>
+              <h2 className="text-2xl font-bold text-accent mb-4">The Problem You're Facing</h2>
               <div className="space-y-4 text-foreground-secondary">
                 <p>
-                  I run a community of 700+ aspiring immigrant founders navigating the F1 → H1B → Founder → Green Card path.
+                  You're still asking "How can I?" instead of saying "I'm building this."
                 </p>
                 <p>
-                  After my LinkedIn post about self-sponsoring my H1B visa reached 220,000+ views, I've been sharing my experience of building a profitable SaaS business while navigating the US immigration system.
+                  Your lawyer said no, so you stopped. You accepted waiting until 2029 like it's reasonable. You've been "thinking about it for years" but haven't started.
                 </p>
                 <p className="font-semibold text-foreground">
+                  The prison is in your head. I was stuck there for 11 years.
+                </p>
+                <p className="text-accent">
                   The hardest part is actually having a business. Rest all is solvable.
                 </p>
               </div>
             </div>
 
             <div className="bg-background-secondary/50 border border-border rounded-lg p-6">
-              <h3 className="text-lg font-bold text-accent mb-4">What We'll Cover</h3>
+              <h3 className="text-lg font-bold text-accent mb-4">The Transformation</h3>
               <div className="space-y-3 text-foreground-secondary">
                 <p>
-                  During our call, we'll explore your journey and brainstorm together. Whether you have specific questions or are just starting to explore:
+                  In 45 minutes, we'll rewire your mental patterns:
                 </p>
                 <ul className="space-y-2 mt-3 font-mono text-sm">
-                  <li>• Your specific situation, not generic advice</li>
-                  <li>• Legal structure that actually works</li>
-                  <li>• Revenue is what makes your business legit</li>
-                  <li>• Timeline to switch from employer to startup</li>
-                  <li>• Breaking the mental barriers holding you back</li>
+                  <li>• FROM: "How can I?" → TO: "I'm doing this"</li>
+                  <li>• FROM: "My lawyer said..." → TO: "I tested it myself"</li>
+                  <li>• FROM: "Wait until 2029" → TO: "Free by 2025"</li>
+                  <li>• FROM: "Too risky" → TO: "Staying employed is riskier"</li>
+                  <li>• FROM: Employee identity → TO: Founder identity</li>
                 </ul>
               </div>
             </div>
 
             <div className="bg-background-secondary/50 border border-border rounded-lg p-6">
-              <h3 className="text-lg font-bold text-accent mb-4">Agenda</h3>
+              <h3 className="text-lg font-bold text-accent mb-4">Session Structure</h3>
               <div className="space-y-3 text-foreground-secondary font-mono text-sm">
-                <p>// 45-minute session structure</p>
+                <p>// Mental reprogramming agenda</p>
                 <div className="pl-4 space-y-2">
-                  <p>[0-10 min] Your current situation & blockers</p>
-                  <p>[10-30 min] Deep dive into your specific challenges</p>
-                  <p>[30-40 min] Actionable plan & next steps</p>
-                  <p>[40-45 min] Resources & community access</p>
+                  <p>[0-10 min] Identify your permission-seeking patterns</p>
+                  <p>[10-30 min] Break the mental prison you've accepted</p>
+                  <p>[30-40 min] Install founder identity & behaviors</p>
+                  <p>[40-45 min] Next steps (Win Club if ready)</p>
                 </div>
                 <div className="pt-4 mt-4 border-t border-border">
-                  <p className="text-accent">$185 for 45 minutes</p>
-                  <p className="text-foreground-tertiary text-xs mt-1">
-                    // This is incorrect information - let's fix it together
+                  <p className="text-accent text-lg font-bold">$297 for 45 minutes</p>
+                  <p className="text-foreground-secondary text-sm mt-2">
+                    One bad decision costs $10K.<br/>
+                    One identity shift changes everything.
+                  </p>
+                  <p className="text-yellow-400 text-xs mt-3">
+                    // Want ongoing support? Ask about Win Club ($497/mo)
                   </p>
                 </div>
               </div>
@@ -82,14 +89,20 @@ export default function CoachingPage() {
           </div>
         </div>
 
-        {/* Bottom: Direct Quote */}
+        {/* Bottom: Direct Message */}
         <div className="mt-16 max-w-3xl mx-auto">
           <div className="bg-gradient-to-r from-red-900/20 to-green-900/20 border border-accent/30 rounded-lg p-8 text-center">
             <p className="text-lg text-foreground-secondary font-mono mb-4">
-              "That's a good question and a common myth. I had this fear as well and exactly why I posted on LinkedIn and created this group."
+              "That's a common myth. I believed it for 11 years.<br/>
+              The forums are wrong. Your lawyer is wrong.<br/>
+              You're asking the wrong question."
             </p>
-            <p className="text-accent font-bold">
-              Let's debug your mental programming. No course upsell. Just truth.
+            <p className="text-accent font-bold text-xl">
+              Stop asking "How can I?"<br/>
+              Start saying "I am."
+            </p>
+            <p className="text-foreground-tertiary text-sm mt-4 font-mono">
+              // No course upsell. No BS. Just identity transformation.
             </p>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function Hero() {
           <span className="text-accent matrix-glow">CAN</span>
           <span className="text-foreground"> start a business on H1B."</span>
         </h1>
-        
+
         {/* The Red Pill Moment */}
         <div className="space-y-4 mb-10 animate-fade-in-delay">
           <p className="text-2xl sm:text-3xl font-bold text-foreground">
@@ -25,7 +25,7 @@ export default function Hero() {
             <span className="text-accent"> 95% profit</span> anyway.
           </p>
         </div>
-        
+
         {/* The Reality */}
         <div className="max-w-3xl mx-auto mb-10">
           <div className="bg-background-secondary/50 backdrop-blur-sm rounded-lg p-4 sm:p-6 font-mono text-left border border-border hover:border-accent/30 transition-colors">
@@ -42,7 +42,7 @@ export default function Hero() {
         <p className="text-lg sm:text-xl text-foreground-secondary mb-10">
           Now <span className="text-accent font-bold">thousands of founders</span> refusing to wait 150 years.
         </p>
-        
+
         {/* The Choice - Red Pill vs Blue Pill */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <button
