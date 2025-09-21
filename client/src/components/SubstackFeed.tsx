@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ExternalLinkIcon } from '@heroicons/react/24/outline'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 
 interface SubstackPost {
   title: string
@@ -96,7 +96,7 @@ export default function SubstackFeed() {
                   {post.pubDate}
                 </p>
               </div>
-              <ExternalLinkIcon className="w-4 h-4 mt-1 ml-2 opacity-50 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--text-tertiary)' }} />
+              <ArrowTopRightOnSquareIcon className="w-4 h-4 mt-1 ml-2 opacity-50 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--text-tertiary)' }} />
             </div>
           </a>
         ))}
