@@ -5,6 +5,7 @@ import Hero from '../components/Hero'
 import TheReceipts from '../components/TheReceipts'
 import Transformation from '../components/Transformation'
 import Coaching from '../components/Coaching'
+import SubstackFeed from '../components/SubstackFeed'
 import Community from '../components/Community'
 import Footer from '../components/Footer'
 
@@ -37,6 +38,12 @@ export default function Home() {
       {/* <FounderStory /> */}
       <Transformation />
       <Coaching />
+      {/* Substack Feed - Latest Insights */}
+      <div className="px-6 py-12">
+        <div className="mx-auto max-w-4xl">
+          <SubstackFeed />
+        </div>
+      </div>
       <Community />
       <Footer />
     </>
