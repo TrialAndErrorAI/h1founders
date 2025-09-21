@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
+import CrisisBanner from '../components/CrisisBanner'
 import Hero from '../components/Hero'
 import TheReceipts from '../components/TheReceipts'
 import Transformation from '../components/Transformation'
@@ -29,6 +30,7 @@ export default function Home() {
   // If user is authenticated, they'll be redirected above
   return (
     <>
+      <CrisisBanner />
       <Hero />
       <TheReceipts />
       {/* <WhatIActuallyDo /> */}

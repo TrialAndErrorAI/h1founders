@@ -54,7 +54,9 @@
       "Bash(awk:*)",
       "mcp__firebase__firestore_get_rules",
       "Bash(xargs sed:*)",
-      "Bash(sqlite3:*)"
+      "Bash(sqlite3:*)",
+      "WebFetch(domain:community.h1bfounders.com)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []

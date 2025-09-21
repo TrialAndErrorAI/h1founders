@@ -20,6 +20,7 @@ const ForumThread = lazy(() => import('./pages/forum/ForumThread'))
 const CreateThread = lazy(() => import('./pages/forum/CreateThread'))
 const Partners = lazy(() => import('./pages/Partners'))
 const Coaching = lazy(() => import('./pages/Coaching'))
+const Crisis = lazy(() => import('./pages/Crisis'))
 
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="tools/salary-explorer" element={<SalaryExplorer />} />
             <Route path="tools/eb1a-qualifier" element={<EB1AQualifier />} />
             <Route path="coaching" element={<Coaching />} />
+            <Route path="crisis" element={<Crisis />} />
             <Route path="resources" element={<Resources />} />
             <Route path="stories" element={<Stories />} />
             <Route path="events" element={<Events />} />
