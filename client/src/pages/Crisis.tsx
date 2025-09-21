@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { CheckCircleIcon, XCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 export default function Crisis() {
   return (
@@ -12,7 +11,7 @@ export default function Crisis() {
             H1B $100K Crisis Tracker
           </h1>
           <p className="text-lg mt-2" style={{ color: 'var(--text-secondary)' }}>
-            Facts, not fear. Verified by 850+ founders.
+            Verified by 850+ founders. Not legal advice.
           </p>
         </div>
       </div>
@@ -31,9 +30,8 @@ export default function Crisis() {
 
         {/* What Actually Changed */}
         <section className="border rounded-lg p-6" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-            <ExclamationTriangleIcon className="w-6 h-6 text-yellow-400" />
-            What Actually Changed
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+            What Changed
           </h2>
           <div className="space-y-3 font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
             <p>• $100,000 fee for NEW H1B petitions (not annual, one-time)</p>
@@ -46,37 +44,30 @@ export default function Crisis() {
 
         {/* Who Is NOT Affected */}
         <section className="border rounded-lg p-6" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-            <CheckCircleIcon className="w-6 h-6 text-green-400" />
-            You're SAFE If You're
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+            NOT Affected (You're Safe)
           </h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <p className="font-mono text-sm flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                Currently on H1B in the US
+              <p className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
+                • Currently on H1B in the US
               </p>
-              <p className="font-mono text-sm flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                Doing H1B transfer within US
+              <p className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
+                • H1B transfer within US
               </p>
-              <p className="font-mono text-sm flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                Extending your H1B
+              <p className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
+                • H1B extension
               </p>
             </div>
             <div className="space-y-2">
-              <p className="font-mono text-sm flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                F1 to H1B status change
+              <p className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
+                • F1 to H1B change
               </p>
-              <p className="font-mono text-sm flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                Self-sponsoring your H1B
+              <p className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
+                • Self-sponsoring H1B
               </p>
-              <p className="font-mono text-sm flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                Already in 2025 lottery
+              <p className="font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
+                • In 2025 lottery already
               </p>
             </div>
           </div>
@@ -84,23 +75,13 @@ export default function Crisis() {
 
         {/* Who IS Affected */}
         <section className="border rounded-lg p-6" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-            <XCircleIcon className="w-6 h-6 text-red-400" />
-            Who IS Affected
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+            Affected (Act Now)
           </h2>
           <div className="space-y-3 font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
-            <p className="flex items-center gap-2">
-              <XCircleIcon className="w-4 h-4 text-red-400" />
-              New H1B applicants from abroad (starting Feb 2026 lottery)
-            </p>
-            <p className="flex items-center gap-2">
-              <XCircleIcon className="w-4 h-4 text-red-400" />
-              Outsourcing companies bringing consultants from overseas
-            </p>
-            <p className="flex items-center gap-2">
-              <XCircleIcon className="w-4 h-4 text-red-400" />
-              First-time H1B applicants outside the US
-            </p>
+            <p>• New H1B from abroad (Feb 2026 lottery)</p>
+            <p>• Outsourcing companies bringing consultants</p>
+            <p>• First-time H1B outside US</p>
           </div>
         </section>
 
@@ -113,17 +94,16 @@ export default function Crisis() {
             <div>
               <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>If You're in the US:</h3>
               <ul className="space-y-1 font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
-                <li>• Don't panic - you're not affected</li>
-                <li>• Avoid international travel if possible</li>
-                <li>• Consider expediting green card process</li>
+                <li>• Stay in US</li>
+                <li>• Focus on green card</li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>If You're Outside the US:</h3>
               <ul className="space-y-1 font-mono text-sm" style={{ color: 'var(--text-secondary)' }}>
-                <li>• Explore O-1 visa (no lottery, no $100K fee)</li>
-                <li>• Consider L-1 if you have a qualifying company</li>
-                <li>• Look into EB-1A or EB-2 NIW (green card paths)</li>
+                <li>• O-1 visa (no fee)</li>
+                <li>• L-1 transfer</li>
+                <li>• EB-1A/EB-2 NIW</li>
               </ul>
             </div>
           </div>
@@ -135,7 +115,7 @@ export default function Crisis() {
             Get Real-Time Updates & Support
           </h2>
           <p className="mb-6 text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Join 850+ founders navigating this together. No fear-mongering. Just facts.
+            850+ founders. Real-time updates.
           </p>
           <div className="space-y-4">
             <a
@@ -172,18 +152,10 @@ export default function Crisis() {
               <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Stop panicking. Here's what actually changed and who's affected.
               </p>
-              <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)' }}>
-                September 20, 2025 • 5 min read
-              </p>
             </a>
           </div>
         </section>
 
-        {/* Disclaimer */}
-        <div className="text-center text-sm p-4" style={{ color: 'var(--text-tertiary)' }}>
-          <p>This is community-verified information, not legal advice.</p>
-          <p>Consult an immigration attorney for your specific situation.</p>
-        </div>
       </div>
     </div>
   )
