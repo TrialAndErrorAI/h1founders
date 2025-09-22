@@ -16,6 +16,7 @@ const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 const baseNavigation: NavItem[] = [
   { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
   { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
+  { name: 'NEWSLETTER', href: '/newsletter', status: 'LIVE' },
   { name: 'COACHING', href: '/coaching', status: 'LIVE' }
   // Removed SOON items for cleaner navigation
   // Network section hidden - access through member login only
@@ -104,13 +105,13 @@ export default function Navigation() {
               {/* Theme Toggle */}
               <ThemeToggle />
 
-              {/* Terminal Easter Egg (hidden) */}
-              <button
-                className="text-foreground hover:text-foreground-tertiary font-mono text-sm"
-                onClick={() => {}}
+              {/* Crisis Tracker - Time-sensitive */}
+              <Link
+                to="/crisis"
+                className="text-yellow-400 hover:text-yellow-300 font-mono text-sm animate-pulse"
               >
-                TERMINAL
-              </button>
+                CRISIS
+              </Link>
             </div>
           </div>
 

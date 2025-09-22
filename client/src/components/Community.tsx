@@ -11,72 +11,26 @@ export default function Community() {
           </p>
         </div>
         
-        {/* Network Stats */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* WhatsApp */}
-          <div className="bg-background rounded-lg p-6 border border-border">
-            <div className="flex items-center mb-4">
-              <div className="terminal-text font-mono text-xl font-bold">W</div>
-              <h3 className="ml-3 text-xl font-semibold text-foreground font-mono">WhatsApp</h3>
-            </div>
-            <div className="bg-background-secondary rounded p-4 font-mono text-sm border border-border mb-4">
-              <div className="text-accent">// Real-time founder chat</div>
-              <div className="text-foreground-secondary">members: "growing daily"</div>
-              <div className="text-foreground-secondary">activity: "high"</div>
-              <div className="text-foreground-secondary">wins_shared: "daily"</div>
-            </div>
-            <a
-              href="https://chat.whatsapp.com/h1founders"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="terminal-text font-mono hover:text-foreground transition-colors"
-            >
-              ./join --whatsapp
-            </a>
+        {/* Primary CTA - WhatsApp */}
+        <div className="bg-background rounded-lg p-8 border-2 border-accent mb-16 text-center">
+          <div className="font-mono text-sm mb-4">
+            <div className="text-accent text-lg">// Join 850+ founders breaking free</div>
           </div>
-          
-          {/* Substack */}
-          <div className="bg-background rounded-lg p-6 border border-border">
-            <div className="flex items-center mb-4">
-              <div className="terminal-text font-mono text-xl font-bold">S</div>
-              <h3 className="ml-3 text-xl font-semibold text-foreground font-mono">Substack</h3>
-            </div>
-            <div className="bg-background-secondary rounded p-4 font-mono text-sm border border-border mb-4">
-              <div className="text-accent">// Weekly myth-busting</div>
-              <div className="text-foreground-secondary">subscribers: "hundreds"</div>
-              <div className="text-foreground-secondary">open_rate: "high"</div>
-              <div className="text-foreground-secondary">viral_posts: "frequent"</div>
-            </div>
-            <a
-              href="https://h1founders.substack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="terminal-text font-mono hover:text-foreground transition-colors"
-            >
-              ./subscribe --newsletter
-            </a>
-          </div>
-          
-          {/* Slack */}
-          <div className="bg-background rounded-lg p-6 border border-border">
-            <div className="flex items-center mb-4">
-              <div className="terminal-text font-mono text-xl font-bold">S</div>
-              <h3 className="ml-3 text-xl font-semibold text-foreground font-mono">Slack</h3>
-            </div>
-            <div className="bg-background-secondary rounded p-4 font-mono text-sm border border-border mb-4">
-              <div className="text-accent">// Deep discussions</div>
-              <div className="text-foreground-secondary">attorney_amas: true</div>
-              <div className="text-foreground-secondary">profile_reviews: true</div>
-              <div className="text-foreground-secondary">access: "premium"</div>
-            </div>
-            <a
-              href="https://h1founders.slack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="terminal-text font-mono hover:text-foreground transition-colors"
-            >
-              ./join --slack
-            </a>
+          <p className="text-foreground text-xl mb-6">
+            Real-time support. No BS. Just founders helping founders.
+          </p>
+          <a
+            href="https://chat.whatsapp.com/FMSvh9pAP1pLX4V8TrRcNV"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-accent text-black px-8 py-3 rounded font-bold hover:bg-green-400 transition-colors text-lg"
+          >
+            JOIN WHATSAPP GROUP →
+          </a>
+          <div className="mt-6 flex justify-center gap-8 text-sm text-foreground-tertiary">
+            <span>✓ Real founders</span>
+            <span>✓ Daily wins</span>
+            <span>✓ No lawyers selling</span>
           </div>
         </div>
         

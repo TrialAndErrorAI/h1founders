@@ -21,6 +21,7 @@ const CreateThread = lazy(() => import('./pages/forum/CreateThread'))
 const Partners = lazy(() => import('./pages/Partners'))
 const Coaching = lazy(() => import('./pages/Coaching'))
 const Crisis = lazy(() => import('./pages/Crisis'))
+const Newsletter = lazy(() => import('./pages/Newsletter'))
 
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="tools/eb1a-qualifier" element={<EB1AQualifier />} />
             <Route path="coaching" element={<Coaching />} />
             <Route path="crisis" element={<Crisis />} />
+            <Route path="newsletter" element={<Newsletter />} />
             <Route path="resources" element={<Resources />} />
             <Route path="stories" element={<Stories />} />
             <Route path="events" element={<Events />} />
