@@ -51,19 +51,29 @@ export default function Newsletter() {
       <div className="bg-background-secondary border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="terminal-text text-4xl font-bold mb-2">./newsletter</h1>
-          <p className="text-foreground-tertiary text-lg">
+          <p className="text-foreground-tertiary text-lg mb-6">
             Breaking H1B myths, one truth at a time
           </p>
-          <div className="mt-4">
-            <a
-              href="https://community.h1bfounders.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-accent hover:text-green-400 transition-colors"
-            >
-              Subscribe on Substack
-              <ArrowTopRightOnSquareIcon className="w-4 h-4" />
-            </a>
+
+          {/* Substack Subscribe Widget */}
+          <div className="max-w-md">
+            <iframe
+              src="https://community.h1bfounders.com/embed"
+              width="480"
+              height="320"
+              style={{
+                border: '1px solid #EEE',
+                background: 'white',
+                borderRadius: '8px',
+                width: '100%',
+                maxWidth: '480px'
+              }}
+              frameBorder="0"
+              scrolling="no"
+            />
+            <p className="text-sm text-foreground-tertiary mt-2">
+              Join 600+ founders getting weekly myth-busting insights
+            </p>
           </div>
         </div>
       </div>
