@@ -47,33 +47,35 @@ export default function Newsletter() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      {/* Compact Header with Side Subscribe */}
       <div className="bg-background-secondary border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="terminal-text text-4xl font-bold mb-2">./newsletter</h1>
-          <p className="text-foreground-tertiary text-lg mb-6">
-            Breaking H1B myths, one truth at a time
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+            {/* Left: Title and Description */}
+            <div className="flex-1">
+              <h1 className="terminal-text text-3xl font-bold mb-2">./newsletter</h1>
+              <p className="text-foreground-tertiary">
+                Breaking H1B myths, one truth at a time
+              </p>
+            </div>
 
-          {/* Substack Subscribe Widget */}
-          <div className="max-w-md">
-            <iframe
-              src="https://community.h1bfounders.com/embed"
-              width="480"
-              height="320"
-              style={{
-                border: '1px solid #EEE',
-                background: 'white',
-                borderRadius: '8px',
-                width: '100%',
-                maxWidth: '480px'
-              }}
-              frameBorder="0"
-              scrolling="no"
-            />
-            <p className="text-sm text-foreground-tertiary mt-2">
-              Join 600+ founders getting weekly myth-busting insights
-            </p>
+            {/* Right: Subscribe Widget (smaller, inline) */}
+            <div className="lg:w-80">
+              <iframe
+                src="https://community.h1bfounders.com/embed"
+                width="320"
+                height="150"
+                style={{
+                  border: '1px solid #333',
+                  background: 'white',
+                  borderRadius: '8px',
+                  width: '100%',
+                  maxWidth: '320px'
+                }}
+                frameBorder="0"
+                scrolling="no"
+              />
+            </div>
           </div>
         </div>
       </div>
