@@ -56,7 +56,9 @@
       "Bash(xargs sed:*)",
       "Bash(sqlite3:*)",
       "WebFetch(domain:community.h1bfounders.com)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:h1founders.com)",
+      "Bash(git show:*)"
     ],
     "deny": [],
     "ask": []
