@@ -1,8 +1,24 @@
-# H1BFounders Website Project
+# H1Founders Platform (formerly H1BFounders)
 **Project Lead**: ATLAS (Direct management)
 **CPTO**: NEXUS (Chief Product & Technology Officer - Claude)
 **Start Date**: September 6, 2025
-**Status**: Active
+**Status**: LIVE - h1founders.com
+**Last Major Update**: September 21, 2025 - LIVE DEPLOYMENT during H1B $100K crisis
+
+## DOMAIN ARCHITECTURE (Critical - September 21, 2025)
+**Main Platform**:
+- **h1founders.com** - Primary domain (Cloudflare Pages, auto-deploy on push)
+- **h1bfounders.com** - Redirects to h1founders.com (captures H1B search traffic)
+
+**Substack Newsletter**:
+- **community.h1bfounders.com** - Substack custom domain (discovery engine, 600+ subscribers)
+- Strategic: Substack for SEO/discovery, Platform for community/conversion
+
+**Deployment**:
+- **Host**: Cloudflare Pages (connected to GitHub)
+- **Auto-deploy**: Every push to master branch
+- **Build**: `cd client && bun install && bun run build`
+- **Status**: LIVE with Crisis Response System
 
 ## NEXUS: My Role as CPTO
 As Chief Product & Technology Officer, I (NEXUS) make critical product decisions with security-first mindset:
