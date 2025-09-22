@@ -36,9 +36,6 @@ export async function getAllContentThreads(): Promise<Thread[]> {
   }
 
   // Categories in content already match ForumCategory enum values
-
-  index.threads.forEach((t: any) => console.log(`  - ${t.title} (${t.category})`))
-
   return index.threads
 }
 

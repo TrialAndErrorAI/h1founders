@@ -107,7 +107,7 @@ export default function Navigation() {
               {/* Terminal Easter Egg (hidden) */}
               <button
                 className="text-foreground hover:text-foreground-tertiary font-mono text-sm"
-                onClick={() => console.log('Welcome to the Matrix...')}
+                onClick={() => {}}
               >
                 TERMINAL
               </button>

@@ -152,7 +152,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         action: 'phone_auth'
       })
       
-      console.log('✅ reCAPTCHA v3 token obtained (invisible)')
+      // reCAPTCHA v3 token obtained (invisible)
       
       // Create invisible verifier for Firebase
       const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {

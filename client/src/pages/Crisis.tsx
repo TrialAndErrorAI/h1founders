@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import SubstackFeed from '../components/SubstackFeed'
 
 export default function Crisis() {
   return (
@@ -133,28 +134,8 @@ export default function Crisis() {
           </div>
         </section>
 
-        {/* Latest Articles */}
-        <section className="border rounded-lg p-6" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
-          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-            Latest Analysis
-          </h2>
-          <div className="space-y-4">
-            <a
-              href="https://community.h1bfounders.com/p/trumps-100k-h1b-proclamation-what"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block p-4 border rounded hover:border-accent transition-colors"
-              style={{ borderColor: 'var(--border-primary)' }}
-            >
-              <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                Trump's $100K H1B Proclamation: What It Actually Means
-              </h3>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                Stop panicking. Here's what actually changed and who's affected.
-              </p>
-            </a>
-          </div>
-        </section>
+        {/* Latest Articles from Substack */}
+        <SubstackFeed />
 
       </div>
     </div>
