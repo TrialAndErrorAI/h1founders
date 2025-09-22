@@ -73,7 +73,7 @@ export default function TheReceipts() {
               <div className="text-foreground-secondary hover:text-accent transition-colors">2019  # Compass: Director → IPO (success for them, not me)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2021  # JOKR: VP Eng, unicorn (still building for others)</div>
               <div className="text-red-pill hover:text-accent transition-colors">2021  # THE IRONY: Sponsored others' GCs while stuck myself</div>
-              <div className="text-yellow-400 hover:text-accent transition-colors">2022  # Said FUCK IT, started anyway (first crack in Matrix)</div>
+              <div className="text-yellow-400 hover:text-accent transition-colors">2022  # Said F**K IT, started anyway (first crack in Matrix)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2023  # $1M revenue (proved the myths were BS)</div>
               <div className="text-red-pill hover:text-accent transition-colors">2023  # EB1-A DENIED - "not extraordinary" (their programming)</div>
               <div className="text-foreground-tertiary">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
