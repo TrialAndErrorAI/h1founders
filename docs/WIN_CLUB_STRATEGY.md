@@ -148,12 +148,12 @@ Become responsible.
 - **Guest spots** - Successful alumni return
 - **Demo days** - Show what they built
 
-### Price Progression
+### Price Progression (Mentorship Premium)
 - Q4 2025: $497 (Founding cohort)
-- Q1 2026: $597 (Proven model)
-- Q2 2026: $697 (Waitlist exists)
-- Q3 2026: $797 (Alumni evangelizing)
-- Q4 2026: $997 (The standard)
+- Q1 2026: $697 (Private mentorship positioning)
+- Q2 2026: $897 (Waitlist growing)
+- Q3 2026: $997 (Alumni success stories)
+- Q4 2026: $1,497 (Exclusive inner circle established)
 
 ## The Long Game
 

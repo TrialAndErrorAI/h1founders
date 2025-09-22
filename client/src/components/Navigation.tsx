@@ -14,11 +14,11 @@ interface NavItem {
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
 const baseNavigation: NavItem[] = [
+  { name: 'CRISIS', href: '/crisis', status: 'LIVE', notify: true },
   { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
-  { name: 'TOOLS', href: '/tools', status: 'LIVE', count: 2 },
   { name: 'NEWSLETTER', href: '/newsletter', status: 'LIVE' },
   { name: 'COACHING', href: '/coaching', status: 'LIVE' }
-  // Removed SOON items for cleaner navigation
+  // Tools removed - just demos, not valuable yet
   // Network section hidden - access through member login only
 ]
 
@@ -85,7 +85,8 @@ export default function Navigation() {
                       font-mono text-sm transition-all duration-200
                       ${isActive ? 'terminal-text matrix-glow' : ''}
                       ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-accent'}
-                      ${!isActive && !isDisabled ? 'text-foreground-secondary' : ''}
+                      ${!isActive && !isDisabled && !item.notify ? 'text-foreground-secondary' : ''}
+                      ${item.notify && !isActive ? 'text-yellow-400 animate-pulse' : ''}
                     `}
                     onClick={(e) => {
                       if (isDisabled && item.status !== 'LOCKED') {
@@ -95,6 +96,7 @@ export default function Navigation() {
                     }}
                   >
                     <span className="flex items-center">
+                      {item.notify && '🔥 '}
                       {item.name}
                       {getStatusBadge(item)}
                     </span>
@@ -104,14 +106,6 @@ export default function Navigation() {
 
               {/* Theme Toggle */}
               <ThemeToggle />
-
-              {/* Crisis Tracker - Time-sensitive */}
-              <Link
-                to="/crisis"
-                className="text-yellow-400 hover:text-yellow-300 font-mono text-sm animate-pulse"
-              >
-                CRISIS
-              </Link>
             </div>
           </div>
 
