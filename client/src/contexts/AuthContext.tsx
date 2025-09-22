@@ -130,46 +130,39 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return null
   }
 
-  // Send OTP with invisible reCAPTCHA v3
+  // Send OTP with Firebase's built-in reCAPTCHA (no v3 needed)
   const sendOTP = async (phoneNumber: string) => {
     try {
-      // Load reCAPTCHA v3 script if not already loaded
-      if (!(window as any).grecaptcha) {
-        await new Promise((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = 'https://www.google.com/recaptcha/api.js?render=6LdWL8QrAAAAAJY6ldO9vJSqSu0YsE2NiOg50P_s'
-          script.onload = resolve
-          script.onerror = reject
-          document.head.appendChild(script)
-        })
+      // PRAGMATIC FIX: Check if verifier already exists and clear it
+      const existingVerifier = (window as any).recaptchaVerifier
+      if (existingVerifier) {
+        try {
+          existingVerifier.clear()
+        } catch (e) {
+          console.log('Could not clear existing verifier:', e)
+        }
       }
 
-      // Wait for grecaptcha to be ready
-      await new Promise(resolve => (window as any).grecaptcha.ready(resolve))
-      
-      // Get reCAPTCHA v3 token (invisible)
-      await (window as any).grecaptcha.execute('6LdWL8QrAAAAAJY6ldO9vJSqSu0YsE2NiOg50P_s', {
-        action: 'phone_auth'
-      })
-      
-      // reCAPTCHA v3 token obtained (invisible)
-      
-      // Create invisible verifier for Firebase
+      // Create invisible verifier for Firebase (it handles reCAPTCHA internally)
       const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible',
         callback: () => {
-
+          console.log('reCAPTCHA verified')
         }
       })
+
+      // Store reference to clear it later
+      ;(window as any).recaptchaVerifier = appVerifier
       
       const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier)
       
-      // Clean up
+      // Clean up after successful send
       setTimeout(() => {
         try {
           appVerifier.clear()
+          ;(window as any).recaptchaVerifier = null
         } catch (e) {
-
+          console.log('Cleanup error:', e)
         }
       }, 100)
       
