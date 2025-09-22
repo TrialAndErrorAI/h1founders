@@ -20,7 +20,7 @@ export default function Community() {
             Real-time support. No BS. Just founders helping founders.
           </p>
           <a
-            href="https://chat.whatsapp.com/FMSvh9pAP1pLX4V8TrRcNV"
+            href="https://chat.whatsapp.com/EDzgWji4jr6AlVKch0dGMV"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-accent text-black px-8 py-3 rounded font-bold hover:bg-green-400 transition-colors text-lg"
