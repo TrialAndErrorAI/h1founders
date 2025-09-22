@@ -131,7 +131,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           <button
             type="submit"
             disabled={loading || phoneNumber.replace(/\D/g, '').length < 10}
-            className="w-full px-6 py-3 bg-green-400 text-foreground font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+            className="w-full px-6 py-3 bg-accent text-black font-bold rounded-lg hover:bg-green-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
           >
             {loading ? 'SENDING...' : 'SEND_VERIFICATION_CODE()'}
           </button>
@@ -181,7 +181,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           <button
             type="submit"
             disabled={loading || otpCode.length !== 6}
-            className="w-full px-6 py-3 bg-green-400 text-foreground font-bold rounded-lg hover:bg-green-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+            className="w-full px-6 py-3 bg-accent text-black font-bold rounded-lg hover:bg-green-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-mono"
           >
             {loading ? 'VERIFYING...' : 'VERIFY_AND_LOGIN()'}
           </button>
