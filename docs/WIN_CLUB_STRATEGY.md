@@ -1,6 +1,25 @@
 # WIN CLUB Strategy & Roadmap
+**Private Mentorship Cohort**
 
 > "I make winners. People refuse to win. I won't let them."
+
+## The Mentorship Discovery (Sep 21, 2025)
+
+**Critical insight from first payment:**
+- Saurabh's Venmo note: "Mentorship" (not coaching, not WIN CLUB)
+- This single word reveals everything
+
+**Why "Mentorship" Changes Everything:**
+- **Coaching** = Transactional service, tactics, one-time
+- **Mentorship** = Sacred relationship, wisdom transfer, transformation
+- **Cultural power** = Mentor is guru figure, deep respect (especially immigrants)
+- **Price psychology** = Free mentorship is charity, EXCLUSIVE mentorship is priceless
+
+**The Reframe:**
+- OLD: "WIN CLUB - Accountability coaching"
+- NEW: "WIN CLUB - Private Mentorship Cohort"
+
+This positioning elevates everything. They're not buying time slots. They're joining an inner circle.
 
 ## The Philosophy
 
@@ -11,8 +30,10 @@ Most founders know what to do. They just refuse to win. They hide behind:
 - Average expectations
 - Comfortable excuses
 
-### The Solution: WIN CLUB
+### The Solution: WIN CLUB Private Mentorship
 I see potential in them higher than they see in themselves. I believe in them, and then the universe makes it happen.
+
+Not coaching. Not accountability. Mentorship from someone who walked the path.
 
 ## The Energy
 
@@ -104,19 +125,20 @@ Become responsible.
 
 ## The Communication
 
-### Key Messages
-- "I make winners"
+### Key Messages (Updated with Mentorship Frame)
+- "Opening 3 spots for private mentorship"
+- "WIN CLUB - Private Mentorship Cohort"
+- "I make winners through direct mentorship"
 - "Only 5 spots. Not scaling on purpose."
-- "Winners decide fast. Average overthinks."
 - "I see potential in you higher than you see in yourself"
-- "Direct, no-BS feedback when you're slacking"
 
 ### What We Don't Say
 - ❌ "Affordable accountability"
 - ❌ "Group coaching program"
 - ❌ "Limited time offer"
 - ❌ "Join our community"
-- ✅ "WIN CLUB. You know if you need it."
+- ❌ "Coaching spots available"
+- ✅ "Private mentorship. You know if you need it."
 
 ## Q1 2026 Evolution
 

@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './contexts/ThemeContext'
 import Layout from './components/Layout'
 import Home from './pages/Home'
+import ScrollToTop from './components/ScrollToTop'
 
 // Lazy load all non-essential pages
 const Dashboard = lazy(() => import('./pages/Dashboard'))
@@ -29,6 +30,7 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
+        <ScrollToTop />
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--bg-primary)' }}>
             <div className="font-mono" style={{ color: 'var(--accent-primary)' }}>

@@ -64,8 +64,8 @@ export default function Footer() {
                   <span className="text-accent">50+</span>
                 </div>
                 <div className="flex justify-between text-foreground-secondary">
-                  <span>Win Club (private):</span>
-                  <span className="text-red-pill">5 max</span>
+                  <span>Win Club:</span>
+                  <span className="text-red-pill">Private Mentorship Cohort</span>
                 </div>
               </div>
               <div className="text-accent mt-4 text-center">
