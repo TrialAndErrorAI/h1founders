@@ -42,7 +42,7 @@ export default function AuthModal({ isOpen, onClose, isClaimingProfile = false, 
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-black border border-green-500/30 p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 p-6 text-left align-middle shadow-xl transition-all">
                 <div className="absolute right-4 top-4">
                   <button
                     onClick={onClose}

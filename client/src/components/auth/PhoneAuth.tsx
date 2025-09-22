@@ -94,10 +94,10 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
       {step === 'phone' ? (
         <form onSubmit={handleSendOTP} className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-green-500 mb-2">
+            <h2 className="text-2xl font-bold terminal-text matrix-glow mb-2">
               {isClaimingProfile ? 'Claim Your Profile' : 'Join H1Founders'}
             </h2>
-            <p className="text-gray-400 text-sm">
+            <p className="text-foreground-tertiary text-sm">
               {isClaimingProfile
                 ? 'Enter your WhatsApp number to claim your pre-existing profile'
                 : 'Enter your phone number to get started'}
@@ -105,7 +105,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-foreground-secondary mb-2">
               Phone Number
             </label>
             <input
@@ -117,7 +117,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               className="w-full px-4 py-3 bg-background border border-border text-accent rounded-lg focus:outline-none focus:border-accent font-mono"
               required
             />
-            <p className="mt-2 text-xs text-gray-400">
+            <p className="mt-2 text-xs text-foreground-tertiary">
               We'll send you a verification code via SMS
             </p>
           </div>
@@ -137,9 +137,9 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           </button>
 
           {isClaimingProfile && (
-            <p className="text-center text-sm text-gray-400">
+            <p className="text-center text-sm text-foreground-tertiary">
               Are you a Substack subscriber instead?{' '}
-              <button type="button" className="text-green-500 hover:underline">
+              <button type="button" className="text-accent hover:underline">
                 Use email verification
               </button>
             </p>
