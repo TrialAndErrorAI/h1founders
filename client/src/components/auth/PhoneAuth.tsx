@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { ConfirmationResult } from 'firebase/auth'
 import { useAuth } from '../../contexts/AuthContext'
-import { formatPhoneNumber } from '../../lib/firebase'
 import CountrySelector from './CountrySelector'
 import { Country, DEFAULT_COUNTRY } from '../../data/countries'
 
