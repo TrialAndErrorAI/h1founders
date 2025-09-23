@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bun --bun ../node_modules/vite/bin/vite.js",
     "build": "node ../scripts/build-content-index.js && tsc -b && bun --bun ../node_modules/vite/bin/vite.js build",
+    "typecheck": "tsc --noEmit",
     "content:build": "node ../scripts/build-content-index.js",
     "lint": "eslint .",
     "preview": "bun --bun ../node_modules/vite/bin/vite.js preview",
