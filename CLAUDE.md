@@ -295,8 +295,14 @@ Every content piece becomes a forum post with enhanced properties:
 - ✅ Forum-first architecture validated
 - ✅ Ready for ATLAS content expansion
 
-## IMPORTANT DEPLOYMENT NOTE
-**⚠️ Git push does NOT auto-deploy** - Beta testers are using the platform. Test everything locally first. Deployment requires manual trigger on Cloudflare Pages dashboard. Do not disrupt beta users.
+## 🚨 CRITICAL DEPLOYMENT RULES - PRODUCTION LIVE
+**⚠️ Git push to master = AUTO-DEPLOY TO PRODUCTION**
+- Every push to master triggers Cloudflare Pages deployment
+- Live users are actively using h1founders.com
+- **NEVER push without Sid's written approval**
+- Test EVERYTHING locally first
+- Ask "Can I push this?" and wait for explicit "yes" or "push it"
+- Production disruptions affect real users signing up RIGHT NOW
 
 ## Technical Learnings (September 2025 - Latest)
 
