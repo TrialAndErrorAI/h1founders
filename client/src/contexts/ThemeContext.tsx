@@ -21,7 +21,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const existingTheme = localStorage.getItem('h1founders-theme');
     if (existingTheme) {
       localStorage.removeItem('h1founders-theme');
-      console.log('Reset theme to light mode for consistent experience');
     }
 
     // Always start with light mode for now - proper dark mode coming soon
