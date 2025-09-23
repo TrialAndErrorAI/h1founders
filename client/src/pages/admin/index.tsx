@@ -131,7 +131,7 @@ export default function AdminPanel() {
         {/* Header */}
         <div className="border border-accent p-4 mb-6">
           <h1 className="text-2xl font-mono text-accent mb-2">
-            ADMIN PANEL {isDevelopment && <span className="text-yellow-400 text-sm">[DEV MODE]</span>}
+            ADMIN PANEL {isDevelopment && <span className="text-yellow-400 text-sm">[DEV MODE - READ ONLY]</span>}
           </h1>
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-2">
@@ -142,6 +142,17 @@ export default function AdminPanel() {
             <div className="text-foreground-tertiary">Last: {lastSignup}</div>
           </div>
         </div>
+
+        {/* Dev Mode Info */}
+        {isDevelopment && (
+          <div className="border border-yellow-400 bg-yellow-400/10 p-4 mb-6 text-sm">
+            <div className="text-yellow-400 font-mono mb-2">⚠️ DEV MODE - READ ONLY</div>
+            <div className="text-foreground-tertiary">
+              In development, you can view users but cannot modify badges.
+              Badge changes require real authentication in production.
+            </div>
+          </div>
+        )}
 
         {/* Search */}
         <div className="mb-4">
@@ -226,28 +237,38 @@ export default function AdminPanel() {
                     </div>
                   ) : (
                     <div className="flex gap-2">
-                      {currentBadge !== BadgeLevel.THE_ARCHITECT && (
-                        <button
-                          onClick={() => setSelectedUser(user.uid)}
-                          className="flex items-center gap-1 px-3 py-2 border border-accent text-accent font-mono hover:bg-accent hover:text-black transition-colors"
-                        >
-                          <ChevronUpIcon className="w-4 h-4" />
-                          PROMOTE
-                        </button>
-                      )}
-                      {currentBadge !== BadgeLevel.UNPLUGGED && (
-                        <button
-                          onClick={() => setSelectedUser(user.uid)}
-                          className="flex items-center gap-1 px-3 py-2 border border-red-pill text-red-pill font-mono hover:bg-red-pill hover:text-black transition-colors"
-                        >
-                          <ChevronDownIcon className="w-4 h-4" />
-                          DEMOTE
-                        </button>
-                      )}
-                      {currentBadge === BadgeLevel.THE_ARCHITECT && (
-                        <div className="px-3 py-2 text-foreground-tertiary font-mono">
-                          [Already highest level]
+                      {isDevelopment ? (
+                        // Show read-only message in dev mode
+                        <div className="px-3 py-2 text-yellow-400 font-mono text-xs border border-yellow-400">
+                          [READ-ONLY IN DEV MODE]
                         </div>
+                      ) : (
+                        // Show buttons only in production
+                        <>
+                          {currentBadge !== BadgeLevel.THE_ARCHITECT && (
+                            <button
+                              onClick={() => setSelectedUser(user.uid)}
+                              className="flex items-center gap-1 px-3 py-2 border border-accent text-accent font-mono hover:bg-accent hover:text-black transition-colors"
+                            >
+                              <ChevronUpIcon className="w-4 h-4" />
+                              PROMOTE
+                            </button>
+                          )}
+                          {currentBadge !== BadgeLevel.UNPLUGGED && (
+                            <button
+                              onClick={() => setSelectedUser(user.uid)}
+                              className="flex items-center gap-1 px-3 py-2 border border-red-pill text-red-pill font-mono hover:bg-red-pill hover:text-black transition-colors"
+                            >
+                              <ChevronDownIcon className="w-4 h-4" />
+                              DEMOTE
+                            </button>
+                          )}
+                          {currentBadge === BadgeLevel.THE_ARCHITECT && (
+                            <div className="px-3 py-2 text-foreground-tertiary font-mono">
+                              [Already highest level]
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
                   )}
