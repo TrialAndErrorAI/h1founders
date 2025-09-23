@@ -105,7 +105,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-green-500 mb-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Phone Number
             </label>
             <input
@@ -114,7 +114,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               value={phoneNumber}
               onChange={handlePhoneChange}
               placeholder="(555) 555-5555"
-              className="w-full px-4 py-3 bg-black dark:bg-gray-900 border-2 border-green-500 text-green-500 placeholder-green-500/50 rounded-lg focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-400/50 font-mono"
+              className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 font-mono"
               required
             />
             <p className="mt-2 text-xs text-foreground-tertiary">
@@ -157,7 +157,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
           </div>
 
           <div>
-            <label htmlFor="otp" className="block text-sm font-medium text-green-500 mb-2">
+            <label htmlFor="otp" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Verification Code
             </label>
             <input
@@ -166,7 +166,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               value={otpCode}
               onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               placeholder="000000"
-              className="w-full px-4 py-3 bg-black dark:bg-gray-900 border-2 border-green-500 text-green-500 placeholder-green-500/50 rounded-lg focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-400/50 font-mono text-center text-2xl tracking-widest"
+              className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 font-mono text-center text-2xl tracking-widest"
               maxLength={6}
               required
             />
