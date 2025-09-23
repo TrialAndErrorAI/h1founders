@@ -44,11 +44,17 @@ export default function AdminPanel() {
 
   // Security check - redirect if not Sid (BYPASS for localhost development)
   const isDevelopment = window.location.hostname === 'localhost'
+  const hasDevAdminFlag = localStorage.getItem('h1founders-dev-admin') === 'true'
+
   useEffect(() => {
+    // Allow access if: dev mode with flag, or production with correct UID
     if (!isDevelopment && (!currentUser || currentUser.uid !== ADMIN_UID)) {
       navigate('/')
+    } else if (isDevelopment && !hasDevAdminFlag) {
+      // On localhost, require the dev admin flag (set by logging in)
+      navigate('/')
     }
-  }, [currentUser, navigate, isDevelopment])
+  }, [currentUser, navigate, isDevelopment, hasDevAdminFlag])
 
   // Fetch all users
   useEffect(() => {
@@ -105,8 +111,11 @@ export default function AdminPanel() {
     formatDistanceToNow(users[0].createdAt.toDate ? users[0].createdAt.toDate() : new Date(users[0].createdAt), { addSuffix: true }) :
     'N/A'
 
-  // Don't render if not admin (unless in development)
+  // Don't render if not admin (check dev flag on localhost)
   if (!isDevelopment && (!currentUser || currentUser.uid !== ADMIN_UID)) {
+    return null
+  }
+  if (isDevelopment && !hasDevAdminFlag) {
     return null
   }
 
