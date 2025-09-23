@@ -121,18 +121,24 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value
 
-    // Allow + at start, digits anywhere
-    const cleaned = input.replace(/[^\d+]/g, '')
+    // Allow + at start, digits anywhere, spaces for readability
+    const cleaned = input.replace(/[^\d\s+]/g, '')
 
     // Ensure + is only at the start
     const hasPlus = cleaned.startsWith('+')
-    const digits = cleaned.replace(/\+/g, '')
-    const formatted = hasPlus ? '+' + digits : digits
+    const withoutPlus = cleaned.replace(/\+/g, '')
+    const digitsOnly = withoutPlus.replace(/\s/g, '')
 
-    // Limit length: 15 digits max for E.164 standard
-    const limited = formatted.slice(0, hasPlus ? 16 : 10) // +15 digits or 10 for US
+    // Reconstruct: + (if present) + digits
+    const formatted = hasPlus ? '+' + digitsOnly : digitsOnly
 
-    setPhoneNumber(formatPhoneDisplay(limited))
+    // Limit length: 15 digits max for E.164 standard (not counting the +)
+    const maxDigits = hasPlus ? 15 : 10 // International vs US
+    const limitedDigits = digitsOnly.slice(0, maxDigits)
+    const final = hasPlus ? '+' + limitedDigits : limitedDigits
+
+    // Set raw value for now, format on blur
+    setPhoneNumber(final)
   }
 
   const handleVerifyOTP = async (e: React.FormEvent) => {
@@ -180,6 +186,7 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
               id="phone"
               value={phoneNumber}
               onChange={handlePhoneChange}
+              onBlur={() => setPhoneNumber(formatPhoneDisplay(phoneNumber))}
               placeholder="+91 98765 43210 or (555) 555-5555"
               className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 font-mono"
               required
