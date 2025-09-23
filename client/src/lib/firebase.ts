@@ -30,18 +30,30 @@ setPersistence(auth, browserLocalPersistence)
 // Export phone auth utilities
 export { RecaptchaVerifier, signInWithPhoneNumber, PhoneAuthProvider, signInWithCredential }
 
-// Helper to format phone numbers
+// Helper to format phone numbers for Firebase (E.164 format)
 export function formatPhoneNumber(phone: string): string {
+  // If already starts with +, assume it's properly formatted
+  if (phone.startsWith('+')) {
+    return phone
+  }
+
   // Remove all non-digit characters
   const digits = phone.replace(/\D/g, '')
-  
-  // Add +1 if not present for US numbers
+
+  // US numbers (10 digits) - add +1
   if (digits.length === 10) {
     return `+1${digits}`
-  } else if (digits.length === 11 && digits.startsWith('1')) {
+  }
+
+  // US numbers with country code (11 digits starting with 1)
+  if (digits.length === 11 && digits.startsWith('1')) {
     return `+${digits}`
   }
-  
-  // Return with + if not already present
-  return digits.startsWith('+') ? digits : `+${digits}`
+
+  // For all other numbers, assume they include country code
+  // Common patterns:
+  // India: 91XXXXXXXXXX (12 digits total)
+  // Turkey: 90XXXXXXXXX (11-12 digits)
+  // UK: 44XXXXXXXXX (11-12 digits)
+  return `+${digits}`
 }
