@@ -39,13 +39,13 @@ export default function PhoneAuth({ onSuccess, isClaimingProfile = false }: Phon
     setLoading(true)
 
     try {
-      // Combine country code + local number
-      const fullNumber = selectedCountry.dial + localNumber.replace(/\D/g, '')
-
-      // Validate phone number length
+      // Validate phone number length first
       if (localNumber.replace(/\D/g, '').length < 7) {
         throw new Error('Please enter a valid phone number')
       }
+
+      // Combine country code + local number to create E.164 format
+      const fullNumber = selectedCountry.dial + localNumber.replace(/\D/g, '')
 
       const result = await sendOTP(fullNumber)
       setConfirmationResult(result)
