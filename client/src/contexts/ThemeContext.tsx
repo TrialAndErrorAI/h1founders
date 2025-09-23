@@ -24,7 +24,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // Apply theme to document root
   useEffect(() => {
+    // Set data-theme for CSS variables
     document.documentElement.setAttribute('data-theme', theme);
+
+    // Also set/remove 'dark' class for Tailwind dark: utilities
+    // Both 'dark' and 'matrix' themes should trigger dark mode styles
+    if (theme === 'dark' || theme === 'matrix') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
     localStorage.setItem('h1founders-theme', theme);
   }, [theme]);
 
