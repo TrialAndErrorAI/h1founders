@@ -48,10 +48,5 @@ service cloud.firestore {
         && request.auth.uid == resource.data.authorId;
       allow delete: if false;
     }
-    
-    // Temporary rule for development (remove before production)
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2025, 10, 8);
-    }
   }
 }
