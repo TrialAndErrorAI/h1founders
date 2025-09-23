@@ -16,14 +16,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // Load saved theme on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('h1founders-theme') as ThemeMode;
-    if (savedTheme && ['light', 'dark', 'matrix'].includes(savedTheme)) {
-      setThemeState(savedTheme);
-      // Immediately apply dark class if needed (don't wait for next useEffect)
-      if (savedTheme === 'dark' || savedTheme === 'matrix') {
-        document.documentElement.classList.add('dark');
-      }
+    // TEMPORARY: Clear old theme preferences to ensure everyone starts fresh with light mode
+    // This can be removed after a few days once all users have been reset
+    const existingTheme = localStorage.getItem('h1founders-theme');
+    if (existingTheme) {
+      localStorage.removeItem('h1founders-theme');
+      console.log('Reset theme to light mode for consistent experience');
     }
+
+    // Always start with light mode for now - proper dark mode coming soon
+    setThemeState('light');
+    document.documentElement.classList.remove('dark');
   }, []);
 
   // Apply theme to document root
@@ -39,7 +42,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.remove('dark');
     }
 
-    localStorage.setItem('h1founders-theme', theme);
+    // TEMPORARY: Don't persist theme until dark mode is properly architected
+    // localStorage.setItem('h1founders-theme', theme);
   }, [theme]);
 
   const setTheme = (newTheme: ThemeMode) => {
