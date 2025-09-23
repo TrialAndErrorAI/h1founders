@@ -53,7 +53,7 @@ export default function CountrySelector({ value, onChange, className = '' }: Cou
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-80 overflow-hidden">
+        <div className="absolute z-50 w-72 mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-80 overflow-hidden">
           {/* Search input */}
           <div className="p-2 border-b border-gray-200 dark:border-gray-700">
             <input
@@ -67,7 +67,7 @@ export default function CountrySelector({ value, onChange, className = '' }: Cou
           </div>
 
           {/* Country list */}
-          <div className="max-h-60 overflow-y-auto">
+          <div className="max-h-60 overflow-y-auto overflow-x-hidden">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
                 <button
@@ -78,17 +78,17 @@ export default function CountrySelector({ value, onChange, className = '' }: Cou
                     setIsOpen(false)
                     setSearch('')
                   }}
-                  className={`w-full px-3 py-2 flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                  className={`w-full px-3 py-2 flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
                     country.code === value.code ? 'bg-green-50 dark:bg-green-900/20' : ''
                   }`}
                 >
-                  <span className="text-xl">{country.flag}</span>
-                  <div className="flex-1 text-left">
-                    <div className="text-sm font-medium text-gray-900 dark:text-white">
+                  <span className="text-lg flex-shrink-0">{country.flag}</span>
+                  <div className="flex-1 text-left min-w-0">
+                    <div className="text-sm font-medium text-gray-900 dark:text-white truncate">
                       {country.name}
                     </div>
                   </div>
-                  <span className="font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <span className="font-mono text-xs text-gray-600 dark:text-gray-400 flex-shrink-0">
                     {country.dial}
                   </span>
                 </button>
