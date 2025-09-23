@@ -59,7 +59,9 @@
       "Bash(grep:*)",
       "WebFetch(domain:h1founders.com)",
       "Bash(git show:*)",
-      "Bash(mcp firebase:*)"
+      "Bash(mcp firebase:*)",
+      "Bash(firebase deploy:*)",
+      "Bash(bun add:*)"
     ],
     "deny": [],
     "ask": []

@@ -23,6 +23,7 @@ const Partners = lazy(() => import('./pages/Partners'))
 const Coaching = lazy(() => import('./pages/Coaching'))
 const Crisis = lazy(() => import('./pages/Crisis'))
 const Newsletter = lazy(() => import('./pages/Newsletter'))
+const AdminPanel = lazy(() => import('./pages/admin'))
 
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="forum" element={<Forum />} />
             <Route path="forum/thread/:threadId" element={<ForumThread />} />
             <Route path="forum/create" element={<CreateThread />} />
+            <Route path="admin" element={<AdminPanel />} />
             {ENABLE_PARTNERSHIPS && <Route path="partners" element={<Partners />} />}
           </Route>
         </Routes>
