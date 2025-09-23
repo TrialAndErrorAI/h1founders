@@ -42,16 +42,17 @@ export default function AdminPanel() {
   const [selectedUser, setSelectedUser] = useState<string | null>(null)
   const [newBadge, setNewBadge] = useState<BadgeLevel | ''>('')
 
-  // Security check - redirect if not Sid
+  // Security check - redirect if not Sid (BYPASS for localhost development)
+  const isDevelopment = window.location.hostname === 'localhost'
   useEffect(() => {
-    if (!currentUser || currentUser.uid !== ADMIN_UID) {
+    if (!isDevelopment && (!currentUser || currentUser.uid !== ADMIN_UID)) {
       navigate('/')
     }
-  }, [currentUser, navigate])
+  }, [currentUser, navigate, isDevelopment])
 
   // Fetch all users
   useEffect(() => {
-    if (currentUser?.uid !== ADMIN_UID) return
+    if (!isDevelopment && currentUser?.uid !== ADMIN_UID) return
 
     const q = query(collection(db, 'members'), orderBy('createdAt', 'desc'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -104,8 +105,8 @@ export default function AdminPanel() {
     formatDistanceToNow(users[0].createdAt.toDate ? users[0].createdAt.toDate() : new Date(users[0].createdAt), { addSuffix: true }) :
     'N/A'
 
-  // Don't render if not admin
-  if (!currentUser || currentUser.uid !== ADMIN_UID) {
+  // Don't render if not admin (unless in development)
+  if (!isDevelopment && (!currentUser || currentUser.uid !== ADMIN_UID)) {
     return null
   }
 
@@ -120,7 +121,9 @@ export default function AdminPanel() {
       <div className="max-w-4xl mx-auto p-4">
         {/* Header */}
         <div className="border border-accent p-4 mb-6">
-          <h1 className="text-2xl font-mono text-accent mb-2">ADMIN PANEL</h1>
+          <h1 className="text-2xl font-mono text-accent mb-2">
+            ADMIN PANEL {isDevelopment && <span className="text-yellow-400 text-sm">[DEV MODE]</span>}
+          </h1>
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-2">
               <UserGroupIcon className="w-5 h-5 text-accent" />
