@@ -58,7 +58,8 @@
       "WebFetch(domain:community.h1bfounders.com)",
       "Bash(grep:*)",
       "WebFetch(domain:h1founders.com)",
-      "Bash(git show:*)"
+      "Bash(git show:*)",
+      "Bash(mcp firebase:*)"
     ],
     "deny": [],
     "ask": []

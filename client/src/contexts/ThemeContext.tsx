@@ -19,6 +19,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const savedTheme = localStorage.getItem('h1founders-theme') as ThemeMode;
     if (savedTheme && ['light', 'dark', 'matrix'].includes(savedTheme)) {
       setThemeState(savedTheme);
+      // Immediately apply dark class if needed (don't wait for next useEffect)
+      if (savedTheme === 'dark' || savedTheme === 'matrix') {
+        document.documentElement.classList.add('dark');
+      }
     }
   }, []);
 
