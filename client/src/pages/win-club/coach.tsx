@@ -39,9 +39,13 @@ const CoachDashboard: React.FC = () => {
   const [sessionNotes, setSessionNotes] = useState('');
   const [loading, setLoading] = useState(true);
 
-  // Check if user is Sid (THE_ARCHITECT)
+  // Check if user is Sid (THE_ARCHITECT) - DEV MODE BYPASS for localhost
   useEffect(() => {
-    if (!currentUser || currentUser.email !== 'sid@h1founders.com') {
+    const isLocalhost = window.location.hostname === 'localhost';
+    const isDevMode = isLocalhost && import.meta.env.DEV;
+
+    // Allow access in dev mode OR if logged in as Sid
+    if (!isDevMode && (!currentUser || currentUser.email !== 'sid@h1founders.com')) {
       navigate('/');
     }
   }, [currentUser, navigate]);
