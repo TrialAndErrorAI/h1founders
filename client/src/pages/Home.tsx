@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
+import { getDevModeBanner } from '../utils/devMode'
 import CrisisBanner from '../components/CrisisBanner'
 import Hero from '../components/Hero'
 import TheReceipts from '../components/TheReceipts'
@@ -28,27 +29,27 @@ export default function Home() {
     )
   }
   
-  // Dev mode quick access toolbar
-  const isDevMode = window.location.hostname === 'localhost' && import.meta.env.DEV;
+  // Get dev mode banner configuration
+  const devBanner = getDevModeBanner();
 
   // If user is authenticated, they'll be redirected above
   return (
     <>
       {/* DEV MODE TOOLBAR - LOCALHOST ONLY */}
-      {isDevMode && (
+      {devBanner && (
         <div className="bg-yellow-500 text-black p-2 font-mono text-sm">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <span className="font-bold">🚧 DEV MODE - LOCALHOST ONLY</span>
+            <span className="font-bold">{devBanner.message}</span>
             <div className="flex gap-2">
-              <a href="/win-club/coach" className="px-3 py-1 bg-black text-yellow-500 rounded hover:bg-gray-900">
-                WIN CLUB Coach →
-              </a>
-              <a href="/admin" className="px-3 py-1 bg-black text-yellow-500 rounded hover:bg-gray-900">
-                Admin Panel →
-              </a>
-              <a href="/forum" className="px-3 py-1 bg-black text-yellow-500 rounded hover:bg-gray-900">
-                Forum →
-              </a>
+              {devBanner.links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-3 py-1 bg-black text-yellow-500 rounded hover:bg-gray-900"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { BadgeLevel } from '../../types/forum.types'
 import { ChevronUpIcon, ChevronDownIcon, UserGroupIcon } from '@heroicons/react/24/outline'
 import toast from 'react-hot-toast'
+import { hasAdminAccess, cleanupOldDevArtifacts, isDevMode } from '../../utils/devMode'
 
 // SECURITY: Only Sid can access admin panel
 const ADMIN_UID = 'QViviOX79DXnrE9pViXAfcGqTcx2'
@@ -42,23 +43,19 @@ export default function AdminPanel() {
   const [selectedUser, setSelectedUser] = useState<string | null>(null)
   const [newBadge, setNewBadge] = useState<BadgeLevel | ''>('')
 
-  // Security check - redirect if not Sid (BYPASS for localhost development)
-  const isDevelopment = window.location.hostname === 'localhost'
-  const hasDevAdminFlag = localStorage.getItem('h1founders-dev-admin') === 'true'
-
+  // Clean up old dev artifacts and check admin access
   useEffect(() => {
-    // Allow access if: dev mode with flag, or production with correct UID
-    if (!isDevelopment && (!currentUser || currentUser.uid !== ADMIN_UID)) {
-      navigate('/')
-    } else if (isDevelopment && !hasDevAdminFlag) {
-      // On localhost, require the dev admin flag (set by logging in)
+    cleanupOldDevArtifacts()
+
+    // Use centralized admin access check - dev mode OR authenticated as Sid
+    if (!hasAdminAccess(currentUser?.email)) {
       navigate('/')
     }
-  }, [currentUser, navigate, isDevelopment, hasDevAdminFlag])
+  }, [currentUser, navigate])
 
   // Fetch all users
   useEffect(() => {
-    if (!isDevelopment && currentUser?.uid !== ADMIN_UID) return
+    if (!hasAdminAccess(currentUser?.email)) return
 
     const q = query(collection(db, 'members'), orderBy('createdAt', 'desc'))
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -112,10 +109,7 @@ export default function AdminPanel() {
     'N/A'
 
   // Don't render if not admin (check dev flag on localhost)
-  if (!isDevelopment && (!currentUser || currentUser.uid !== ADMIN_UID)) {
-    return null
-  }
-  if (isDevelopment && !hasDevAdminFlag) {
+  if (!hasAdminAccess(currentUser?.email)) {
     return null
   }
 
@@ -131,7 +125,7 @@ export default function AdminPanel() {
         {/* Header */}
         <div className="border border-accent p-4 mb-6">
           <h1 className="text-2xl font-mono text-accent mb-2">
-            ADMIN PANEL {isDevelopment && <span className="text-yellow-400 text-sm">[DEV MODE - READ ONLY]</span>}
+            ADMIN PANEL {isDevMode() && <span className="text-yellow-400 text-sm">[DEV MODE]</span>}
           </h1>
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-2">
@@ -144,7 +138,7 @@ export default function AdminPanel() {
         </div>
 
         {/* Dev Mode Info */}
-        {isDevelopment && (
+        {isDevMode() && (
           <div className="border border-yellow-400 bg-yellow-400/10 p-4 mb-6 text-sm">
             <div className="text-yellow-400 font-mono mb-2">⚠️ DEV MODE - READ ONLY</div>
             <div className="text-foreground-tertiary">
@@ -237,7 +231,7 @@ export default function AdminPanel() {
                     </div>
                   ) : (
                     <div className="flex gap-2">
-                      {isDevelopment ? (
+                      {isDevMode() ? (
                         // Show read-only message in dev mode
                         <div className="px-3 py-2 text-yellow-400 font-mono text-xs border border-yellow-400">
                           [READ-ONLY IN DEV MODE]

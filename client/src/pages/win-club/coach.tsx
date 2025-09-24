@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../lib/firebase';
 import { collection, query, getDocs, doc, setDoc, updateDoc, where, orderBy } from 'firebase/firestore';
 import { ChevronLeftIcon, UserGroupIcon, CalendarIcon, TrendingUpIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import { hasCoachAccess } from '../../utils/devMode';
 
 interface Member {
   id: string;
@@ -39,13 +40,9 @@ const CoachDashboard: React.FC = () => {
   const [sessionNotes, setSessionNotes] = useState('');
   const [loading, setLoading] = useState(true);
 
-  // Check if user is Sid (THE_ARCHITECT) - DEV MODE BYPASS for localhost
+  // Check if user has coach access
   useEffect(() => {
-    const isLocalhost = window.location.hostname === 'localhost';
-    const isDevMode = isLocalhost && import.meta.env.DEV;
-
-    // Allow access in dev mode OR if logged in as Sid
-    if (!isDevMode && (!currentUser || currentUser.email !== 'sid@h1founders.com')) {
+    if (!hasCoachAccess(currentUser?.email)) {
       navigate('/');
     }
   }, [currentUser, navigate]);

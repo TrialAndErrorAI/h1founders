@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import PhoneAuth from './PhoneAuth'
-import DevAdminLogin from './DevAdminLogin'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 interface AuthModalProps {
@@ -67,10 +66,6 @@ export default function AuthModal({ isOpen, onClose, isClaimingProfile = false, 
                   isClaimingProfile={isClaimingProfile}
                 />
 
-                {/* Dev admin login for localhost only */}
-                {window.location.hostname === 'localhost' && (
-                  <DevAdminLogin onSuccess={handleSuccess} />
-                )}
 
                 <div className="mt-6 pt-6 border-t border-border">
                   <p className="text-xs text-foreground-tertiary text-center">
