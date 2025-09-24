@@ -206,6 +206,53 @@ Current implementation features 6 main sections:
 - **Yellow toolbar = dev mode indicator**
 - **Production requires real auth (sid@h1founders.com)**
 
+## IMPORTANT DEV NOTES - COMPLIANCE REQUIRED
+**CRITICAL**: When writing ANY code for this project, you MUST follow these rules
+
+### Theme Compliance (MANDATORY)
+**NEVER hardcode colors. ALWAYS use theme variables.**
+
+#### ❌ BANNED (Never write these):
+```tsx
+// WRONG - Hardcoded colors
+className="bg-black text-green-500"
+className="border-green-500/30"
+className="text-green-400 hover:text-green-300"
+className="bg-green-900/10"
+```
+
+#### ✅ REQUIRED (Always use these):
+```tsx
+// CORRECT - Theme variables
+className="bg-background text-foreground"
+className="border-border"
+className="text-accent hover:text-accent-secondary"
+className="bg-secondary"
+```
+
+#### Theme Variable Reference:
+- **Backgrounds**: `bg-background`, `bg-secondary`, `bg-tertiary`
+- **Text**: `text-foreground`, `text-foreground-secondary`, `text-foreground-tertiary`
+- **Accents**: `text-accent`, `text-accent-secondary`
+- **Borders**: `border-border`
+- **Special**: `text-red-pill`, `text-blue-pill`
+
+### Component Consistency (MANDATORY)
+- **Check existing components first** - Copy their patterns
+- **Use the same utility classes** - Don't invent new ones
+- **Follow naming conventions** - Match what's already there
+
+### Security Rules (MANDATORY)
+- **NEVER expose API keys** in code
+- **NEVER use real user data** for testing (use 555-xxxx numbers)
+- **ALWAYS use auth checks** for protected routes
+
+### Future Hook Validation (Coming Soon)
+We will add post-commit hooks that automatically reject code that:
+- Contains hardcoded colors
+- Exposes sensitive data
+- Breaks theme consistency
+
 ## Important Conventions
 1. **next_session.md**: Always keep in root folder ONLY (not in docs/)
 2. **RFCs**: Active in docs/, completed in docs/rfc/archive/

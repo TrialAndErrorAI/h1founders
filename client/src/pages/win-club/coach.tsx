@@ -185,22 +185,22 @@ const CoachDashboard: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="min-h-screen bg-black text-green-500 font-mono p-8">Loading...</div>;
+    return <div className="min-h-screen bg-background text-foreground font-mono p-8">Loading...</div>;
   }
 
   return (
-    <div className="min-h-screen bg-black text-green-500 font-mono">
+    <div className="min-h-screen bg-background text-foreground font-mono">
       {/* Header */}
-      <header className="border-b border-green-900/50 bg-black/90 backdrop-blur sticky top-0 z-10">
+      <header className="border-b border-border bg-background/90 backdrop-blur sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center gap-4">
-              <Link to="/" className="text-green-400 hover:text-green-300">
+              <Link to="/" className="text-accent hover:text-accent-secondary">
                 ← Home
               </Link>
-              <h1 className="text-xl font-bold text-green-400">WIN CLUB Coach Dashboard</h1>
+              <h1 className="text-xl font-bold text-accent">WIN CLUB Coach Dashboard</h1>
             </div>
-            <div className="text-green-500/60 text-sm">
+            <div className="text-foreground-tertiary text-sm">
               Q4 2025 Cohort
             </div>
           </div>
@@ -209,26 +209,26 @@ const CoachDashboard: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Today's Sessions */}
-        <div className="mb-8 bg-green-900/10 border border-green-500/30 rounded-lg p-6">
-          <h2 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">
+        <div className="mb-8 bg-secondary border border-border rounded-lg p-6">
+          <h2 className="text-xl font-bold text-accent mb-4 flex items-center gap-2">
             <CalendarIcon className="h-5 w-5" />
             Today's Sessions
           </h2>
           {todaySessions.length === 0 ? (
-            <p className="text-green-500/60">No sessions scheduled today</p>
+            <p className="text-foreground-tertiary">No sessions scheduled today</p>
           ) : (
             <div className="space-y-4">
               {todaySessions.map(session => {
                 const member = members.find(m => m.id === session.memberId);
                 if (!member) return null;
                 return (
-                  <div key={session.id} className="flex items-center justify-between p-4 bg-black/50 rounded border border-green-500/20">
+                  <div key={session.id} className="flex items-center justify-between p-4 bg-tertiary rounded border border-border">
                     <div>
-                      <div className="text-green-400 font-semibold">{member.name}</div>
-                      <div className="text-green-500/60 text-sm">
+                      <div className="text-accent font-semibold">{member.name}</div>
+                      <div className="text-foreground-tertiary text-sm">
                         Session {session.sessionNumber} • {new Date(session.scheduledDate).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                       </div>
-                      <div className="text-green-500/50 text-xs mt-1">
+                      <div className="text-foreground/50 text-xs mt-1">
                         Blocker: {member.biggestBlocker}
                       </div>
                     </div>
@@ -238,11 +238,11 @@ const CoachDashboard: React.FC = () => {
                         placeholder="Add notes..."
                         value={sessionNotes}
                         onChange={(e) => setSessionNotes(e.target.value)}
-                        className="px-3 py-1 bg-black border border-green-500/30 rounded text-green-400 text-sm"
+                        className="px-3 py-1 bg-background border border-border rounded text-accent text-sm"
                       />
                       <button
                         onClick={() => completeSession(session.id)}
-                        className="px-4 py-1 bg-green-600 text-black rounded hover:bg-green-500 text-sm font-bold"
+                        className="px-4 py-1 bg-accent text-background rounded hover:bg-accent-secondary text-sm font-bold"
                       >
                         Complete
                       </button>
@@ -255,15 +255,15 @@ const CoachDashboard: React.FC = () => {
         </div>
 
         {/* Member Progress Grid */}
-        <div className="bg-green-900/10 border border-green-500/30 rounded-lg p-6">
+        <div className="bg-secondary border border-border rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-green-400 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-accent flex items-center gap-2">
               <UserGroupIcon className="h-5 w-5" />
               Member Progress
             </h2>
             <button
               onClick={addMember}
-              className="px-4 py-2 bg-green-600 text-black rounded hover:bg-green-500 text-sm font-bold"
+              className="px-4 py-2 bg-accent text-background rounded hover:bg-accent-secondary text-sm font-bold"
             >
               + Add Member
             </button>
@@ -273,18 +273,18 @@ const CoachDashboard: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-green-500/30">
-                  <th className="text-left py-2 text-green-400">Member</th>
-                  <th className="text-left py-2 text-green-400">Revenue</th>
-                  <th className="text-left py-2 text-green-400">Sessions</th>
-                  <th className="text-left py-2 text-green-400">Status</th>
-                  <th className="text-left py-2 text-green-400">Actions</th>
+                <tr className="border-b border-border/30">
+                  <th className="text-left py-2 text-accent">Member</th>
+                  <th className="text-left py-2 text-accent">Revenue</th>
+                  <th className="text-left py-2 text-accent">Sessions</th>
+                  <th className="text-left py-2 text-accent">Status</th>
+                  <th className="text-left py-2 text-accent">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {members.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="py-8 text-center text-green-500/60">
+                    <td colSpan={5} className="py-8 text-center text-foreground-tertiary">
                       No members yet. Add your first WIN CLUB member above.
                     </td>
                   </tr>
@@ -293,24 +293,24 @@ const CoachDashboard: React.FC = () => {
                     const { growth, percentChange } = getRevenueGrowth(member);
                     const status = getMemberStatus(member);
                     return (
-                      <tr key={member.id} className="border-b border-green-500/10">
+                      <tr key={member.id} className="border-b border-border/10">
                         <td className="py-3">
-                          <div className="text-green-400 font-semibold">{member.name}</div>
-                          <div className="text-green-500/60 text-xs">{member.business}</div>
+                          <div className="text-accent font-semibold">{member.name}</div>
+                          <div className="text-foreground-tertiary text-xs">{member.business}</div>
                         </td>
                         <td className="py-3">
-                          <div className="text-green-400">
+                          <div className="text-accent">
                             ${member.startRevenue.toLocaleString()} → ${member.currentRevenue.toLocaleString()}
                           </div>
-                          <div className={`text-xs ${growth > 0 ? 'text-green-500' : growth < 0 ? 'text-red-500' : 'text-gray-500'}`}>
+                          <div className={`text-xs ${growth > 0 ? 'text-accent' : growth < 0 ? 'text-red-pill' : 'text-foreground-tertiary'}`}>
                             {growth > 0 ? '+' : ''}{growth > 0 ? `$${growth.toLocaleString()}` : growth < 0 ? `-$${Math.abs(growth).toLocaleString()}` : 'No change'} ({percentChange}%)
                           </div>
                         </td>
-                        <td className="py-3 text-green-400">
+                        <td className="py-3 text-accent">
                           {member.sessionCount}/24
                         </td>
                         <td className="py-3">
-                          <span className="text-green-400">
+                          <span className="text-accent">
                             {status.emoji} {status.label}
                           </span>
                         </td>
@@ -318,19 +318,19 @@ const CoachDashboard: React.FC = () => {
                           <div className="flex gap-2">
                             <button
                               onClick={() => scheduleSession(member.id)}
-                              className="text-green-400 hover:text-green-300 text-sm underline"
+                              className="text-accent hover:text-accent-secondary text-sm underline"
                             >
                               Schedule
                             </button>
                             <button
                               onClick={() => updateRevenue(member.id)}
-                              className="text-green-400 hover:text-green-300 text-sm underline"
+                              className="text-accent hover:text-accent-secondary text-sm underline"
                             >
                               Update $
                             </button>
                             <button
                               onClick={() => setSelectedMember(member)}
-                              className="text-green-400 hover:text-green-300 text-sm underline"
+                              className="text-accent hover:text-accent-secondary text-sm underline"
                             >
                               Details
                             </button>
@@ -345,40 +345,40 @@ const CoachDashboard: React.FC = () => {
           </div>
 
           {/* Summary Stats */}
-          <div className="mt-6 pt-6 border-t border-green-500/30 grid grid-cols-3 gap-4">
+          <div className="mt-6 pt-6 border-t border-border/30 grid grid-cols-3 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">
+              <div className="text-2xl font-bold text-accent">
                 {members.length}/5
               </div>
-              <div className="text-green-500/60 text-sm">Members</div>
+              <div className="text-foreground-tertiary text-sm">Members</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">
+              <div className="text-2xl font-bold text-accent">
                 ${members.reduce((sum, m) => sum + (m.currentRevenue - m.startRevenue), 0).toLocaleString()}
               </div>
-              <div className="text-green-500/60 text-sm">Total Growth</div>
+              <div className="text-foreground-tertiary text-sm">Total Growth</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">
+              <div className="text-2xl font-bold text-accent">
                 {members.reduce((sum, m) => sum + m.sessionCount, 0)}
               </div>
-              <div className="text-green-500/60 text-sm">Sessions Done</div>
+              <div className="text-foreground-tertiary text-sm">Sessions Done</div>
             </div>
           </div>
         </div>
 
         {/* Member Detail Modal */}
         {selectedMember && (
-          <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-            <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-background/80 flex items-center justify-center p-4 z-50">
+            <div className="bg-secondary border border-border rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-bold text-green-400">{selectedMember.name}</h3>
-                  <p className="text-green-500/60">{selectedMember.business}</p>
+                  <h3 className="text-xl font-bold text-accent">{selectedMember.name}</h3>
+                  <p className="text-foreground-tertiary">{selectedMember.business}</p>
                 </div>
                 <button
                   onClick={() => setSelectedMember(null)}
-                  className="text-green-400 hover:text-green-300"
+                  className="text-accent hover:text-accent-secondary"
                 >
                   ✕
                 </button>
@@ -386,23 +386,23 @@ const CoachDashboard: React.FC = () => {
 
               <div className="space-y-4">
                 <div>
-                  <label className="text-green-400 text-sm">Email</label>
-                  <p className="text-green-500">{selectedMember.email}</p>
+                  <label className="text-accent text-sm">Email</label>
+                  <p className="text-foreground">{selectedMember.email}</p>
                 </div>
 
                 <div>
-                  <label className="text-green-400 text-sm">LinkedIn</label>
-                  <p className="text-green-500">{selectedMember.linkedIn || 'Not provided'}</p>
+                  <label className="text-accent text-sm">LinkedIn</label>
+                  <p className="text-foreground">{selectedMember.linkedIn || 'Not provided'}</p>
                 </div>
 
                 <div>
-                  <label className="text-green-400 text-sm">Biggest Blocker</label>
-                  <p className="text-green-500">{selectedMember.biggestBlocker}</p>
+                  <label className="text-accent text-sm">Biggest Blocker</label>
+                  <p className="text-foreground">{selectedMember.biggestBlocker}</p>
                 </div>
 
                 <div>
-                  <label className="text-green-400 text-sm">Revenue Progress</label>
-                  <p className="text-green-500">
+                  <label className="text-accent text-sm">Revenue Progress</label>
+                  <p className="text-foreground">
                     ${selectedMember.startRevenue.toLocaleString()} → ${selectedMember.currentRevenue.toLocaleString()}
                     {' '}
                     ({getRevenueGrowth(selectedMember).percentChange}% growth)
@@ -410,13 +410,13 @@ const CoachDashboard: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-green-400 text-sm">Sessions Completed</label>
-                  <p className="text-green-500">{selectedMember.sessionCount} of 24</p>
+                  <label className="text-accent text-sm">Sessions Completed</label>
+                  <p className="text-foreground">{selectedMember.sessionCount} of 24</p>
                 </div>
 
                 <div>
-                  <label className="text-green-400 text-sm">Started</label>
-                  <p className="text-green-500">
+                  <label className="text-accent text-sm">Started</label>
+                  <p className="text-foreground">
                     {new Date(selectedMember.startDate).toLocaleDateString()}
                   </p>
                 </div>
