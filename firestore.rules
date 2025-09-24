@@ -1,54 +1,94 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // Phone validation function
     function isValidPhone(phone) {
       return phone is string && phone.matches('^\\+[1-9]\\d{1,14}$');
     }
-    
+
     // Rate limiting - allow 1 update per minute
     function rateLimitPassed() {
       return request.time > resource.data.lastActive + duration.value(1, 'm');
     }
-    
-    // Members collection - read allowed for listing, write requires auth
+
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if user owns the resource
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Members collection - SECURED: Auth required for directory, full access to own profile
     match /members/{userId} {
-      // Allow reading member profiles (public directory feature)
-      // Phone numbers are partially hidden in the UI anyway
-      allow read: if true;
-      allow create: if request.auth != null
-        && request.auth.uid == userId
+      // SECURITY FIX: Only authenticated users can read member directory
+      // This protects phone numbers, emails, and personal data from scraping
+      allow read: if isAuthenticated() || isOwner(userId);
+
+      // Only users can create their own profile
+      allow create: if isOwner(userId)
         && isValidPhone(request.resource.data.phone);
-      allow update: if request.auth != null
-        && request.auth.uid == userId
+
+      // Only users can update their own profile with rate limiting
+      allow update: if isOwner(userId)
         && rateLimitPassed()
         && isValidPhone(request.resource.data.phone);
-      allow delete: if false; // No deletes allowed
+
+      // No deletes allowed to preserve data integrity
+      allow delete: if false;
     }
-    
-    // Unclaimed profiles - read only for matching
+
+    // Unclaimed profiles - auth required for reading
     match /unclaimed/{document} {
-      allow read: if request.auth != null;
+      allow read: if isAuthenticated();
       allow write: if false; // Admin only via backend
     }
-    
-    // Forum threads (future)
+
+    // Forum threads - PUBLIC for SEO but monitored
     match /forum_threads/{thread} {
-      allow read: if true; // Public for SEO
-      allow create: if request.auth != null;
-      allow update: if request.auth != null 
+      // Keep public for SEO and discovery
+      allow read: if true;
+
+      // Only authenticated users can create threads
+      allow create: if isAuthenticated();
+
+      // Only thread authors can update their threads
+      allow update: if isAuthenticated()
         && request.auth.uid == resource.data.authorId;
+
+      // No deletes to preserve discussions
       allow delete: if false;
     }
-    
-    // Forum replies (future)
+
+    // Forum replies - PUBLIC for SEO
     match /forum_replies/{reply} {
+      // Keep public for SEO and engagement
       allow read: if true;
-      allow create: if request.auth != null;
-      allow update: if request.auth != null 
+
+      // Only authenticated users can reply
+      allow create: if isAuthenticated();
+
+      // Only reply authors can update their replies
+      allow update: if isAuthenticated()
         && request.auth.uid == resource.data.authorId;
+
+      // No deletes to preserve discussions
       allow delete: if false;
+    }
+
+    // User badges collection - auth required
+    match /user_badges/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Admin only via backend
+    }
+
+    // Platform metrics - public for transparency
+    match /metrics/{metric} {
+      allow read: if true;
+      allow write: if false; // System only
     }
   }
 }
