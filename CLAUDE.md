@@ -177,6 +177,35 @@ Current implementation features 6 main sections:
 - **UI Components**: ContentBadge/StatusBadge with Heroicons
 - **Build Target**: Modern ES modules, phone-first responsive
 
+## DEV MODE WORKFLOW (LOCALHOST ONLY)
+**Critical**: Sid cannot use real phone auth on localhost. Always use dev mode bypass.
+
+### Quick Access on Localhost
+1. **Yellow Dev Toolbar**: Appears at top of homepage on localhost
+   - Direct links to WIN CLUB Coach, Admin Panel, Forum
+   - No auth required for WIN CLUB Coach on localhost
+   - Admin Panel needs dev flag (see below)
+
+2. **WIN CLUB Coach Access**:
+   ```bash
+   # Direct access on localhost - no login needed
+   http://localhost:5173/win-club/coach
+   ```
+
+3. **Admin Panel Access**:
+   ```bash
+   # Set dev admin flag in browser console
+   localStorage.setItem('h1founders-dev-admin', 'true')
+   # Then visit
+   http://localhost:5173/admin
+   ```
+
+### Remember for Next Time
+- **NEVER ask Sid to use phone auth on localhost**
+- **Always provide dev mode bypasses for protected routes**
+- **Yellow toolbar = dev mode indicator**
+- **Production requires real auth (sid@h1founders.com)**
+
 ## Important Conventions
 1. **next_session.md**: Always keep in root folder ONLY (not in docs/)
 2. **RFCs**: Active in docs/, completed in docs/rfc/archive/
