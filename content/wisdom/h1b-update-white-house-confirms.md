@@ -1,9 +1,18 @@
 ---
+id: h1b-white-house-clarification-2025
 title: "UPDATE: White House Clarifies H-1B (Your Fear Was Valid, But We Can Do Better)"
 subtitle: "The panic was real. People could have been locked out forever. But together, we're learning to navigate these crises with more clarity and less fear."
-author: Sid Sarasvati
-date: 2025-09-21
-tags: [h1b, visa, immigration, policy]
+contentType: WISDOM
+author: sid
+category: THE_MATRIX
+subcategory: visa-labyrinth
+createdAt: 2025-09-21T00:00:00Z
+updatedAt: 2025-09-21T00:00:00Z
+tags: [h1b, visa, immigration, policy, white-house, clarification]
+isPinned: true
+isOfficial: true
+featured: true
+urgent: true
 ---
 
 # UPDATE: White House Clarifies H-1B (Your Fear Was Valid, But We Can Do Better)

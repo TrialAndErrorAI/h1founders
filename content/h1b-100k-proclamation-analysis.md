@@ -1,3 +1,22 @@
+---
+id: h1b-100k-proclamation-analysis
+title: "Trump's $100K H1B Proclamation: What It Actually Means (Stop Panicking)"
+subtitle: "Emergency analysis of the September 2025 H-1B proclamation - who's affected, who's not, and why you shouldn't panic"
+contentType: WISDOM
+author: sid
+category: THE_MATRIX
+subcategory: visa-labyrinth
+createdAt: 2025-09-19T20:00:00Z
+updatedAt: 2025-09-19T20:00:00Z
+tags: [h1b, trump, policy, crisis-response, proclamation]
+isPinned: true
+isOfficial: true
+featured: true
+urgent: true
+views: 10500
+shares: 91
+---
+
 # Trump's $100K H1B Proclamation: What It Actually Means (Stop Panicking)
 
 *September 19, 2025 - 8:00 PM ET*
