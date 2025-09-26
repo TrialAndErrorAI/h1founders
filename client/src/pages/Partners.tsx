@@ -1,38 +1,41 @@
 export default function Partners() {
+  // Partnership model: Premium ($25K) vs Standard ($5-8K) tiers for transparency
   const partners = [
     {
-      tier: 'ARCHITECT',
-      name: 'Manifest Labs PLLC',
-      module: 'Legal Module',
-      description: 'Your exclusive EB-1A partner - manifest your green card',
-      services: ['EB-1A Applications', 'O-1 Visas', 'EB-2 NIW', 'Startup Legal Strategy'],
-      contact: 'Schedule Consultation',
-      url: 'https://calendly.com/manifestlabs',
-      color: 'text-red-pill',
-      glow: 'shadow-red-400/50'
-    },
-    // Future partners will be added here
-    {
-      tier: 'NEO',
-      name: 'FinStackk',
-      module: 'Tax & Accounting Module',
-      description: 'SOC 2 compliant accounting for H1B founders',
-      services: ['R&D Tax Credits', 'Startup Accounting', 'Tax Strategy', 'SOC 2 Compliance'],
-      contact: 'Schedule Discovery Call',
-      url: 'https://calendly.com/finstackk',
-      color: 'text-accent',
-      glow: 'shadow-green-400/50'
-    },
-    {
-      tier: 'COMING SOON',
-      name: 'Accounting Partner',
-      module: 'Tax Module',
-      description: 'Optimize for freedom - strategic tax planning',
-      services: ['Tax Strategy', 'R&D Credits', 'State Selection', 'International Tax'],
-      contact: 'Coming Q1 2025',
+      tier: 'PREMIUM TIER',
+      name: 'Immigration Partner (Premium)',
+      module: 'White-Glove Immigration',
+      description: 'Full-service immigration with VC connections - $20K-25K range',
+      services: ['O-1 Visa Applications', 'EB-1A Green Cards', 'VC Network Access', 'Expedited Processing'],
+      contact: 'Partnership Discussions',
       url: '#',
-      color: 'text-foreground-tertiary',
-      glow: ''
+      color: 'text-purple-400',
+      glow: 'shadow-purple-400/30',
+      commission: '30% commission model'
+    },
+    {
+      tier: 'STANDARD TIER',
+      name: 'Immigration Partner (Standard)',
+      module: 'Professional Immigration',
+      description: 'Fair-market immigration services - $5K-8K range',
+      services: ['O-1 Visa Applications', 'EB-1A Green Cards', 'EB-2 NIW', 'H-1B Strategy'],
+      contact: 'Partnership Discussions',
+      url: '#',
+      color: 'text-accent',
+      glow: 'shadow-green-400/30',
+      commission: '20% commission model'
+    },
+    {
+      tier: 'EXCLUSIVE',
+      name: 'Tax & Accounting Partner',
+      module: 'Financial Services',
+      description: 'SOC 2 compliant accounting for H-1B founders',
+      services: ['R&D Tax Credits', 'Startup Accounting', 'Tax Strategy', 'SOC 2 Compliance'],
+      contact: 'In Negotiations',
+      url: '#',
+      color: 'text-blue-400',
+      glow: 'shadow-blue-400/30',
+      commission: 'Flat monthly sponsorship'
     }
   ]
 
