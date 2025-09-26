@@ -20,9 +20,9 @@ export default function Hero() {
             I took the <span className="text-red-pill">red pill</span>.
           </p>
           <p className="text-xl sm:text-2xl font-bold text-foreground">
-            Built <span className="text-accent">$3M ARR</span>,
+            Built <span className="text-accent">$3M+ ARR</span>,
             <span className="text-accent"> $0 VC</span>,
-            <span className="text-accent"> 95% profit</span> anyway.
+            <span className="text-accent"> 95% gross profit</span> anyway.
           </p>
         </div>
 

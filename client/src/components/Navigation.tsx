@@ -17,7 +17,8 @@ const baseNavigation: NavItem[] = [
   { name: 'CRISIS', href: '/crisis', status: 'LIVE', notify: true },
   { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
   { name: 'NEWSLETTER', href: '/newsletter', status: 'LIVE' },
-  { name: 'COACHING', href: '/coaching', status: 'LIVE' }
+  { name: 'COACHING', href: '/coaching', status: 'LIVE' },
+  { name: 'v0.8.0', href: '/changelog', status: 'LIVE' }
   // Tools removed - just demos, not valuable yet
   // Network section hidden - access through member login only
 ]

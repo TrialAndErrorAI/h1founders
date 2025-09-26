@@ -19,10 +19,10 @@ export default function TheReceipts() {
               <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">$3M+</div>
               <p className="text-foreground-tertiary mb-3 text-sm">Built Legitimately</p>
               <div className="bg-background-secondary/50 rounded p-3 font-mono text-xs">
-                <div className="text-accent">✓ 100% compliant</div>
+                <div className="text-accent">✓ 95% gross profit</div>
                 <div className="text-foreground-secondary">✓ Bootstrapped, $0 VC</div>
-                <div className="text-foreground-secondary">✓ Forum myths: busted</div>
-                <div className="text-red-pill">✓ Profitable from day 1</div>
+                <div className="text-foreground-secondary">✓ 100% compliant</div>
+                <div className="text-red-pill">✓ Merit wins over lottery</div>
               </div>
             </div>
           </div>

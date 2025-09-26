@@ -4,6 +4,7 @@ import { getDevModeBanner } from '../utils/devMode'
 import CrisisBanner from '../components/CrisisBanner'
 import MediaBanner from '../components/MediaBanner'
 import Hero from '../components/Hero'
+import MissionStatement from '../components/MissionStatement'
 import TheReceipts from '../components/TheReceipts'
 import Transformation from '../components/Transformation'
 import Coaching from '../components/Coaching'
@@ -58,6 +59,7 @@ export default function Home() {
       <CrisisBanner />
       <MediaBanner />
       <Hero />
+      <MissionStatement />
       <TheReceipts />
       {/* <WhatIActuallyDo /> */}
       {/* <FounderStory /> */}

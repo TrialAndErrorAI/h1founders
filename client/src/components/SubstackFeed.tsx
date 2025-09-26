@@ -54,13 +54,19 @@ export default function SubstackFeed() {
   if (loading) {
     return (
       <div className="border rounded-lg p-6" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
-        <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-          Latest from Substack
-        </h2>
-        <div className="animate-pulse space-y-4">
-          <div className="h-20 bg-gray-700 rounded"></div>
-          <div className="h-20 bg-gray-700 rounded"></div>
-          <div className="h-20 bg-gray-700 rounded"></div>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+            Latest Analysis
+          </h2>
+          <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>
+            // Loading...
+          </span>
+        </div>
+        <div className="space-y-4">
+          <div className="text-center py-8">
+            <div className="text-accent font-mono text-sm animate-pulse mb-2">Fetching latest posts...</div>
+            <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>This may take a moment</div>
+          </div>
         </div>
       </div>
     )
@@ -68,9 +74,14 @@ export default function SubstackFeed() {
 
   return (
     <div className="border rounded-lg p-6" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-secondary)' }}>
-      <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-        Latest Analysis
-      </h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+          Latest Analysis
+        </h2>
+        <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>
+          // Opens in Substack
+        </span>
+      </div>
       {error && (
         <p className="text-sm mb-4" style={{ color: 'var(--text-tertiary)' }}>{error}</p>
       )}

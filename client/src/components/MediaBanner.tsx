@@ -3,7 +3,7 @@ export default function MediaBanner() {
     <div className="bg-background border-b border-border">
       <div className="max-w-6xl mx-auto px-4 py-3">
         <a
-          href="https://www.wsj.com/world/india/h1b-visas-india-tech-engineering-834e079a"
+          href="https://community.h1bfounders.com/p/how-manisha-puppala-became-the-face"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-3 text-sm font-mono hover:text-accent transition-colors group"

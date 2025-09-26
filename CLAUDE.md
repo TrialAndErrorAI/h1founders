@@ -3,7 +3,7 @@
 **CPTO**: NEXUS (Chief Product & Technology Officer - Claude)
 **Start Date**: September 6, 2025
 **Status**: LIVE - h1founders.com
-**Last Major Update**: September 21, 2025 - LIVE DEPLOYMENT during H1B $100K crisis
+**Last Major Update**: September 26, 2025 - WSJ Feature & Partnership Strategy Pivot
 
 ## DOMAIN ARCHITECTURE (Critical - September 21, 2025)
 **Main Platform**:
@@ -102,8 +102,32 @@ const hasAccess = currentUser && canAccessCategory(...)
 const hasAccess = canAccessCategory(category, currentUser.badge)
 ```
 
-## Project Vision
-Transform H1BFounders from WhatsApp community to scalable platform with clear value proposition.
+## MISSION: MERITOCRACY WINS
+
+**Core Mission**: Enable the smartest people from anywhere to build in America based on merit, not lottery.
+
+**First Principles** (Sid's philosophy across H1Founders, T&E, and life):
+- Merit > Lottery
+- Builders > Beggars
+- Value creation > Visa games
+- Free market > Bureaucracy
+
+**What We're Building**:
+Help merit win in immigration by transforming:
+- F1 students → Founders before graduation
+- OPT workers → O-1 qualified builders
+- H1B dependents → Self-sponsoring entrepreneurs
+- Anyone with talent → Path to America through VALUE
+
+**The Test**: Are they builders or are they looking for handouts? We help the builders.
+
+**Why This Matters**:
+Sid walked from zero to hero in America's meritocracy. Now building the infrastructure for others to walk that same path - IF they're willing to build, not beg.
+
+This isn't about H1B or any specific visa. It's about ensuring talented people aren't stuck in third-world drudgery when they could be building in the world's best free market.
+
+**Strategic Implication for Platform**:
+Every feature, every message, every tool should ask: "Does this help merit win?"
 
 ### Strategic Position on H1B Reform (PRIVATE - Sept 26, 2025)
 **CRITICAL CONTEXT - Never state publicly:**
@@ -128,12 +152,14 @@ Transform H1BFounders from WhatsApp community to scalable platform with clear va
 - Privately: Reform serves our mission
 - Result: Guide founders to BETTER visas while looking like heroes
 
-## Community Scale (September 2025)
-- **WhatsApp**: 792 members (verification system ready)
+## Community Scale (September 2025 - Updated)
+- **Platform Users**: 31 real users (active in production)
+- **WhatsApp**: 860+ members (migrated to platform)
 - **Substack**: 600+ subscribers
 - **Slack**: Active community
-- **Total Reach**: ~1,400+ H1B founders
-- **Growth**: From 0 to 1,400 in 6 months
+- **Total Reach**: ~1,500+ H1B founders
+- **Growth**: From 0 to 1,500 in 6 months
+- **WIN CLUB Coach**: Operational dashboard with 19 clients, $2,960 revenue
 
 ## Context Sources (to be added)
 - [ ] WhatsApp chat history (March 2024 - present)
@@ -179,6 +205,8 @@ Transform H1BFounders from WhatsApp community to scalable platform with clear va
 │   ├── rfc005_platform_architecture.md
 │   ├── rfc006_optimization.md
 │   └── RFC009_content_architecture.md (implemented)
+├── data/
+│   └── coaching_crm.db (SQLite - 19 clients, $2,960 revenue)
 └── context/ (planned)
     ├── whatsapp-history/
     ├── substack-content/
@@ -237,6 +265,15 @@ Current implementation features 6 main sections:
 - **Always provide dev mode bypasses for protected routes**
 - **Yellow toolbar = dev mode indicator**
 - **Production requires real auth (sid@h1founders.com)**
+
+## COACHING CRM STATUS (September 26, 2025)
+**Backend Operational**: SQLite database with real client data
+- **Database**: `/data/coaching_crm.db` with 19 active clients
+- **Revenue**: $2,960 tracked in system
+- **Status**: Fully functional backend, WIN CLUB Coach dashboard operational
+- **Frontend Need**: CRM management interface for client tracking/scheduling
+- **Current Access**: WIN CLUB Coach dashboard works, but no client management UI
+- **Next**: Build frontend for client management, scheduling, session notes
 
 ## IMPORTANT DEV NOTES - COMPLIANCE REQUIRED
 **CRITICAL**: When writing ANY code for this project, you MUST follow these rules
@@ -463,7 +500,7 @@ Every content piece becomes a forum post with enhanced properties:
    - ZION → CLUB H1 transformation done
    - WhatsApp members start at FREED_MIND level
    - Oracle's Chamber has hybrid access (Morpheus+ free OR Club H1 paid)
-   - 2 users in production DB (@sid as THE_ARCHITECT verified)
+   - 31 users in production DB (real users, no longer just @sid)
 
 3. **Deployment**:
    - Using Cloudflare account: Ercanozr121@gmail.com (ID: 40ad419de279f41e9626e2faf500b6b4)
@@ -475,7 +512,14 @@ Every content piece becomes a forum post with enhanced properties:
    - Manual badge progression admin panel
    - Import WhatsApp members when they sign up (not pre-import)
 
-## PARTNERSHIP ECOSYSTEM DEVELOPMENT (September 15, 2025)
+## MAJOR MILESTONE: WSJ FEATURE (September 26, 2025)
+**BREAKTHROUGH**: H1Founders featured in Wall Street Journal article on H1B reform
+- **Impact**: National media recognition validates platform mission
+- **Timing**: Perfect alignment with H1B $100K fee crisis
+- **Positioning**: Established as go-to resource for affected founders
+- **Strategy Validation**: "Solutions not complaints" approach proven
+
+## PARTNERSHIP ECOSYSTEM DEVELOPMENT (September 15, 2025 - STRATEGY PIVOT)
 
 ### Active Partnership Pipeline
 **Status**: THREE founding partners manifesting simultaneously
@@ -498,18 +542,21 @@ Every content piece becomes a forum post with enhanced properties:
 - **Contact**: Raghavan Nagarajan
 - **Positioning**: Lower-tier option if Manifest Labs doesn't close
 
-### Partnership Strategy Evolution
-- **Tier Structure**: Implemented from partner page design
-- **Revenue Model**: $5K-25K/month per partner vs individual subscriptions  
+### Partnership Strategy Evolution (MAJOR PIVOT - Sept 26, 2025)
+- **NEW MODEL**: 30% commission structure (vs fixed monthly fees)
+- **Rationale**: More sustainable, scales with partner success
+- **Implementation**: Partners get leads, we get percentage of conversions
+- **WIN-WIN**: No upfront risk for partners, revenue scales for us
 - **Launch Target**: October 1, 2025 with founding partners integrated
 - **Documentation**: Partnership contracts and due diligence in `/docs/partners/`
 
 ## Next Phase
-Current focus on **Partnership Launch & Revenue Activation**
-- Close 3 founding partners by October 1st ($8K+ MRR baseline)
+Current focus on **Post-WSJ Growth & Revenue Activation**
+- Capitalize on WSJ feature momentum for user acquisition
+- Close 3 founding partners by October 1st (30% commission model)
+- Build coaching CRM frontend (backend operational: 19 clients, $2,960 revenue)
 - Content expansion leveraging partner expertise
 - Platform integration for partner tools and booking systems
-- Community launch with proven revenue model
 
 ## SID'S AUTHENTIC VOICE GUIDE
 **Based on WhatsApp Analysis (March 2024 - September 2025)**
