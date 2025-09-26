@@ -12,7 +12,7 @@ export default function MediaBanner() {
           <span className="text-foreground font-bold tracking-wider">THE WALL STREET JOURNAL</span>
           <span className="text-foreground-tertiary hidden sm:inline">•</span>
           <span className="text-accent hidden sm:inline group-hover:text-accent-secondary">
-            "This isn't reform, it's a sledgehammer"
+            On $100K H-1B fee: "This isn't reform, it's a sledgehammer"
           </span>
           <svg className="w-4 h-4 text-foreground-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
