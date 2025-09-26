@@ -105,6 +105,29 @@ const hasAccess = canAccessCategory(category, currentUser.badge)
 ## Project Vision
 Transform H1BFounders from WhatsApp community to scalable platform with clear value proposition.
 
+### Strategic Position on H1B Reform (PRIVATE - Sept 26, 2025)
+**CRITICAL CONTEXT - Never state publicly:**
+- Sid WANTS H1B reform to happen - it kills the Infosys/WITCH exploitation model
+- The $100K fee destroys body shops that abuse the system
+- This forces legitimate founders toward BETTER paths (O-1, EB-1A) with actual green card routes
+- We're not AGAINST reform - we're the bridge to what comes AFTER
+
+**Public Position:**
+- "This isn't reform, it's a sledgehammer" - acknowledges bluntness without opposing
+- We help those affected find alternatives
+- Focus on solutions, not complaints
+
+**Why This Matters:**
+- Body shops dying = real founders can shine
+- Higher bar for H1B = higher quality immigrants
+- Our founders were never going to win the H1B lottery anyway
+- O-1 and EB-1A are superior paths for actual builders
+
+**The 4D Chess:**
+- Publicly: Champions for those affected
+- Privately: Reform serves our mission
+- Result: Guide founders to BETTER visas while looking like heroes
+
 ## Community Scale (September 2025)
 - **WhatsApp**: 792 members (verification system ready)
 - **Substack**: 600+ subscribers

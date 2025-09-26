@@ -43,8 +43,19 @@ export default function Footer() {
               <div className="text-foreground-secondary mb-2">
                 H1Founders - Breaking ALL mental prisons since March 2024
               </div>
-              <div className="text-foreground-tertiary text-xs">
+              <div className="text-foreground-tertiary text-xs mb-3">
                 Founded by Sid Sarasvati • "The slave mentality was self-imposed" • Helping 1400+ realize the same
+              </div>
+              <div className="flex items-center justify-center gap-4 text-xs">
+                <span className="px-2 py-1 bg-accent/20 border border-accent text-accent font-mono rounded">
+                  BETA v0.8.0
+                </span>
+                <a
+                  href="/changelog"
+                  className="text-foreground-tertiary hover:text-accent transition-colors font-mono"
+                >
+                  View Changelog →
+                </a>
               </div>
             </div>
             
