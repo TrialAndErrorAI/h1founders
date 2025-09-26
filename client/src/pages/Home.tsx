@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { getDevModeBanner } from '../utils/devMode'
 import CrisisBanner from '../components/CrisisBanner'
+import MediaBanner from '../components/MediaBanner'
 import Hero from '../components/Hero'
 import TheReceipts from '../components/TheReceipts'
 import Transformation from '../components/Transformation'
@@ -55,6 +56,7 @@ export default function Home() {
         </div>
       )}
       <CrisisBanner />
+      <MediaBanner />
       <Hero />
       <TheReceipts />
       {/* <WhatIActuallyDo /> */}

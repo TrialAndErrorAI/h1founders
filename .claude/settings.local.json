@@ -64,7 +64,8 @@
       "Bash(bun add:*)",
       "mcp__firebase__firestore_validate_rules",
       "Bash(mv:*)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
     ],
     "deny": [],
     "ask": []
