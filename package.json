@@ -24,7 +24,8 @@
     "test:auth": "npx playwright test tests/phone-auth.spec.ts",
     "test:auth:debug": "npx playwright test tests/phone-auth.spec.ts --debug",
     "test:e2e": "npx playwright test",
-    "postinstall": "turbo build --filter=shared --filter=server"
+    "postinstall": "turbo build --filter=shared --filter=server",
+    "prepare": "husky"
   },
   "keywords": [
     "bun",
@@ -39,6 +40,7 @@
     "bun-types": "latest",
     "csv-parse": "^6.1.0",
     "firebase-admin": "^13.5.0",
+    "husky": "^9.1.7",
     "turbo": "^2.5.5"
   },
   "peerDependencies": {

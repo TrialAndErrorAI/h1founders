@@ -17,8 +17,6 @@ The platform disrupting H-1B narratives. WSJ quoted our founder on the crisis.
 
 **Emergency Response** - Real-time crisis navigation
 **Matrix Forum** - Where founders break free
-**Advanced Tools** - Calculate your escape velocity
-**Content Engine** - Knowledge that transforms
 
 ---
 
@@ -35,7 +33,7 @@ The platform disrupting H-1B narratives. WSJ quoted our founder on the crisis.
 ## v0.5.0 - Platform Launch
 *September 7, 2025*
 
-Platform goes live. Community already 850+ strong from WhatsApp.
+Platform goes live.
 
 ---
 

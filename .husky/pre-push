@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "🔍 Running build check before push..."
+cd client && npm run build
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! Fix errors before pushing."
+  echo "💡 Run 'cd client && npm run build' to see the errors"
+  exit 1
+fi
+echo "✅ Build successful! Pushing..."
