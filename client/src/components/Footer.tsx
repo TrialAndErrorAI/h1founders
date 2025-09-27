@@ -48,14 +48,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center justify-center gap-4 text-xs">
                 <span className="px-2 py-1 bg-accent/20 border border-accent text-accent font-mono rounded">
-                  BETA v0.8.0
+                  BETA v0.8.1
                 </span>
-                <a
-                  href="/changelog"
-                  className="text-foreground-tertiary hover:text-accent transition-colors font-mono"
-                >
-                  View Changelog →
-                </a>
               </div>
             </div>
             

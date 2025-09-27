@@ -7,4 +7,14 @@ if [ $? -ne 0 ]; then
   echo "💡 Run 'cd client && npm run build' to see the errors"
   exit 1
 fi
+
+# Changelog reminder
+echo ""
+echo "📝 CHANGELOG REMINDER:"
+echo "   Have you updated /CHANGELOG.md for this release?"
+echo "   Current version in package.json: v0.8.1"
+echo ""
+echo "   Press Enter if updated, Ctrl+C to cancel push..."
+read -r
+
 echo "✅ Build successful! Pushing..."

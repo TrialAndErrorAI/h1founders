@@ -1,7 +1,16 @@
 # H1Founders Platform
 
-## v0.8.0 - WSJ Edition
+## v0.8.1 - Community Edition
 *September 27, 2025*
+
+**H1 FOUNDERS NETWORK** - 900+ members strong
+**New WhatsApp Community** - Better structure for scale
+**Community Rebrand** - From "WhatsApp Group" to professional network
+
+---
+
+## v0.8.0 - WSJ Edition
+*September 26, 2025*
 
 **FEATURED IN THE WALL STREET JOURNAL**
 The platform disrupting H-1B narratives. WSJ quoted our founder on the crisis.
