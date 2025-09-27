@@ -185,9 +185,9 @@ This weekend showed our community's strength. Yes, there was panic. But there wa
 - People sharing primary sources
 - Voices of reason emerging
 
-Join our WhatsApp group while it's still open: https://chat.whatsapp.com/EDzgWji4jr6AlVKch0dGMV
+Join H1 Founders Network while it's still open: https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat
 
-We're at 850 members and growing fast. Once we hit 1,000, we're closing the doors.
+We're at 900+ members and growing fast. Once we hit 1,000, we're closing the doors.
 
 Stay strong. The system is against us, but we have each other.
 

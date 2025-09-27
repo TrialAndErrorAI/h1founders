@@ -14,18 +14,18 @@ export default function Community() {
         {/* Primary CTA - WhatsApp */}
         <div className="bg-background rounded-lg p-8 border-2 border-accent mb-16 text-center">
           <div className="font-mono text-sm mb-4">
-            <div className="text-accent text-lg">// Join 850+ founders breaking free</div>
+            <div className="text-accent text-lg">// Join H1 Founders Network - 900+ immigrant founders</div>
           </div>
           <p className="text-foreground text-xl mb-6">
-            Real-time support. No BS. Just founders helping founders.
+            The official community for immigrant founders. Build, grow, exit.
           </p>
           <a
-            href="https://chat.whatsapp.com/EDzgWji4jr6AlVKch0dGMV"
+            href="https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-accent text-black px-8 py-3 rounded font-bold hover:bg-green-400 transition-colors text-lg"
           >
-            JOIN WHATSAPP GROUP →
+            JOIN H1 FOUNDERS NETWORK →
           </a>
           <div className="mt-6 flex justify-center gap-8 text-sm text-foreground-tertiary">
             <span>✓ Real founders</span>

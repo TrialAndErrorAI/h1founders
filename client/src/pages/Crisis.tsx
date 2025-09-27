@@ -12,7 +12,7 @@ export default function Crisis() {
             H1B $100K Crisis Tracker
           </h1>
           <p className="text-lg mt-2" style={{ color: 'var(--text-secondary)' }}>
-            Verified by 850+ founders. Not legal advice.
+            Verified by H1 Founders Network. Not legal advice.
           </p>
         </div>
       </div>
@@ -116,16 +116,16 @@ export default function Crisis() {
             Get Real-Time Updates & Support
           </h2>
           <p className="mb-6 text-lg" style={{ color: 'var(--text-secondary)' }}>
-            850+ founders. Real-time updates.
+            900+ immigrant founders. Real-time updates.
           </p>
           <div className="space-y-4">
             <a
-              href="https://chat.whatsapp.com/EDzgWji4jr6AlVKch0dGMV"
+              href="https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-green-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition-colors"
             >
-              Join WhatsApp Group →
+              Join H1 Founders Network →
             </a>
             <div className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
               <p>Or discuss in our forum (members only)</p>
