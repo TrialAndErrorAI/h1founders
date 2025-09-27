@@ -9,9 +9,6 @@ import { ChevronUpIcon, ChevronDownIcon, UserGroupIcon } from '@heroicons/react/
 import toast from 'react-hot-toast'
 import { hasAdminAccess, cleanupOldDevArtifacts, isDevMode } from '../../utils/devMode'
 
-// SECURITY: Only Sid can access admin panel
-const ADMIN_UID = 'QViviOX79DXnrE9pViXAfcGqTcx2'
-
 const BADGE_LEVELS = [
   BadgeLevel.BLUE_PILL,
   BadgeLevel.UNPLUGGED,

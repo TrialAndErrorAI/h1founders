@@ -161,6 +161,14 @@ Every feature, every message, every tool should ask: "Does this help merit win?"
 - **Growth**: From 0 to 1,500 in 6 months
 - **WIN CLUB Coach**: Operational dashboard with 19 clients, $2,960 revenue
 
+## WIN CLUB Program Structure (CRITICAL - Sept 26, 2025)
+**Current Cohort**: 3 active members (Swapnil, Akshya, Rana)
+**Next Cohort**: Q1 2026 - NOT BEFORE
+**WhatsApp Structure**:
+- WIN CLUB - PUBLIC (open to all, program info)
+- WIN CLUB - PRIVATE (paying members only)
+**Important**: STOP saying "next week" or "Monday" for new cohorts. Next cohort is Q1 2026. Period.
+
 ## Context Sources (to be added)
 - [ ] WhatsApp chat history (March 2024 - present)
 - [ ] Viral LinkedIn post that started it all

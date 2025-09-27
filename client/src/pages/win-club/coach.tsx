@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../lib/firebase';
 import { collection, query, getDocs, doc, setDoc, updateDoc, where, orderBy } from 'firebase/firestore';
-import { ChevronLeftIcon, UserGroupIcon, CalendarIcon, TrendingUpIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import { UserGroupIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { hasCoachAccess } from '../../utils/devMode';
 
 interface Member {
@@ -33,7 +33,7 @@ interface Session {
 
 const CoachDashboard: React.FC = () => {
   const navigate = useNavigate();
-  const { currentUser } = useAuth();
+  const { user } = useAuth();
   const [members, setMembers] = useState<Member[]>([]);
   const [todaySessions, setTodaySessions] = useState<Session[]>([]);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
@@ -42,10 +42,10 @@ const CoachDashboard: React.FC = () => {
 
   // Check if user has coach access
   useEffect(() => {
-    if (!hasCoachAccess(currentUser?.email)) {
+    if (!hasCoachAccess(user?.email)) {
       navigate('/');
     }
-  }, [currentUser, navigate]);
+  }, [user, navigate]);
 
   // Load members and sessions
   useEffect(() => {
