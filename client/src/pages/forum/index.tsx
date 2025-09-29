@@ -80,7 +80,7 @@ export default function Forum() {
 
         setAllThreads(allMergedThreads)
       } catch (error) {
-
+        console.error('Error loading forum threads:', error)
         setAllThreads([])
       } finally {
         setLoading(false)
