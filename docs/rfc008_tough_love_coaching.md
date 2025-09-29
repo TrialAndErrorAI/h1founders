@@ -81,13 +81,76 @@ interface CoachingClip {
 - [ ] Implement Matrix video player
 - [ ] Add to main navigation
 
-### Phase 2: Content Management (Day 2)
+### Phase 2: Video Intelligence Layer (Foundation for all media)
+**This becomes the foundation for WIN CLUB and all future video content**
+
+#### Core Video Player with AI
+```typescript
+interface IntelligentVideoPlayer {
+  // Basic player
+  videoUrl: string;           // YouTube/Vimeo/direct
+  transcript: string;         // Full text transcript
+
+  // AI-powered features
+  synchronizedTranscript: {   // Clickable, scrolling transcript
+    segments: TranscriptSegment[];
+    currentTime: number;
+    onSeek: (time: number) => void;
+  };
+
+  askAI: {                    // "Ask NEXUS" feature
+    context: string;          // Full transcript + metadata
+    onQuestion: (q: string) => AIResponse;
+    suggestedQuestions: string[];
+    // AI makes assumptions explicit in responses:
+    // "Based on the 45-minute session transcript, Sid mentioned..."
+    // "I'm assuming you're asking about pricing strategy because..."
+  };
+
+  keyMoments: {               // AI-extracted highlights
+    timestamp: number;
+    type: 'breakthrough' | 'insight' | 'action';
+    summary: string;
+    confidence: number;       // How sure AI is
+  }[];
+
+  search: {                   // Search within video
+    query: string;
+    results: SearchResult[];  // With timestamps
+  };
+}
+```
+
+#### Implementation Components
+```typescript
+// Reusable across entire platform
+<VideoTranscriptViewer
+  video={session.recording}
+  transcript={session.transcript}
+  onAskAI={(question) => {
+    // AI has full context of transcript + session history
+    // Makes assumptions explicit in response
+  }}
+  highlights={session.aiExtractedMoments}
+/>
+
+// Search across all videos
+<VideoLibrarySearch
+  onSearch={(query) => {
+    // Search all transcripts in Firestore
+    // Return videos + exact timestamps
+  }}
+/>
+```
+
+### Phase 3: Content Management
 - [ ] YouTube integration
 - [ ] Clips component with grid layout
 - [ ] Founder spotlight cards
 - [ ] Application form embed
+- [ ] Automatic clip generation from AI-identified moments
 
-### Phase 3: Social Features (Day 3)
+### Phase 4: Social Features
 - [ ] Share buttons for clips
 - [ ] Comments/reactions system
 - [ ] "Next episode" countdown
@@ -157,11 +220,52 @@ BREAKTHROUGH_CLIPS/
 3. **Next Week**: Clips gallery + social features
 4. **Month 1**: Full platform with analytics
 
+## Future Platform Enablement
+
+**This video intelligence layer becomes the foundation for:**
+
+### WIN CLUB Integration (RFC 016)
+- Member portal shows their sessions with searchable transcripts
+- Coach dashboard has AI-suggested talking points based on patterns
+- "Ask NEXUS" helps members between sessions
+- Pattern recognition across all cohort members
+
+### Future Content Types
+- **Attorney Sessions**: Legal Q&A with timestamp navigation
+- **Success Stories**: Founder interviews with key moment extraction
+- **Educational Content**: Visa guides with interactive examples
+- **Community Calls**: Searchable archives of group discussions
+
+### AI Makes Media Consumable
+Instead of 60-minute videos nobody watches:
+- Jump to exact answer via search
+- AI summarizes key points
+- Automated clips for social sharing
+- "Related moments" across all content
+- Personalized recommendations based on user's situation
+
+### The Moat: Every Video Becomes Intelligence
+```typescript
+// Every piece of media adds to the knowledge base
+interface ContentIntelligence {
+  // Accumulated wisdom
+  totalHoursTranscribed: number;
+  uniqueInsights: string[];
+  commonPatterns: Pattern[];
+
+  // AI capabilities grow with content
+  answerAccuracy: number;  // Improves with more data
+  patternRecognition: PatternMatch[];
+  personalizedAdvice: (userContext: User) => Advice;
+}
+```
+
 ## Revenue Potential
 - **Immediate**: $0 (free for recording rights)
 - **Month 3**: Package 10 episodes as course ($297)
 - **Month 6**: Premium coaching tier ($500/session)
 - **Year 1**: Sponsor integration ("Powered by Manifest Labs")
+- **Long-term**: AI coaching assistant trained on all content ($99/mo)
 
 ## Next Steps
 1. Complete forum categories update

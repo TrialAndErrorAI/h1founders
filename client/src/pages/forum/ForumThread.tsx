@@ -322,10 +322,7 @@ export default function ForumThread() {
             </div>
           </div>
 
-          <MarkdownRenderer 
-            content={thread.content}
-            isContentThread={!!(thread as any).contentType}
-          />
+          <MarkdownRenderer content={thread.content} />
 
           {thread.tags && thread.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-6">

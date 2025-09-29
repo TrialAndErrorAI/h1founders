@@ -1,25 +1,47 @@
-# Session State - H1Founders @ Start of Sept 27, 2025
+# Session State - H1Founders @ End of Sept 27, 2025
 
-## 🎯 STATUS: v0.8.1 Deployed, Community Rebranded, WSJ Momentum Active
+## 🎯 STATUS: v0.8.1 Live, 33 Users, Coaching Platform Architecture Defined
 
-## What We Shipped (Sept 26-27)
-✅ v0.8.1 DEPLOYED TO PRODUCTION - Community language updates
-✅ H1 Founders Network rebrand - 900+ members (was "WhatsApp Group")
-✅ New WhatsApp Community link - https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat
-✅ Pre-push hook protection - Prevents broken production builds
-✅ RFC 018 implemented - Community alignment complete
-✅ Merit > Lottery positioning - Throughout platform
-✅ Receipts updated - $3M+ with 95% gross profit
-✅ Changelog cleaned - Pure hype, no weak metrics exposed
-✅ Crisis response content - H1B $100K White House update added
-✅ WSJ media banner - Credibility boost for platform
+## What We Shipped (Sept 27 Session #2)
+✅ **Changelog System Refactor** - Made internal-only with auto-reminders
+✅ **Pre-push Hook Enhanced** - Now prompts for changelog updates
+✅ **MDX Decision Made** - Rejected for simpler React component approach
+✅ **RFC 008 Enhanced** - Added video intelligence layer foundation
+✅ **User Growth** - 31 → 33 users (slow but steady WSJ traction)
+
+## Technical Decisions Made
+
+### 1. Changelog → Internal Only
+- Removed public `/changelog` route and component (-108 lines of bloat)
+- Kept single `/CHANGELOG.md` as internal documentation
+- Added pre-push hook reminder: "Have you updated /CHANGELOG.md?"
+- Rationale: Eliminates maintenance burden while keeping history
+
+### 2. MDX Exploration → Rejected
+- **Considered**: MDX for embedding React components in content
+- **Decision**: Keep simple markdown + React components separately
+- **Rationale**: Our workflow (Substack → Platform) doesn't benefit from MDX
+- **Alternative**: Build dedicated React pages for interactive content
+
+### 3. Video Intelligence Architecture
+Enhanced RFC 008 with reusable video player foundation:
+```typescript
+interface IntelligentVideoPlayer {
+  synchronizedTranscript: TranscriptSegment[];
+  askAI: (question: string) => AIResponse;  // "Ask NEXUS"
+  keyMoments: AIExtractedMoment[];
+  search: VideoSearchCapability;
+}
+```
+This becomes the foundation for WIN CLUB and all future video content.
 
 ## Current Platform State
-- **Users**: 31 real signups in production
+- **Users**: 33 real signups (growth from 31 yesterday)
 - **WhatsApp**: 900+ members in H1 Founders Network (Community structure)
 - **Coaching**: 19 clients, $2,960 revenue (backend operational, needs frontend)
-- **WIN CLUB**: Dashboard operational, TypeScript errors fixed
+- **WIN CLUB**: Dashboard operational, ready for video intelligence layer
 - **Version**: v0.8.1 (Community Edition)
+- **Branch**: master (feat/mdx created but abandoned after decision)
 
 ## CRITICAL CONTEXT FOR NEXT SESSION
 
@@ -28,14 +50,18 @@
 # Core philosophy and rules
 /Users/sid/Code/te/h1founders/CLAUDE.md
 
+# Coaching platform RFCs (CRITICAL for next build)
+/Users/sid/Code/te/h1founders/docs/rfc008_tough_love_coaching.md  # Enhanced with video intelligence
+/Users/sid/Code/te/h1founders/docs/rfc016_win_club_coaching_platform.md
+
 # Check current coaching data
 /Users/sid/Code/te/h1founders/data/coaching_crm.db
 
-# Partnership strategy docs
-/Users/sid/Code/te/h1founders/docs/partners/
-
 # WIN CLUB implementation
 /Users/sid/Code/te/h1founders/client/src/pages/win-club/coach.tsx
+
+# Internal changelog (check version)
+/Users/sid/Code/te/h1founders/CHANGELOG.md
 ```
 
 ### 2. Partnership Strategy Pivot (30% Commission)

@@ -5,13 +5,12 @@
 
 interface MarkdownRendererProps {
   content: string
-  isContentThread?: boolean
 }
 
-export function MarkdownRenderer({ content, isContentThread = false }: MarkdownRendererProps) {
-  // If not a content thread, render as plain text
-  if (!isContentThread) {
-    return <p className="text-foreground-secondary whitespace-pre-wrap">{content}</p>
+export function MarkdownRenderer({ content }: MarkdownRendererProps) {
+  // Always render markdown for all forum posts
+  if (!content) {
+    return null
   }
 
   // Simple markdown parsing for content threads

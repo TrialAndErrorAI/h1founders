@@ -71,7 +71,8 @@ export default function CreateThread() {
           uid: user.uid,
           name: profile.username || user.phoneNumber || 'Anonymous',
           badge: (profile.matrixLevel as unknown as BadgeLevel) || BadgeLevel.BLUE_PILL
-        }
+        },
+        type // Pass the selected thread type
       )
 
       // Navigate to the new thread

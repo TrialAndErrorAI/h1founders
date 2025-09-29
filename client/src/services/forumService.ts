@@ -58,7 +58,8 @@ export class ForumService {
     title: string,
     content: string,
     category: string,
-    author: ForumAuthor
+    author: ForumAuthor,
+    threadType?: string
   ): Promise<string> {
     const threadData = {
       title,
@@ -67,6 +68,9 @@ export class ForumService {
       authorId: author.uid,
       authorName: author.name,
       authorBadge: author.badge || BadgeLevel.BLUE_PILL,
+      contentType: threadType || 'QUESTION', // Default to QUESTION if not specified
+      isPinned: false,
+      isOfficial: author.badge === BadgeLevel.THE_ARCHITECT, // Auto-mark as official if Architect posts
       replyCount: 0,
       upvotes: 0,
       views: 0,
