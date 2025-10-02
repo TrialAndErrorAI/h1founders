@@ -162,12 +162,14 @@ Every feature, every message, every tool should ask: "Does this help merit win?"
 - **WIN CLUB Coach**: Operational dashboard with 19 clients, $2,960 revenue
 
 ## WIN CLUB Program Structure (CRITICAL - Sept 26, 2025)
-**Current Cohort**: 3 active members (Swapnil, Akshya, Rana)
+**Current Cohort Q4 2025**: 3 active members (Saurabh, Harshdeep, Khasim) - $1,491 MRR
+**Start Date**: October 1, 2025 (Wed/Fri check-ins)
 **Next Cohort**: Q1 2026 - NOT BEFORE
 **WhatsApp Structure**:
 - WIN CLUB - PUBLIC (open to all, program info)
 - WIN CLUB - PRIVATE (paying members only)
 **Important**: STOP saying "next week" or "Monday" for new cohorts. Next cohort is Q1 2026. Period.
+**Note**: Swapnil, Akshya, Rana are Tough Love candidates (FREE coaching), NOT WIN CLUB members.
 
 ## Context Sources (to be added)
 - [ ] WhatsApp chat history (March 2024 - present)
