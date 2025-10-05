@@ -184,8 +184,9 @@ Every feature, every message, every tool should ask: "Does this help merit win?"
 
 ```
 /h1founders/
-├── CLAUDE.md (this file - project memory)
-├── next_session.md (session bootstrap - KEEP IN ROOT ONLY)
+├── CLAUDE.md (this file - WHO I am: identity, protocols, domain knowledge)
+├── MEMORY.md (WHAT I know: session intelligence, patterns discovered)
+├── NOW.md (WHERE I am: current state, ephemeral)
 ├── content/ (operational content system)
 │   ├── announcements/
 │   ├── events/
@@ -333,7 +334,7 @@ We will add post-commit hooks that automatically reject code that:
 - Breaks theme consistency
 
 ## Important Conventions
-1. **next_session.md**: Always keep in root folder ONLY (not in docs/)
+1. **Memory Architecture**: CLAUDE.md (WHO), MEMORY.md (WHAT), NOW.md (WHERE) - all in root
 2. **RFCs**: Active in docs/, completed in docs/rfc/archive/
 3. **PRFAQs**: Numbered as prfaq001, prfaq002, etc.
 4. **Partnership features**: Behind VITE_ENABLE_PARTNERSHIPS flag
