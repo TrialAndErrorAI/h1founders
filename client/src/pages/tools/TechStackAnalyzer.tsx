@@ -30,6 +30,12 @@ const TECH_SIGNATURES = {
     'Gatsby': [/gatsby/, /___gatsby/],
     'Svelte': [/svelte/],
     'Nuxt': [/nuxt/],
+    'Bootstrap': [/bootstrap\.js/, /bootstrap\.css/, /bootstrap\.min/, /class="[^"]*\bcontainer\b/, /class="[^"]*\brow\b/],
+    'Tailwind CSS': [/tailwind/, /tw-/],
+    'jQuery': [/jquery\.js/, /\$\(/],
+    'Alpine.js': [/alpine/, /x-data/],
+    'Ember.js': [/ember/],
+    'Backbone.js': [/backbone/],
   },
   analytics: {
     'Google Analytics': [/google-analytics\.com/, /gtag/, /ga\.js/],
@@ -92,13 +98,20 @@ async function analyzeTechStack(url: string): Promise<TechStack> {
   }
 
   try {
-    // Fetch the page HTML
-    const response = await fetch(url, {
-      mode: 'cors',
-    })
+    // Use CORS proxy to bypass client-side restrictions
+    const proxyUrl = 'https://api.allorigins.win/raw?url='
+    const fetchUrl = proxyUrl + encodeURIComponent(url)
+
+    // Fetch the page HTML through proxy
+    const response = await fetch(fetchUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+    }
+
     const html = await response.text()
 
-    // Get response headers
+    // Get response headers (note: proxy doesn't forward original headers)
     const headers: Record<string, string> = {}
     response.headers.forEach((value, key) => {
       headers[key.toLowerCase()] = value.toLowerCase()
@@ -148,6 +161,7 @@ export default function TechStackAnalyzer() {
   const [analyzing, setAnalyzing] = useState(false)
   const [result, setResult] = useState<AnalysisResult | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
 
   const handleAnalyze = async () => {
     if (!url.trim()) {
@@ -183,6 +197,42 @@ export default function TechStackAnalyzer() {
     if (e.key === 'Enter' && !analyzing) {
       handleAnalyze()
     }
+  }
+
+  const copyResults = () => {
+    if (!result) return
+
+    // Format results as plain text
+    let text = `Tech Stack Analysis: ${result.url}\n`
+    text += `Analyzed: ${new Date(result.analyzedAt).toLocaleString()}\n`
+    text += `Technologies Found: ${result.totalTechnologies}\n\n`
+
+    const categoryNames: Record<string, string> = {
+      frameworks: 'Frameworks',
+      analytics: 'Analytics & Tracking',
+      hosting: 'Hosting & CDN',
+      cms: 'Content Management',
+      payments: 'Payment Processing',
+      marketing: 'Marketing & Email',
+      chatWidgets: 'Chat & Support',
+      abTesting: 'A/B Testing',
+      other: 'Other Technologies',
+    }
+
+    Object.entries(result.techStack).forEach(([category, technologies]) => {
+      if (technologies.length > 0) {
+        text += `${categoryNames[category] || category}:\n`
+        technologies.forEach(tech => {
+          text += `  - ${tech}\n`
+        })
+        text += '\n'
+      }
+    })
+
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
   }
 
   return (
@@ -235,6 +285,22 @@ export default function TechStackAnalyzer() {
             </button>
           </div>
         </div>
+
+        {/* Analyzing Loader */}
+        {analyzing && (
+          <div className="bg-accent/10 border border-accent/20 rounded-lg p-8 mb-8">
+            <div className="flex items-center justify-center gap-4">
+              <div className="flex gap-2">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></span>
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></span>
+              </div>
+              <p className="text-accent font-mono text-sm">
+                Scanning HTML, scripts, and headers...
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Error Display */}
         {error && (
@@ -309,9 +375,16 @@ export default function TechStackAnalyzer() {
             {/* Actions */}
             <div className="flex gap-4">
               <button
+                onClick={copyResults}
+                className="flex-1 bg-accent/10 border border-accent/20 rounded py-3 px-4 text-accent font-mono hover:bg-accent/20 transition-colors"
+              >
+                {copied ? '✓ COPIED!' : 'COPY_RESULTS()'}
+              </button>
+              <button
                 onClick={() => {
                   setResult(null)
                   setUrl('')
+                  setCopied(false)
                 }}
                 className="flex-1 bg-background-secondary border border-border rounded py-3 px-4 text-foreground font-mono hover:border-accent transition-colors"
               >
