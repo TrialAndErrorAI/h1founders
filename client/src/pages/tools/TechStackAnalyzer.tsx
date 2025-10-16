@@ -180,16 +180,54 @@ export default function TechStackAnalyzer() {
         0
       )
 
-      setResult({
+      const analysisResult = {
         url: url.trim(),
         techStack,
         analyzedAt: new Date().toISOString(),
         totalTechnologies,
+      }
+
+      setResult(analysisResult)
+
+      // Track usage (non-blocking)
+      trackAnalysis(analysisResult).catch(err => {
+        console.warn('Tracking failed:', err)
+        // Don't block user experience if tracking fails
       })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze URL')
     } finally {
       setAnalyzing(false)
+    }
+  }
+
+  const trackAnalysis = async (result: AnalysisResult) => {
+    try {
+      // Generate session ID (use localStorage for persistence)
+      let sessionId = localStorage.getItem('h1founders-session-id')
+      if (!sessionId) {
+        sessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+        localStorage.setItem('h1founders-session-id', sessionId)
+      }
+
+      // Call tracking API (adjust URL for production)
+      const apiUrl = import.meta.env.DEV
+        ? 'http://localhost:3000/api/track/tech-stack'
+        : '/api/track/tech-stack'
+
+      await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: result.url,
+          techStack: result.techStack,
+          totalTechnologies: result.totalTechnologies,
+          sessionId,
+        }),
+      })
+    } catch (error) {
+      // Silent fail - don't block user experience
+      console.warn('Analytics tracking failed:', error)
     }
   }
 
