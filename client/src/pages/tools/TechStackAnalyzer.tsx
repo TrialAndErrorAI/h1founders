@@ -98,11 +98,12 @@ async function analyzeTechStack(url: string): Promise<TechStack> {
   }
 
   try {
-    // Use CORS proxy to bypass client-side restrictions
-    const proxyUrl = 'https://api.allorigins.win/raw?url='
-    const fetchUrl = proxyUrl + encodeURIComponent(url)
+    // Use our server-side proxy to bypass CORS restrictions
+    // Server fetches the URL (no CORS on server-to-server)
+    const apiUrl = import.meta.env.DEV ? 'http://localhost:3000' : ''
+    const fetchUrl = `${apiUrl}/api/proxy?url=${encodeURIComponent(url)}`
 
-    // Fetch the page HTML through proxy
+    // Fetch the page HTML through our proxy
     const response = await fetch(fetchUrl)
 
     if (!response.ok) {
