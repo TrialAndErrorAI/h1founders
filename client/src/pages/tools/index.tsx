@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom'
 
 const tools = [
   {
+    id: 'tech-stack-analyzer',
+    name: 'Tech Stack Analyzer',
+    description: 'Spy on competitors. See what they\'re built with - frameworks, analytics, hosting, and more.',
+    status: 'LIVE',
+    path: '/tools/tech-stack-analyzer',
+    icon: '🔍'
+  },
+  {
     id: 'salary-explorer',
     name: 'H1B Salary Explorer',
     description: 'See what companies pay H1B holders. Then see what founders make instead.',

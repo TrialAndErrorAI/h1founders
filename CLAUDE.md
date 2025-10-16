@@ -20,6 +20,36 @@
 - **Build**: `cd client && bun install && bun run build`
 - **Status**: LIVE with Crisis Response System
 
+## WhatsApp Infrastructure (October 2025)
+
+**Active Groups:**
+
+1. **H1Founders Main** (860+ members)
+   - General community, all discussions
+   - Created: March 2024
+   - Managed by: Sid
+
+2. **WIN CLUB - PUBLIC**
+   - WIN CLUB Q4 2025 program updates
+   - Created: September 2025
+   - Note: No private version exists (despite "PUBLIC" name)
+
+3. **Start a Business** (Launching Oct 8, 2025)
+   - Ideation stage + co-founder matching
+   - Lead gen funnel for $3,500 incorporation package
+   - FREE group → builds momentum → monetize when ready
+   - Managed by: Manisha (3-month trial starting Oct 9)
+
+4. **First $10K Club** (Launching Oct 8, 2025)
+   - Revenue accountability for active builders
+   - Weekly rhythm: Monday goals, Friday results
+   - Consumer + B2B founders (revenue matters, path doesn't)
+   - Managed by: Manisha (3-month trial starting Oct 9)
+
+**Strategy:**
+- Start a Business → graduates to → First $10K Club (when incorporated + building)
+- First $10K Club → graduates to → ? (future: $100K Club or similar)
+
 ## NEXUS: My Role as CPTO
 As Chief Product & Technology Officer, I (NEXUS) make critical product decisions with security-first mindset:
 - **Product Strategy**: Protect member privacy, prevent scraping, think like a founder

@@ -9,6 +9,7 @@ import ScrollToTop from './components/ScrollToTop'
 // Lazy load all non-essential pages
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const ToolsIndex = lazy(() => import('./pages/tools'))
+const TechStackAnalyzer = lazy(() => import('./pages/tools/TechStackAnalyzer'))
 const SalaryExplorer = lazy(() => import('./pages/tools/SalaryExplorer'))
 const EB1AQualifier = lazy(() => import('./pages/tools/EB1AQualifier'))
 const Resources = lazy(() => import('./pages/resources'))
@@ -45,6 +46,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="tools" element={<ToolsIndex />} />
+            <Route path="tools/tech-stack-analyzer" element={<TechStackAnalyzer />} />
             <Route path="tools/salary-explorer" element={<SalaryExplorer />} />
             <Route path="tools/eb1a-qualifier" element={<EB1AQualifier />} />
             <Route path="coaching" element={<Coaching />} />
