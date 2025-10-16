@@ -257,10 +257,10 @@ export default function TechStackAnalyzer() {
       other: 'Other Technologies',
     }
 
-    Object.entries(result.techStack).forEach(([category, technologies]) => {
+    Object.entries(result.techStack).forEach(([category, technologies]: [string, string[]]) => {
       if (technologies.length > 0) {
         text += `${categoryNames[category] || category}:\n`
-        technologies.forEach(tech => {
+        technologies.forEach((tech: string) => {
           text += `  - ${tech}\n`
         })
         text += '\n'
@@ -388,7 +388,7 @@ export default function TechStackAnalyzer() {
                     {categoryNames[category] || category}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {technologies.map((tech) => (
+                    {technologies.map((tech: string) => (
                       <span
                         key={tech}
                         className="bg-accent/10 text-accent border border-accent/20 px-3 py-1 rounded font-mono text-sm"
