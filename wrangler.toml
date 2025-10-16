@@ -1,0 +1,9 @@
+# Cloudflare Pages + D1 Configuration
+name = "h1founders"
+compatibility_date = "2025-10-16"
+
+# D1 Database Bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "h1f-tech-stack"
+database_id = "e60bb36e-ec6c-483a-97a5-67b63404f55b"

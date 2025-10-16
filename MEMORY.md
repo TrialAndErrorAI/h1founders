@@ -1,6 +1,24 @@
 # H1Founders Intelligence Archive
 > Permanent intelligence, patterns discovered, decisions made
 
+## Infrastructure & Deployment
+
+### Cloudflare Account Setup (Oct 16, 2025)
+**Account:** ercanozr121@gmail.com (Ercan's account, Sid has access)
+- **Account ID:** 40ad419de279f41e9626e2faf500b6b4
+- **Deployment:** Cloudflare Pages (auto-deploy from GitHub master branch)
+- **Live URL:** https://master.h1founders.pages.dev
+
+**CLI Configuration:**
+- Wrangler CLI will show 2 accounts when running commands
+- Use ercanozr account for all h1founders deployments
+- Select account during D1/Pages operations
+
+**D1 Database:**
+- Database name: `h1founders-growth-hacks`
+- Used for: Tech Stack Analyzer usage tracking, future growth hack tools
+- Serverless SQLite (perfect for Pages deployment)
+
 ## Major Breakthroughs
 
 ### The Peak Principle (Oct 3, 2025)
