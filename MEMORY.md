@@ -14,10 +14,36 @@
 - Use ercanozr account for all h1founders deployments
 - Select account during D1/Pages operations
 
-**D1 Database:**
-- Database name: `h1founders-growth-hacks`
-- Used for: Tech Stack Analyzer usage tracking, future growth hack tools
-- Serverless SQLite (perfect for Pages deployment)
+**D1 Databases (Tool-Specific Architecture):**
+- **Naming**: `h1f-[tool-name]` (h1f = H1Founders prefix)
+- **Current DBs:**
+  - `h1f-tech-stack` (ID: e60bb36e-ec6c-483a-97a5-67b63404f55b)
+- **Pattern**: Each growth hack tool gets own D1 database
+- **Why**: Cleaner separation, easier per-tool management vs generic shared DB
+
+### Tech Stack Analyzer (Oct 16, 2025)
+**First Growth Hack Tool for First $10K Club**
+
+**Architecture:**
+- Client: `/client/src/pages/tools/TechStackAnalyzer.tsx`
+- API: `/server/src/index.ts` (D1 bindings)
+- Database: `h1f-tech-stack` D1 (analyses table)
+- CORS: api.allorigins.win proxy
+
+**Features:**
+- 50+ technology signatures (React, Vue, Angular, Bootstrap, Tailwind, Stripe, etc.)
+- Visual loader animation
+- Copy Results button
+- Usage tracking via D1
+- Session persistence (localStorage)
+
+**D1 Schema:**
+```sql
+analyses (id, url, tech_stack_json, total_technologies, session_id, user_agent, analyzed_at)
+Views: daily_stats, popular_urls
+```
+
+**Deploy:** Git push to master → Cloudflare auto-deploy → Live at h1founders.com/tools/tech-stack-analyzer
 
 ## Major Breakthroughs
 
