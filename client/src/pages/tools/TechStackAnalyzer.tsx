@@ -171,6 +171,17 @@ async function analyzeTechStack(url: string): Promise<TechStack> {
     })
 
     if (!response.ok) {
+      // Check if proxy returned JSON error message
+      const contentType = response.headers.get('content-type')
+      if (contentType?.includes('application/json')) {
+        try {
+          const errorData = await response.json()
+          throw new Error(errorData.error || `HTTP ${response.status}`)
+        } catch (e) {
+          // If JSON parsing fails, use generic message
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+        }
+      }
       throw new Error(`HTTP ${response.status}: ${response.statusText}`)
     }
 
