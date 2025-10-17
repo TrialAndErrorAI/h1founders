@@ -156,13 +156,19 @@ async function analyzeTechStack(url: string): Promise<TechStack> {
   }
 
   try {
-    // Use our server-side proxy to bypass CORS restrictions
-    // Server fetches the URL (no CORS on server-to-server)
+    // Use server-side proxy to bypass CORS restrictions
+    // Dev: Hono server on localhost:3000
+    // Prod: Cloudflare Pages Function at /api/proxy
     const apiUrl = import.meta.env.DEV ? 'http://localhost:3000' : ''
     const fetchUrl = `${apiUrl}/api/proxy?url=${encodeURIComponent(url)}`
 
     // Fetch the page HTML through our proxy
-    const response = await fetch(fetchUrl)
+    const response = await fetch(fetchUrl, {
+      method: 'GET',
+      headers: {
+        'Accept': 'text/html',
+      },
+    })
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`)
