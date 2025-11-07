@@ -26,6 +26,7 @@ const Crisis = lazy(() => import('./pages/Crisis'))
 const Newsletter = lazy(() => import('./pages/Newsletter'))
 const AdminPanel = lazy(() => import('./pages/admin'))
 const WinClubCoach = lazy(() => import('./pages/win-club/coach'))
+const Offerings = lazy(() => import('./pages/Offerings'))
 
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="tools/salary-explorer" element={<SalaryExplorer />} />
             <Route path="tools/eb1a-qualifier" element={<EB1AQualifier />} />
             <Route path="coaching" element={<Coaching />} />
+            <Route path="offerings" element={<Offerings />} />
             <Route path="crisis" element={<Crisis />} />
             <Route path="newsletter" element={<Newsletter />} />
             <Route path="resources" element={<Resources />} />
