@@ -234,30 +234,6 @@ export default function LaunchClub() {
           </div>
         </div>
 
-        {/* C1 UPGRADE SECTION */}
-        <div className="mb-12">
-          <div className="bg-background-secondary/50 border border-border rounded-lg p-8">
-            <h2 className="text-xl font-bold terminal-text matrix-glow mb-4">
-              Current C1 Founders - Your Upgrade
-            </h2>
-            <p className="text-foreground-secondary mb-4">
-              You're already in at $197.
-            </p>
-            <p className="text-foreground mb-4">
-              Add <span className="text-accent font-bold">$500</span> for full prep package + partner intros.
-              <br />
-              Total: $697 (C2 pays $997)
-            </p>
-            <p className="text-accent font-mono">
-              Pay this week → Get private call with Raghavan
-            </p>
-            <div className="mt-4 pt-4 border-t border-border text-foreground-secondary font-mono text-sm">
-              <p>Venmo: @SidSarasvati</p>
-              <p>Zelle: sid@renovateai.app</p>
-            </div>
-          </div>
-        </div>
-
         {/* FOOTER NOTE */}
         <div className="text-center">
           <p className="text-foreground-tertiary font-mono text-sm">

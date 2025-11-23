@@ -14,14 +14,14 @@ export default function LaunchBanner() {
           <div className="flex items-center gap-2">
             <span className="text-xl">🚀</span>
             <p className="font-mono text-accent text-xs">
-              <span className="font-bold">LAUNCH WEEK</span>
+              <span className="font-bold">LAUNCH CLUB C2</span> - Dec 2
             </p>
           </div>
           <button
-            onClick={() => window.location.href = '/network'}
+            onClick={() => window.location.href = '/launch-club'}
             className="bg-green-400 hover:bg-green-300 text-foreground px-3 py-1 rounded font-mono text-xs font-bold transition-colors"
           >
-            CLAIM NOW
+            5 SPOTS
           </button>
         </div>
 
@@ -33,15 +33,15 @@ export default function LaunchBanner() {
             </div>
             <div className="text-center flex-1">
               <p className="font-mono text-accent text-sm lg:text-base">
-                <span className="font-bold">LAUNCH WEEK:</span> Join thousands of verified founders
+                <span className="font-bold">LAUNCH CLUB C2:</span> Attorney-ready in 3 weeks | Dec 2
               </p>
             </div>
             <div className="flex-shrink-0">
               <button
-                onClick={() => window.location.href = '/network'}
+                onClick={() => window.location.href = '/launch-club'}
                 className="bg-green-400 hover:bg-green-300 text-foreground px-4 py-1 rounded font-mono text-sm font-bold transition-colors whitespace-nowrap"
               >
-                CLAIM_NOW()
+                5_SPOTS()
               </button>
             </div>
           </div>

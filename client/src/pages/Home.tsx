@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { getDevModeBanner } from '../utils/devMode'
-import CrisisBanner from '../components/CrisisBanner'
 import MediaBanner from '../components/MediaBanner'
 import Hero from '../components/Hero'
 import MissionStatement from '../components/MissionStatement'
@@ -15,10 +14,10 @@ import Footer from '../components/Footer'
 export default function Home() {
   const { user, loading } = useAuth()
   
-  // Redirect logged-in users to their forum dashboard
+  // Redirect logged-in users to offerings
   useEffect(() => {
     if (!loading && user) {
-      window.location.href = '/forum'
+      window.location.href = '/offerings'
     }
   }, [user, loading])
   
@@ -56,7 +55,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      <CrisisBanner />
+      {/* CrisisBanner removed - crisis nav link removed */}
       <MediaBanner />
       <Hero />
       <MissionStatement />

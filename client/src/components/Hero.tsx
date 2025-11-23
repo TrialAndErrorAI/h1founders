@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative bg-background px-6 pt-4 pb-8 sm:pt-8 sm:pb-12 lg:px-8 min-h-[90vh] flex items-center">
+    <section className="relative bg-background px-6 pt-8 pb-8 sm:pt-16 sm:pb-12 lg:px-8">
       <div className="mx-auto max-w-4xl text-center w-full">
         {/* Matrix Opening Line */}
         <div className="mb-6 animate-fade-in">
@@ -52,10 +52,10 @@ export default function Hero() {
             RED PILL: join_founders()
           </button>
           <a
-            href="/forum"
+            href="/newsletter"
             className="blue-pill-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg w-full sm:w-auto text-center font-mono transform hover:scale-105 transition-all"
           >
-            BLUE PILL: browse_forum()
+            BLUE PILL: read_articles()
           </a>
         </div>
 

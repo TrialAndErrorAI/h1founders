@@ -14,13 +14,12 @@ interface NavItem {
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
 const baseNavigation: NavItem[] = [
-  { name: 'CRISIS', href: '/crisis', status: 'LIVE', notify: true },
-  { name: 'FORUM', href: '/forum', status: 'LIVE', count: 7 },
-  { name: 'NEWSLETTER', href: '/newsletter', status: 'LIVE' },
-  { name: 'COACHING', href: '/coaching', status: 'LIVE' },
-  { name: 'v0.8.0', href: '/changelog', status: 'LIVE' }
+  { name: 'ARTICLES', href: '/newsletter', status: 'LIVE' },
+  { name: 'OFFERINGS', href: '/offerings', status: 'LIVE' },
+  { name: 'LAUNCH CLUB', href: '/launch-club', status: 'LIVE' }
   // Tools removed - just demos, not valuable yet
   // Network section hidden - access through member login only
+  // CRISIS, version, and FORUM removed - streamlined nav
 ]
 
 const navigation = ENABLE_PARTNERSHIPS 

@@ -122,21 +122,21 @@ export default function Offerings() {
             {/* Launch Club */}
             <TierCard
               title="Launch Club"
-              subtitle="Ideation stage, haven't started yet"
-              price="$197 one-time (4-week program)"
-              description={'You\'ve "researched" for months. You don\'t know where to start. 100 small decisions = paralysis.'}
+              subtitle="Ready to file, need prep"
+              price="$997 (3-week program)"
+              description="Entity formed. Cap table clean. Business case documented. Attorney meeting booked. You walk in prepared."
               features={[
-                'Week 1: Incorporate (C-Corp or LLC)',
-                'Week 2: Talk to 10 customers',
-                'Week 3: Price it',
-                'Week 4: First sale attempt',
-                'Help with incorporation + vetted attorney connections'
+                'Week 1: Entity foundation (C-Corp, EIN, DUNS)',
+                'Week 2: Ownership structure (cap table, 83b)',
+                'Week 3: Business case + attorney handoff',
+                'Serotte Law $1,000 discount',
+                'Brad Daniels CPA $400 discount'
               ]}
-              format="Group (5-10 founders)"
+              format="Group (5 founders max)"
               details={[
                 { label: 'Sessions', value: 'Wed 6-7 PM ET (weekly)' },
-                { label: 'Next cohort', value: 'Nov 18, 2025' },
-                { label: 'Guarantee', value: "Complete homework but don't achieve outcome? Money back." }
+                { label: 'Next cohort', value: 'Dec 2, 2025' },
+                { label: 'Guarantee', value: 'Do the work, show up - not attorney-ready? I keep working with you.' }
               ]}
             />
 
