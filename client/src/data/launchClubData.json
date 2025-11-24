@@ -1,0 +1,80 @@
+{
+  "activeCohort": "c1",
+  "cohorts": {
+    "c1": {
+      "id": "c1",
+      "name": "Cohort 1",
+      "startDate": "2024-11-11",
+      "endDate": "2024-12-08",
+      "founders": [
+        { "id": "1", "name": "Swarup", "initials": "SP", "completedTasks": [] },
+        { "id": "2", "name": "Febin", "initials": "FT", "completedTasks": [] },
+        { "id": "3", "name": "Chirag", "initials": "CB", "completedTasks": [] },
+        { "id": "4", "name": "Anagha", "initials": "AB", "completedTasks": [] },
+        { "id": "5", "name": "Balaji", "initials": "BV", "completedTasks": [] },
+        { "id": "6", "name": "Ashish", "initials": "AN", "completedTasks": [] },
+        { "id": "7", "name": "Shashank", "initials": "SS", "completedTasks": [] },
+        { "id": "8", "name": "Prasanna", "initials": "PP", "completedTasks": [] },
+        { "id": "9", "name": "Pooja", "initials": "PO", "completedTasks": [] },
+        { "id": "10", "name": "Rohit", "initials": "RJ", "completedTasks": [] },
+        { "id": "11", "name": "Sudhir", "initials": "SR", "completedTasks": [] }
+      ]
+    }
+  },
+  "milestones": [
+    {
+      "id": "foundation",
+      "name": "Corporate Foundation",
+      "tagline": "Your company exists on paper",
+      "icon": "🏛️",
+      "order": 1
+    },
+    {
+      "id": "infrastructure",
+      "name": "Business Infrastructure",
+      "tagline": "Money can flow through your company",
+      "icon": "💰",
+      "order": 2
+    },
+    {
+      "id": "pitch",
+      "name": "Pitch Ready",
+      "tagline": "Investor and attorney materials complete",
+      "icon": "📊",
+      "order": 3
+    },
+    {
+      "id": "attorney",
+      "name": "Attorney Ready",
+      "tagline": "Everything needed for H1B petition",
+      "icon": "🚀",
+      "order": 4
+    }
+  ],
+  "tasks": [
+    { "id": "t1", "milestoneId": "foundation", "name": "Form Delaware C-Corp or LLC", "order": 1 },
+    { "id": "t2", "milestoneId": "foundation", "name": "Get EIN from IRS", "order": 2 },
+    { "id": "t3", "milestoneId": "foundation", "name": "Get DUNS number", "order": 3 },
+    { "id": "t4", "milestoneId": "foundation", "name": "Set up registered agent", "order": 4 },
+    { "id": "t5", "milestoneId": "infrastructure", "name": "Open Mercury bank account", "order": 1 },
+    { "id": "t6", "milestoneId": "infrastructure", "name": "Set up Gusto payroll", "order": 2 },
+    { "id": "t7", "milestoneId": "infrastructure", "name": "Connect Puzzle.io", "order": 3 },
+    { "id": "t8", "milestoneId": "infrastructure", "name": "Configure Mercury invoicing", "order": 4 },
+    { "id": "t9", "milestoneId": "infrastructure", "name": "Set up founder loan", "order": 5 },
+    { "id": "t10", "milestoneId": "pitch", "name": "Complete cap table", "order": 1 },
+    { "id": "t11", "milestoneId": "pitch", "name": "Build pitch deck", "order": 2 },
+    { "id": "t12", "milestoneId": "pitch", "name": "Write business plan", "order": 3 },
+    { "id": "t13", "milestoneId": "pitch", "name": "Prepare financial documentation", "order": 4 },
+    { "id": "t14", "milestoneId": "attorney", "name": "Purchase domain", "order": 1 },
+    { "id": "t15", "milestoneId": "attorney", "name": "Deploy landing page", "order": 2 },
+    { "id": "t16", "milestoneId": "attorney", "name": "Schedule attorney consultation", "order": 3 }
+  ],
+  "schedule": {
+    "calls": [
+      { "date": "2024-11-13", "time": "6:00 PM EST", "type": "Group Call", "notes": "Week 1 Kickoff" },
+      { "date": "2024-11-20", "time": "6:00 PM EST", "type": "Group Call", "notes": "Week 2 Check-in" },
+      { "date": "2024-11-27", "time": "6:00 PM EST", "type": "Group Call", "notes": "Week 3 + Attorney Guest", "guest": "Raghavan Nagarajan" },
+      { "date": "2024-12-04", "time": "6:00 PM EST", "type": "Group Call", "notes": "Week 4 Graduation" }
+    ]
+  }
+}

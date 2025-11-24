@@ -28,6 +28,11 @@ const AdminPanel = lazy(() => import('./pages/admin'))
 const WinClubCoach = lazy(() => import('./pages/win-club/coach'))
 const Offerings = lazy(() => import('./pages/Offerings'))
 const LaunchClub = lazy(() => import('./pages/LaunchClub'))
+// Launch Club Program App (internal)
+const LaunchClubLayout = lazy(() => import('./pages/launch-club/Layout'))
+const LaunchClubDashboard = lazy(() => import('./pages/launch-club/Dashboard'))
+const LaunchClubPath = lazy(() => import('./pages/launch-club/Path'))
+const LaunchClubSchedule = lazy(() => import('./pages/launch-club/Schedule'))
 
 const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
 
@@ -67,6 +72,12 @@ function App() {
             <Route path="admin" element={<AdminPanel />} />
             <Route path="win-club/coach" element={<WinClubCoach />} />
             {ENABLE_PARTNERSHIPS && <Route path="partners" element={<Partners />} />}
+          </Route>
+          {/* Launch Club Program App - separate layout */}
+          <Route path="launch-club/program" element={<LaunchClubLayout />}>
+            <Route index element={<LaunchClubDashboard />} />
+            <Route path="path" element={<LaunchClubPath />} />
+            <Route path="schedule" element={<LaunchClubSchedule />} />
           </Route>
         </Routes>
       </Suspense>

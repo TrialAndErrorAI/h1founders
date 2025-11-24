@@ -1,65 +1,93 @@
-# Code Session State - Fri Nov 21, 9:00 PM EST
+# Code Session State - Sun Nov 23, 5:48 PM EST
 
-**Last Updated:** Fri Nov 21, 2025 9:00 PM EST
+**Last Updated:** Sun Nov 23, 2025 5:48 PM EST
 
 ## Shutdown Reason
-Launch Club landing page complete, pending deploy + WhatsApp announcement
+Session complete - Launch Club Program App fully built and ready for deploy
 
 ## What We Just Shipped
-✅ **LaunchClub.tsx** - New landing page at `/launch-club`
-- Sid's voice (not Grand Slam salesy)
-- Value through context ("Lawyers charge $2K for this")
-- Partner discounts: Serotte $1K, Brad $400
-- The Math: $997 → $1,400 discounts → My coaching: Free
-- Guarantee, scarcity (5 spots, Dec 2), CTA
-- C1 upgrade section ($500 → $697 total)
 
-✅ **Route added** to App.tsx
+**Complete Launch Club Program App (Web App Architecture):**
 
-✅ **QA PASS** - Desktop + mobile responsive
+1. **Generalized architecture** - Works for any cohort (C1, C2, etc.)
+2. **Sidebar navigation** - Dashboard, Race, Schedule
+3. **Race track visualization** - Founders racing through milestones
+4. **JSON data model** - Easy to update progress
+5. **Routes**:
+   - `/launch-club` → Public landing page
+   - `/launch-club/program` → Dashboard (with sidebar)
+   - `/launch-club/program/race` → Race track
+   - `/launch-club/program/schedule` → Call dates
+
+**Files Created:**
+- `client/src/data/launchClubData.json` - Cohort, founders, milestones, tasks
+- `client/src/pages/launch-club/Layout.tsx` - Sidebar wrapper
+- `client/src/pages/launch-club/Sidebar.tsx` - Navigation
+- `client/src/pages/launch-club/Dashboard.tsx` - Overview + stats
+- `client/src/pages/launch-club/Race.tsx` - Race track visualization
+- `client/src/pages/launch-club/Schedule.tsx` - Call dates
+
+**Files Removed:**
+- `client/src/pages/launch-club/C1Program.tsx` - Old C1-specific
+- `client/src/pages/LaunchClubTracker.tsx` - Replaced by Race
 
 ## Immediate Next Action
-**START HERE**: Deploy to production
 
-1. Commit changes: `git add . && git commit -m "feat: Launch Club landing page"`
-2. Deploy to Cloudflare Pages
-3. Test production URL: h1founders.com/launch-club
-4. Share in WhatsApp with announcement
+**START HERE**: Commit and deploy
 
-## Files Modified This Session
-- `client/src/pages/LaunchClub.tsx` - NEW page
-- `client/src/App.tsx` - Route added
+```bash
+cd /Users/sid/Code/te/h1founders
+git add .
+git commit -m "feat: Launch Club Program App with race track visualization"
+git push
+```
+
+Then update founder progress in `launchClubData.json` before Wednesday call.
+
+## Files to Read on Wake
+
+- `client/src/data/launchClubData.json` - Update founder `completedTasks` arrays
+- `client/src/pages/launch-club/Race.tsx` - Race track component
+- `docs/rfc006_launch_club_progress_tracker.md` - Original RFC (needs update)
 
 ## Blockers
-None - ready for deploy
+
+**None** - Ready to deploy
 
 ## Context & Decisions
 
-**Why we removed value prices:**
-- Ercan feedback: "$2,000 value" badges looked like separate costs
-- Grand Slam technique confused users
-- Value through context ("Lawyers charge $2K") > Price tags
+**Why generalized architecture (not C1-specific):**
+- C2 will be 3 weeks (not 4)
+- Same milestones apply to all cohorts
+- Data-driven approach scales better
 
-**Why this voice works:**
-- Direct, myth-busting - Sid's actual voice
-- Commentary on each section shows value without numbers
-- "My coaching: Free" is the punchline
+**Why race track (not card-based tracker):**
+- Gamified feel creates accountability
+- See all founders at once
+- Visual progress comparison
+- Sorted by progress (leaders first)
 
-**Partnership architecture:**
-- Serotte: $1,000 discount (ethics compliant - separate billing)
-- Brad: $400 discount (50-50 split)
-- Named "H1Founders Prep Discount" for brand credit
-- Tally form concept for handoff tracking
+**Why JSON file (not database):**
+- Sid manages progress manually for MVP
+- Simple edit → deploy workflow
+- Can migrate to API later
 
-**Rejected alternatives:**
-- Don't use value stacking with $ prices (confusing)
-- Don't use comparison table like HomeDesignsAI (too different from site style)
-- Keep Grand Slam guarantee + scarcity (works with voice)
+**Data model:**
+- Cohorts contain founders
+- Founders have `completedTasks: string[]`
+- Task IDs: t1-t4 (Foundation), t5-t9 (Infrastructure), t10-t13 (Pitch), t14-t16 (Attorney)
+
+**Phase 3 (Member Access) planned:**
+- Phone login (Firebase Auth)
+- Match to cohort by phone
+- Read-only race view
 
 ## Documentation Updates Needed
-None - page follows existing patterns
+
+- Update RFC006 with expanded scope (tracker → full program app)
+- Add member access phases to roadmap
 
 ---
-**Next wake:** /wake-code → Deploy → Share URL with WhatsApp pitch
-**Dev server:** Running on localhost:5173 (process 0ac0b4)
-**Git status:** Uncommitted changes ready to commit
+**Next wake:** `/wake-code` → Commit changes → Deploy → Update progress data
+**Production URL:** h1founders.com/launch-club/program
+**Dev URL:** localhost:5173/launch-club/program
