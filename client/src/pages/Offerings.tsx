@@ -1,6 +1,7 @@
 import TierCard from '../components/offerings/TierCard'
 import ComparisonTable from '../components/offerings/ComparisonTable'
 import FAQ from '../components/offerings/FAQ'
+import CTABlock from '../components/CTABlock'
 
 export default function Offerings() {
   return (
@@ -202,51 +203,8 @@ export default function Offerings() {
         </div>
 
         {/* 6. CTA */}
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-green-900/20 to-blue-900/20 border border-accent/30 rounded-lg p-8">
-            <h2 className="text-2xl font-bold terminal-text matrix-glow mb-4">
-              Ready to Start?
-            </h2>
-            <p className="text-foreground-secondary mb-6">
-              DM me. I'll tell you what fits your situation.
-            </p>
-
-            <div className="space-y-3 text-foreground-secondary font-mono">
-              <div>
-                <span className="text-accent">Community:</span>{' '}
-                <a
-                  href="https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent underline"
-                >
-                  Join WhatsApp (1,400+ founders)
-                </a>
-              </div>
-              <div>
-                <span className="text-accent">LinkedIn:</span>{' '}
-                <a
-                  href="https://linkedin.com/in/sidsarasvati"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent underline"
-                >
-                  linkedin.com/in/sidsarasvati
-                </a>
-              </div>
-              <div>
-                <span className="text-accent">Email:</span>{' '}
-                <a href="mailto:sid@h1founders.com" className="hover:text-accent underline">
-                  sid@h1founders.com
-                </a>
-              </div>
-            </div>
-
-            <p className="text-foreground-tertiary font-mono text-sm mt-6">
-              // No urgency. No hard sell. Take your time.<br />
-              I'm here when you're ready.
-            </p>
-          </div>
+        <div className="max-w-3xl mx-auto">
+          <CTABlock variant="soft" />
         </div>
       </div>
     </div>

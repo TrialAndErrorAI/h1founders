@@ -1,9 +1,11 @@
+import CTABlock from '../components/CTABlock'
+
 export default function LaunchClub() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        {/* HERO */}
+        {/* HERO + TOP CTA */}
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold terminal-text matrix-glow mb-4">
             Launch Club
@@ -11,9 +13,38 @@ export default function LaunchClub() {
           <p className="text-xl text-accent font-mono mb-2">
             Attorney-Ready in 3 Weeks
           </p>
-          <p className="text-foreground-secondary font-mono">
-            $997 | 5 founders max | C2 starts Dec 2
+          <p className="text-foreground-secondary font-mono mb-6">
+            $997 | 5 founders max | C2 starts Dec 16
           </p>
+
+          {/* Immediate action for ready buyers */}
+          <div className="space-y-3">
+            <a
+              href="mailto:sid@h1founders.com?subject=Launch%20Club%20C2%20-%20I'm%20In"
+              className="inline-block bg-accent text-background px-8 py-3 rounded font-mono font-bold hover:bg-accent/80 transition-colors"
+            >
+              I'm In - Email Sid
+            </a>
+            <p className="text-foreground-secondary font-mono text-sm">
+              <a
+                href="https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline"
+              >
+                Join WhatsApp
+              </a>
+              {' | '}
+              <a
+                href="https://linkedin.com/in/sidsarasvati"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline"
+              >
+                DM on LinkedIn
+              </a>
+            </p>
+          </div>
         </div>
 
         {/* DREAM OUTCOME */}
@@ -201,37 +232,9 @@ export default function LaunchClub() {
           </div>
         </div>
 
-        {/* SCARCITY + CTA */}
+        {/* BOTTOM CTA */}
         <div className="mb-12">
-          <div className="bg-gradient-to-r from-red-900/20 to-green-900/20 border border-accent/30 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold terminal-text matrix-glow mb-4">
-              5 Spots | C2 Starts Dec 2
-            </h2>
-            <p className="text-foreground-secondary mb-6">
-              Registration closes Nov 29
-            </p>
-
-            <div className="space-y-4">
-              <a
-                href="mailto:sid@h1founders.com?subject=Launch%20Club%20C2%20-%20I'm%20In"
-                className="inline-block bg-accent text-background px-8 py-3 rounded font-mono font-bold hover:bg-accent/80 transition-colors"
-              >
-                I'm In - Email Sid
-              </a>
-
-              <p className="text-foreground-secondary font-mono text-sm">
-                or DM on{' '}
-                <a
-                  href="https://linkedin.com/in/sidsarasvati"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:underline"
-                >
-                  LinkedIn
-                </a>
-              </p>
-            </div>
-          </div>
+          <CTABlock variant="scarcity" spots={5} program="C2" startDate="Dec 16" closeDate="Dec 13" />
         </div>
 
         {/* FOOTER NOTE */}

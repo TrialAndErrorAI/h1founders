@@ -14,7 +14,7 @@ export default function LaunchBanner() {
           <div className="flex items-center gap-2">
             <span className="text-xl">🚀</span>
             <p className="font-mono text-accent text-xs">
-              <span className="font-bold">LAUNCH CLUB C2</span> - Dec 2
+              <span className="font-bold">LAUNCH CLUB C2</span> - Dec 16
             </p>
           </div>
           <button
@@ -33,7 +33,7 @@ export default function LaunchBanner() {
             </div>
             <div className="text-center flex-1">
               <p className="font-mono text-accent text-sm lg:text-base">
-                <span className="font-bold">LAUNCH CLUB C2:</span> Attorney-ready in 3 weeks | Dec 2
+                <span className="font-bold">LAUNCH CLUB C2:</span> Attorney-ready in 3 weeks | Dec 16
               </p>
             </div>
             <div className="flex-shrink-0">
