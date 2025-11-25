@@ -10,12 +10,13 @@ function getFounderProgress(founder: Founder, tasks: Task[]): number {
 }
 
 // Collapsible founder row
-function FounderRow({ founder, tasks, milestones, isExpanded, onToggle }: {
+function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskToggle }: {
   founder: Founder
   tasks: Task[]
   milestones: Milestone[]
   isExpanded: boolean
   onToggle: () => void
+  onTaskToggle: (founderId: number, taskId: number, completed: boolean) => void
 }) {
   const requiredTasks = tasks.filter(t => t.is_required)
   const progress = getFounderProgress(founder, tasks)
@@ -79,12 +80,19 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle }: {
                 <span className="text-sm font-medium text-foreground">{milestone.name}</span>
               </div>
 
-              {/* Task list */}
+              {/* Task list - clickable to toggle */}
               <ul className="space-y-1 pl-6">
                 {milestoneTasks.map(task => {
                   const isCompleted = founder.completedTasks.includes(task.id)
                   return (
-                    <li key={task.id} className="flex items-center gap-2 text-sm">
+                    <li
+                      key={task.id}
+                      className="flex items-center gap-2 text-sm cursor-pointer hover:bg-accent/10 rounded px-2 py-1 -mx-2 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onTaskToggle(founder.id, task.id, !isCompleted)
+                      }}
+                    >
                       <span className={isCompleted ? 'text-accent' : 'text-foreground-tertiary'}>
                         {isCompleted ? '✓' : '○'}
                       </span>
@@ -104,8 +112,13 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle }: {
 }
 
 export default function Path() {
-  const { data, loading, error } = useLaunchClubData('C1')
+  const { data, loading, error, updateProgress } = useLaunchClubData('C1')
   const [expandedFounders, setExpandedFounders] = useState<Set<number>>(new Set())
+
+  // Toggle task completion
+  const handleTaskToggle = async (founderId: number, taskId: number, completed: boolean) => {
+    await updateProgress(founderId, taskId, completed)
+  }
 
   if (loading) {
     return (
@@ -209,6 +222,7 @@ export default function Path() {
             milestones={sortedMilestones}
             isExpanded={expandedFounders.has(founder.id)}
             onToggle={() => toggleFounder(founder.id)}
+            onTaskToggle={handleTaskToggle}
           />
         ))}
       </div>
