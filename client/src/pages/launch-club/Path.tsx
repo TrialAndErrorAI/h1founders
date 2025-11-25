@@ -51,6 +51,18 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskTo
           <span className="text-sm font-medium text-foreground truncate">{founder.name}</span>
         </div>
 
+        {/* Completed milestone badges */}
+        <div className="flex gap-1">
+          {milestones.map(m => {
+            const milestoneTasks = tasks.filter(t => t.milestone_id === m.id && t.is_required)
+            const allComplete = milestoneTasks.length > 0 &&
+              milestoneTasks.every(t => founder.completedTasks.includes(t.id))
+            return allComplete ? (
+              <span key={m.id} className="text-sm" title={m.name}>{m.icon}</span>
+            ) : null
+          })}
+        </div>
+
         {/* Progress bar */}
         <div className="flex-1">
           <div className="h-3 bg-tertiary rounded-full overflow-hidden">
