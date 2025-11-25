@@ -90,13 +90,28 @@ export function useLaunchClubData(cohortId: string = 'C1') {
     fetchData()
   }, [fetchData])
 
-  // Helper to update progress (admin only)
+  // Helper to update progress (admin only) - with optimistic update
   const updateProgress = useCallback(async (
     founderId: number,
     taskId: number,
     completed: boolean,
     adminKey?: string
   ) => {
+    // Optimistic update - update UI immediately
+    setData(prev => {
+      if (!prev) return prev
+      return {
+        ...prev,
+        founders: prev.founders.map(f => {
+          if (f.id !== founderId) return f
+          const newTasks = completed
+            ? [...f.completedTasks, taskId]
+            : f.completedTasks.filter(id => id !== taskId)
+          return { ...f, completedTasks: newTasks }
+        })
+      }
+    })
+
     try {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json'
@@ -112,11 +127,11 @@ export function useLaunchClubData(cohortId: string = 'C1') {
       })
 
       if (!response.ok) {
+        // Revert on error
+        await fetchData()
         throw new Error(`Failed to update: ${response.status}`)
       }
 
-      // Refresh data
-      await fetchData()
       return true
     } catch (err) {
       console.error('Update progress error:', err)

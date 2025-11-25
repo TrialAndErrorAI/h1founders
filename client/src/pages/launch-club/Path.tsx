@@ -87,16 +87,20 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskTo
                   return (
                     <li
                       key={task.id}
-                      className="flex items-center gap-2 text-sm cursor-pointer hover:bg-accent/10 rounded px-2 py-1 -mx-2 transition-colors"
+                      className="flex items-center gap-2 text-sm cursor-pointer hover:bg-accent/20 active:bg-accent/30 rounded px-2 py-1.5 -mx-2 transition-colors group"
                       onClick={(e) => {
                         e.stopPropagation()
                         onTaskToggle(founder.id, task.id, !isCompleted)
                       }}
                     >
-                      <span className={isCompleted ? 'text-accent' : 'text-foreground-tertiary'}>
-                        {isCompleted ? '✓' : '○'}
+                      <span className={`w-4 h-4 rounded border flex items-center justify-center text-xs transition-colors ${
+                        isCompleted
+                          ? 'bg-accent border-accent text-background'
+                          : 'border-foreground-tertiary group-hover:border-accent'
+                      }`}>
+                        {isCompleted && '✓'}
                       </span>
-                      <span className={isCompleted ? 'text-foreground' : 'text-foreground-secondary'}>
+                      <span className={`group-hover:text-foreground transition-colors ${isCompleted ? 'text-foreground' : 'text-foreground-secondary'}`}>
                         {task.name}
                       </span>
                     </li>
@@ -196,20 +200,25 @@ export default function Path() {
       </div>
 
       {/* Controls */}
-      <div className="flex gap-2 mb-4">
-        <button
-          onClick={expandAll}
-          className="text-xs text-foreground-secondary hover:text-accent transition-colors font-mono"
-        >
-          Expand All
-        </button>
-        <span className="text-foreground-tertiary">|</span>
-        <button
-          onClick={collapseAll}
-          className="text-xs text-foreground-secondary hover:text-accent transition-colors font-mono"
-        >
-          Collapse All
-        </button>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex gap-2">
+          <button
+            onClick={expandAll}
+            className="text-xs text-foreground-secondary hover:text-accent transition-colors font-mono"
+          >
+            Expand All
+          </button>
+          <span className="text-foreground-tertiary">|</span>
+          <button
+            onClick={collapseAll}
+            className="text-xs text-foreground-secondary hover:text-accent transition-colors font-mono"
+          >
+            Collapse All
+          </button>
+        </div>
+        <span className="text-xs text-foreground-tertiary font-mono">
+          ↓ sorted by progress
+        </span>
       </div>
 
       {/* Founder list */}
