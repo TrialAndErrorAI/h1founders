@@ -1,38 +1,45 @@
 // Launch Club Program Dashboard
 import { Link } from 'react-router-dom'
-import launchClubData from '../../data/launchClubData.json'
+import { useLaunchClubData, computeStats } from '../../hooks/useLaunchClubData'
 
 export default function Dashboard() {
-  const cohortId = launchClubData.activeCohort
-  const cohort = (launchClubData.cohorts as Record<string, typeof launchClubData.cohorts.c1>)[cohortId]
-  const tasks = launchClubData.tasks
-  const milestones = launchClubData.milestones
+  const { data, loading, error } = useLaunchClubData('C1')
+  const stats = computeStats(data)
 
-  // Calculate stats
-  const totalFounders = cohort.founders.length
-  const totalTasks = tasks.length
-
-  // Count completions per milestone
-  const getTasksForMilestone = (milestoneId: string) =>
-    tasks.filter(t => t.milestoneId === milestoneId)
-
-  const getMilestoneCompletions = (milestoneId: string) => {
-    const milestoneTasks = getTasksForMilestone(milestoneId)
-    return cohort.founders.filter(f => {
-      const completedTasks = f.completedTasks as string[]
-      const completed = milestoneTasks.filter(t => completedTasks.includes(t.id)).length
-      return completed === milestoneTasks.length
-    }).length
+  if (loading) {
+    return (
+      <div className="p-8 max-w-4xl">
+        <div className="animate-pulse">
+          <div className="h-8 bg-secondary/50 rounded w-48 mb-4"></div>
+          <div className="h-4 bg-secondary/30 rounded w-64 mb-8"></div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="h-32 bg-secondary/30 rounded"></div>
+            <div className="h-32 bg-secondary/30 rounded"></div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
-  // Overall progress
-  const totalCompletions = cohort.founders.reduce((sum, f) => sum + f.completedTasks.length, 0)
-  const maxCompletions = totalFounders * totalTasks
-  const overallProgress = maxCompletions > 0 ? Math.round((totalCompletions / maxCompletions) * 100) : 0
+  if (error || !data || !stats) {
+    return (
+      <div className="p-8 max-w-4xl">
+        <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6">
+          <h2 className="text-red-400 font-bold mb-2">Error Loading Data</h2>
+          <p className="text-foreground-secondary">{error || 'Unknown error'}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-accent text-background rounded hover:bg-accent/80"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    )
+  }
 
-  // Next call
-  const now = new Date()
-  const nextCall = launchClubData.schedule.calls.find(c => new Date(c.date) >= now)
+  const { cohort, milestones } = data
+  const { totalFounders, overallProgress, milestoneStats } = stats
 
   return (
     <div className="p-8 max-w-4xl">
@@ -73,14 +80,14 @@ export default function Dashboard() {
       <div className="mb-8">
         <h2 className="text-lg font-bold terminal-text mb-4">Milestone Progress</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {milestones.map((milestone) => (
+          {milestoneStats.map((milestone) => (
             <div
               key={milestone.id}
               className="bg-secondary/30 border border-border rounded-lg p-4 text-center"
             >
               <div className="text-2xl mb-2">{milestone.icon}</div>
               <div className="text-2xl font-mono text-accent">
-                {getMilestoneCompletions(milestone.id)}/{totalFounders}
+                {milestone.completedCount}/{totalFounders}
               </div>
               <div className="text-xs text-foreground-secondary">{milestone.name}</div>
             </div>
@@ -88,30 +95,29 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Next Call */}
-      {nextCall && (
-        <div className="mb-8">
-          <h2 className="text-lg font-bold terminal-text mb-4">Next Call</h2>
-          <div className="bg-secondary/30 border border-border rounded-lg p-6">
-            <div className="flex items-center gap-4">
-              <div className="text-3xl">📞</div>
-              <div>
-                <div className="font-medium text-foreground">
-                  {new Date(nextCall.date).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    month: 'short',
-                    day: 'numeric'
-                  })} at {nextCall.time}
-                </div>
-                <div className="text-sm text-foreground-secondary">{nextCall.notes}</div>
-                {nextCall.guest && (
-                  <div className="text-sm text-accent mt-1">Guest: {nextCall.guest}</div>
-                )}
+      {/* Next Call - using cohort dates */}
+      <div className="mb-8">
+        <h2 className="text-lg font-bold terminal-text mb-4">Cohort Info</h2>
+        <div className="bg-secondary/30 border border-border rounded-lg p-6">
+          <div className="flex items-center gap-4">
+            <div className="text-3xl">📅</div>
+            <div>
+              <div className="font-medium text-foreground">
+                {new Date(cohort.start_date).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric'
+                })} - {cohort.end_date ? new Date(cohort.end_date).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric'
+                }) : 'Ongoing'}
+              </div>
+              <div className="text-sm text-foreground-secondary">
+                {cohort.notes || `${milestones.length} week program • ${stats.totalTasks} artifacts to create`}
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Support */}
       <div className="text-center py-6 border-t border-border">

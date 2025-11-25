@@ -24,7 +24,7 @@ export default function CTABlock({
   closeDate = 'Dec 13',
   headline = "Ready to Start?",
   subtext = "DM me. I'll tell you what fits your situation.",
-  showEmail = true,
+  showEmail: _showEmail = true,
   emailSubject = "H1Founders - Let's Talk"
 }: CTABlockProps) {
 

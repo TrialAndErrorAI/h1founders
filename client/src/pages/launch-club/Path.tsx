@@ -1,45 +1,33 @@
 // The Path - Founders journeying toward freedom
 import { useState } from 'react'
-import launchClubData from '../../data/launchClubData.json'
-
-interface Founder {
-  id: string
-  name: string
-  initials: string
-  completedTasks: string[]
-}
-
-interface Task {
-  id: string
-  milestoneId: string
-  name: string
-  order: number
-}
+import { useLaunchClubData, type Founder, type Task, type Milestone } from '../../hooks/useLaunchClubData'
 
 // Calculate progress percentage for a founder
 function getFounderProgress(founder: Founder, tasks: Task[]): number {
-  if (tasks.length === 0) return 0
-  return (founder.completedTasks.length / tasks.length) * 100
+  const requiredTasks = tasks.filter(t => t.is_required)
+  if (requiredTasks.length === 0) return 0
+  return (founder.completedTasks.length / requiredTasks.length) * 100
 }
 
 // Collapsible founder row
 function FounderRow({ founder, tasks, milestones, isExpanded, onToggle }: {
   founder: Founder
   tasks: Task[]
-  milestones: typeof launchClubData.milestones
+  milestones: Milestone[]
   isExpanded: boolean
   onToggle: () => void
 }) {
+  const requiredTasks = tasks.filter(t => t.is_required)
   const progress = getFounderProgress(founder, tasks)
   const completedCount = founder.completedTasks.length
-  const totalCount = tasks.length
+  const totalCount = requiredTasks.length
 
   // Group tasks by milestone for display
   const tasksByMilestone = milestones.map(milestone => ({
     milestone,
     tasks: tasks
-      .filter(t => t.milestoneId === milestone.id)
-      .sort((a, b) => a.order - b.order)
+      .filter(t => t.milestone_id === milestone.id && t.is_required)
+      .sort((a, b) => a.display_order - b.display_order)
   }))
 
   return (
@@ -57,7 +45,7 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle }: {
         {/* Founder avatar and name */}
         <div className="flex items-center gap-2 w-32 flex-shrink-0">
           <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
-            <span className="text-accent font-mono text-xs">{founder.initials}</span>
+            <span className="text-accent font-mono text-xs">{founder.avatar_initials}</span>
           </div>
           <span className="text-sm font-medium text-foreground truncate">{founder.name}</span>
         </div>
@@ -116,21 +104,54 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle }: {
 }
 
 export default function Path() {
-  const [expandedFounders, setExpandedFounders] = useState<Set<string>>(new Set())
+  const { data, loading, error } = useLaunchClubData('C1')
+  const [expandedFounders, setExpandedFounders] = useState<Set<number>>(new Set())
 
-  const cohortId = launchClubData.activeCohort
-  const cohort = (launchClubData.cohorts as Record<string, typeof launchClubData.cohorts.c1>)[cohortId]
-  const milestones = launchClubData.milestones.sort((a, b) => a.order - b.order)
-  const tasks = launchClubData.tasks as Task[]
+  if (loading) {
+    return (
+      <div className="p-8">
+        <div className="animate-pulse">
+          <div className="h-8 bg-secondary/50 rounded w-32 mb-4"></div>
+          <div className="h-4 bg-secondary/30 rounded w-64 mb-8"></div>
+          <div className="space-y-3">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div key={i} className="h-14 bg-secondary/30 rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !data) {
+    return (
+      <div className="p-8">
+        <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6">
+          <h2 className="text-red-400 font-bold mb-2">Error Loading Data</h2>
+          <p className="text-foreground-secondary">{error || 'Unknown error'}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-accent text-background rounded hover:bg-accent/80"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const { milestones, tasks, founders } = data
+  const sortedMilestones = [...milestones].sort((a, b) => a.week_number - b.week_number)
+  const requiredTasks = tasks.filter(t => t.is_required)
 
   // Sort founders by progress (leaders first)
-  const sortedFounders = [...cohort.founders].sort((a, b) => {
+  const sortedFounders = [...founders].sort((a, b) => {
     const aProgress = getFounderProgress(a, tasks)
     const bProgress = getFounderProgress(b, tasks)
     return bProgress - aProgress
   })
 
-  const toggleFounder = (founderId: string) => {
+  const toggleFounder = (founderId: number) => {
     setExpandedFounders(prev => {
       const next = new Set(prev)
       if (next.has(founderId)) {
@@ -157,7 +178,7 @@ export default function Path() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold terminal-text mb-2">The Path</h1>
         <p className="text-foreground-secondary font-mono text-sm">
-          {cohort.founders.length} founders journeying through {milestones.length} milestones
+          {founders.length} founders journeying through {sortedMilestones.length} milestones
         </p>
       </div>
 
@@ -185,7 +206,7 @@ export default function Path() {
             key={founder.id}
             founder={founder}
             tasks={tasks}
-            milestones={milestones}
+            milestones={sortedMilestones}
             isExpanded={expandedFounders.has(founder.id)}
             onToggle={() => toggleFounder(founder.id)}
           />
@@ -194,12 +215,10 @@ export default function Path() {
 
       {/* Milestone stats */}
       <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {milestones.map((milestone) => {
-          const milestoneTasks = tasks.filter(t => t.milestoneId === milestone.id)
-          const completed = cohort.founders.filter(f => {
-            const completedTasks = f.completedTasks as string[]
-            const done = milestoneTasks.filter(t => completedTasks.includes(t.id)).length
-            return done === milestoneTasks.length
+        {sortedMilestones.map((milestone) => {
+          const milestoneTasks = requiredTasks.filter(t => t.milestone_id === milestone.id)
+          const completed = founders.filter(f => {
+            return milestoneTasks.every(t => f.completedTasks.includes(t.id))
           }).length
 
           return (
@@ -209,7 +228,7 @@ export default function Path() {
             >
               <div className="text-lg mb-1">{milestone.icon}</div>
               <div className="text-2xl font-mono text-accent">
-                {completed}/{cohort.founders.length}
+                {completed}/{founders.length}
               </div>
               <div className="text-xs text-foreground-tertiary">completed</div>
             </div>
