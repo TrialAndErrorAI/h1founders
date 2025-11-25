@@ -48,23 +48,28 @@ export const onRequest: PagesFunction<Env> = async (context) => {
       SELECT * FROM launch_club_tasks WHERE is_active = 1 ORDER BY milestone_id, display_order
     `).all()
 
-    // Get founders with progress
+    // Get founders with progress and skipped tasks
     const founders = await db.prepare(`
       SELECT
         f.*,
-        GROUP_CONCAT(p.task_id) as completed_task_ids
+        GROUP_CONCAT(DISTINCT p.task_id) as completed_task_ids,
+        GROUP_CONCAT(DISTINCT s.task_id) as skipped_task_ids
       FROM launch_club_founders f
       LEFT JOIN launch_club_progress p ON f.id = p.founder_id
+      LEFT JOIN launch_club_skipped s ON f.id = s.founder_id
       WHERE f.cohort_id = ? AND f.status = 'active'
       GROUP BY f.id
       ORDER BY f.name
     `).bind(cohort.id).all()
 
-    // Transform founders to include completedTasks array
+    // Transform founders to include completedTasks and skippedTasks arrays
     const foundersWithProgress = founders.results.map((f: any) => ({
       ...f,
       completedTasks: f.completed_task_ids
         ? f.completed_task_ids.split(',').map(Number)
+        : [],
+      skippedTasks: f.skipped_task_ids
+        ? f.skipped_task_ids.split(',').map(Number)
         : []
     }))
 

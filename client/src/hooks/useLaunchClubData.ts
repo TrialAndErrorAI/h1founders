@@ -44,6 +44,7 @@ export interface Founder {
   joined_at: string
   notes: string | null
   completedTasks: number[]
+  skippedTasks: number[]
 }
 
 export interface LaunchClubData {
@@ -139,6 +140,56 @@ export function useLaunchClubData(cohortId: string = 'C1') {
     }
   }, [fetchData])
 
+  // Helper to skip/unskip a task for a founder - with optimistic update
+  const skipTask = useCallback(async (
+    founderId: number,
+    taskId: number,
+    skip: boolean
+  ) => {
+    // Optimistic update
+    setData(prev => {
+      if (!prev) return prev
+      return {
+        ...prev,
+        founders: prev.founders.map(f => {
+          if (f.id !== founderId) return f
+          if (skip) {
+            // Skip: remove from completed, add to skipped
+            return {
+              ...f,
+              completedTasks: f.completedTasks.filter(id => id !== taskId),
+              skippedTasks: [...f.skippedTasks.filter(id => id !== taskId), taskId]
+            }
+          } else {
+            // Unskip: remove from skipped
+            return {
+              ...f,
+              skippedTasks: f.skippedTasks.filter(id => id !== taskId)
+            }
+          }
+        })
+      }
+    })
+
+    try {
+      const response = await fetch(`${API_BASE}/api/launch-club/skip`, {
+        method: skip ? 'POST' : 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ founderId, taskId })
+      })
+
+      if (!response.ok) {
+        await fetchData()
+        throw new Error(`Failed to ${skip ? 'skip' : 'unskip'}: ${response.status}`)
+      }
+
+      return true
+    } catch (err) {
+      console.error('Skip task error:', err)
+      return false
+    }
+  }, [fetchData])
+
   // Helper to bulk update founder progress (admin only)
   const bulkUpdateProgress = useCallback(async (
     founderId: number,
@@ -178,6 +229,7 @@ export function useLaunchClubData(cohortId: string = 'C1') {
     error,
     refetch: fetchData,
     updateProgress,
+    skipTask,
     bulkUpdateProgress
   }
 }

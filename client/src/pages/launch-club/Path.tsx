@@ -2,26 +2,31 @@
 import { useState } from 'react'
 import { useLaunchClubData, type Founder, type Task, type Milestone } from '../../hooks/useLaunchClubData'
 
-// Calculate progress percentage for a founder
-function getFounderProgress(founder: Founder, tasks: Task[]): number {
+// Calculate progress percentage for a founder (excluding skipped tasks)
+function getFounderProgress(founder: Founder, tasks: Task[]): { completed: number; total: number; percent: number } {
   const requiredTasks = tasks.filter(t => t.is_required)
-  if (requiredTasks.length === 0) return 0
-  return (founder.completedTasks.length / requiredTasks.length) * 100
+  const applicableTasks = requiredTasks.filter(t => !founder.skippedTasks?.includes(t.id))
+  if (applicableTasks.length === 0) return { completed: 0, total: 0, percent: 0 }
+  const completed = founder.completedTasks.length
+  return {
+    completed,
+    total: applicableTasks.length,
+    percent: (completed / applicableTasks.length) * 100
+  }
 }
 
 // Collapsible founder row
-function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskToggle }: {
+function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskToggle, onTaskSkip }: {
   founder: Founder
   tasks: Task[]
   milestones: Milestone[]
   isExpanded: boolean
   onToggle: () => void
   onTaskToggle: (founderId: number, taskId: number, completed: boolean) => void
+  onTaskSkip: (founderId: number, taskId: number, skip: boolean) => void
 }) {
-  const requiredTasks = tasks.filter(t => t.is_required)
   const progress = getFounderProgress(founder, tasks)
-  const completedCount = founder.completedTasks.length
-  const totalCount = requiredTasks.length
+  const skippedCount = founder.skippedTasks?.length || 0
 
   // Group tasks by milestone for display
   const tasksByMilestone = milestones.map(milestone => ({
@@ -68,15 +73,16 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskTo
           <div className="h-3 bg-tertiary rounded-full overflow-hidden">
             <div
               className="h-full bg-accent/60 rounded-full transition-all duration-500"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${progress.percent}%` }}
             />
           </div>
         </div>
 
         {/* Progress stats */}
-        <div className="text-right flex-shrink-0 w-24">
+        <div className="text-right flex-shrink-0 w-28">
           <span className="text-sm font-mono text-foreground-secondary">
-            {Math.round(progress)}% <span className="text-foreground-tertiary">({completedCount}/{totalCount})</span>
+            {Math.round(progress.percent)}% <span className="text-foreground-tertiary">({progress.completed}/{progress.total})</span>
+            {skippedCount > 0 && <span className="text-foreground-tertiary ml-1" title={`${skippedCount} skipped`}>−{skippedCount}</span>}
           </span>
         </div>
       </button>
@@ -96,25 +102,49 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskTo
               <ul className="space-y-1 pl-6">
                 {milestoneTasks.map(task => {
                   const isCompleted = founder.completedTasks.includes(task.id)
+                  const isSkipped = founder.skippedTasks?.includes(task.id)
                   return (
                     <li
                       key={task.id}
-                      className="flex items-center gap-2 text-sm cursor-pointer hover:bg-accent/20 active:bg-accent/30 rounded px-2 py-1.5 -mx-2 transition-colors group"
+                      className={`flex items-center gap-2 text-sm rounded px-2 py-1.5 -mx-2 transition-colors group ${
+                        isSkipped ? 'opacity-50' : 'cursor-pointer hover:bg-accent/20 active:bg-accent/30'
+                      }`}
                       onClick={(e) => {
                         e.stopPropagation()
-                        onTaskToggle(founder.id, task.id, !isCompleted)
+                        if (!isSkipped) {
+                          onTaskToggle(founder.id, task.id, !isCompleted)
+                        }
                       }}
                     >
                       <span className={`w-4 h-4 rounded border flex items-center justify-center text-xs transition-colors ${
-                        isCompleted
-                          ? 'bg-accent border-accent text-background'
-                          : 'border-foreground-tertiary group-hover:border-accent'
+                        isSkipped
+                          ? 'bg-foreground-tertiary/30 border-foreground-tertiary text-foreground-tertiary'
+                          : isCompleted
+                            ? 'bg-accent border-accent text-background'
+                            : 'border-foreground-tertiary group-hover:border-accent'
                       }`}>
-                        {isCompleted && '✓'}
+                        {isSkipped ? '—' : isCompleted ? '✓' : ''}
                       </span>
-                      <span className={`group-hover:text-foreground transition-colors ${isCompleted ? 'text-foreground' : 'text-foreground-secondary'}`}>
+                      <span className={`flex-1 transition-colors ${
+                        isSkipped ? 'line-through text-foreground-tertiary' : isCompleted ? 'text-foreground' : 'text-foreground-secondary group-hover:text-foreground'
+                      }`}>
                         {task.name}
                       </span>
+                      {/* Skip/unskip button */}
+                      <button
+                        className={`text-xs px-1.5 py-0.5 rounded transition-colors ${
+                          isSkipped
+                            ? 'text-accent hover:bg-accent/20'
+                            : 'text-foreground-tertiary hover:text-red-400 hover:bg-red-400/10 opacity-0 group-hover:opacity-100'
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onTaskSkip(founder.id, task.id, !isSkipped)
+                        }}
+                        title={isSkipped ? 'Restore task' : 'Skip task (N/A)'}
+                      >
+                        {isSkipped ? 'restore' : 'skip'}
+                      </button>
                     </li>
                   )
                 })}
@@ -128,12 +158,17 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskTo
 }
 
 export default function Path() {
-  const { data, loading, error, updateProgress } = useLaunchClubData('C1')
+  const { data, loading, error, updateProgress, skipTask } = useLaunchClubData('C1')
   const [expandedFounders, setExpandedFounders] = useState<Set<number>>(new Set())
 
   // Toggle task completion
   const handleTaskToggle = async (founderId: number, taskId: number, completed: boolean) => {
     await updateProgress(founderId, taskId, completed)
+  }
+
+  // Skip/unskip task
+  const handleTaskSkip = async (founderId: number, taskId: number, skip: boolean) => {
+    await skipTask(founderId, taskId, skip)
   }
 
   if (loading) {
@@ -175,8 +210,8 @@ export default function Path() {
 
   // Sort founders by progress (leaders first)
   const sortedFounders = [...founders].sort((a, b) => {
-    const aProgress = getFounderProgress(a, tasks)
-    const bProgress = getFounderProgress(b, tasks)
+    const aProgress = getFounderProgress(a, tasks).percent
+    const bProgress = getFounderProgress(b, tasks).percent
     return bProgress - aProgress
   })
 
@@ -244,6 +279,7 @@ export default function Path() {
             isExpanded={expandedFounders.has(founder.id)}
             onToggle={() => toggleFounder(founder.id)}
             onTaskToggle={handleTaskToggle}
+            onTaskSkip={handleTaskSkip}
           />
         ))}
       </div>
