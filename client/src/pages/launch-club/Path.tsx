@@ -1,5 +1,5 @@
 // The Path - Founders journeying toward freedom
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useLaunchClubData, type Founder, type Task, type Milestone } from '../../hooks/useLaunchClubData'
 
 // Calculate progress percentage for a founder (excluding skipped tasks)
@@ -208,12 +208,21 @@ export default function Path() {
   const sortedMilestones = [...milestones].sort((a, b) => a.week_number - b.week_number)
   const requiredTasks = tasks.filter(t => t.is_required)
 
-  // Sort founders by progress (leaders first)
-  const sortedFounders = [...founders].sort((a, b) => {
-    const aProgress = getFounderProgress(a, tasks).percent
-    const bProgress = getFounderProgress(b, tasks).percent
-    return bProgress - aProgress
-  })
+  // Cache initial sort order - only resort on page refresh
+  const initialOrderRef = useRef<number[] | null>(null)
+  if (!initialOrderRef.current) {
+    const sorted = [...founders].sort((a, b) => {
+      const aProgress = getFounderProgress(a, tasks).percent
+      const bProgress = getFounderProgress(b, tasks).percent
+      return bProgress - aProgress
+    })
+    initialOrderRef.current = sorted.map(f => f.id)
+  }
+
+  // Use cached order for stable display during live updates
+  const sortedFounders = initialOrderRef.current
+    .map(id => founders.find(f => f.id === id))
+    .filter((f): f is Founder => f !== undefined)
 
   const toggleFounder = (founderId: number) => {
     setExpandedFounders(prev => {
