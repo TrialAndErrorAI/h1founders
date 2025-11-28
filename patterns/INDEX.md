@@ -1,23 +1,33 @@
 # Pattern Language Catalog
 > **Auto-generated from database** - Do not edit manually
-> Last updated: 2025-10-13 20:29:49
+> Last updated: 2025-11-26 06:10:48
 ---
 ## 📊 Statistics
-- **Total Patterns**: 5
-- **Total Uses**: 9
+- **Total Patterns**: 8
+- **Total Uses**: 12
 - **Status Breakdown**:
   - ✅ Validated: 3
-  - 🌱 Emerging: 1
+  - 🌱 Emerging: 4
   - 🧪 Experimental: 1
 
 ---
 ## 📚 Patterns by Category
 
 ### 🔍 Diagnostic
-*1 pattern(s)*
+*3 pattern(s)*
 
+- **[Achiever Paradox (Shadow Achiever)](patterns/diagnostic/achiever-paradox.md)** 🌱
+  - Used 1x | Since: 2025-11-25
 - **[High Performance Trap](patterns/diagnostic/high-performance-trap.md)** 🧪
   - Used 1x | Last: 2025-10-03 | Since: 2025-10-03
+- **[The Hiding Pattern](patterns/diagnostic/hiding-pattern.md)** 🌱
+  - Used 1x | Since: 2025-11-25
+
+### 🧠 Mindset
+*1 pattern(s)*
+
+- **[Ego Dial Framework](patterns/mindset/ego-dial.md)** 🌱
+  - Used 1x | Since: 2025-11-25
 
 ### 🎯 Tactical
 *3 pattern(s)*

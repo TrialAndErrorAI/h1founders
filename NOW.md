@@ -1,74 +1,57 @@
-# Code Session State - Sun Nov 23, 7:35 PM EST
+# Code Session State - Tue Nov 25, 6:28 PM EST
 
-**Last Updated:** Sun Nov 23, 2025 7:35 PM EST
+**Last Updated:** Tue Nov 25, 2025 6:28 PM EST
 
 ## Shutdown Reason
-Session complete - CTABlock component + The Path + date fixes all done
+Site date updated to match C2 announcement (Dec 16)
 
 ## What We Just Shipped
 
-**This Session (Second Commit Pending):**
+**This session (1 commit):**
 
-1. **CTABlock reusable component** - `client/src/components/CTABlock.tsx`
-   - Two variants: scarcity (Launch Club) and soft (Offerings)
-   - Consistent layout: Button → WhatsApp | LinkedIn
-   - Psychological triggers: Loss aversion, social proof, low-commitment options
+1. **Date consistency fix** `b30a628`
+   - Updated Offerings.tsx: Launch Club "Dec 2, 2025" → "Dec 16, 2025"
+   - Now matches LaunchClub.tsx and WhatsApp announcement
 
-2. **Date fixes across all pages** - Dec 2 → Dec 16
-   - LaunchClub.tsx (hero + bottom CTA)
-   - LaunchBanner.tsx (mobile + desktop)
-   - Registration closes Dec 13
-
-3. **The Path page** (from earlier commit)
-   - Renamed Race → The Path (Matrix theme)
-   - Collapsible founder rows with task checklists
-   - Test script: `scripts/test-path.js`
+**Previous session (3 commits):**
+- UX improvements, milestone badges, per-founder task skipping
 
 ## Immediate Next Action
 
-**START HERE**: Commit and deploy
+**START HERE**: No code work pending
 
-```bash
-cd /Users/sid/Code/te/h1founders
-git add .
-git commit -m "feat: CTABlock component + Dec 16 dates + consistent CTAs"
-git push
-```
-
-Then: Update founder progress in `launchClubData.json` before Wednesday call
+C1/C2 updates are content/messaging work:
+- Monitor C1 upgrade responses ($800 upsell)
+- Monitor C2 signups (5 spots, priority through Friday)
+- Track founder progress on LC platform
+- Email Raghavan for Dec 3 finale slot
 
 ## Files to Read on Wake
 
-- `client/src/components/CTABlock.tsx` - Reusable CTA component
-- `client/src/data/launchClubData.json` - Update founder `completedTasks` arrays
-- `client/src/pages/launch-club/Path.tsx` - Collapsible rows implementation
+- `client/src/pages/Offerings.tsx` - Product tiers (dates, pricing)
+- `client/src/pages/LaunchClub.tsx` - LC landing page (full offer)
+- `client/src/data/launchClubData.json` - Founder task data
 
 ## Blockers
 
-**None** - Ready to deploy
+**None** - Code work complete
 
 ## Context & Decisions
 
-**Why CTABlock with two variants:**
-- Scarcity = urgency/loss aversion for time-sensitive offers
-- Soft = low pressure for evergreen pages
-- Same layout ensures consistency while tone differs
+**Today's announcements:**
+- C1 group: $800 upgrade for $1K attorney discount + business prep
+- C2 main group: $997, 5 spots, Dec 16 start, Serotte partnership
 
-**Why The Path (not Race):**
-- Matrix theme aligns with H1Founders brand
-- "Escaping the matrix" = escaping H1B lottery system
-- Everyone on their own path (no competition/losers)
+**Site now consistent:**
+- Offerings: Dec 16, 2025 ✓
+- LaunchClub: Dec 16, 2025 ✓
+- WhatsApp: Dec 16 ✓
 
-**Why hero integrated CTA (not separate block):**
-- Avoids redundancy (hero already has scarcity info)
-- Immediate action for ready buyers
-- Cleaner visual flow
+## Production URLs
 
-## Documentation Updates Needed
-
-- None - code is self-documenting
+- **Offerings**: h1founders.com/offerings
+- **Launch Club**: h1founders.com/launch-club
+- **The Path**: h1founders.com/launch-club/program
 
 ---
-**Next wake:** `/wake-code` → Commit → Deploy → Update progress data
-**Production URL:** h1founders.com/launch-club/program
-**Dev URL:** localhost:5173/launch-club/program
+**Next wake:** `/wake-code` for any new code work, or project wake for C1/C2 content updates
