@@ -160,6 +160,8 @@ function FounderRow({ founder, tasks, milestones, isExpanded, onToggle, onTaskTo
 export default function Path() {
   const { data, loading, error, updateProgress, skipTask } = useLaunchClubData('C1')
   const [expandedFounders, setExpandedFounders] = useState<Set<number>>(new Set())
+  // CRITICAL: useRef must be called before any early returns to avoid React hooks mismatch error
+  const initialOrderRef = useRef<number[] | null>(null)
 
   // Toggle task completion
   const handleTaskToggle = async (founderId: number, taskId: number, completed: boolean) => {
@@ -209,7 +211,6 @@ export default function Path() {
   const requiredTasks = tasks.filter(t => t.is_required)
 
   // Cache initial sort order - only resort on page refresh
-  const initialOrderRef = useRef<number[] | null>(null)
   if (!initialOrderRef.current) {
     const sorted = [...founders].sort((a, b) => {
       const aProgress = getFounderProgress(a, tasks).percent
