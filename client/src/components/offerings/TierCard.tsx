@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 interface TierCardProps {
   title: string
   subtitle: string
@@ -8,6 +10,8 @@ interface TierCardProps {
   format: string
   details: { label: string; value: string }[]
   elite?: boolean
+  ctaLink?: string
+  ctaText?: string
 }
 
 export default function TierCard({
@@ -19,7 +23,9 @@ export default function TierCard({
   features,
   format,
   details,
-  elite = false
+  elite = false,
+  ctaLink,
+  ctaText
 }: TierCardProps) {
   return (
     <div
@@ -85,6 +91,18 @@ export default function TierCard({
             </div>
           ))}
         </div>
+
+        {/* Optional CTA */}
+        {ctaLink && ctaText && (
+          <div className="mt-4 pt-4 border-t border-border/50">
+            <Link
+              to={ctaLink}
+              className="inline-block w-full text-center bg-accent/10 hover:bg-accent/20 border border-accent/50 text-accent px-4 py-2 rounded font-mono text-sm transition-colors"
+            >
+              {ctaText}
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   )

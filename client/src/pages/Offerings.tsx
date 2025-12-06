@@ -136,9 +136,11 @@ export default function Offerings() {
               format="Group (5 founders max)"
               details={[
                 { label: 'Sessions', value: 'Wed 6-7 PM ET (weekly)' },
-                { label: 'Next cohort', value: 'Dec 16, 2025' },
+                { label: 'Status', value: 'C1 + C2 filled. Next cohort forming.' },
                 { label: 'Guarantee', value: 'Do the work, show up - not attorney-ready? I keep working with you.' }
               ]}
+              ctaLink="/launch-club"
+              ctaText="Apply for Next Cohort"
             />
 
             {/* Revenue Club */}

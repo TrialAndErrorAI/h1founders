@@ -1,16 +1,18 @@
 // Reusable CTA Block with psychological triggers
-// Use: Scarcity mode for launches, Soft mode for evergreen pages
+// Use: Scarcity mode for launches, Soft mode for evergreen pages, Evergreen for intake forms
 
 interface CTABlockProps {
-  variant?: 'scarcity' | 'soft'
+  variant?: 'scarcity' | 'soft' | 'evergreen'
   // Scarcity mode props
   spots?: number
   program?: string
   startDate?: string
   closeDate?: string
-  // Soft mode props
+  // Soft/Evergreen mode props
   headline?: string
   subtext?: string
+  // Evergreen mode - Tally form
+  tallyUrl?: string
   // Common
   showEmail?: boolean
   emailSubject?: string
@@ -24,6 +26,7 @@ export default function CTABlock({
   closeDate = 'Dec 13',
   headline = "Ready to Start?",
   subtext = "DM me. I'll tell you what fits your situation.",
+  tallyUrl,
   showEmail: _showEmail = true,
   emailSubject = "H1Founders - Let's Talk"
 }: CTABlockProps) {
@@ -31,6 +34,61 @@ export default function CTABlock({
   const whatsappLink = "https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat"
   const linkedinLink = "https://linkedin.com/in/sidsarasvati"
   const emailLink = `mailto:sid@h1founders.com?subject=${encodeURIComponent(emailSubject)}`
+
+  // Evergreen variant - Tally intake form, no urgency
+  if (variant === 'evergreen') {
+    return (
+      <div className="bg-gradient-to-r from-accent/10 to-blue-900/20 border border-accent/30 rounded-lg p-6 sm:p-8 text-center">
+        {/* Invitation headline */}
+        <h2 className="text-xl sm:text-2xl font-bold terminal-text matrix-glow mb-3">
+          {headline}
+        </h2>
+
+        {/* Low pressure subtext */}
+        <p className="text-foreground-secondary text-sm mb-4">
+          {subtext}
+        </p>
+
+        {/* Primary CTA - Tally Form */}
+        <div className="space-y-3">
+          <a
+            href={tallyUrl || emailLink}
+            target={tallyUrl ? "_blank" : undefined}
+            rel={tallyUrl ? "noopener noreferrer" : undefined}
+            className="inline-block bg-accent text-background px-6 py-2 sm:px-8 sm:py-3 rounded font-mono font-bold hover:bg-accent/80 transition-colors"
+          >
+            Apply Now
+          </a>
+
+          {/* Secondary options */}
+          <p className="text-foreground-secondary font-mono text-xs sm:text-sm">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              Join WhatsApp (1,400+)
+            </a>
+            {' | '}
+            <a
+              href={linkedinLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              DM on LinkedIn
+            </a>
+          </p>
+        </div>
+
+        {/* Trust builder - no pressure */}
+        <p className="text-foreground-tertiary font-mono text-xs mt-6">
+          No commitment. Just a conversation.
+        </p>
+      </div>
+    )
+  }
 
   if (variant === 'scarcity') {
     return (

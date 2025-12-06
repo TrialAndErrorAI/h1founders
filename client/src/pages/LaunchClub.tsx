@@ -1,11 +1,20 @@
 import CTABlock from '../components/CTABlock'
 
 export default function LaunchClub() {
+  const tallyFormUrl = "https://tally.so/r/pbx9Y1"
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        {/* HERO + TOP CTA */}
+        {/* SOCIAL PROOF BANNER */}
+        <div className="bg-accent/10 border border-accent/30 rounded-lg px-4 py-2 mb-8 text-center">
+          <p className="text-accent font-mono text-sm">
+            C1 + C2 filled. Next cohort forming now.
+          </p>
+        </div>
+
+        {/* HERO */}
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold terminal-text matrix-glow mb-4">
             Launch Club
@@ -14,16 +23,18 @@ export default function LaunchClub() {
             Attorney-Ready in 3 Weeks
           </p>
           <p className="text-foreground-secondary font-mono mb-6">
-            $997 | 5 founders max | C2 starts Dec 16
+            Or I keep working with you until you are.
           </p>
 
-          {/* Immediate action for ready buyers */}
+          {/* Primary CTA - Tally Form */}
           <div className="space-y-3">
             <a
-              href="mailto:sid@h1founders.com?subject=Launch%20Club%20C2%20-%20I'm%20In"
+              href={tallyFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-accent text-background px-8 py-3 rounded font-mono font-bold hover:bg-accent/80 transition-colors"
             >
-              I'm In - Email Sid
+              Apply for Next Cohort
             </a>
             <p className="text-foreground-secondary font-mono text-sm">
               <a
@@ -32,7 +43,7 @@ export default function LaunchClub() {
                 rel="noopener noreferrer"
                 className="text-accent hover:underline"
               >
-                Join WhatsApp
+                Join WhatsApp (1,400+)
               </a>
               {' | '}
               <a
@@ -47,7 +58,30 @@ export default function LaunchClub() {
           </div>
         </div>
 
-        {/* DREAM OUTCOME */}
+        {/* THE PROBLEM */}
+        <div className="mb-12">
+          <div className="bg-background-secondary/30 border border-border rounded-lg p-8">
+            <h2 className="text-2xl font-bold terminal-text matrix-glow mb-4">
+              The Problem
+            </h2>
+            <p className="text-foreground-secondary text-lg mb-4">
+              You've been researching H1B self-sponsorship for months.
+              Maybe years.
+            </p>
+            <div className="space-y-3 text-foreground-secondary font-mono text-sm">
+              <p>• Quora threads contradict each other</p>
+              <p>• Lawyers want $15K before they'll answer a question</p>
+              <p>• You don't know if you need LLC or C-Corp</p>
+              <p>• Cap table? 83(b)? Feels like a foreign language</p>
+              <p>• Every "expert" has a different answer</p>
+            </div>
+            <p className="text-accent font-mono mt-6">
+              The barrier isn't the law. It's the confusion.
+            </p>
+          </div>
+        </div>
+
+        {/* THE OUTCOME */}
         <div className="mb-12">
           <div className="bg-gradient-to-r from-green-900/20 to-blue-900/20 border border-accent/30 rounded-lg p-8">
             <h2 className="text-2xl font-bold terminal-text matrix-glow mb-4">
@@ -60,7 +94,7 @@ export default function LaunchClub() {
               Entity formed. Cap table clean. Business case documented. Attorney meeting booked.
             </p>
             <p className="text-accent font-mono mt-4">
-              You're not figuring it out - you're executing a proven path.
+              You're not figuring it out anymore. You're executing.
             </p>
           </div>
         </div>
@@ -150,7 +184,7 @@ export default function LaunchClub() {
               <p className="text-foreground-secondary text-sm">
                 <span className="text-accent font-semibold">Why Serotte?</span> They did my H1B.
                 They've helped 10+ founders in this community. They know your situation.
-                This isn't a random referral - these are vetted attorneys with proven success stories.
+                This isn't a random referral - vetted attorneys with proven success.
               </p>
             </div>
           </div>
@@ -175,7 +209,7 @@ export default function LaunchClub() {
               <span className="bg-foreground-secondary/20 text-foreground-secondary px-2 py-1 rounded font-mono text-xs">BONUS</span>
             </div>
             <ul className="space-y-2 text-foreground-secondary font-mono text-sm">
-              <li>• 860+ immigrant founders</li>
+              <li>• 1,400+ immigrant founders</li>
               <li>• Lifetime access to community</li>
               <li>• WhatsApp group for real-time support</li>
             </ul>
@@ -210,7 +244,7 @@ export default function LaunchClub() {
               </div>
             </div>
             <p className="text-foreground-secondary text-sm mt-4">
-              I structured this so you come out ahead. You get prepared,
+              Structured so you come out ahead. You get prepared,
               partners get qualified clients, I get to help founders.
             </p>
           </div>
@@ -232,9 +266,14 @@ export default function LaunchClub() {
           </div>
         </div>
 
-        {/* BOTTOM CTA */}
+        {/* BOTTOM CTA - Evergreen Tally Form */}
         <div className="mb-12">
-          <CTABlock variant="scarcity" spots={5} program="C2" startDate="Dec 16" closeDate="Dec 13" />
+          <CTABlock
+            variant="evergreen"
+            tallyUrl={tallyFormUrl}
+            headline="Ready to Stop Researching?"
+            subtext="Fill out the intake form. I'll reach out if it's a fit."
+          />
         </div>
 
         {/* FOOTER NOTE */}
