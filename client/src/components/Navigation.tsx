@@ -11,20 +11,11 @@ interface NavItem {
   requiresAuth?: boolean
 }
 
-const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
-
-const baseNavigation: NavItem[] = [
-  { name: 'ARTICLES', href: '/newsletter', status: 'LIVE' },
-  { name: 'OFFERINGS', href: '/offerings', status: 'LIVE' },
-  { name: 'LAUNCH CLUB', href: '/launch-club', status: 'LIVE' }
-  // Tools removed - just demos, not valuable yet
-  // Network section hidden - access through member login only
-  // CRISIS, version, and FORUM removed - streamlined nav
+const navigation: NavItem[] = [
+  { name: 'PROGRAMS', href: '/programs', status: 'LIVE' },
+  { name: 'LIVE', href: '/live', status: 'LIVE' },
+  { name: 'JOIN', href: '/join', status: 'LIVE' }
 ]
-
-const navigation = ENABLE_PARTNERSHIPS 
-  ? [...baseNavigation, { name: 'PARTNERS', href: '/partners', status: 'LIVE' as const }]
-  : baseNavigation
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)

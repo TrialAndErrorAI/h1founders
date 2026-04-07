@@ -14,7 +14,7 @@ export default function Community() {
         {/* Primary CTA - WhatsApp */}
         <div className="bg-background rounded-lg p-8 border-2 border-accent mb-16 text-center">
           <div className="font-mono text-sm mb-4">
-            <div className="text-accent text-lg">// Join H1 Founders Network - 900+ immigrant founders</div>
+            <div className="text-accent text-lg">// Join H1 Founders Network - 1,000+ immigrant founders</div>
           </div>
           <p className="text-foreground text-xl mb-6">
             The official community for immigrant founders. Build, grow, exit.
@@ -107,7 +107,7 @@ export default function Community() {
           <div className="font-mono text-sm">
             <div className="text-accent">sid@transformations:~$ show_impact --real</div>
             <div className="text-foreground-secondary mt-4 space-y-1">
-              <div>Permission-seekers transformed: 1400+</div>
+              <div>Permission-seekers transformed: 1,000+</div>
               <div>"How can I?" → "I'm building": Daily</div>
               <div>People rejecting 2029 timeline: 100s</div>
               <div>Forum myths busted: Countless</div>

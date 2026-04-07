@@ -6,35 +6,14 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import ScrollToTop from './components/ScrollToTop'
 
-// Lazy load all non-essential pages
-const Dashboard = lazy(() => import('./pages/Dashboard'))
-const ToolsIndex = lazy(() => import('./pages/tools'))
-const TechStackAnalyzer = lazy(() => import('./pages/tools/TechStackAnalyzer'))
-const SalaryExplorer = lazy(() => import('./pages/tools/SalaryExplorer'))
+// Pages
+const Programs = lazy(() => import('./pages/Programs'))
+const Live = lazy(() => import('./pages/Live'))
+const Join = lazy(() => import('./pages/Join'))
 const EB1AQualifier = lazy(() => import('./pages/tools/EB1AQualifier'))
-const Resources = lazy(() => import('./pages/resources'))
-const Stories = lazy(() => import('./pages/stories'))
-const Events = lazy(() => import('./pages/events'))
-const Network = lazy(() => import('./pages/network'))
-const Academy = lazy(() => import('./pages/academy'))
-const Forum = lazy(() => import('./pages/forum'))
-const ForumThread = lazy(() => import('./pages/forum/ForumThread'))
-const CreateThread = lazy(() => import('./pages/forum/CreateThread'))
-const Partners = lazy(() => import('./pages/Partners'))
-const Coaching = lazy(() => import('./pages/Coaching'))
-const Crisis = lazy(() => import('./pages/Crisis'))
-const Newsletter = lazy(() => import('./pages/Newsletter'))
-const AdminPanel = lazy(() => import('./pages/admin'))
-const WinClubCoach = lazy(() => import('./pages/win-club/coach'))
-const Offerings = lazy(() => import('./pages/Offerings'))
-const LaunchClub = lazy(() => import('./pages/LaunchClub'))
-// Launch Club Program App (internal)
-const LaunchClubLayout = lazy(() => import('./pages/launch-club/Layout'))
-const LaunchClubDashboard = lazy(() => import('./pages/launch-club/Dashboard'))
-const LaunchClubPath = lazy(() => import('./pages/launch-club/Path'))
-const LaunchClubSchedule = lazy(() => import('./pages/launch-club/Schedule'))
 
-const ENABLE_PARTNERSHIPS = import.meta.env.VITE_ENABLE_PARTNERSHIPS === 'true'
+// Legacy redirects — keep old URLs working
+const LegacyRedirect = lazy(() => import('./pages/LegacyRedirect'))
 
 function App() {
   return (
@@ -44,40 +23,24 @@ function App() {
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--bg-primary)' }}>
             <div className="font-mono" style={{ color: 'var(--accent-primary)' }}>
-              <div className="animate-pulse">Initializing Matrix...</div>
+              <div className="animate-pulse">Loading...</div>
             </div>
           </div>
         }>
           <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="tools" element={<ToolsIndex />} />
-            <Route path="tools/tech-stack-analyzer" element={<TechStackAnalyzer />} />
-            <Route path="tools/salary-explorer" element={<SalaryExplorer />} />
+            <Route path="programs" element={<Programs />} />
+            <Route path="live" element={<Live />} />
+            <Route path="join" element={<Join />} />
             <Route path="tools/eb1a-qualifier" element={<EB1AQualifier />} />
-            <Route path="coaching" element={<Coaching />} />
-            <Route path="offerings" element={<Offerings />} />
-            <Route path="launch-club" element={<LaunchClub />} />
-            <Route path="crisis" element={<Crisis />} />
-            <Route path="newsletter" element={<Newsletter />} />
-            <Route path="resources" element={<Resources />} />
-            <Route path="stories" element={<Stories />} />
-            <Route path="events" element={<Events />} />
-            <Route path="network" element={<Network />} />
-            <Route path="academy" element={<Academy />} />
-            <Route path="forum" element={<Forum />} />
-            <Route path="forum/thread/:threadId" element={<ForumThread />} />
-            <Route path="forum/create" element={<CreateThread />} />
-            <Route path="admin" element={<AdminPanel />} />
-            <Route path="win-club/coach" element={<WinClubCoach />} />
-            {ENABLE_PARTNERSHIPS && <Route path="partners" element={<Partners />} />}
-          </Route>
-          {/* Launch Club Program App - separate layout */}
-          <Route path="launch-club/program" element={<LaunchClubLayout />}>
-            <Route index element={<LaunchClubDashboard />} />
-            <Route path="path" element={<LaunchClubPath />} />
-            <Route path="schedule" element={<LaunchClubSchedule />} />
+
+            {/* Legacy URL redirects */}
+            <Route path="offerings" element={<LegacyRedirect to="/programs" />} />
+            <Route path="coaching" element={<LegacyRedirect to="/programs" />} />
+            <Route path="launch-club" element={<LegacyRedirect to="/programs" />} />
+            <Route path="newsletter" element={<LegacyRedirect to="/join" />} />
+            <Route path="*" element={<LegacyRedirect to="/" />} />
           </Route>
         </Routes>
       </Suspense>

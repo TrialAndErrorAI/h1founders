@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useAuth } from '../contexts/AuthContext'
 import { getDevModeBanner } from '../utils/devMode'
 import MediaBanner from '../components/MediaBanner'
 import Hero from '../components/Hero'
@@ -12,28 +10,8 @@ import Community from '../components/Community'
 import Footer from '../components/Footer'
 
 export default function Home() {
-  const { user, loading } = useAuth()
-  
-  // Redirect logged-in users to offerings
-  useEffect(() => {
-    if (!loading && user) {
-      window.location.href = '/offerings'
-    }
-  }, [user, loading])
-  
-  // Show landing page only for non-authenticated users
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-accent font-mono">Loading...</div>
-      </div>
-    )
-  }
-  
-  // Get dev mode banner configuration
   const devBanner = getDevModeBanner();
 
-  // If user is authenticated, they'll be redirected above
   return (
     <>
       {/* DEV MODE TOOLBAR - LOCALHOST ONLY */}
@@ -55,16 +33,12 @@ export default function Home() {
           </div>
         </div>
       )}
-      {/* CrisisBanner removed - crisis nav link removed */}
       <MediaBanner />
       <Hero />
       <MissionStatement />
       <TheReceipts />
-      {/* <WhatIActuallyDo /> */}
-      {/* <FounderStory /> */}
       <Transformation />
       <Coaching />
-      {/* Substack Feed - Latest Insights */}
       <div className="px-6 py-12">
         <div className="mx-auto max-w-4xl">
           <SubstackFeed />

@@ -16,7 +16,7 @@ export default function TheReceipts() {
           {/* Revenue Proof - Mental Barrier Broken */}
           <div className="bg-background rounded-lg p-5 border border-border hover:border-accent transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">$3M+</div>
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">$5M+</div>
               <p className="text-foreground-tertiary mb-3 text-sm">Built Legitimately</p>
               <div className="bg-background-secondary/50 rounded p-3 font-mono text-xs">
                 <div className="text-accent">✓ 95% gross profit</div>
@@ -44,7 +44,7 @@ export default function TheReceipts() {
           {/* Community Impact - Mental Freedom */}
           <div className="bg-background rounded-lg p-5 border border-border hover:border-accent transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">1400+</div>
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">1,000+</div>
               <p className="text-foreground-tertiary mb-3 text-sm">Breaking Free Together</p>
               <div className="bg-background-secondary/50 rounded p-3 font-mono text-xs">
                 <div className="text-accent">✓ Forum myths busted</div>
@@ -80,7 +80,7 @@ export default function TheReceipts() {
               <div className="text-accent font-bold">2023  # Refiled EB1-A → APPROVED (I was always extraordinary)</div>
               <div className="text-accent font-bold">2024  # SELF-SPONSORED MY OWN H1B (barriers were never real)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2024  # Green card in hand (but mental freedom came first)</div>
-              <div className="text-accent">2024  # LinkedIn post → 1400+ founders waking up</div>
+              <div className="text-accent">2024  # LinkedIn post → 1,000+ founders waking up</div>
               <div className="text-accent animate-pulse">sid@freedom:~$ ./breaking_mental_chains_daily █</div>
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function TheReceipts() {
             Still believing the myths they programmed into you?
           </p>
           <a
-            href="/coaching"
+            href="/programs"
             className="red-pill-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg font-mono inline-block transform hover:scale-105 transition-all"
           >
             debug_your_mind() // Let's talk

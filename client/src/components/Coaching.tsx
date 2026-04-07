@@ -19,10 +19,10 @@ export default function Coaching() {
               <p>✓ Create your own timeline (not 2029)</p>
             </div>
             <a
-              href="/coaching"
+              href="/programs"
               className="inline-block px-6 py-3 bg-green-400 hover:bg-accent text-foreground font-mono font-bold rounded transition-colors"
             >
-              BOOK_SESSION()
+              VIEW PROGRAMS
             </a>
           </div>
 

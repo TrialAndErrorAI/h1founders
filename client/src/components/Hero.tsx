@@ -20,7 +20,7 @@ export default function Hero() {
             I took the <span className="text-red-pill">red pill</span>.
           </p>
           <p className="text-xl sm:text-2xl font-bold text-foreground">
-            Built <span className="text-accent">$3M+ ARR</span>,
+            Built <span className="text-accent">$5M+ ARR</span>,
             <span className="text-accent"> $0 VC</span>,
             <span className="text-accent"> 95% gross profit</span> anyway.
           </p>
@@ -46,16 +46,16 @@ export default function Hero() {
         {/* The Choice - Red Pill vs Blue Pill */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <button
-            onClick={() => window.location.href = '/network'}
+            onClick={() => window.location.href = '/join'}
             className="red-pill-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg w-full sm:w-auto text-center font-mono transform hover:scale-105 transition-all"
           >
-            RED PILL: join_founders()
+            JOIN THE COMMUNITY
           </button>
           <a
-            href="/newsletter"
+            href="/programs"
             className="blue-pill-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg w-full sm:w-auto text-center font-mono transform hover:scale-105 transition-all"
           >
-            BLUE PILL: read_articles()
+            VIEW PROGRAMS
           </a>
         </div>
 
