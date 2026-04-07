@@ -129,7 +129,7 @@ export default function Programs() {
               </div>
               <div className="pt-4 border-t border-border space-y-3">
                 <div className="text-sm text-foreground-secondary font-mono">
-                  <span className="text-foreground-tertiary">Status:</span> {METRICS.winClubMembers} active members
+                  <span className="text-foreground-tertiary">Status:</span> Invite only. Limited to 5 founders
                 </div>
                 <a
                   href={METRICS.winClubFormUrl}
