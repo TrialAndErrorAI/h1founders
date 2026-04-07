@@ -43,7 +43,7 @@ export default function CoachingPage() {
                 <ul className="space-y-2 mt-3 font-mono text-sm">
                   <li>• FROM: "How can I?" → TO: "I'm doing this"</li>
                   <li>• FROM: "My lawyer said..." → TO: "I tested it myself"</li>
-                  <li>• FROM: "Wait until 2029" → TO: "Free by 2025"</li>
+                  <li>• FROM: "Wait until 2029" → TO: "Free by 2026"</li>
                   <li>• FROM: "Too risky" → TO: "Staying employed is riskier"</li>
                   <li>• FROM: Employee identity → TO: Founder identity</li>
                 </ul>

@@ -83,7 +83,7 @@ export default function Offerings() {
                 Coaching exists because some founders need structured support.
               </p>
               <p className="text-foreground">
-                I do this because watching founders waste years hurts. Pricing: $197-497/month.
+                I do this because watching founders waste years hurts. Pricing: $297-997.
               </p>
               <p className="text-foreground-secondary text-sm mt-2">
                 Plus: Access to my vetted network (CPAs, attorneys, partners I work with).
@@ -136,7 +136,7 @@ export default function Offerings() {
               format="Group (5 founders max)"
               details={[
                 { label: 'Sessions', value: 'Wed 6-7 PM ET (weekly)' },
-                { label: 'Status', value: 'C1 + C2 filled. Next cohort forming.' },
+                { label: 'Next cohort', value: '4 cohorts complete. C5 forming Q2 2026' },
                 { label: 'Guarantee', value: 'Do the work, show up - not attorney-ready? I keep working with you.' }
               ]}
               ctaLink="/launch-club"
@@ -158,7 +158,7 @@ export default function Offerings() {
               format="Group (5 founders max)"
               details={[
                 { label: 'Sessions', value: '1st & 3rd Monday, 1 hr each' },
-                { label: 'Start date', value: 'Nov 25, 2025' },
+                { label: 'Start date', value: 'TBD' },
                 { label: 'Goal', value: 'First paying customer in 60 days. Not cheerleading. Just accountability.' }
               ]}
             />
@@ -170,16 +170,16 @@ export default function Offerings() {
               price="$497/month (3 months)"
               description="You have customers/revenue but stuck. Analysis paralysis. Execution crisis. Know what to do, can't execute."
               features={[
-                'Wed/Fri 1:1 private mentorship',
-                '20 min each (focused, not fluff)',
+                'Friday 1:1 private mentorship',
+                '30 min each (focused, not fluff)',
                 'Direct WhatsApp access between sessions',
                 '"Shocks in the brain" - Transformation, not tips'
               ]}
               format="Exclusive 1:1 (5 founders max)"
               details={[
                 { label: 'Commitment', value: '3 months minimum' },
-                { label: 'Q1 2026 cohort', value: '5 spots only' },
-                { label: 'Applications due', value: 'Dec 31, 2025' }
+                { label: 'Status', value: '3 active members' },
+                { label: 'Applications', value: 'DM Sid to apply' }
               ]}
               elite
             />

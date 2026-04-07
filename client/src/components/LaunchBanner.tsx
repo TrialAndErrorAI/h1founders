@@ -12,16 +12,16 @@ export default function LaunchBanner() {
         {/* Mobile layout - stacked */}
         <div className="sm:hidden flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-xl">🚀</span>
+            <span className="text-xl">🎙️</span>
             <p className="font-mono text-accent text-xs">
-              <span className="font-bold">LAUNCH CLUB C2</span> - Dec 16
+              <span className="font-bold">H1B FOUNDERS LIVE</span> — Monthly show
             </p>
           </div>
           <button
-            onClick={() => window.location.href = '/launch-club'}
+            onClick={() => window.open('https://community.h1bfounders.com', '_blank')}
             className="bg-green-400 hover:bg-green-300 text-foreground px-3 py-1 rounded font-mono text-xs font-bold transition-colors"
           >
-            5 SPOTS
+            WATCH FREE
           </button>
         </div>
 
@@ -29,19 +29,19 @@ export default function LaunchBanner() {
         <div className="hidden sm:flex items-center justify-between">
           <div className="flex items-center space-x-4 flex-1">
             <div className="flex-shrink-0">
-              <span className="text-2xl">🚀</span>
+              <span className="text-2xl">🎙️</span>
             </div>
             <div className="text-center flex-1">
               <p className="font-mono text-accent text-sm lg:text-base">
-                <span className="font-bold">LAUNCH CLUB C2:</span> Attorney-ready in 3 weeks | Dec 16
+                <span className="font-bold">H1B FOUNDERS LIVE:</span> Founders who did it tell you how | Monthly on Substack
               </p>
             </div>
             <div className="flex-shrink-0">
               <button
-                onClick={() => window.location.href = '/launch-club'}
+                onClick={() => window.open('https://community.h1bfounders.com', '_blank')}
                 className="bg-green-400 hover:bg-green-300 text-foreground px-4 py-1 rounded font-mono text-sm font-bold transition-colors whitespace-nowrap"
               >
-                5_SPOTS()
+                WATCH FREE
               </button>
             </div>
           </div>

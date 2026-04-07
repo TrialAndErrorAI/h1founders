@@ -10,7 +10,7 @@ export default function ComparisonTable() {
       name: 'Launch Club',
       stage: 'Ideation, haven\'t started',
       format: 'Group (5-10)',
-      price: '$197 one-time'
+      price: '$997 (3-week program)'
     },
     {
       name: 'Revenue Club',

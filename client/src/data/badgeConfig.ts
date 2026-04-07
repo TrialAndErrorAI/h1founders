@@ -149,7 +149,7 @@ export const specialRoles = {
   ORACLE_ASSISTANT: {
     name: "Oracle's Assistant",
     icon: '🔮',
-    description: 'Sees what others need - Manisha',
+    description: 'Sees what others need',
     color: '#c084fc'
   },
   SENTINEL: {

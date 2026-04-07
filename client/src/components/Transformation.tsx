@@ -48,7 +48,7 @@ export default function Transformation() {
               <div className="text-accent">// Founder identity mode</div>
               <div className="text-foreground-secondary">"I'm building this"</div>
               <div className="text-foreground-secondary">"I tested it myself"</div>
-              <div className="text-foreground-secondary">"Free by 2025, not 2029"</div>
+              <div className="text-foreground-secondary">"Free by 2026, not 2029"</div>
               <div className="text-foreground-secondary">"Challenges = opportunities"</div>
               <div className="text-foreground-secondary">"Started yesterday"</div>
             </div>

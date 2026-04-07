@@ -14,12 +14,6 @@ const sponsors: Sponsor[] = [
     tagline: 'Manifest Your Green Card',
     url: 'https://calendly.com/manifestlabs',
     tier: 'architect'
-  },
-  {
-    name: 'FinStackk',
-    tagline: 'SOC 2 Accounting for Founders',
-    url: 'https://calendly.com/finstackk',
-    tier: 'neo'
   }
 ]
 
