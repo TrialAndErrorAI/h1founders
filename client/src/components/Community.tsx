@@ -67,7 +67,7 @@ export default function Community() {
                 I can actually do this. Why did I wait so long?"
               </p>
               <p className="text-foreground-tertiary text-sm font-mono">
-                # The crack in the Matrix. First-hand truth beats forum myths.
+                # First-hand truth beats forum myths.
               </p>
             </div>
             

@@ -50,7 +50,7 @@ export default function TheReceipts() {
                 <div className="text-accent">✓ Forum myths busted</div>
                 <div className="text-foreground-secondary">✓ Building businesses</div>
                 <div className="text-foreground-secondary">✓ Filing EB1-As</div>
-                <div className="text-red-pill">✓ Escaping the Matrix</div>
+                <div className="text-red-pill">✓ Building in America</div>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function TheReceipts() {
           </h3>
           <div className="bg-background rounded-lg p-4 sm:p-6 border border-border hover:border-accent/30 transition-colors">
             <div className="font-mono text-xs sm:text-sm space-y-1.5">
-              <div className="terminal-text">sid@matrix:~$ show_mental_journey --raw</div>
+              <div className="terminal-text">The timeline nobody tells you about:</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2010-2021 # 11 YEARS believing I couldn't build (mental prison)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2012  # OPT: Vivox → Unity (building others' dreams)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2013  # H1B: Won lottery (golden handcuffs begin)</div>
@@ -73,7 +73,7 @@ export default function TheReceipts() {
               <div className="text-foreground-secondary hover:text-accent transition-colors">2019  # Compass: Director → IPO (success for them, not me)</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2021  # JOKR: VP Eng, unicorn (still building for others)</div>
               <div className="text-red-pill hover:text-accent transition-colors">2021  # THE IRONY: Sponsored others' GCs while stuck myself</div>
-              <div className="text-yellow-400 hover:text-accent transition-colors">2022  # Said F**K IT, started anyway (first crack in Matrix)</div>
+              <div className="text-yellow-400 hover:text-accent transition-colors">2022  # Said F**K IT, started anyway</div>
               <div className="text-foreground-secondary hover:text-accent transition-colors">2023  # $1M revenue (proved the myths were BS)</div>
               <div className="text-red-pill hover:text-accent transition-colors">2023  # EB1-A DENIED - "not extraordinary" (their programming)</div>
               <div className="text-foreground-tertiary">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
@@ -109,7 +109,7 @@ export default function TheReceipts() {
             href="/programs"
             className="red-pill-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg font-mono inline-block transform hover:scale-105 transition-all"
           >
-            debug_your_mind() // Let's talk
+            VIEW PROGRAMS
           </a>
         </div>
       </div>

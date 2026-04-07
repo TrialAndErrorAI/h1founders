@@ -1,51 +1,24 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ThemeToggle } from './ThemeToggle'
+import { METRICS } from '../data/metrics'
 
 interface NavItem {
   name: string
   href: string
-  status: 'LIVE' | 'SOON' | 'LOCKED'
-  count?: number
-  notify?: boolean
-  requiresAuth?: boolean
+  external?: boolean
 }
 
 const navigation: NavItem[] = [
-  { name: 'PROGRAMS', href: '/programs', status: 'LIVE' },
-  { name: 'LIVE', href: '/live', status: 'LIVE' },
-  { name: 'JOIN', href: '/join', status: 'LIVE' }
+  { name: 'PROGRAMS', href: '/programs' },
+  { name: 'LIVE', href: '/live' },
+  { name: 'NEWSLETTER', href: METRICS.substackUrl, external: true },
+  { name: 'JOIN', href: '/join' }
 ]
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'LIVE':
-        return 'text-accent'
-      case 'SOON':
-        return 'text-yellow-400'
-      case 'LOCKED':
-        return 'text-red-pill'
-      default:
-        return 'text-foreground-tertiary'
-    }
-  }
-
-  const getStatusBadge = (item: NavItem) => {
-    if (item.status === 'LIVE' && item.count) {
-      return <span className="text-accent text-xs ml-2">({item.count})</span>
-    }
-    if (item.status === 'SOON') {
-      return <span className="text-yellow-400 text-xs ml-2">[SOON]</span>
-    }
-    if (item.status === 'LOCKED') {
-      return <span className="text-red-pill text-xs ml-2">[🔒]</span>
-    }
-    return null
-  }
 
   return (
     <nav className="border-b sticky top-0 z-50 backdrop-blur-sm" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-primary)' }}>
@@ -65,32 +38,28 @@ export default function Navigation() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-6">
               {navigation.map((item) => {
-                const isActive = location.pathname.startsWith(item.href)
-                const isDisabled = item.status !== 'LIVE'
-                
-                return (
+                const isActive = !item.external && location.pathname.startsWith(item.href)
+
+                return item.external ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-sm transition-all duration-200 text-foreground-secondary hover:text-accent"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
                   <Link
                     key={item.name}
                     to={item.href}
                     className={`
                       font-mono text-sm transition-all duration-200
-                      ${isActive ? 'terminal-text matrix-glow' : ''}
-                      ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-accent'}
-                      ${!isActive && !isDisabled && !item.notify ? 'text-foreground-secondary' : ''}
-                      ${item.notify && !isActive ? 'text-yellow-400 animate-pulse' : ''}
+                      ${isActive ? 'terminal-text matrix-glow' : 'text-foreground-secondary hover:text-accent'}
                     `}
-                    onClick={(e) => {
-                      if (isDisabled && item.status !== 'LOCKED') {
-                        e.preventDefault()
-                        return
-                      }
-                    }}
                   >
-                    <span className="flex items-center">
-                      {item.notify && '🔥 '}
-                      {item.name}
-                      {getStatusBadge(item)}
-                    </span>
+                    {item.name}
                   </Link>
                 )
               })}
@@ -122,35 +91,30 @@ export default function Navigation() {
         <div className="md:hidden border-t border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigation.map((item) => {
-              const isActive = location.pathname.startsWith(item.href)
-              const isDisabled = item.status !== 'LIVE'
-              
-              return (
+              const isActive = !item.external && location.pathname.startsWith(item.href)
+
+              return item.external ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-3 py-2 font-mono text-sm text-foreground-secondary"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ) : (
                 <Link
                   key={item.name}
                   to={item.href}
                   className={`
                     block px-3 py-2 font-mono text-sm
                     ${isActive ? 'terminal-text matrix-glow' : 'text-foreground-secondary'}
-                    ${isDisabled ? 'opacity-50' : ''}
                   `}
-                  onClick={(e) => {
-                    if (isDisabled && item.status !== 'LOCKED') {
-                      e.preventDefault()
-                      return
-                    }
-
-                    setIsOpen(false)
-                  }}
+                  onClick={() => setIsOpen(false)}
                 >
-                  <span className="flex items-center justify-between">
-                    <span>{item.name}</span>
-                    <span className={getStatusColor(item.status)}>
-                      {item.status === 'LIVE' && item.count && `(${item.count})`}
-                      {item.status === 'SOON' && 'SOON'}
-                      {item.status === 'LOCKED' && '🔒'}
-                    </span>
-                  </span>
+                  {item.name}
                 </Link>
               )
             })}
