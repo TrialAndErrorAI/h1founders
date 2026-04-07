@@ -96,11 +96,7 @@ export default function Join() {
           <p>Community is free. Always. Coaching is optional.</p>
           <p className="mt-1">
             <a href={METRICS.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-              LinkedIn
-            </a>
-            {' · '}
-            <a href={METRICS.twitterUrl} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-              X/Twitter
+              linkedin.com/in/sidsarasvati
             </a>
           </p>
         </div>

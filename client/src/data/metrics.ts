@@ -3,8 +3,8 @@
  * Update here, every page picks it up.
  */
 export const METRICS = {
-  whatsappMembers: '1,081',
-  substackSubscribers: '852',
+  whatsappMembers: '1,000+',
+  substackSubscribers: '850+',
   cohortsCompleted: 4,
   winClubMembers: 3,
   winClubMRR: '$1,491',
@@ -20,7 +20,6 @@ export const METRICS = {
   liveShowPlatform: 'Substack Live',
   substackUrl: 'https://community.h1bfounders.com',
   whatsappUrl: 'https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat',
-  calUrl: 'https://cal.com/sidsarasvati',
+  calUrl: 'https://cal.com/sid-sarasvati/h1bfounders',
   linkedinUrl: 'https://linkedin.com/in/sidsarasvati',
-  twitterUrl: 'https://x.com/sidjustice_',
 } as const

@@ -55,7 +55,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <span className="terminal-text font-mono text-xl font-bold matrix-glow">
-                H1FOUNDERS/
+                H1BFOUNDERS/
               </span>
               <span className="text-foreground-tertiary font-mono text-sm animate-pulse">_</span>
             </Link>
