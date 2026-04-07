@@ -86,8 +86,18 @@ export default function Programs() {
                 <div>{'\u2022'} Group of 5 founders max</div>
                 <div>{'\u2022'} Serotte Law $1,000 discount included</div>
               </div>
-              <div className="pt-4 border-t border-border text-sm text-foreground-secondary font-mono">
-                <span className="text-foreground-tertiary">Status:</span> {METRICS.cohortsCompleted} cohorts complete. Next forming Q2 2026
+              <div className="pt-4 border-t border-border space-y-3">
+                <div className="text-sm text-foreground-secondary font-mono">
+                  <span className="text-foreground-tertiary">Status:</span> {METRICS.cohortsCompleted} cohorts complete. Next forming Q2 2026
+                </div>
+                <a
+                  href={METRICS.launchClubFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-accent/10 hover:bg-accent/20 border border-accent/50 text-accent px-4 py-2 rounded font-mono text-sm transition-colors"
+                >
+                  Apply for Next Cohort
+                </a>
               </div>
             </div>
 
@@ -117,8 +127,18 @@ export default function Programs() {
                 <div>{'\u2022'} Direct WhatsApp access between sessions</div>
                 <div>{'\u2022'} Transformation, not tips</div>
               </div>
-              <div className="pt-4 border-t border-border text-sm text-foreground-secondary font-mono">
-                <span className="text-foreground-tertiary">Status:</span> {METRICS.winClubMembers} active members. DM Sid to apply
+              <div className="pt-4 border-t border-border space-y-3">
+                <div className="text-sm text-foreground-secondary font-mono">
+                  <span className="text-foreground-tertiary">Status:</span> {METRICS.winClubMembers} active members
+                </div>
+                <a
+                  href={METRICS.winClubFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-accent/10 hover:bg-accent/20 border border-accent text-accent px-4 py-2 rounded font-mono text-sm transition-colors"
+                >
+                  Apply for WIN CLUB
+                </a>
               </div>
             </div>
           </div>

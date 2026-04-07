@@ -22,4 +22,7 @@ export const METRICS = {
   whatsappUrl: 'https://chat.whatsapp.com/L7sHBIbCuyx2cYvzuaDCat',
   calUrl: 'https://cal.com/sid-sarasvati/h1bfounders',
   linkedinUrl: 'https://linkedin.com/in/sidsarasvati',
+  // Tally forms — intake funnels
+  launchClubFormUrl: 'https://tally.so/r/pbx9Y1',
+  winClubFormUrl: 'https://tally.so/r/KYx92V',
 } as const
