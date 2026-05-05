@@ -2,6 +2,9 @@
 
 ## Action List
 
+### P0 — CF-Native Migration (Sid-blocked items)
+- [ ] **Firestore export — DEFERRED** (May 5). `firebase` CLI not installed. Two paths to resurrect later: (A) `npx firebase-tools login` then `npx firebase-tools firestore:export gs://...` (needs GCS bucket + billing), OR (B) firebase-admin SDK script with service account key dumped to `data/migration/firestore/` (no bucket, no billing — recommended). Spec at `code/docs/spec_cf-native-migration.md`. Phase 0 exit criterion #1.
+
 ### P0 — Next (Apr 25-28)
 - [ ] **Send Serotte handoff to (541) 602-8288** — Mon Apr 27 AM. Cold lead, self-sponsored H1B, spouse running biz with 2025 revenue (qualified ✅). Sid promised "checklist tomorrow" Sun 9:50 PM. Send V1 template from `coaching/serotte-handoff.md`. **First fire** of the new $750 productized handoff. Log buyer reaction (paid? balked? scope creep?) to validate $750 anchor — need 5 reps before productizing per P3.
 - [ ] **Harshdeep Q1-11 debrief capture** — Coaching session happened Fri Apr 24 ~5:35-7 PM. Content NOT in Atlas memory. Next session: run `/transcript-sync` OR ask Sid for 5-bullet summary before Chunk E mining begins. Without this, Q1-11 becomes the missing chunk in the corpus.
