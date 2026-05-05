@@ -1,0 +1,56 @@
+# Cloudflare Pages + D1 + R2 Configuration — POST-MIGRATION TARGET
+# This is the SCAFFOLD for Phase 1+. Current live config is wrangler.toml.
+# Cut over after backfill scripts succeed and forms migrate.
+#
+# Account: 40ad419de279f41e9626e2faf500b6b4 (Ercan's CF account, per CLAUDE.md)
+
+name = "h1founders"
+compatibility_date = "2025-10-16"
+
+# ─────────────────────────────────────────────────────────────────
+# D1 — single unified DB (was 'h1f-tech-stack', renamed during Phase 1)
+# Holds: people, enrollments, form_submissions_raw + existing analyses,
+# launch_club_*, growth_hack_tools tables.
+# ─────────────────────────────────────────────────────────────────
+[[d1_databases]]
+binding = "DB"
+database_name = "h1f-core"
+database_id = "e60bb36e-ec6c-483a-97a5-67b63404f55b"  # rename, keep ID
+
+# ─────────────────────────────────────────────────────────────────
+# R2 — cold archive bucket for migration backups (Firestore JSON,
+# Tally CSVs, WhatsApp exports, Luma exports, growth_hacks.db).
+# Indefinite retention per spec (~$0.0036/mo for <100MB).
+# ─────────────────────────────────────────────────────────────────
+[[r2_buckets]]
+binding = "ARCHIVES"
+bucket_name = "h1f-archives"
+
+# ─────────────────────────────────────────────────────────────────
+# Cron Triggers — single Worker handles all external sync jobs.
+# Schedules staggered to avoid isolate contention.
+# Worker dispatches on event.scheduledTime to Substack vs Luma handler.
+# ─────────────────────────────────────────────────────────────────
+[triggers]
+crons = [
+  "0 6 * * *",   # Substack subscriber sync — full-list pull, churn detection
+  "15 6 * * *"   # Luma attendee sync — full-list pull, churn detection
+]
+
+# ─────────────────────────────────────────────────────────────────
+# NOT used in v1:
+#   - KV namespaces (D1 + expires_at column covers v1 volume)
+#   - Durable Objects
+#   - Workers AI
+#   - Queues
+# Add only when D1 contention shows up at scale.
+# ─────────────────────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────────────
+# Secrets (set via `wrangler secret put` — never committed)
+# Read via env in Worker code.
+# ─────────────────────────────────────────────────────────────────
+# - SUBSTACK_API_TOKEN     (Phase 1 cron Worker)
+# - LUMA_API_TOKEN         (Phase 1 cron Worker)
+# - ADMIN_KEY              (existing, for /admin Hono routes — kept until Hono kill)
+# - EMAIL_WORKER_TENANT_ID (Phase 4, T&E shared email worker tenant ID)

@@ -1,0 +1,8 @@
+# Migration data contains PII (emails, phones, names). DO NOT COMMIT.
+# Only field-map.md is design doc, not data.
+tally/
+firestore/
+whatsapp/
+substack/
+luma/
+archives/
