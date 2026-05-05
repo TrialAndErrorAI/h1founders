@@ -4,19 +4,29 @@
 
 ### P0 — CF-Native Migration
 
-**Atlas-side complete (May 5)** — full pipeline ships SQL ready for D1:
-- ✅ Spec v2 sharpened, schema designed, `migrations/0001_init.sql` ready
+**🎯 Phase 1 Backfill: LIVE on production D1 (May 5, 2026 ~4:45 PM ET)**
+
+Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
+- 1,097 people (100% E.164 phone, 56 with email)
+- 1,155 enrollments (1,084 WA + 71 launch_club + 3 serotte)
+- 77 form_submissions_raw (Tally audit trail)
+- 8 indexes (2 partial UNIQUE on phone+email, idempotency UNIQUE on enrollments, OKR query covering)
+- Coexists cleanly with existing `launch_club_*` + `analyses` tables (additive, no destructive changes)
+
+**Atlas-side complete (May 5)**:
+- ✅ Spec v2 sharpened
+- ✅ `migrations/0001_init.sql` applied to production D1
 - ✅ `backfill-tally.ts` (56 people / 71 enrollments / 77 raw)
 - ✅ `backfill-whatsapp.ts` (1,084 people / 1,084 enrollments)
 - ✅ `merge-fixtures.ts` cross-source dedup (43 Tally↔WA overlaps, 1,097 canonical)
-- ✅ `insert-to-d1.ts` emits `d1-load.sql` (926 KB, BEGIN/COMMIT, INSERT OR IGNORE)
+- ✅ `insert-to-d1.ts` emits `d1-load.sql` (926 KB), applied via `wrangler d1 execute --remote --file=`
 - ✅ `_lib/{migration-types,normalize}.ts` shared
+- ✅ Note: D1 rename to `h1f-core` abandoned — CF D1 doesn't support rename via API/CLI. DB stays `h1f-tech-stack` name on CF, new tables coexist additively.
 
-**Sid-blocked**:
-- [ ] **Firestore export** — `firebase` CLI not installed. Path B recommended: firebase-admin SDK script with service account key, dumps to `data/migration/firestore/` (no GCS bucket, no billing). Phase 0 exit criterion #1.
-- [ ] **Push approval** — 8 commits ahead of `origin/master` (none touch live code, all docs + scripts + scaffolds). Live users on h1bfounders.com.
-- [ ] **D1 rename** — `h1f-tech-stack` → `h1f-core` via wrangler.toml swap. Keeps DB ID `e60bb36e-ec6c-483a-97a5-67b63404f55b`. Then apply `migrations/0001_init.sql` + `data/migration/_fixtures/d1-load.sql`.
-- [ ] **Substack + Luma API tokens** — drop in keychain as `substack-api-token` / `luma-api-token`. Then Atlas writes backfill-substack.ts + backfill-luma.ts.
+**Sid-blocked (next phase)**:
+- [ ] **Firestore export** — `firebase` CLI not installed. Path B recommended: firebase-admin SDK script with service account key, dumps to `data/migration/firestore/`. Phase 0 exit criterion #1. Once dumped, Atlas writes backfill-firestore.ts + re-runs merge → load.
+- [ ] **Push approval** — 9 commits ahead of `origin/master` (none touch live frontend code; backend D1 already populated via direct apply).
+- [ ] **Substack + Luma API tokens** — drop in keychain as `substack-api-token` / `luma-api-token`. Then Atlas writes backfill-substack.ts + backfill-luma.ts + cron Worker.
 - [ ] **DNS records** — SPF/DKIM/DMARC for h1bfounders.com via CF dashboard. Lead time = days, schedule before Phase 4.
 - [ ] **WIN CLUB form decision** — kill (0 historic submissions, WhatsApp-only intake reality) or rebuild for v2?
 - [ ] **Ercan email worker alignment** — 15-min Slack confirming h1b becomes 2nd tenant. Fallback: `gmail-sender` skill.

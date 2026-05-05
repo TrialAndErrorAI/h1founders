@@ -1,9 +1,19 @@
 # CF-Native Migration — Execution Handoff
 
-**Status**: Phase 0 ~70% + Phase 1 backfill skeletons + D1 schema migration shipped
+**Status**: 🎯 Phase 1 backfill LIVE on production D1 (May 5, 4:45 PM ET)
 **Source spec**: `docs/spec_cf-native-migration.md` v2 (sharpened)
-**Last updated**: Tue May 5, 2026 ~4:30 PM EDT
+**Last updated**: Tue May 5, 2026 ~4:45 PM EDT
 **Why this doc**: Fresh `/wake-code h1bfounders` session resumes from here
+
+## Production D1 state (`h1f-tech-stack`, ID `e60bb36e-ec6c-483a-97a5-67b63404f55b`)
+
+| Table | Rows | Source |
+|---|---:|---|
+| `people` | 1,097 | 56 Tally + 1,084 WA - 43 cross-source dedup |
+| `enrollments` | 1,155 | 71 Tally (launch_club + serotte) + 1,084 WA |
+| `form_submissions_raw` | 77 | Tally audit trail (LCC1+LCC2+C3+C4 onboarding + pbx9Y1 pipeline + D4qGoX Serotte) |
+| Existing `launch_club_*` (6 tables) | unchanged | Coexist additively |
+| Existing `analyses` | unchanged | Tech-stack analyzer (live) |
 
 ---
 
