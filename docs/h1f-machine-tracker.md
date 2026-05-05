@@ -2,8 +2,24 @@
 
 ## Action List
 
-### P0 — CF-Native Migration (Sid-blocked items)
-- [ ] **Firestore export — DEFERRED** (May 5). `firebase` CLI not installed. Two paths to resurrect later: (A) `npx firebase-tools login` then `npx firebase-tools firestore:export gs://...` (needs GCS bucket + billing), OR (B) firebase-admin SDK script with service account key dumped to `data/migration/firestore/` (no bucket, no billing — recommended). Spec at `code/docs/spec_cf-native-migration.md`. Phase 0 exit criterion #1.
+### P0 — CF-Native Migration
+
+**Atlas-side complete (May 5)** — full pipeline ships SQL ready for D1:
+- ✅ Spec v2 sharpened, schema designed, `migrations/0001_init.sql` ready
+- ✅ `backfill-tally.ts` (56 people / 71 enrollments / 77 raw)
+- ✅ `backfill-whatsapp.ts` (1,084 people / 1,084 enrollments)
+- ✅ `merge-fixtures.ts` cross-source dedup (43 Tally↔WA overlaps, 1,097 canonical)
+- ✅ `insert-to-d1.ts` emits `d1-load.sql` (926 KB, BEGIN/COMMIT, INSERT OR IGNORE)
+- ✅ `_lib/{migration-types,normalize}.ts` shared
+
+**Sid-blocked**:
+- [ ] **Firestore export** — `firebase` CLI not installed. Path B recommended: firebase-admin SDK script with service account key, dumps to `data/migration/firestore/` (no GCS bucket, no billing). Phase 0 exit criterion #1.
+- [ ] **Push approval** — 8 commits ahead of `origin/master` (none touch live code, all docs + scripts + scaffolds). Live users on h1bfounders.com.
+- [ ] **D1 rename** — `h1f-tech-stack` → `h1f-core` via wrangler.toml swap. Keeps DB ID `e60bb36e-ec6c-483a-97a5-67b63404f55b`. Then apply `migrations/0001_init.sql` + `data/migration/_fixtures/d1-load.sql`.
+- [ ] **Substack + Luma API tokens** — drop in keychain as `substack-api-token` / `luma-api-token`. Then Atlas writes backfill-substack.ts + backfill-luma.ts.
+- [ ] **DNS records** — SPF/DKIM/DMARC for h1bfounders.com via CF dashboard. Lead time = days, schedule before Phase 4.
+- [ ] **WIN CLUB form decision** — kill (0 historic submissions, WhatsApp-only intake reality) or rebuild for v2?
+- [ ] **Ercan email worker alignment** — 15-min Slack confirming h1b becomes 2nd tenant. Fallback: `gmail-sender` skill.
 
 ### P0 — Next (Apr 25-28)
 - [ ] **Send Serotte handoff to (541) 602-8288** — Mon Apr 27 AM. Cold lead, self-sponsored H1B, spouse running biz with 2025 revenue (qualified ✅). Sid promised "checklist tomorrow" Sun 9:50 PM. Send V1 template from `coaching/serotte-handoff.md`. **First fire** of the new $750 productized handoff. Log buyer reaction (paid? balked? scope creep?) to validate $750 anchor — need 5 reps before productizing per P3.
