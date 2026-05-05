@@ -79,13 +79,13 @@ function main() {
     process.exit(1)
   }
 
+  // D1's HTTP API treats each statement as auto-commit — BEGIN/COMMIT not
+  // supported. Idempotency lives in INSERT OR IGNORE on PRIMARY KEY.
   const lines: string[] = [
     `-- D1 backfill data load — generated ${new Date().toISOString()}`,
-    `-- Source: data/migration/_fixtures/merged-{people,enrollments}.json`,
-    `-- Apply: wrangler d1 execute h1f-core --remote --file=data/migration/_fixtures/d1-load.sql`,
+    `-- Source: data/migration/_fixtures/merged-{people,enrollments,form_submissions}.json`,
+    `-- Apply: wrangler d1 execute h1f-tech-stack --remote --file=data/migration/_fixtures/d1-load.sql`,
     `-- Schema: migrations/0001_init.sql must be applied first`,
-    ``,
-    `BEGIN TRANSACTION;`,
     ``,
     `-- People (${people.length} rows)`,
     ...people.map(buildPersonInsert),
@@ -95,8 +95,6 @@ function main() {
     ``,
     `-- Form submissions raw (${rawRows.length} rows)`,
     ...rawRows.map(buildRawInsert),
-    ``,
-    `COMMIT;`,
     ``,
   ]
 
