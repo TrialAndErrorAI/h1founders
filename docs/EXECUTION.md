@@ -1,25 +1,28 @@
 # CF-Native Migration — Execution Handoff
 
-**Status**: Phase 0 ~70% complete (Atlas-actionable items shipped, Sid-blocked items pending)
+**Status**: Phase 0 ~70% + Phase 1 backfill skeletons + D1 schema migration shipped
 **Source spec**: `docs/spec_cf-native-migration.md` v2 (sharpened)
-**Handoff date**: Tue May 5, 2026 ~3:00 PM EDT
-**Why this doc**: Session context full, fresh `/wake-code h1bfounders` session resumes from here
+**Last updated**: Tue May 5, 2026 ~4:30 PM EDT
+**Why this doc**: Fresh `/wake-code h1bfounders` session resumes from here
 
 ---
 
 ## TL;DR for next session
 
 ```
-DONE: Tally JSON × 10 forms, WhatsApp 1084/1088 phones, growth_hacks.db archived,
-      field-map.md scaffold, wrangler.target.toml scaffold, gitignore PII
+DONE: Tally JSON × 10 forms (77 subs), WhatsApp 1084/1088 phones,
+      backfill-tally.ts + backfill-whatsapp.ts + merge-fixtures.ts (1097 canonical people),
+      _lib/{migration-types,normalize}.ts shared, migrations/0001_init.sql,
+      growth_hacks.db archived, field-map.md fully filled, gitignore PII
 
-BLOCKED ON SID: Firestore export (firebase CLI not installed),
-                Substack/Luma API tokens, Ercan email worker alignment,
-                WIN CLUB form decision, DNS records, GitHub deploy gate
+BLOCKED ON SID: Firestore export, Substack/Luma API tokens, Ercan email worker,
+                WIN CLUB form decision, DNS records, push approval, D1 rename
 
-NEXT TO RUN: scripts/backfill-tally.ts skeleton (Atlas, no blockers),
-             then Phase 0 exit criteria 1, 9, 10 (Sid actions)
+NEXT TO RUN (when D1 live): scripts/insert-to-d1.ts (reads merged-*.json,
+             runs UPSERT via wrangler d1 execute or D1 binding)
 ```
+
+**Key number for D1 sizing**: **1,097 canonical people** post-merge (56 Tally + 1,084 WA - 43 cross-source overlaps). Will grow when Firestore + Substack + Luma land.
 
 ---
 
@@ -44,13 +47,15 @@ NEXT TO RUN: scripts/backfill-tally.ts skeleton (Atlas, no blockers),
 ## What's in the repo (commits, no push)
 
 ```
+dbca327  feat(migration): Phase 1 backfill skeletons — Tally + WhatsApp
+c60e2df  docs: add EXECUTION.md handoff for fresh-context resume
+f11927f  migration: Phase 0 receipts — WA spec update, tally-forms intel, Firestore deferred
 1c185e3  feat(migration): Phase 0 scaffolds — field-map + wrangler target + PII gitignore
 96f7f81  docs: CF-native migration spec v2 + cabinet review + machine tracker
 ef3f123  chore: clean up Apr 14 WIN CLUB reorg residue
-f11927f  migration: Phase 0 receipts — WA spec update, tally-forms intel, Firestore deferred
 ```
 
-**4 commits ahead of origin/master.** Live users on h1bfounders.com — DO NOT PUSH without Sid's explicit approval.
+**6 commits ahead of origin/master.** Live users on h1bfounders.com — DO NOT PUSH without Sid's explicit approval. Pre-commit hook (`turbo test`) ran clean on all migration commits.
 
 ---
 
@@ -135,11 +140,17 @@ f11927f  migration: Phase 0 receipts — WA spec update, tally-forms intel, Fire
 
 ## Atlas Action Queue (next session, no blockers)
 
-1. **Write `scripts/backfill-tally.ts`** — TypeScript script that reads `data/migration/tally/*.json`, dedupes by phone (then email), inserts to D1. Can write the skeleton without D1 live; tests against fixture data
-2. **Write `scripts/backfill-whatsapp.ts`** — reads `community-1098-enriched.csv`, creates one `people` row per member + one `enrollments` row with `program='whatsapp_community'`
-3. **Inspect cohort onboarding form schemas** — open the 4 cohort JSONs, fill out the "TBD" sections in `data/migration/field-map.md`
-4. **Verify Substack/Luma full-list endpoints** (after Sid drops API tokens) — single curl each
-5. **Once Firestore dump lands** — write `scripts/backfill-firestore.ts`, surface per-collection KEEP/ARCHIVE/DROP table to Sid
+✅ ~~Write `scripts/backfill-tally.ts`~~ — DONE (commit `dbca327`). 56 people / 71 enrollments / 77 raw / 0 conflicts. /simplify-passed.
+✅ ~~Write `scripts/backfill-whatsapp.ts`~~ — DONE. 1,084 people / 1,084 enrollments / 4 skipped. /simplify-passed (notes-leak fix moved 284 About-text fields to `metadata_json.whatsapp_about`).
+✅ ~~Inspect cohort onboarding form schemas~~ — DONE. 3 shape variants documented in `field-map.md` (LCC1+LCC2 / C3 / C4).
+✅ ~~Write `scripts/merge-fixtures.ts`~~ — DONE. Cross-source dedup preview: **1,097 canonical people, 43 Tally↔WA overlaps, 0 orphans, 0 conflicts**.
+✅ ~~Write `migrations/0001_init.sql`~~ — DONE. Apply via `wrangler d1 execute h1f-core --file=migrations/0001_init.sql --remote` once D1 renamed.
+
+**Ready to start (no blockers, but lower priority than Sid items)**:
+
+1. **Write `scripts/insert-to-d1.ts`** — reads `_fixtures/merged-*.json`, generates SQL `INSERT ... ON CONFLICT(phone) DO UPDATE` statements (or uses D1 client when binding active). Can write skeleton in dry-run mode (writes SQL to file) without D1 live.
+2. **Verify Substack/Luma full-list endpoints** (after Sid drops API tokens) — single curl each.
+3. **Once Firestore dump lands** — write `scripts/backfill-firestore.ts`, surface per-collection KEEP/ARCHIVE/DROP table to Sid.
 
 ---
 
