@@ -78,12 +78,60 @@ Every source row resolves to ONE `people.id` via this 2-pass algorithm:
 - `status = 'applied'` (paid status arrives later if cohort onboarding completes)
 - `amount_cents = 0` (intake form, payment elsewhere)
 
-### Form `LZPK1y` — LC C4 Onboarding (5 submissions)
-### Form `aQOWVq` — LC C3 Onboarding (4 submissions)
-### Form `7Rl0A2` — LCC2 Onboarding (6 submissions)
-### Form `KYQN27` — LCC1 Onboarding (11 submissions)
+### Cohort Onboarding Forms (LCC1, LCC2, C3, C4)
 
-These are cohort-completion onboarding forms. All produce ENROLLMENT updates (status='active' or 'completed') for existing people, NOT new people. Field map TBD — fill in after CSV inspection in Phase 1.
+All produce `enrollments` rows with `program='launch_club'`, `status='active'`, and the matching `cohort` code. Person identity resolves via phone → email; if no match in `people` from prior pipeline form, INSERT is fine — UNIQUE indexes catch dupes.
+
+Three near-identical sub-shapes:
+
+**Shape A: LCC1 (`KYQN27`, 11 subs) + LCC2 (`7Rl0A2`, 6 subs)** — 13 fields
+
+| Tally Field | D1 Target | Notes |
+|---|---|---|
+| `Submitted at` | `enrollments.applied_at` + raw | Existing pipeline row's status flips to 'active' via UPSERT |
+| `Full Name` | `people.full_name` | |
+| `Email` | `people.email` | |
+| `Phone` | `people.phone` | |
+| `Payment Status` | `enrollments.payment_method` | 'venmo' / 'zelle' classifier |
+| `Current Visa Status` | `people.visa_status` | E.g. 'H1B', 'F1' |
+| `Where are you in your journey?` | `enrollments.metadata_json.journey_stage` | |
+| `Current Entity Status` | `enrollments.metadata_json.entity_status` | E.g. 'LLC formed', 'Not yet' |
+| `Preferred State for Incorporation` | `enrollments.metadata_json.preferred_state` | E.g. 'Delaware' |
+| `Preferred Entity Type` | `enrollments.metadata_json.preferred_entity_type` | E.g. 'C-Corp', 'LLC' |
+| `Specific Legal Questions for Attorney (Optional)` | `enrollments.metadata_json.legal_questions` | |
+| `What do you want to launch in 4 weeks?` | `enrollments.metadata_json.launch_goal` | |
+| `Delaware` | `enrollments.metadata_json.delaware_followup` | Free-text follow-up to state question |
+| `What's your biggest blocker?` | `enrollments.metadata_json.biggest_blocker` | |
+| (full row) | `form_submissions_raw.payload_json` | |
+
+**Shape B: C3 (`aQOWVq`, 4 subs)** — 12 fields, payment + visa-tailoring questions reworded
+
+| Tally Field | D1 Target | Notes |
+|---|---|---|
+| `Submitted at`, `Full Name`, `Email`, `Phone` | (same as Shape A) | |
+| `What are you paying today?` | `enrollments.metadata_json.payment_amount_self_reported` | Free-text amount |
+| `Payment Confirmed` | `enrollments.payment_method` + `enrollments.status` | 'Yes' → status='active', classify venmo/zelle from text |
+| `Current Entity Status` | (same) | |
+| `What do you want to launch in 3 weeks?` | `enrollments.metadata_json.launch_goal` | C3 was 3-week sprint, not 4 |
+| `We'll tailor guidance based on your visa` | `people.visa_status` | Reworded prompt for visa info |
+| `Where are you in your journey?` | (same) | |
+| `What's your biggest blocker?` | (same) | |
+| `Preferred State for Incorporation`, `Preferred Entity Type` | (same) | |
+| `Specific Legal Questions for Attorney` | (same) | |
+
+**Shape C: C4 (`LZPK1y`, 5 subs)** — 7 fields, slimmest
+
+| Tally Field | D1 Target | Notes |
+|---|---|---|
+| `Submitted at`, `Full Name`, `Email`, `Phone` | (same) | |
+| `What are you paying today?` | (same as Shape B) | |
+| `Payment Confirmed` | (same as Shape B) | |
+| `Current Entity Status` | (same) | |
+| `What do you want to launch in 3 weeks?` | (same) | |
+
+C4 dropped journey/blocker/state/entity-type/legal-questions — leaner intake, presumably because Sid screens those during the LC pipeline (`pbx9Y1`) instead of duplicating at onboarding time.
+
+**Backfill behavior**: `scripts/backfill-tally.ts` already handles all three shapes via title-regex lookups. Cohort code is `LITERAL` per form (KYQN27→C1, 7Rl0A2→C2, aQOWVq→C3, LZPK1y→C4). Verified May 5, 2026 — 26 active enrollments produced from 26 cohort onboarding submissions, no skips.
 
 ### Form `VLY4NE` — LC C5 Onboarding (0 submissions)
 ### Form `ODQagK` — LCC1 v2 Onboarding (0 submissions)
