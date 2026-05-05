@@ -1281,3 +1281,45 @@ git pull  # Databases sync automatically
 - Table with `overflow-x-auto` for mobile scrolling
 
 ---
+
+---
+
+## Session: CF-Native Migration LIVE + HTML Rewrite Spec (May 5, 2026)
+
+### What We Discovered
+
+- **CF D1 doesn't support rename via API/CLI** — sister spec_cf-native-migration.md still says rename to `h1f-core`. Reality: DB stays `h1f-tech-stack` permanently. New tables (people, enrollments, form_submissions_raw) coexist additively with existing launch_club_* + analyses tables. Sister spec needs update next session.
+- **D1 HTTP API doesn't support BEGIN/COMMIT** — multi-statement transactions don't work over wrangler d1 execute --file. Idempotency lives in `INSERT OR IGNORE` on PRIMARY KEY. SQL emitter dropped BEGIN/COMMIT (commit 1c2b7f2).
+- **GPTBot doesn't execute JS** — analysis of 500M+ fetches showed zero JS execution. AI-citation invisible for SPA content. This flipped the architecture from pure-SPA to pre-rendered multi-page (1 source HTML → 5 static files via Bun preprocessor). Material for an audience that researches via ChatGPT/Claude/Perplexity.
+- **CF Access policy must be configured BEFORE custom domain attaches** — otherwise admin.h1bfounders.com publicly serves D1 PII for the window between deploy and policy-active. Cutover sequence reordered to eliminate this window.
+- **Forum code dies easily** — `client/src/components/forum/`, `forum.types.ts`, `Community.tsx` exist but ZERO routes in App.tsx. Pure dead code. Promoted forum deletion to commit 0 of v2 work (was step 8) so dead code stops shipping in prod the day v2 work begins.
+
+### Patterns That Emerged
+
+- **End-to-end migration pipeline pattern** that works without DB live:
+  ```
+  per-source backfill scripts (read source, emit fixture JSON)
+    → cross-source merger (dedupe by phone/email, remap UUIDs)
+    → SQL emitter (INSERT OR IGNORE, no BEGIN/COMMIT for D1)
+    → wrangler d1 execute --remote --file=
+  ```
+  Validated end-to-end May 5: 1,097 people / 1,155 enrollments / 77 raw, 0 orphans, 0 conflicts.
+- **Two /simplify catches that paid back**: (1) extracting shared types + normalizers to `scripts/_lib/` once we hit 2 backfill scripts, NOT 3. (2) PII leak prevention — moving WA "About" text from `people.notes` (admin-queue field) to `enrollments.metadata_json.whatsapp_about`. 284/1084 members preserved.
+- **/sharpen on spec docs catches phantom references** — h1b-coo agent referenced 5x as quality gate, never existed. Adversarial review flagged it as drift. Fix: replace judgment-gates with binary Atlas-runnable parity checks (curl, grep, Lighthouse).
+- **D1 partial UNIQUE indexes need WHERE clause** — `CREATE UNIQUE INDEX idx_people_phone ON people(phone) WHERE phone IS NOT NULL` — column-level UNIQUE doesn't work because SQLite treats multiple NULLs as distinct. Spec correctly used partial indexes; the gotcha is documented for future schema work.
+
+### Mistakes Avoided
+
+- **PII leaked once to chat transcript** via `head` of d1-load.sql output. Caught + added to EXECUTION.md known-landmines list as #0. Never `head`/`cat` fixture or SQL files — always Python-redacted summary.
+- **Almost double-extracted EB-1A scoring** — sister spec already mandated extraction to `client/src/lib/eb1a-scoring.ts`; html-rewrite v2 originally re-mandated as `src/eb1a-scoring.js`. /sharpen caught it; reconciliation block added.
+- **Almost shipped d1-load.sql with BEGIN/COMMIT** that would have failed silently on D1. Caught by 5-row subset test before full apply.
+
+### Applied Protocols
+
+- **Phase 0 detect** — checked existing schema BEFORE applying migration (saw 6 launch_club_* tables, confirmed additive coexistence).
+- **Tracer bullet** — 5-row subset apply before full 1,097-row load. Validated SQL escaping + index behavior on real production DB.
+- **Verify with data, not memory** — re-running merge + insert was deterministic. SQL row counts matched merge stats exactly.
+- **/simplify twice** — backfill-tally.ts had 5 HIGH catches first pass; backfill-whatsapp.ts had 5 HIGH + 1 MED second pass. Each ledger entry preserved.
+- **/sharpen on spec** — 3 HIGH + 8 MEDIUM caught before code starts. Saved at least one session's worth of executor confusion.
+
+---
