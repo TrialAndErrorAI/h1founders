@@ -15,7 +15,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { randomUUID } from 'node:crypto'
-import type { PersonRow, EnrollmentRow } from './_lib/migration-types'
+import type { PersonRow, EnrollmentRow, RawSubmissionRow } from './_lib/migration-types'
 
 const REPO_ROOT = join(import.meta.dir, '..')
 const FIX_DIR = join(REPO_ROOT, 'data/migration/_fixtures')
@@ -131,6 +131,22 @@ function main() {
     }
   }
 
+  // Third pass: remap form_submissions_raw rows. Today only Tally produces
+  // form-shape audit trail; future native forms will write directly to D1.
+  const rawRows: RawSubmissionRow[] = []
+  let orphanRawCount = 0
+  for (const source of SOURCES) {
+    const raw = loadOptional<RawSubmissionRow>(join(FIX_DIR, `${source}-form_submissions.json`))
+    for (const r of raw) {
+      const canonicalPersonId = remap.get(r.person_id)
+      if (!canonicalPersonId) {
+        orphanRawCount++
+        continue
+      }
+      rawRows.push({ ...r, person_id: canonicalPersonId })
+    }
+  }
+
   const peopleArr = Array.from(canonical.values())
   const enrollmentsArr = Array.from(enrollMap.values())
 
@@ -152,6 +168,7 @@ function main() {
 
   writeFileSync(join(FIX_DIR, 'merged-people.json'), JSON.stringify(peopleArr, null, 2))
   writeFileSync(join(FIX_DIR, 'merged-enrollments.json'), JSON.stringify(enrollmentsArr, null, 2))
+  writeFileSync(join(FIX_DIR, 'merged-form_submissions.json'), JSON.stringify(rawRows, null, 2))
   writeFileSync(join(FIX_DIR, 'merged-stats.json'), JSON.stringify(stats, null, 2))
 
   console.log(`✅ merge complete`)
@@ -161,6 +178,7 @@ function main() {
   console.log(`   ──────────────────────────────────────────────`)
   console.log(`   canonical people:        ${peopleArr.length}`)
   console.log(`   total enrollments:       ${enrollmentsArr.length} (deduped from ${totalEnrollmentsSeen})`)
+  console.log(`   form_submissions_raw:    ${rawRows.length}${orphanRawCount ? ` (${orphanRawCount} orphans dropped)` : ''}`)
   console.log(`   cross-source dedup:      ${multiSource.length} people present in 2+ sources`)
   console.log(`   conflicts:               ${conflicts.length}`)
   console.log(`   → ${FIX_DIR}/merged-*.json`)

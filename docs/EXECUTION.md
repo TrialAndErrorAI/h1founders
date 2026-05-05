@@ -173,6 +173,7 @@ The new session will:
 
 ## Known landmines / DO NOT REPEAT
 
+0. **NEVER paste fixture content or SQL output to chat.** `_fixtures/*.json` and `_fixtures/d1-load.sql` contain PII (1,097 names, phones, emails, WA About text). Files are gitignored — chat transcripts aren't. Inspect via row-count or PII-redacted Python summary, never `head` the file.
 1. **Tally CSV download URL returns HTML, not CSV.** Use `api.tally.so` directly. Domain skill captures this.
 2. **WhatsApp Web's `data-scraped` attribute (floriandiud script) breaks under virtualization** — same DOM nodes recycled with new content. Custom dedup by `title` key required.
 3. **`firebase` CLI is NOT installed** — `npx firebase` fails because the package is `firebase-tools`. Fix: `npx firebase-tools` OR firebase-admin SDK script (preferred — no GCS bucket).
