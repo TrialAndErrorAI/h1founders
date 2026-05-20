@@ -80,11 +80,42 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 - Cover variants archived at h1blive/_cover-variants/ (14 non-canonical files moved from h1blive root)
 - Cue card + plan flagged "v1, REDO THURSDAY" — don't ship from those
 
-### P0 — C5 Cohort Conversion Watch (May 13-18)
+### P0 — C5 Cohort Conversion Watch (May 13-27) — DEFERRED TO MAY 27, 2 PAID
 
-- [ ] **Monitor C5 form completions (VLY4NE)** — 0 as of May 12 11:55 PM. 10 nudges sent today. Watch for Venmo/Zelle confirms + onboarding form fills.
-- [ ] **If 0 paid by Thu May 14 PM**: Khasim Live becomes the closer. Final pitch in show.
-- [ ] **If still 0 paid by Sun May 18 AM**: C5 starts Mon — decision point on holding cohort vs sliding to C6 (Q3).
+**Wed May 20 → ship-or-slide gate pivoted to 1-week DEFER (May 20 → May 27 start).** Trigger: Ankit Gupta (paying C5 lead) asked Tue May 19 8:57 PM ET for travel-conflict defer. Sid confirmed defer with Puneet (already-paid) 9:53 AM ET; Puneet OK May 27. New cohort start: **Wed May 27, 6 PM ET, 3 weeks.**
+
+**Tally form architecture clarified (May 20)** — see `~/.claude/.../memory/reference_lc_tally_forms_split.md`:
+- **pbx9Y1** = generic top-of-funnel LC interest (community broadcast, WhatsApp groups)
+- **VLY4NE** = C5-specific onboarding form where members PAY + COMMIT
+- Previous tracker treated VLY4NE as broken — incorrect. Both forms intentional, different funnel stages.
+
+**PAID + LOCKED FOR MAY 27 (VLY4NE-confirmed):**
+- ✅ Puneet Pahuja (+1-720-937-1793) — paid May 19 via VLY4NE, defer confirmed May 20 10:01 AM
+- ✅ Ankit Gupta (+1-518-334-8953) — paid May 20 4:49 PM via VLY4NE, "Thank you Sid for moving it to next week"
+
+**Wed May 20 session shipped (~7h, ~17 humans touched):**
+- ✅ Substack C3 post UPDATED + republished web-only (no email refire) — title now "Launch Club C5 starts Wed May 27 - here's what we actually cover", body dates updated (Wed May 27 + "Cohort 5: May 27 - June 17, 2026"), C4-Feb/C5-March stale refs removed, testimonial wall (`testimonial.to/h1-founders/all`) inserted. URL: `community.h1bfounders.com/p/launch-club-c3-starts-wednesday-heres`
+- ✅ Reframed broadcast posted to 3 WA groups (Main, First $10K, Start a Business) — CREDITOR voice with WHY ("With one person traveling, I am starting the cohort next week instead"), drops "Same content" content-justification
+- ✅ Individual defer DMs sent to all C5-tagged pbx9Y1 sign-ups: Srinivas, Palani, Parechay, Narmada, Shruthi, Swamy, Ravi (7 humans)
+- ✅ Net-new LC leads discovered + pitched in WA deep-scan: +1-980-248-8343 (Serotte-started, 41-day unreplied), Naveen +1-408-940-5002 (had VLY4NE reaction, May 12 pitched), +1-331-269-9788 (immigration climate call ask), +1-248-238-4344 (acquiring biz), Siddhesh +1-469-664-4324 (idea-stage validation Q)
+- ✅ Curriculum-page-on-h1bfounders.com inbox item filed at `_inbox/2026-05-20_lc-curriculum-page-on-site.md` — every 3rd cohort lead asks "how is it structured?", evergreen page would close that question without Sid hand-typing
+
+**OUT (won't be in C5):**
+- ❌ Abhijeet (+1-646-243-2350) — opted out 10:28 AM ("will have to sit out of the seminar this time"). Sid sent warm close.
+- ❌ Srinivas Chippagiri — opted out (Sid wrote "Good luck Srinivas, hope you find the community helpful" 4:07 PM)
+- ❌ Vinayak Shenoy — chose Future cohort on May 7 re-fill (per pbx9Y1 data)
+- ❌ Sumit Saurabh (+1-608) — pivoted to WIN CLUB Fri Ep 2 path
+
+**Live signals — next 6 days:**
+- 🟡 Palani Ravindran — replied 4:36 PM ("Thanks a lot Sid. Will go through those") after Sid sent Substack + testimonial links. Decision pending.
+- 🟡 5 just-pitched humans (silent post-pitch, may bite)
+- 🟡 5 defer-notice silent (Parechay, Narmada, Shruthi, Swamy, Ravi)
+- 🟡 3 WA group broadcast inbound potential
+- 🔵 25 past 1:1 email blast (May 19 Tue 1 AM) — 0 responses, doctrine: silence is the answer, no chase
+
+- [ ] **Watch VLY4NE for new commits over next 6 days** — currently 2. Each new fill = paid lock-in.
+- [ ] **Wed May 27 6 PM ET — Cohort kickoff** — send cohort WhatsApp group invite to paid members closer to start
+- [ ] **Wed May 27 morning** — final gate check (no slide planned; cohort viable at 2 already, any extra is upside)
 
 ### P0 — WhatsApp Sweep Pattern Validation (May 13-20)
 
