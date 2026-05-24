@@ -80,18 +80,28 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 - Cover variants archived at h1blive/_cover-variants/ (14 non-canonical files moved from h1blive root)
 - Cue card + plan flagged "v1, REDO THURSDAY" — don't ship from those
 
-### P0 — C5 Cohort Conversion Watch (May 13-27) — DEFERRED TO MAY 27, 2 PAID
+### P0 — C5 Cohort Conversion Watch (May 13-27) — 3 PAID + 1 IN DISCOVERY (WhatsApp-verified May 24)
 
 **Wed May 20 → ship-or-slide gate pivoted to 1-week DEFER (May 20 → May 27 start).** Trigger: Ankit Gupta (paying C5 lead) asked Tue May 19 8:57 PM ET for travel-conflict defer. Sid confirmed defer with Puneet (already-paid) 9:53 AM ET; Puneet OK May 27. New cohort start: **Wed May 27, 6 PM ET, 3 weeks.**
+
+**🔴 WhatsApp-triangulated truth (Sun May 24) — payment verified in WA threads, not just form:**
+| Person | VLY4NE form | WA payment proof | Status |
+|---|---|---|---|
+| Puneet Pahuja (+1-720) | ✅ | "500 i did" + "transferred rest 497" → Sid "Received" | **PAID FULL $997** |
+| Ankit Gupta (+1-518) | ✅ | "I just made the payment" → Sid "Locked in" | **PAID** |
+| Sai Vivek Ganta (+1-848) | ✅ | "Zelle 997$?" → Sid "Yes got it" (Fri May 22) | **PAID** (net-new, Delaware C-Corp builder) |
+| Palani Ravindran (+1-201) | ✅ (resubmitted; prior was C3) | **none — no payment in thread** | **NOT PAID — active discovery** |
+
+**⚠️ Palani open loop (Fri May 22 1:47 PM, unanswered):** "Do you cover support to prepare paperwork eg business plan, financial projections... validation of the plan or a sounding board?" Answering ≠ nudge (he asked). He's the most-engaged unpaid lead — the answer + payment ask is the close.
+
+**Lesson logged:** stale tracker said "2 paid," form-only said "4 committed," WA said "3 paid + 1 deciding." Cross-verify WhatsApp (where comms live), don't trust the form alone. See CLAUDE.md § "Live Status = Source of Truth."
 
 **Tally form architecture clarified (May 20)** — see `~/.claude/.../memory/reference_lc_tally_forms_split.md`:
 - **pbx9Y1** = generic top-of-funnel LC interest (community broadcast, WhatsApp groups)
 - **VLY4NE** = C5-specific onboarding form where members PAY + COMMIT
 - Previous tracker treated VLY4NE as broken — incorrect. Both forms intentional, different funnel stages.
 
-**PAID + LOCKED FOR MAY 27 (VLY4NE-confirmed):**
-- ✅ Puneet Pahuja (+1-720-937-1793) — paid May 19 via VLY4NE, defer confirmed May 20 10:01 AM
-- ✅ Ankit Gupta (+1-518-334-8953) — paid May 20 4:49 PM via VLY4NE, "Thank you Sid for moving it to next week"
+**PAID + LOCKED FOR MAY 27:** see WhatsApp-triangulated table above (3 paid: Puneet, Ankit, Sai Vivek). VLY4NE form submission ≠ payment — payment confirmed in WA threads.
 
 **Wed May 20 session shipped (~7h, ~17 humans touched):**
 - ✅ Substack C3 post UPDATED + republished web-only (no email refire) — title now "Launch Club C5 starts Wed May 27 - here's what we actually cover", body dates updated (Wed May 27 + "Cohort 5: May 27 - June 17, 2026"), C4-Feb/C5-March stale refs removed, testimonial wall (`testimonial.to/h1-founders/all`) inserted. URL: `community.h1bfounders.com/p/launch-club-c3-starts-wednesday-heres`
@@ -106,8 +116,8 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 - ❌ Vinayak Shenoy — chose Future cohort on May 7 re-fill (per pbx9Y1 data)
 - ❌ Sumit Saurabh (+1-608) — pivoted to WIN CLUB Fri Ep 2 path
 
-**Live signals — next 6 days:**
-- 🟡 Palani Ravindran — replied 4:36 PM ("Thanks a lot Sid. Will go through those") after Sid sent Substack + testimonial links. Decision pending.
+**Live signals — next 3 days to kickoff:**
+- 🟢 Palani Ravindran — submitted VLY4NE Fri May 22 but NOT paid; has unanswered scope question (paperwork/business-plan support). Most-engaged unpaid lead. The close = answer his Q + payment ask. Answering is responsiveness, not a nudge.
 - 🟡 5 just-pitched humans (silent post-pitch, may bite)
 - 🟡 5 defer-notice silent (Parechay, Narmada, Shruthi, Swamy, Ravi)
 - 🟡 3 WA group broadcast inbound potential
