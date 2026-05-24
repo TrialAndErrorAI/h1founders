@@ -80,7 +80,7 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 - Cover variants archived at h1blive/_cover-variants/ (14 non-canonical files moved from h1blive root)
 - Cue card + plan flagged "v1, REDO THURSDAY" — don't ship from those
 
-### P0 — C5 Cohort Conversion Watch (May 13-27) — 3 PAID + 1 IN DISCOVERY (WhatsApp-verified May 24)
+### P0 — C5 Cohort Conversion Watch (May 13-27) — 4 PAID (WhatsApp-verified May 24)
 
 **Wed May 20 → ship-or-slide gate pivoted to 1-week DEFER (May 20 → May 27 start).** Trigger: Ankit Gupta (paying C5 lead) asked Tue May 19 8:57 PM ET for travel-conflict defer. Sid confirmed defer with Puneet (already-paid) 9:53 AM ET; Puneet OK May 27. New cohort start: **Wed May 27, 6 PM ET, 3 weeks.**
 
@@ -90,11 +90,11 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 | Puneet Pahuja (+1-720) | ✅ | "500 i did" + "transferred rest 497" → Sid "Received" | **PAID FULL $997** |
 | Ankit Gupta (+1-518) | ✅ | "I just made the payment" → Sid "Locked in" | **PAID** |
 | Sai Vivek Ganta (+1-848) | ✅ | "Zelle 997$?" → Sid "Yes got it" (Fri May 22) | **PAID** (net-new, Delaware C-Corp builder) |
-| Palani Ravindran (+1-201) | ✅ (resubmitted; prior was C3) | **none — no payment in thread** | **NOT PAID — active discovery** |
+| Palani Ravindran (+1-201) | ✅ (resubmitted; prior was C3) | **Zelle $997 receipt posted 1:59 PM Fri May 22** (conf vp357ilp4, "Launch Club C5 May27") | **PAID** |
 
-**⚠️ Palani open loop (Fri May 22 1:47 PM, unanswered):** "Do you cover support to prepare paperwork eg business plan, financial projections... validation of the plan or a sounding board?" Answering ≠ nudge (he asked). He's the most-engaged unpaid lead — the answer + payment ask is the close.
+**⚠️ Palani open loop (Fri May 22 1:47 PM, still unanswered):** "Do you cover support to prepare paperwork eg business plan, financial projections... validation of the plan or a sounding board?" He's a PAID member now — this is an onboarding answer he's owed, not a conversion. Answer before kickoff.
 
-**Lesson logged:** stale tracker said "2 paid," form-only said "4 committed," WA said "3 paid + 1 deciding." Cross-verify WhatsApp (where comms live), don't trust the form alone. See CLAUDE.md § "Live Status = Source of Truth."
+**Lesson logged:** stale tracker said "2 paid," form-only said "4 committed," text-scrape of WA said "3 paid + 1 unpaid" — WRONG: Palani's payment was a Zelle-receipt IMAGE the text extraction couldn't read. Truth = 4 PAID. Reading WhatsApp is necessary but text-scraping is blind to image receipts — screenshot the chat. See CLAUDE.md § "Live Status = Source of Truth."
 
 **Tally form architecture clarified (May 20)** — see `~/.claude/.../memory/reference_lc_tally_forms_split.md`:
 - **pbx9Y1** = generic top-of-funnel LC interest (community broadcast, WhatsApp groups)
@@ -117,7 +117,7 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 - ❌ Sumit Saurabh (+1-608) — pivoted to WIN CLUB Fri Ep 2 path
 
 **Live signals — next 3 days to kickoff:**
-- 🟢 Palani Ravindran — submitted VLY4NE Fri May 22 but NOT paid; has unanswered scope question (paperwork/business-plan support). Most-engaged unpaid lead. The close = answer his Q + payment ask. Answering is responsiveness, not a nudge.
+- ✅ Palani Ravindran — PAID $997 (Zelle May 22). Owed an onboarding answer to his Fri 1:47 PM scope question before kickoff.
 - 🟡 5 just-pitched humans (silent post-pitch, may bite)
 - 🟡 5 defer-notice silent (Parechay, Narmada, Shruthi, Swamy, Ravi)
 - 🟡 3 WA group broadcast inbound potential
