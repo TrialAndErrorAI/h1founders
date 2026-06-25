@@ -17,15 +17,15 @@ export default function MissionStatement() {
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm sm:text-base font-mono">
             <span className="text-accent">Merit &gt; Lottery</span>
             <span className="text-foreground-tertiary">•</span>
-            <span className="text-red-pill">Builders &gt; Beggars</span>
+            <span className="text-red-pill">Builders lift builders</span>
             <span className="text-foreground-tertiary">•</span>
             <span className="text-yellow-400">Value &gt; Visa Games</span>
           </div>
 
           {/* The Test */}
           <p className="text-foreground-secondary text-sm sm:text-base max-w-2xl mx-auto">
-            We help those who CREATE VALUE, not those waiting for handouts.
-            The test is simple: Are you building or begging?
+            We help those who create value — and who reach back to lift the next builder.
+            The test is simple: Are you building, and helping someone else build?
           </p>
         </div>
       </div>
