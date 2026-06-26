@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type SyntheticEvent } from 'react'
 import { METRICS } from '../data/metrics'
 
 // Brand palette — operator aesthetic (post Jun-26 SKIN-vs-SOUL reframe)
@@ -21,7 +21,7 @@ export default function Hero() {
   const [building, setBuilding] = useState('')
 
   // The input prompt is the you-operate gesture. On submit, route to /join.
-  const handleStart = (e: FormEvent) => {
+  const handleStart = (e: SyntheticEvent) => {
     e.preventDefault()
     window.location.href = '/join'
   }
