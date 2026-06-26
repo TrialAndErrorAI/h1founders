@@ -20,11 +20,11 @@
   --code-font: 'JetBrains Mono', monospace;
 }
 
-/* Dark Mode - Professional Dark */
+/* Dark Mode - Terminal Dark (brand-aligned near-black) */
 :root[data-theme="dark"] {
-  --bg-primary: #1f2937;
-  --bg-secondary: #111827;
-  --bg-tertiary: #0f172a;
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #161616;
+  --bg-tertiary: #1a1a1a;
   --text-primary: #f3f4f6;
   --text-secondary: #d1d5db;
   --text-tertiary: #9ca3af;
