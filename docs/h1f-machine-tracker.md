@@ -2,51 +2,30 @@
 
 ## Action List
 
-### P0 — CF-Native Migration
+### Completed — Recent Ships
+- [x] **USCIS Green Card Memo Substack post** (Sun May 24) — LIVE + emailed to subscribers (email_sent_at 01:01Z). PM-602-0199 reaction, 5 review passes (AI Sid + brand-mirror + immigration cabinet 2 HIGH fixes + /writing:diff + cooldown). Real memo as cover. `community.h1bfounders.com/p/uscis-green-card-memo-explained-for`. Full arc in MEMORY.
+- [x] **H1B Live Ep 2 (Khasim)** (Fri May 15) — "Foundation Over Tactics." LIVE: `community.h1bfounders.com/p/h1b-founders-live-ep-2-foundation`. Transcript archived (`winclub/khasim/transcripts/2026-05-15_h1blive-ep2.json`), 6 clips identified, Substack metadata wired, privacy edits applied. Khasim disclosed on-air he ALREADY APPLIED for Canadian PR (tracks Q2-3 July-move signal). Born: `feedback_khasim_privacy_markers.md`, publish-mechanics "Update-Already-Published" recipe.
 
-**🎯 Phase 1 Backfill: LIVE on production D1 (May 5, 2026 ~4:45 PM ET)**
+### P0 — C5 Cohort — 4 PAID, kickoff Wed May 27 6 PM ET (resolved May 24; full arc in MEMORY)
 
-Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
-- 1,097 people (100% E.164 phone, 56 with email)
-- 1,155 enrollments (1,084 WA + 71 launch_club + 3 serotte)
-- 77 form_submissions_raw (Tally audit trail)
-- 8 indexes (2 partial UNIQUE on phone+email, idempotency UNIQUE on enrollments, OKR query covering)
-- Coexists cleanly with existing `launch_club_*` + `analyses` tables (additive, no destructive changes)
+**WhatsApp-verified 4 PAID ($997 each):** Puneet Pahuja (+1-720), Ankit Gupta (+1-518), Sai Vivek Ganta (+1-848, net-new Delaware C-Corp builder), Palani Ravindran (+1-201, Zelle conf vp357ilp4). Form architecture: pbx9Y1 = top-of-funnel interest; VLY4NE = pay+commit (`reference_lc_tally_forms_split` memory). Form ≠ payment — payment lives in WhatsApp+wallet (see CLAUDE.md § "Live Status = Source of Truth").
 
-**Atlas-side complete (May 5)**:
-- ✅ Spec v2 sharpened
-- ✅ `migrations/0001_init.sql` applied to production D1
-- ✅ `backfill-tally.ts` (56 people / 71 enrollments / 77 raw)
-- ✅ `backfill-whatsapp.ts` (1,084 people / 1,084 enrollments)
-- ✅ `merge-fixtures.ts` cross-source dedup (43 Tally↔WA overlaps, 1,097 canonical)
-- ✅ `insert-to-d1.ts` emits `d1-load.sql` (926 KB), applied via `wrangler d1 execute --remote --file=`
-- ✅ `_lib/{migration-types,normalize}.ts` shared
-- ✅ Note: D1 rename to `h1f-core` abandoned — CF D1 doesn't support rename via API/CLI. DB stays `h1f-tech-stack` name on CF, new tables coexist additively.
+- [ ] **Answer Palani's open question** (Fri May 22 1:47 PM, still unanswered): paperwork/business-plan/financial-projection support? He's PAID — onboarding answer owed, not a conversion. Before kickoff.
+- [ ] **Wed May 27 6 PM ET — kickoff** — send cohort WhatsApp group invite to the 4 paid.
+- [ ] **Mon May 25 — LC C5 Substack post** — rides the May 24 USCIS post's warmed audience.
 
-**Sid-blocked (next phase)**:
-- [ ] **Firestore export** — `firebase` CLI not installed. Path B recommended: firebase-admin SDK script with service account key, dumps to `data/migration/firestore/`. Phase 0 exit criterion #1. Once dumped, Atlas writes backfill-firestore.ts + re-runs merge → load.
-- [ ] **Push approval** — 9 commits ahead of `origin/master` (none touch live frontend code; backend D1 already populated via direct apply).
-- [ ] **Substack + Luma API tokens** — drop in keychain as `substack-api-token` / `luma-api-token`. Then Atlas writes backfill-substack.ts + backfill-luma.ts + cron Worker.
-- [ ] **DNS records** — SPF/DKIM/DMARC for h1bfounders.com via CF dashboard. Lead time = days, schedule before Phase 4.
-- [ ] **WIN CLUB form decision** — kill (0 historic submissions, WhatsApp-only intake reality) or rebuild for v2?
-- [ ] **Ercan email worker alignment** — 15-min Slack confirming h1b becomes 2nd tenant. Fallback: `gmail-sender` skill.
+### P1 — Coaching + Content Backlog (groomed May 24 — killed 8 stale/dead April items, see commit)
+- [ ] **Serotte handoff thread** — $750 productized handoff (template `coaching/serotte-handoff.md`). Active lead: +1-980-248-8343 (Serotte-started for concurrent H1B, in C5 funnel). Need 5 paying reps to validate $750 anchor before productizing (P3).
+- [ ] Post Ep 1 clips to X + LinkedIn (8 clips, `~/Downloads/h1b-ep1-clips/`) → H1Founders LI page + @sidjustice_
+- [ ] **WIN CLUB execution detail lives in `winclub/`** (Q2 pitch to 44-prospect roster, Pattern Language catalog expansion) — move to `winclub/NOW.md` on next `/wake-subproject winclub`; pointer-only here so the machine view stays strategy.
 
-### P0 — Next (Apr 25-28)
-- [ ] **Send Serotte handoff to (541) 602-8288** — Mon Apr 27 AM. Cold lead, self-sponsored H1B, spouse running biz with 2025 revenue (qualified ✅). Sid promised "checklist tomorrow" Sun 9:50 PM. Send V1 template from `coaching/serotte-handoff.md`. **First fire** of the new $750 productized handoff. Log buyer reaction (paid? balked? scope creep?) to validate $750 anchor — need 5 reps before productizing per P3.
-- [ ] **Harshdeep Q1-11 debrief capture** — Coaching session happened Fri Apr 24 ~5:35-7 PM. Content NOT in Atlas memory. Next session: run `/transcript-sync` OR ask Sid for 5-bullet summary before Chunk E mining begins. Without this, Q1-11 becomes the missing chunk in the corpus.
-- [ ] **Coreweave offer watch** — Expected Monday Apr 28 per recruiter. If offer lands clean: ship arc-v2 to Harshdeep (cal reminder Sat 7:53 PM). If offer falls through or lowballed: Chunk E opens on leverage-under-pressure material instead of arc-v2 integration.
-- [ ] **Harshdeep CLAUDE.md numbering fix** — off-by-5 vs DB. Add 6 missing sessions (Oct 31 / Nov 14 / Nov 26 / Feb 20 / Mar 20 / Apr 10) to arc table at `winclub/harshdeep/CLAUDE.md:70-74`. ~15 min cleanup.
-- [ ] **Pattern Language catalog expansion** — Chunks B + C + D surfaced 31 PUSH + 12 MEET candidates. Run `pattern-sync` to regenerate INDEX.md after inserting. ~30-45 min. Start with highest-portability: Political Correct Mind Virus (B), Fake Offer Leverage (C), Ego Dial (D), Ask What You Expected (D — grandfather MEET).
-- [ ] **Q1-10 transcript duplicate** — delete `2026-04-17_winclub_harshdeep-26Q1-10.txt` (keep `2026-04-17_h1f-winclub_harshdeep_q1-10.txt` per naming convention). 30-sec cleanup.
-- [ ] **Vladimir Gusev / ImmCore reply watch** — Day 3 of 7-day ghost window. DM sent Apr 21 ~3:50 PM asking for attorney of record. No reply as of Apr 24 4 PM. Archive at Day 7 (Apr 28) if still silent.
-- [ ] **Khasim JS Call 3 follow-through** — Monday email sequence (Email A to Justin, Email B to Shelby Tuesday) drafted in tape review at portal. Verify Khasim sends pre-review drafts to Sid Sunday night before hitting actual send. Call 3 success criterion = ONE pricing shape agreed to by Justin+Shelby by end of call.
-- [ ] **Verify "Peak Metrics" vs "PeakMetrix" naming** with Khasim on Monday (tape review uses "Peak Metrics"; his Apr 13 prep doc says "PeakMetrix")
-- [ ] **Q2 WIN CLUB pitch** — Roster ready at `coaching/1on1-customers.md` (44 prospects). Draft pitch when ready.
-- [ ] Post Ep 1 clips to X + LinkedIn — 8 clips at ~/Downloads/h1b-ep1-clips/
-- [ ] Verify podcast auto-published (Apple + Spotify) — overdue since Apr 8
-- [ ] **Q2 WIN CLUB pitch** — Roster ready at `coaching/1on1-customers.md` (39 unique humans + 5 Tough Love alumni = 44 prospects). Tier 1 = 4 repeat-bookers (Abidemi, Akshay K, Prasanna, Siva T) + 13 recent 2026 sessions. Draft pitch when ready.
-- [ ] Post Ep 1 clips to X + LinkedIn — 8 clips at ~/Downloads/h1b-ep1-clips/. Post to H1Founders LI page + @sidjustice_ X
-- [ ] Verify podcast auto-published (Apple Podcasts + Spotify) — overdue since Apr 8
+### Code Queue (`/wake-code h1bfounders`) — platform work, NOT Project-Atlas P0
+*Deferred to a code session. A waking Project Atlas (coaching/community) skips this block.*
+
+- [ ] **CF-Native Migration next phase** — Phase 1 backfill LIVE on prod D1 `h1f-tech-stack` (1,097 people). Sid-blocked: (1) Firestore export — **DECIDED Path B**: firebase-admin SDK + service-account JSON → `data/migration/firestore/` (do NOT install firebase CLI); (2) Substack+Luma tokens → keychain; (3) DNS SPF/DKIM/DMARC via CF dashboard; (4) WIN CLUB form kill-or-rebuild (Sid decision); (5) Ercan email-worker alignment (15-min Slack, h1b = 2nd tenant).
+- [ ] **HTML Rewrite v2** — execute the 7-step commit sequence in `code/docs/spec_html-rewrite-v2.md` (spec is canonical, not inlined here). Includes Sid-manual CF Access policy on admin.h1bfounders.com pre-domain-attach. + sister-spec drift cleanup (drop "rename DB to h1f-core" from `spec_cf-native-migration.md`).
+
+<!-- KILLED May 24 (stale 4+ wks / superseded): Coreweave watch (Harshdeep closed Coreweave May 6 ✅), Vladimir Gusev watch (ghosted past Apr 28 archive date), Khasim JS Call 3 (superseded by Ep 2 May 15), Peak Metrics naming check (moot), Harshdeep numbering fix + Q1-10 dup-delete + Q1-11 debrief capture (April micro-cleanups, arc closed with the win), verify-podcast-published (6-wk zombie 2-min check), WhatsApp-Sweep validation block (skill-infra conditionals → resurface on next /wa:sweep fire) -->
 
 ### Completed Apr 24, 2026 PM — Harshdeep Arc v2
 - [x] **Harshdeep Arc v2 mining COMPLETE** — 4 chunk mines + unified synthesis. Total ~970 lines structured arc material from ~680 min transcript corpus.
@@ -117,6 +96,8 @@ Production `h1f-tech-stack` D1 (ID `e60bb36e-...`) now contains:
 - [x] 4 mining reports generated (H transcript, H WhatsApp, K transcript, K WhatsApp)
 
 ## Wins Log
+- **May 9, 2026 (Sat) — LC C5 Outreach Round + Gurjeet H1B**: Gurjeet got self-sponsored H1B approved through his own C-corp (LC C3 alum, Jan 2026 cohort). Community thread organically named the "Welcome to the club" identity (Raj Gupta). LC 5 announcement sent to Main Group + Announcements (May 7). LC form: 9 unique C5 sign-ups (Parechay, Puneet, Ankit, Narmada, Shruthi, Swamy, Sumit, Vinayak, Ravi — including 4-month-stale Jan signup Ravi V.). All 9 personalized DMs sent today via WhatsApp Web. Sumit replied mid-round questioning LC value vs his already-formed C-corp; Sid responded with concurrent-H1B + Serotte handoff value-stack. Born from session: `~/.claude/commands/cdp-learn.md` (teach-probe-capture meta-protocol), `~/.claude/skills/cdp/domain-skills/whatsapp/{new-chat,catches}.md` (WA Web automation recipe + catches ledger). Manish S in Main Group surfaced the limiting-belief-trap pattern ("I'll repeat my doubt until someone concedes") — Sid called it out CREDITOR-style, multiple members landed in support, candidate Substack post material. C5 starts week of May 18.
+- **May 6, 2026 (Wed) 🏆 WIN CLUB WIN**: Harshdeep closed Coreweave WRITTEN offer — $190K (Microsoft) → $290K Y1 total comp (~50% jump). $165K base + 15% bonus + $375K RSU/4yr + 401K match. Manager flying to Seattle to close him. Closes 6-month coaching arc (Oct 17 2025 → today): leetcode + spreadsheet → resume to 9/10 → behavioral interview surgery → declined HouseWhisper Mar 13 (no leverage move) → Coreweave director round Apr 24 → today's negotiation final-mile call (joining-bonus surgical script). Today's call surfaced 5 new MEET-category coaching patterns (chess-victory-point / coach-withdrawal-graduation / this-is-not-India / last-girlfriend-projection / courtship-acceptance) + tactical joining-bonus script. **Strategic thesis surfaced**: productize Behavioral Interview + Offer Negotiation as separate coaching track — Harshdeep's arc is the proof. Podcast next week = public writeup vehicle. Full receipts: `winclub/harshdeep/wins/2026-05-06_coreweave-offer-closed.md`. Thesis breadcrumb: `_inbox/2026-05-06_harshdeep-win-and-new-coaching-track.md`.
 - **Apr 17, 2026 (Fri)**: WIN CLUB Portal v0 shipped. Private R2 bucket `winclub` + Cloudflare Worker gate at **winclub.h1bfounders.com** + Basic Auth per member + custom domain with auto-SSL. First artifact = Khasim's Jackson Spalding tape review (4,000-word magazine HTML, TALKER + Recap Protocol frameworks cited verbatim from Winning by Design Books 3 & 5). Architecture extracted to `winclub/ARCHITECTURE.md` + reusable template at `winclub/portal/templates/tape-review.html` + ops playbooks at `winclub/portal/ops/`. Cabinet review convergence: ship artifact IF Khasim pulls + kill productization/tier talk + build redact-and-share step before tape review #2. Full review saved to `docs/cabinet-reviews/2026-04-17_winclub-v0.md`. The portal IS the $497/mo retention strategy — artifacts members can re-read between Friday calls. Not a SaaS, not a product tier system — delivery plumbing for artifacts Sid writes anyway.
 - **Apr 14, 2026 (Tue, monster session)**: WIN CLUB subproject fully reorganized + validated. Built `/winclub:cabinet` skill (4-lens consciousness roundtable: AI Sid + Rogers + Berne + Deida). Mined Harshdeep Chunk A (Oct 1-10 onboarding, 4 sessions) — surfaced 9 NEW pattern candidates including 2 first-ever MEET patterns. Cabinet converged on identity-preservation diagnosis. DB extracted to markdown + archived. Calendar-validated all coaching: 40 1:1 bookings (36+ unique), 64 WIN CLUB events, 5 Tough Love delivered. Transcript sync recovered 12 NEW transcripts including 3 NEW 1:1 customers (Huseyin, Zeenath, Varun). Q2 WIN CLUB pitch roster ready (44 prospects). Helped Harshdeep with Anthropic interview answer (lede burial fix).
 - **Apr 13, 2026**: Khasim SPI demo prep shipped for Jackson's Holdings pitch (1 PM today). Full sales framework (SPI from Book 3 + Book 5) distilled to 6-question cheat sheet. WhatsApp + doc format. Also drafted generalized SPI Substack post for H1B Founders community.

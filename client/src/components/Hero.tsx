@@ -29,7 +29,8 @@ export default function Hero() {
             <p className="text-foreground-secondary text-sm sm:text-base leading-relaxed">
               15 years in the US. Always 60 days from deportation.<br/>
               The hardest part was believing I needed permission to build.<br/>
-              I didn't. And neither do you.
+              I didn't. And neither do you.<br/>
+              And you won't do it alone.
             </p>
           </div>
         </div>

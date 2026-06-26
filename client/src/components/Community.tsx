@@ -30,6 +30,7 @@ export default function Community() {
           <div className="mt-6 flex justify-center gap-8 text-sm text-foreground-tertiary">
             <span>✓ Real founders</span>
             <span>✓ Daily wins</span>
+            <span>✓ Founders pulling each other up</span>
             <span>✓ No lawyers selling</span>
           </div>
         </div>
@@ -85,6 +86,21 @@ export default function Community() {
                 # Identity shift complete. Behavior follows identity.
               </p>
             </div>
+
+            {/* Message 4 */}
+            <div className="border-l-4 border-green-500 pl-6">
+              <div className="font-mono text-sm mb-2">
+                <span className="text-accent">[Week 24]</span>
+                <span className="text-foreground-tertiary"> Giving Back:</span>
+              </div>
+              <p className="text-foreground-secondary mb-2">
+                "Someone just asked the question I asked a year ago.
+                I answered it. I'm the one who's been there now."
+              </p>
+              <p className="text-foreground-tertiary text-sm font-mono">
+                # You became the founder one step ahead.
+              </p>
+            </div>
           </div>
           
           <div className="mt-8 bg-background-secondary rounded p-4 border border-border">
@@ -93,7 +109,8 @@ export default function Community() {
               <div className="text-foreground-secondary">
                 Week 1: "How can I...?" (permission-seeking)<br/>
                 Week 4: "Wait, I can?" (awakening)<br/>
-                Week 12: "I'm building this" (transformation)
+                Week 12: "I'm building this" (transformation)<br/>
+                Week 24: "I answered it" (giving back)
               </div>
               <div className="terminal-text mt-4">
                 Your identity shift starts here <span className="cursor">█</span>
@@ -107,10 +124,10 @@ export default function Community() {
           <div className="font-mono text-sm">
             <div className="text-accent">sid@transformations:~$ show_impact --real</div>
             <div className="text-foreground-secondary mt-4 space-y-1">
-              <div>Permission-seekers transformed: 1,000+</div>
+              <div>1,000+ founders building — and helping the next one build</div>
               <div>"How can I?" → "I'm building": Daily</div>
+              <div>Intros made, reviews given, questions answered: Countless</div>
               <div>People rejecting 2029 timeline: 100s</div>
-              <div>Forum myths busted: Countless</div>
               <div>Mental prisons broken: Growing</div>
             </div>
             <div className="text-accent mt-4">
