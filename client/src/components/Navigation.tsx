@@ -74,7 +74,7 @@ export default function Navigation() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-sm transition-colors duration-150"
+                  className="font-sans text-sm font-medium transition-colors duration-150"
                   style={{ color: BRAND.muted }}
                   onMouseEnter={e => (e.currentTarget.style.color = BRAND.green)}
                   onMouseLeave={e => (e.currentTarget.style.color = BRAND.muted)}
@@ -85,7 +85,7 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="font-mono text-sm transition-colors duration-150"
+                  className="font-sans text-sm font-medium transition-colors duration-150"
                   style={{ color: isActive ? BRAND.green : BRAND.muted }}
                   onMouseEnter={e => (e.currentTarget.style.color = BRAND.green)}
                   onMouseLeave={e => (e.currentTarget.style.color = isActive ? BRAND.green : BRAND.muted)}
@@ -130,7 +130,7 @@ export default function Navigation() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-3 py-2 font-mono text-sm"
+                  className="block px-3 py-2 font-sans text-sm font-medium"
                   style={{ color: BRAND.muted }}
                   onClick={() => setIsOpen(false)}
                 >
@@ -140,7 +140,7 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="block px-3 py-2 font-mono text-sm"
+                  className="block px-3 py-2 font-sans text-sm font-medium"
                   style={{ color: isActive ? BRAND.green : BRAND.muted }}
                   onClick={() => setIsOpen(false)}
                 >
