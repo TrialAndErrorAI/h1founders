@@ -16,7 +16,7 @@ export default function TheReceipts() {
           {/* Revenue Proof - Mental Barrier Broken */}
           <div className="bg-background rounded-lg p-5 border border-border hover:border-accent transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">$5M+</div>
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">$3.5M</div>
               <p className="text-foreground-tertiary mb-3 text-sm">Built Legitimately</p>
               <div className="bg-background-secondary/50 rounded p-3 font-mono text-xs">
                 <div className="text-accent">✓ 95% gross profit</div>
@@ -44,7 +44,7 @@ export default function TheReceipts() {
           {/* Community Impact - Mental Freedom */}
           <div className="bg-background rounded-lg p-5 border border-border hover:border-accent transform hover:scale-105 transition-all duration-200 group">
             <div className="text-center">
-              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">1,000+</div>
+              <div className="terminal-text text-2xl sm:text-3xl font-bold mb-2 group-hover:matrix-glow">2,000+</div>
               <p className="text-foreground-tertiary mb-3 text-sm">Breaking Free Together</p>
               <div className="bg-background-secondary/50 rounded p-3 font-mono text-xs">
                 <div className="text-accent">✓ Forum myths busted</div>

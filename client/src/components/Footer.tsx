@@ -44,7 +44,7 @@ export default function Footer() {
                 H1Founders - Breaking ALL mental prisons since March 2024
               </div>
               <div className="text-foreground-tertiary text-xs mb-3">
-                Founded by Sid Sarasvati • "The slave mentality was self-imposed" • Helping 1,000+ realize the same
+                Founded by Sid Sarasvati • "The slave mentality was self-imposed" • Helping 2,000+ realize the same
               </div>
               <div className="flex items-center justify-center gap-4 text-xs">
                 <span className="px-2 py-1 bg-accent/20 border border-accent text-accent font-mono rounded">
@@ -58,7 +58,7 @@ export default function Footer() {
               <div className="space-y-2">
                 <div className="flex justify-between text-foreground-secondary">
                   <span>Mental prisons broken:</span>
-                  <span className="text-accent">1,000+</span>
+                  <span className="text-accent">2,000+</span>
                 </div>
                 <div className="flex justify-between text-foreground-secondary">
                   <span>Identity shifts daily:</span>

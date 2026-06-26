@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { METRICS } from '../data/metrics'
 
 // Brand palette — operator aesthetic (post Jun-26 SKIN-vs-SOUL reframe)
@@ -21,7 +21,7 @@ export default function Hero() {
   const [building, setBuilding] = useState('')
 
   // The input prompt is the you-operate gesture. On submit, route to /join.
-  const handleStart = (e: React.FormEvent) => {
+  const handleStart = (e: FormEvent) => {
     e.preventDefault()
     window.location.href = '/join'
   }
@@ -122,29 +122,27 @@ export default function Hero() {
               if you want the map first.
             </p>
 
-            {/* Supporting proof — DEMOTED below the prompt. Numbers in mono accent. */}
+            {/* Proof — PEER proof leads (the becoming made real); guide credential
+                demoted to one line. Numbers in mono accent per the brand. */}
             <div
               className="pt-6"
               style={{ borderTop: `1px solid ${BRAND.border}` }}
             >
-              <p className="font-sans text-sm mb-3" style={{ color: BRAND.muted }}>
-                Built by a self-sponsored founder, not a guru:
+              {/* Lead stat: peer proof, weight on the 20+ */}
+              <p className="font-sans text-base sm:text-lg leading-relaxed mb-3" style={{ color: BRAND.text }}>
+                <span className="font-mono font-bold" style={{ color: BRAND.green }}>{METRICS.selfSponsoredH1B}</span>{' '}
+                immigrant founders have already self-sponsored their H1B.{' '}
+                <span className="font-mono" style={{ color: BRAND.muted }}>{METRICS.coached}</span>{' '}
+                <span style={{ color: BRAND.muted }}>coached.</span>{' '}
+                <span className="font-mono" style={{ color: BRAND.muted }}>{METRICS.whatsappMembers}</span>{' '}
+                <span style={{ color: BRAND.muted }}>in the room.</span>
               </p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
-                <span className="font-mono text-sm" style={{ color: BRAND.text }}>
-                  <span style={{ color: BRAND.green }}>{METRICS.arr}</span> ARR
-                </span>
-                <span className="font-mono text-sm" style={{ color: BRAND.text }}>
-                  <span style={{ color: BRAND.green }}>$0</span> VC
-                </span>
-                <span className="font-mono text-sm" style={{ color: BRAND.text }}>
-                  <span style={{ color: BRAND.green }}>95%</span> gross profit
-                </span>
-              </div>
+
+              {/* Guide credential — demoted to one line. Green card is Sid's, true. */}
               <p className="font-sans text-sm" style={{ color: BRAND.muted }}>
-                Self-sponsored H1B, got the green card, bootstrapped the company.
-                Now <span style={{ color: BRAND.text, fontWeight: 600 }}>{METRICS.whatsappMembers} founders</span>{' '}
-                building in America without waiting.
+                Built by someone who did it —{' '}
+                <span className="font-mono" style={{ color: BRAND.text }}>{METRICS.arr}</span> ARR,{' '}
+                <span className="font-mono" style={{ color: BRAND.text }}>$0</span> VC, self-sponsored H1B → green card.
               </p>
             </div>
           </div>

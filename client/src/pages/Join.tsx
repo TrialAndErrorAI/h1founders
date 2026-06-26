@@ -11,7 +11,7 @@ export default function Join() {
             Join the Community
           </h1>
           <p className="text-xl text-foreground-secondary font-mono">
-            {METRICS.whatsappMembers} immigrant founders. Free. Always.
+            {METRICS.whatsappMembers} in the community. Free. Always.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export default function Join() {
                   business setup, visa strategy, and founder life. Members help members.
                 </p>
                 <div className="font-mono text-sm text-accent">
-                  Join {METRICS.whatsappMembers} founders →
+                  Join {METRICS.whatsappMembers} in the community →
                 </div>
               </div>
             </div>

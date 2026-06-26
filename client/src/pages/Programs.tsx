@@ -22,7 +22,7 @@ export default function Programs() {
               {METRICS.visaPath}
             </span>
             <span className="bg-background-secondary/50 border border-border px-3 py-1 rounded font-mono text-xs text-foreground-secondary">
-              {METRICS.whatsappMembers} founders
+              {METRICS.whatsappMembers} in the community
             </span>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function Programs() {
             {[
               {
                 question: 'Is the community really free?',
-                answer: `Yes. Always. ${METRICS.whatsappMembers} immigrant founders in WhatsApp. No paywall. Coaching is optional.`
+                answer: `Yes. Always. ${METRICS.whatsappMembers} in the WhatsApp community. No paywall. Coaching is optional.`
               },
               {
                 question: "What if I'm not sure which program?",
