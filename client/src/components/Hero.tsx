@@ -141,7 +141,7 @@ export default function Hero() {
 
               {/* Guide credential — demoted to one line. Green card is Sid's, true. */}
               <p className="font-sans text-sm" style={{ color: BRAND.muted }}>
-                Built by someone who did it —{' '}
+                Built by someone who did it.{' '}
                 <span className="font-mono" style={{ color: BRAND.text }}>{METRICS.arr}</span> ARR,{' '}
                 <span className="font-mono" style={{ color: BRAND.text }}>$0</span> VC, self-sponsored H1B → green card.
               </p>
