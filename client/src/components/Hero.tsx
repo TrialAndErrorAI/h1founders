@@ -128,10 +128,11 @@ export default function Hero() {
               className="pt-6"
               style={{ borderTop: `1px solid ${BRAND.border}` }}
             >
-              {/* Lead stat: peer proof, weight on the 20+ */}
+              {/* Lead stat: peer proof, weight on the 20+, ascending 20→100→2,000 */}
               <p className="font-sans text-base sm:text-lg leading-relaxed mb-3" style={{ color: BRAND.text }}>
+                Founders here self-sponsor their own H1B.{' '}
                 <span className="font-mono font-bold" style={{ color: BRAND.green }}>{METRICS.selfSponsoredH1B}</span>{' '}
-                immigrant founders have already self-sponsored their H1B.{' '}
+                <span style={{ color: BRAND.muted }}>on the record, and counting.</span>{' '}
                 <span className="font-mono" style={{ color: BRAND.muted }}>{METRICS.coached}</span>{' '}
                 <span style={{ color: BRAND.muted }}>coached.</span>{' '}
                 <span className="font-mono" style={{ color: BRAND.muted }}>{METRICS.whatsappMembers}</span>{' '}
