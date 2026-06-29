@@ -11,21 +11,15 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Default to light mode for accessibility
-  const [theme, setThemeState] = useState<ThemeMode>('light');
+  // Default to dark — terminal brand requires dark editor surface
+  const [theme, setThemeState] = useState<ThemeMode>('dark');
 
   // Load saved theme on mount
   useEffect(() => {
-    // TEMPORARY: Clear old theme preferences to ensure everyone starts fresh with light mode
-    // This can be removed after a few days once all users have been reset
-    const existingTheme = localStorage.getItem('h1founders-theme');
-    if (existingTheme) {
-      localStorage.removeItem('h1founders-theme');
+    const saved = localStorage.getItem('h1founders-theme') as ThemeMode | null;
+    if (saved && ['light', 'dark', 'matrix'].includes(saved)) {
+      setThemeState(saved);
     }
-
-    // Always start with light mode for now - proper dark mode coming soon
-    setThemeState('light');
-    document.documentElement.classList.remove('dark');
   }, []);
 
   // Apply theme to document root
@@ -41,8 +35,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.remove('dark');
     }
 
-    // TEMPORARY: Don't persist theme until dark mode is properly architected
-    // localStorage.setItem('h1founders-theme', theme);
+    localStorage.setItem('h1founders-theme', theme);
   }, [theme]);
 
   const setTheme = (newTheme: ThemeMode) => {

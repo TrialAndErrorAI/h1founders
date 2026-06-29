@@ -20,11 +20,11 @@
   --code-font: 'JetBrains Mono', monospace;
 }
 
-/* Dark Mode - Professional Dark */
+/* Dark Mode - Terminal Dark (brand-aligned near-black) */
 :root[data-theme="dark"] {
-  --bg-primary: #1f2937;
-  --bg-secondary: #111827;
-  --bg-tertiary: #0f172a;
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #161616;
+  --bg-tertiary: #1a1a1a;
   --text-primary: #f3f4f6;
   --text-secondary: #d1d5db;
   --text-tertiary: #9ca3af;
@@ -129,6 +129,18 @@ body {
   color: var(--accent-primary);
   font-family: 'JetBrains Mono', monospace;
 }
+
+/* Operator landing — focus/hover states (replaces inline JS style handlers).
+   The base property lives here too (not inline) so the :focus/:hover rule can
+   win — an inline style would out-specify a stylesheet pseudo-class rule.
+   transition-colors on each element animates the change. Hex values mirror
+   brand.ts (the CSS-token reconciliation is deferred). */
+.operator-input { border: 1px solid #30363d; }
+.operator-input:focus { border-color: #39d353; }
+.operator-btn { background-color: #39d353; }
+.operator-btn:hover { background-color: #2ea043; }
+.nav-link { color: #8b949e; }
+.nav-link:hover { color: #39d353; }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {

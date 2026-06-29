@@ -3,7 +3,11 @@
  * Update here, every page picks it up.
  */
 export const METRICS = {
-  whatsappMembers: '1,000+',
+  // Community is members "in the room" — NOT all founders. Never label as "founders".
+  whatsappMembers: '2,000+',
+  // Peer proof — operators who DID it.
+  selfSponsoredH1B: '20+',   // got their H1B self-sponsored (NOT green card)
+  coached: '100+',           // coached through the programs
   substackSubscribers: '850+',
   cohortsCompleted: 4,
   winClubMembers: 3,
@@ -11,7 +15,7 @@ export const METRICS = {
   winClubPrice: '$497/mo',
   launchClubPrice: '$997',
   launchClubDuration: '3-week program',
-  arr: '$5M+',
+  arr: '$3.5M',
   arrLabel: 'ARR Bootstrapped',
   companyName: 'Trial & Error Inc',
   press: 'WSJ (2024, 2025) \u00B7 Forbes \u00B7 IBT',
