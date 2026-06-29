@@ -1,21 +1,7 @@
 import { useState, type SyntheticEvent } from 'react'
 import { METRICS } from '../data/metrics'
-
-// Brand palette — operator aesthetic (post Jun-26 SKIN-vs-SOUL reframe)
-// SOUL kept: near-black restraint, color=status, deadpan, no glow/gradient.
-// DIALECT shed: monospace is now an ACCENT (wordmark, numbers, labels, status
-// bar) on a humanist-sans body; no $> prompts, no // comments, no git syntax.
-const BRAND = {
-  pageBg: '#0d0d0d',
-  card: '#101010',          // editor body
-  chrome: '#161616',        // slim window edge
-  border: '#30363d',
-  fieldBg: '#161b22',       // input field surface
-  statusBar: '#1d6fbb',     // status bar (color = status, not git)
-  green: '#39d353',         // success / affirmation / added
-  text: '#e6edf3',          // primary body
-  muted: '#8b949e',         // dim subtext
-}
+import { BRAND } from '../data/brand'
+import TrafficLights from './TrafficLights'
 
 export default function Hero() {
   const [building, setBuilding] = useState('')
@@ -42,9 +28,7 @@ export default function Hero() {
             className="flex items-center px-4 py-2.5 gap-1.5"
             style={{ backgroundColor: BRAND.chrome, borderBottom: `1px solid ${BRAND.border}` }}
           >
-            <span className="block w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#ff5f57' }} />
-            <span className="block w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#febc2e' }} />
-            <span className="block w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#28c840' }} />
+            <TrafficLights />
           </div>
 
           {/* Body */}
@@ -88,21 +72,16 @@ export default function Hero() {
                   value={building}
                   onChange={e => setBuilding(e.target.value)}
                   placeholder="a restaurant, a clinic, a consultancy, an app…"
-                  className="font-sans text-base flex-1 px-4 py-3 rounded outline-none transition-colors"
+                  className="operator-input font-sans text-base flex-1 px-4 py-3 rounded outline-none transition-colors"
                   style={{
                     backgroundColor: BRAND.fieldBg,
-                    border: `1px solid ${BRAND.border}`,
                     color: BRAND.text,
                   }}
-                  onFocus={e => (e.currentTarget.style.borderColor = BRAND.green)}
-                  onBlur={e => (e.currentTarget.style.borderColor = BRAND.border)}
                 />
                 <button
                   type="submit"
-                  className="font-sans text-base font-bold px-6 py-3 rounded transition-colors whitespace-nowrap"
-                  style={{ backgroundColor: BRAND.green, color: BRAND.pageBg }}
-                  onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#2ea043')}
-                  onMouseLeave={e => (e.currentTarget.style.backgroundColor = BRAND.green)}
+                  className="operator-btn font-sans text-base font-bold px-6 py-3 rounded transition-colors whitespace-nowrap"
+                  style={{ color: BRAND.pageBg }}
                 >
                   start →
                 </button>

@@ -130,6 +130,18 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* Operator landing — focus/hover states (replaces inline JS style handlers).
+   The base property lives here too (not inline) so the :focus/:hover rule can
+   win — an inline style would out-specify a stylesheet pseudo-class rule.
+   transition-colors on each element animates the change. Hex values mirror
+   brand.ts (the CSS-token reconciliation is deferred). */
+.operator-input { border: 1px solid #30363d; }
+.operator-input:focus { border-color: #39d353; }
+.operator-btn { background-color: #39d353; }
+.operator-btn:hover { background-color: #2ea043; }
+.nav-link { color: #8b949e; }
+.nav-link:hover { color: #39d353; }
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;

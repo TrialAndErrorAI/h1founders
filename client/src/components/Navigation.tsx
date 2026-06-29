@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { METRICS } from '../data/metrics'
+import { BRAND } from '../data/brand'
+import TrafficLights from './TrafficLights'
 
 interface NavItem {
   name: string
@@ -15,16 +17,6 @@ const navigation: NavItem[] = [
   { name: 'JOIN', href: '/join' }
 ]
 
-// Brand palette — terminal/operator aesthetic
-const BRAND = {
-  bg: '#0d0d0d',
-  mobileBg: '#111111',
-  border: '#30363d',
-  blueBorder: '#1d6fbb',
-  green: '#39d353',
-  muted: '#8b949e',
-}
-
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
@@ -32,7 +24,7 @@ export default function Navigation() {
   return (
     <nav
       className="sticky top-0 z-50"
-      style={{ backgroundColor: BRAND.bg, borderBottom: `1px solid ${BRAND.blueBorder}` }}
+      style={{ backgroundColor: BRAND.pageBg, borderBottom: `1px solid ${BRAND.statusBar}` }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
@@ -40,10 +32,8 @@ export default function Navigation() {
           {/* Left: macOS traffic-light dots + wordmark */}
           <div className="flex items-center gap-4">
             {/* Traffic-light dots — hidden on tiny viewports */}
-            <div className="hidden sm:flex items-center gap-1.5 flex-shrink-0">
-              <span className="block w-3 h-3 rounded-full" style={{ backgroundColor: '#ff5f57' }} />
-              <span className="block w-3 h-3 rounded-full" style={{ backgroundColor: '#febc2e' }} />
-              <span className="block w-3 h-3 rounded-full" style={{ backgroundColor: '#28c840' }} />
+            <div className="hidden sm:block">
+              <TrafficLights size="md" />
             </div>
 
             {/* Wordmark */}
@@ -74,10 +64,7 @@ export default function Navigation() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-sm font-medium transition-colors duration-150"
-                  style={{ color: BRAND.muted }}
-                  onMouseEnter={e => (e.currentTarget.style.color = BRAND.green)}
-                  onMouseLeave={e => (e.currentTarget.style.color = BRAND.muted)}
+                  className="nav-link font-sans text-sm font-medium transition-colors duration-150"
                 >
                   {item.name}
                 </a>
@@ -85,10 +72,8 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="font-sans text-sm font-medium transition-colors duration-150"
-                  style={{ color: isActive ? BRAND.green : BRAND.muted }}
-                  onMouseEnter={e => (e.currentTarget.style.color = BRAND.green)}
-                  onMouseLeave={e => (e.currentTarget.style.color = isActive ? BRAND.green : BRAND.muted)}
+                  className="nav-link font-sans text-sm font-medium transition-colors duration-150"
+                  style={isActive ? { color: BRAND.green } : undefined}
                 >
                   {item.name}
                 </Link>
